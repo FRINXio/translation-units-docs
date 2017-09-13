@@ -46,7 +46,7 @@
 |  |  | [show ip bgp ](show_ip_bgp.md) | assignment required |
 |  |  |Route process type: BGP/OSPF| [MU-24](https://frinxhelpdesk.atlassian.net/browse/MU-24)|
 |  |  |Route process ID: BGP-AS 65000/ospf as 100| [MU-24](https://frinxhelpdesk.atlassian.net/browse/MU-25)|
-|  |  |Interfaces/IP under each process [IGP]| [MU-24](https://frinxhelpdesk.atlassian.net/browse/MU-26)|
+|  |  |Interfaces/IP under each process [IGP]| [MU-24](https://frinxhelpdesk.atlassian.net/browse/MU-26|
 |  |  |Static routes configured| [MU-24](https://frinxhelpdesk.atlassian.net/browse/MU-27)|
 
 
