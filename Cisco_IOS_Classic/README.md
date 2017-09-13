@@ -44,7 +44,10 @@
 | [Translate-unit-ios-networks-Openconfig](https://github.com/frinxio/translation-units/code/) | [openconfig-network-instance.yang](https://github.com/openconfig/public/blob/master/release/models/network-instance/openconfig-network-instance.yang) | [show ip vrf](show_ip_vrf.md) | assignment required |
 | [Translate-unit-ios-BGP-OpenConfig](https://github.com/frinxio/translation-units/code/) | [openconfig-bgp.yang](https://github.com/openconfig/public/blob/master/release/models/bgp/openconfig-bgp.yang) | [show ip bgp summary](show_ip_bgp_summary.md) | assignment required |
 |  |  | [show ip bgp ](show_ip_bgp.md) | assignment required |
-|  |  |Route process type: BGP/OSPF| assignment requiered|
+|  |  |Route process type: BGP/OSPF| [MU-24](https://frinxhelpdesk.atlassian.net/browse/MU-24)|
+|  |  |Route process ID: BGP-AS 65000/ospf as 100| [MU-24](https://frinxhelpdesk.atlassian.net/browse/MU-25)|
+|  |  |Interfaces/IP under each process [IGP]| [MU-24](https://frinxhelpdesk.atlassian.net/browse/MU-26)|
+|  |  |Static routes configured| [MU-24](https://frinxhelpdesk.atlassian.net/browse/MU-27)|
 
 
 
