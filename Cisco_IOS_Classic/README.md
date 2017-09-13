@@ -44,6 +44,8 @@
 | [Translate-unit-ios-networks-Openconfig](https://github.com/frinxio/translation-units/code/) | [openconfig-network-instance.yang](https://github.com/openconfig/public/blob/master/release/models/network-instance/openconfig-network-instance.yang) | [show ip vrf](show_ip_vrf.md) | assignment required |
 | [Translate-unit-ios-BGP-OpenConfig](https://github.com/frinxio/translation-units/code/) | [openconfig-bgp.yang](https://github.com/openconfig/public/blob/master/release/models/bgp/openconfig-bgp.yang) | [show ip bgp summary](show_ip_bgp_summary.md) | assignment required |
 |  |  | [show ip bgp ](show_ip_bgp.md) | assignment required |
+|  |  |Route process type: BGP/OSPF| assignment requiered|
+
 
 
 
