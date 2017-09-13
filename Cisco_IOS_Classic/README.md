@@ -9,6 +9,8 @@
 | Translation unit  | YANG model |  Command  | Status | 
 | ----------------- |------------| --------- | ------ |
 | [Translate-unit-ios-essentials](https://github.com/frinxio/translation-units/code/)| [IOS essentials](https://github.com/frinxio/translation-units/models/)| [show version](show_version.md) | completed |
+|  |  | serial number (Device and Module) | [MU-22](https://frinxhelpdesk.atlassian.net/browse/MU-22)|
+|  |  |line card status| [MU-23](https://frinxhelpdesk.atlassian.net/browse/MU-23)|
 
 
 ### Interface
