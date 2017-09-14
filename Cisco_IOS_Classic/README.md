@@ -4,6 +4,11 @@
 
 ## Show commands
 
+### VRF
+| Translation unit  | YANG model |  Command  | Status | 
+| ----------------- |------------| --------- | ------ |
+|  |  |VRF - use openconfig models| [MU-4](https://frinxhelpdesk.atlassian.net/browse/MU-4)|
+
 ### General Information
 
 | Translation unit  | YANG model |  Command  | Status | 
@@ -58,6 +63,14 @@
 | ----------------- |------------| --------- | ------ |
 | [Translate-unit-ios-cdplldp](https://github.com/frinxio/translation-units/code/) | [cdp](https://github.com/frinxio/translation-units/models/) | [show cdp neighbor](show_cdp_neighbor.md) | assignment required |
 | [Translate-unit-ios-cdplldp](https://github.com/frinxio/translation-units/code/) | [openconfig-lldp.yang](https://github.com/openconfig/public/blob/master/release/models/lldp/openconfig-lldp.yang) | [show lldp neighbor](show_lldp_neighbor.md) | assignment required |
+|  |  |LLDP Neighbor| assignment required |
+|  |  |LLDP Local Interface| assignment required |
+|  |  |LLDP Remote Interface| assignment required |
+|  |  |CDP Neighbor| assignment required |
+|  |  |CDP Local Interface| assignment required |
+|  |  |CDP Remote Interface| assignment required |
+
+
 
 ---
 
