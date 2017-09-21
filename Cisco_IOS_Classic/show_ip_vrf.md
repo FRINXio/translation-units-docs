@@ -70,15 +70,15 @@ http://localhost:8181/restconf/operational/network-topology:network-topology/top
 
 R121#sh ip vrf              
   Name                             Default RD          Interfaces
-  DEP_1                            <not set>           Gi1/0
-  DEP_1                                                Gi2/0
-  DEP_2                            <not set>           Gi3/0
+  <b><mark>DEP_1</b></mark>                            <not set>           <b><mark>Gi1/0</b></mark>
+  <b><mark>DEP_1</b></mark>                                                <b><mark>Gi2/0</b></mark>
+  <b><mark>DEP_2</b></mark>                            <not set>           <b><mark>Gi3/0</b></mark>
 
 
 R121#sh ip vrf interfaces 
 Interface              IP-Address      VRF                              Protocol
-Gi1/0                  unassigned      DEP_1                            down
-Gi2/0                  unassigned      DEP_1                            down
-Gi3/0                  unassigned      DEP_2                            down
+<b><mark>Gi1/0</b></mark>                  unassigned      <b><mark>DEP_1</b></mark>                            down
+<b><mark>Gi2/0</b></mark>                  unassigned      <b><mark>DEP_1</b></mark>                            down
+<b><mark>Gi3/0</b></mark>                  unassigned      <b><mark>DEP_2</b></mark>                            down
 
 </pre>
