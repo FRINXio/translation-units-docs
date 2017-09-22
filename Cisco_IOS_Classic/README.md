@@ -8,7 +8,7 @@
 
 | Translation unit  | YANG model |  Command  | Status | 
 | ----------------- |------------| --------- | ------ |
-| [Translate-unit-ios-essentials](https://github.com/FRINXio/cli-units/tree/master/ios/essential)| [IOS essentials](https://github.com/frinxio/translation-units/models/)| [show version](show_version.md) | completed |
+| [Translate-unit-ios-essentials](https://github.com/FRINXio/cli-units/tree/master/ios/essential)| [IOS essentials](https://github.com/FRINXio/cli-units/tree/master/ios/essential)| [show version](show_version.md) | completed |
 |  |  | serial number (Device and Module) | [MU-22](https://frinxhelpdesk.atlassian.net/browse/MU-22)|
 |  |  |line card status| [MU-23](https://frinxhelpdesk.atlassian.net/browse/MU-23)|
 
@@ -17,7 +17,7 @@
 
 | Translation unit  | YANG model |  Command  | Status | 
 | ----------------- |------------| --------- | ------ |
-| [Translate-unit-ios-interfaces-Openconfig](https://github.com/FRINXio/cli-units/tree/master/ios/interface) | [openconfig-interfaces.yang](https://github.com/frinxio/translation-units/models/interfaces/openconfig-interfaces.yang) | [show ip interface brief](show_ip_interface_brief.md) | completed |
+| [Translate-unit-ios-interfaces-Openconfig](https://github.com/FRINXio/cli-units/tree/master/ios/interface) | [openconfig-interfaces.yang](https://github.com/FRINXio/openconfig/tree/master/interfaces) | [show ip interface brief](show_ip_interface_brief.md) | completed |
 |  | | [show run interface &lt;intf id&gt;](show_run_interface.md) | completed |
 |  | | [show interface &lt;intf id&gt;](show_interface.md) | completed |
 
@@ -27,7 +27,7 @@
 
 | Translation unit  | YANG model |  Command  | Status | 
 | ----------------- |------------| --------- | ------ |
-| [Translate-unit-ios-interfaces-Openconfig](https://github.com/FRINXio/cli-units/tree/master/ios/interface) | [openconfig-if-ip.yang](https://github.com/openconfig/public/blob/master/release/models/interfaces/openconfig-if-ip.yang) | [show ip interface](show_ip_interface.md) | completed |
+| [Translate-unit-ios-interfaces-Openconfig](https://github.com/FRINXio/cli-units/tree/master/ios/interface) | [openconfig-if-ip.yang](https://github.com/FRINXio/openconfig/tree/master/interfaces) | [show ip interface](show_ip_interface.md) | completed |
 |  | | [show ipv6 interface](show_ipv6_interface.md) | [MU-18](https://frinxhelpdesk.atlassian.net/browse/MU-18) |
 
 
