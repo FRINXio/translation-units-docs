@@ -40,6 +40,7 @@
 |  | | [show ip ospf neighbor](show_ip_ospf_neighbor.md) | [MU-24](https://frinxhelpdesk.atlassian.net/browse/MU-24) |
 |  | | [show ip ospf rib](show_ip_ospf_rib.md)| [MU-24](https://frinxhelpdesk.atlassian.net/browse/MU-24) |
 |  | | [show ip route ospf](show_ip_route_ospf.md) | [MU-24](https://frinxhelpdesk.atlassian.net/browse/MU-24) |
+|  | | [show ip ospf interface brief](show_ip_ospf_interface_brief.md) | to be assigned |
 | [Translate-unit-ios- ](https://github.com/frinxio/translation-units/code/) | [openconfig-local-routing.yang](https://github.com/openconfig/public/blob/master/release/models/local-routing/openconfig-local-routing.yang)| [show ip route static](show_ip_route_static.md)| [MU-27](https://frinxhelpdesk.atlassian.net/browse/MU-27) |
 | [Translate-unit-ios-networks-Openconfig](https://github.com/frinxio/translation-units/code/) | [openconfig-network-instance.yang](https://github.com/openconfig/public/blob/master/release/models/network-instance/openconfig-network-instance.yang) | [show ip vrf](show_ip_vrf.md) | [MU-4](https://frinxhelpdesk.atlassian.net/browse/MU-4) |
 | [Translate-unit-ios-BGP-OpenConfig](https://github.com/frinxio/translation-units/code/) | [openconfig-bgp.yang](https://github.com/openconfig/public/blob/master/release/models/bgp/openconfig-bgp.yang) | [show ip bgp summary](show_ip_bgp_summary.md) | [MU-25](https://frinxhelpdesk.atlassian.net/browse/MU-25) |
