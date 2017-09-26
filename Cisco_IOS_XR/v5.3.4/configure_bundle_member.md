@@ -28,6 +28,9 @@ http://localhost:8181/restconf/config/network-topology:network-topology/topology
         }  
     }
 }
+
+TODO: add dampening and load-interval, also specify mode active
+
 ```
 
 ---

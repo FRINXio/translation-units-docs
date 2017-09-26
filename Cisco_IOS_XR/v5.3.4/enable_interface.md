@@ -4,7 +4,7 @@
 
 ```
 PUT
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-interfaces:interfaces/interface/<intf-id>/config
+http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-interfaces:interfaces/
 ```
 
 ## REST call body 
@@ -22,14 +22,6 @@ http://localhost:8181/restconf/config/network-topology:network-topology/topology
 ---
 
 <pre>
-configure terminal
 interface &lt;intf-id&gt;
-description null
-no shutdown
-exit
-exit
+ no shutdown
 </pre>
-
-
-
-
