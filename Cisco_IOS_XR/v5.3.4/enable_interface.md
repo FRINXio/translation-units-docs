@@ -11,10 +11,12 @@ http://localhost:8181/restconf/config/network-topology:network-topology/topology
 
 ```
 {
-    "config": {
-        "type": "iana-if-type:softwareLoopback",
-        "enabled": true,
-        "name": "<intf-id>"
+    "interface": {
+	"config": {
+	    "type": "iana-if-type:softwareLoopback",
+	    "enabled": true,
+	    "name": "<intf-id>"
+	}
     }
 }
 ```

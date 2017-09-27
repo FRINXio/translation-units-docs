@@ -11,21 +11,23 @@ http://localhost:8181/restconf/config/network-topology:network-topology/topology
 
 ```
 {
-    "config": {
-        "type": "iana-if-type:ieee8023adLag",
-        "enabled": true,
-        "name": "<intf-id>"
-    }
-    "aggregation": {
-        "config": {
-            "lag-type": LACP
-        }
-    }
-    "hold-time": {
-        "config": {
-            "up": <up-value>
-            "down": <down-value>
-        }  
+    "interface": {
+	"config": {
+	    "type": "iana-if-type:ieee8023adLag",
+	    "enabled": true,
+	    "name": "<intf-id>"
+	}
+	"aggregation": {
+	    "config": {
+		"lag-type": LACP
+	    }
+	}
+	"hold-time": {
+	    "config": {
+		"up": <up-value>
+		"down": <down-value>
+	    }  
+	}
     }
 }
 

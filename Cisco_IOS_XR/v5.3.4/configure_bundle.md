@@ -1,4 +1,4 @@
-# configure interface
+# configure interface bundle
 
 ## Create REST call
 
@@ -19,15 +19,17 @@ http://localhost:8181/restconf/config/network-topology:network-topology/topology
 
 ```
 {
-    "config": {
-        "type": "iana-if-type:ieee8023adLag",
-        "enabled": true,
-        "name": "<intf-id>"
-    }
-    "aggregation": {
-        "config": {
-            "min-links": <min-links>
-        }
+    "interface": {
+	"config": {
+	    "type": "iana-if-type:ieee8023adLag",
+	    "enabled": true,
+	    "name": "<intf-id>"
+	}
+	"aggregation": {
+	    "config": {
+		"min-links": <min-links>
+	    }
+	}
     }
 }
 ```

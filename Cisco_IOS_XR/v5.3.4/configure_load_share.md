@@ -35,7 +35,7 @@ http://localhost:8181/restconf/config/network-topology:network-topology/topology
 
 <pre>
 interface tunnel-te &lt;tunnel-id&gt;
- load-share &lt;load-share&gt;
+ load-share &lt;bandwidth&gt;
 </pre>
 
 ---

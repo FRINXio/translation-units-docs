@@ -20,14 +20,14 @@ http://localhost:8181/restconf/config/network-topology:network-topology/topology
     "bgp": {
         "global": {
             "config": {
-                "as": "<as>",
+                "as": <as>
             }
         }
         "neighbors": {
             "neighbor": [
                 {
                     "config": {
-                        "neighbor-address": "<neighbor_address>"
+                        "neighbor-address": <neighbor_address>
                         "enabled": true
                     }
                 }
