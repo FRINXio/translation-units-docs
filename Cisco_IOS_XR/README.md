@@ -10,7 +10,7 @@
 | ----------------- |------------| --------- | ------ |
 | [Translate-unit-ios-essentials](https://github.com/FRINXio/cli-units/tree/master/ios/essential)| [IOS essentials](https://github.com/FRINXio/cli-units/tree/master/ios/essential)| [show version](show_version.md) | completed |
 |  |  | serial number (Device and Module) | [MU-22](https://frinxhelpdesk.atlassian.net/browse/MU-22) & [MU-33](https://frinxhelpdesk.atlassian.net/browse/MU-33)|
-|  |  |line card status| [MU-23](https://frinxhelpdesk.atlassian.net/browse/MU-23) & [MU-34(https://frinxhelpdesk.atlassian.net/browse/MU-34)|
+|  |  |line card status| [MU-23](https://frinxhelpdesk.atlassian.net/browse/MU-23) & [MU-34](https://frinxhelpdesk.atlassian.net/browse/MU-34)|
 |  |  |Type [Device & Module]| [MU-28](https://frinxhelpdesk.atlassian.net/browse/MU-28)|
 |  |  |Model [Device & Module]| [MU-29](https://frinxhelpdesk.atlassian.net/browse/MU-29)|
 |  |  |software version [major/minor]| [MU-30](https://frinxhelpdesk.atlassian.net/browse/MU-30)|
