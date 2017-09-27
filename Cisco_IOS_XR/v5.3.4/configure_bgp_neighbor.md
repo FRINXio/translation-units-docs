@@ -28,6 +28,7 @@ http://localhost:8181/restconf/config/network-topology:network-topology/topology
                 {
                     "config": {
                         "neighbor-address": "<neighbor_address>"
+                        "enabled": true
                     }
                 }
             ]

@@ -4,43 +4,45 @@
 
 ```
 PUT
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/OSPF
+http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/protocol/OSPF2
 ```
 ## Delete REST call
 
 ```
 DELETE
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/OSPF
+http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/protocol/OSPF2
 ```
 
 ## REST call body (required for create only)
 
 ```
 {
-    "config": {
-	"identifier": "OSPF"
-    }
-    "ospfv-2": {
-	"global": {
-	    "config": {
-		 "router-id":<router-id>
-	    }
-	} 
-	"area": [
-	    {
+    "protocol": {
+	"config": {
+	    "identifier": "OSPF2"
+	}
+	"ospfv-2": {
+	    "global": {
 		"config": {
-		    "identifier":<area-id>
+		     "router-id":<router-id>
 		}
-		"interfaces": [
-		    {
-                        "id":<interface-id>
-                        "config": {
-			    "metric:"<cost>
-			}
-		    }
-		]
 	    }
-	]
+	    "area": [
+		{
+		    "config": {
+			"identifier":<area-id>
+		    }
+		    "interfaces": [
+			{
+			    "id":<interface-id>
+			    "config": {
+				"metric:"<cost>
+			    }
+			}
+		    ]
+		}
+	    ]
+	}
     }
 }
 ```
@@ -61,7 +63,7 @@ router ospf &lt;router-id&gt;
 
 ```
 GET
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/OSPF
+http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/protocol/OSPF2
 ```
 
 

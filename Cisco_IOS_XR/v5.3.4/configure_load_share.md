@@ -4,32 +4,28 @@
 
 ```
 PUT
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/<ni-name>/openconfig-mpls:mpls/lsps
+http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/<ni-name>/openconfig-mpls:mpls/lsps/constrained-path/tunnels/tunnel/<tunnel-id>
 ```
 ## Delete REST call
 
 ```
 DELETE
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/<ni-name>/openconfig-mpls:mpls/lsps
+http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/<ni-name>/openconfig-mpls:mpls/lsps/constrained-path/tunnels/tunnel/<tunnel-id>
 ```
 
 ## REST call body (required for create only)
 
 ```
 {
-    "constrained-path": {
-	"tunnels": [
-	    {
-		 "config": {
-			 "name": <tunnel-id>
-		 }
-		 "bandwidth": {
-		     "config": {
-			  "set-bandwidth": <bandwidth>
-		     }
-		 }
-	    }
-	]
+    "tunnel": {
+	 "config": {
+		 "name": <tunnel-id>
+	 }
+	 "bandwidth": {
+	     "config": {
+		  "set-bandwidth": <bandwidth>
+	     }
+	 }
     }
 }
 ```
@@ -48,5 +44,5 @@ interface tunnel-te &lt;tunnel-id&gt;
 
 ```
 GET
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/<ni-name>/openconfig-mpls:mpls/lsps
+http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/<ni-name>/openconfig-mpls:mpls/lsps/constrained-path/tunnels/tunnel/<tunnel-id>
 ```

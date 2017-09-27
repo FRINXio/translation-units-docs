@@ -4,13 +4,14 @@
 
 ```
 PUT
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance/network-instances/<ni-name>/interfaces/
+http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-interfaces/interfaces/interface/<intf-id>
+
 ```
 ## Remove REST call
 
 ```
 DELETE
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance/network-instances/<ni-name>/interfaces/
+http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-interfaces/interfaces/interface/<intf-id>
 
 ```
 
@@ -40,10 +41,10 @@ interface &lt;intf-id&gt;
 
 ---
 
-## show RPC call
+## show REST call
 
 ```
 GET
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance/network-instances/<ni-name>/interfaces/
+http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-interfaces/interfaces/interface/<intf-id>
 
 ```

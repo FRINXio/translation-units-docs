@@ -4,55 +4,57 @@
 
 ```
 PUT
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/OSPF
+http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/protocol/OSPF2
 
 ```
 ## Delete REST call
 
 ```
 DELETE
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/OSPF
+http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/protocol/OSPF2
 ```
 
 ## REST call body (required for create only)
 
 ```
 {
-    "config": {
-	"identifier": "OSPF"
-    }
-    "ospfv-2": {
-	"global": {
-	    "config": {
-		 "router-id":<router-id>
+    "protocol": {
+	"config": {
+	    "identifier": "OSPF2"
+	}
+	"ospfv-2": {
+	    "global": {
+		"config": {
+		     "router-id":<router-id>
+		}
+		"max-metric": {
+		    "config": {
+			"set":true
+			"include": [ { "MAX_METRIC_INCLUDE_STUB" } ]
+		    }
+		}
 	    }
-	    "max-metric": {
-                "config": {
-		    "set":true
-		    "include": [ { "MAX_METRIC_INCLUDE_STUB" } ]
-                }
+	    areas {
+		"area": [
+		    {
+			"identifier": <area-id>
+			"lsdb": {
+			    "lsa-types": [{
+				 "lsa-type": {
+				     "type":"ROUTER_LSA"
+				 }
+				 "lsa-type": {
+				     "type":"SUMMARY_ASBR_LSA"
+				 }
+				 "lsa-type": {
+				     "type":"AS_EXTERNAL_LSA"
+				 }
+			    }]
+			}
+		    }
+		]
 	    }
 	}
-        areas {
-            "area": [
-                {
-		    "identifier": <area-id>
-		    "lsdb": {
-			"lsa-types": [{
-			     "lsa-type": {
-				 "type":"ROUTER_LSA"
-			     }
-			     "lsa-type": {
-				 "type":"SUMMARY_ASBR_LSA"
-			     }
-			     "lsa-type": {
-				 "type":"AS_EXTERNAL_LSA"
-			     }
-			}]
-		    }
-                }
-            ]
-        }
     }
 }
 
@@ -63,7 +65,7 @@ TODO: lsdb parameters are not configurable @see https://github.com/openconfig/pu
 ---
 
 <pre>
-router ospf &l;router-id&gt;
+router ospf &lt;router-id&gt;
   max-metric router-lsa include-stub summary-lsa external-lsa
 </pre>
 
@@ -73,7 +75,7 @@ router ospf &l;router-id&gt;
 
 ```
 GET 
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/OSPF
+http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/protocol/OSPF2
 
 ```
 
