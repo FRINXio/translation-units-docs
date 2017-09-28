@@ -34,5 +34,5 @@
 
 | Translation unit  | YANG model |  Command  | Status |
 | ----------------- |------------| --------- | ------ |
-| Translate-unit-ios-xr-lr-Openconfig | [openconfig-local-routing.yang](https://github.com/FRINXio/openconfig/tree/master/local-routing) | [show static routes](base/show_static_routes.md) | final |
+| Translate-unit-ios-xr-lr-Openconfig | [openconfig-local-routing.yang](https://github.com/FRINXio/openconfig/tree/master/local-routing) | [show static routes](base/show_static_routes.md) | draft |
 

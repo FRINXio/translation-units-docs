@@ -1,14 +1,12 @@
-# show static routes
+# Show static routes
 
-## Show REST call
+## REST call
 
 ```
-PUT
 http://localhost:8181/restconf/operational/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-local-routing:local-routes/static-routes/
-
 ```
 
-## REST call body (required for create only)
+## REST response body
 
 ```
 {
