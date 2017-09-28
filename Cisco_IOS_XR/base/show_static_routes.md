@@ -27,44 +27,43 @@ http://localhost:8181/restconf/operational/network-topology:network-topology/top
                         {
                              "index": 1
                              "config": {
-                                 "index": 1
-                                 "next-hop": "10.1.1.2"
+                                "index": 1
+                                "next-hop": "10.1.1.2"
                              }
                              "state": {
-                                  "index": 1
-                                  "next-hop": "10.1.1.2"
-                              }
+                                "index": 1
+                                "next-hop": "10.1.1.2"
+                             }
                         }
-                    ]
-                }
-            }
-            {
-                "prefix": "1.1.1.1/32"
-                "config": {
-                    "prefix": "1.1.1.1/32"
-                }
-                "state": {
-                    "prefix": "1.1.1.1/32"
-                }
-                "next-hops": {
-                    "next-hop": [
                         {
                              "index": 2
                              "config": {
-                                 "index": 2
-                                 "next-hop": "10.1.1.1"
-                                 "metric": 200
+                                "index": 2
+                                "next-hop": "10.1.1.1"
+                                "metric": 200
                              }
                              "state": {
                                 "index": 2
-                                 "next-hop": "10.1.1.1"
-                                 "metric": 200
+                                "next-hop": "10.1.1.1"
+                                "metric": 200
+                             }
+                             "interface-ref": {
+                                "interface" : "GigabitEthernet0/0/0/1"
                              }
                         }
+                        {
+                            "index": 3
+                            "config": {
+                                "index": 3
+                            }
+                            "state": {
+                                "index": 3
+                            }
+                            "interface-ref": {
+                                "interface" : "GigabitEthernet0/0/0/2"
+                            }
+                        }
                     ]
-                }
-                "interface-ref": {
-                    "interface" : "GigabitEthernet0/0/0/1"
                 }
             }
             {
@@ -78,39 +77,28 @@ http://localhost:8181/restconf/operational/network-topology:network-topology/top
                 "next-hops": {
                     "next-hop": [
                         {
-                             "index": 3
+                             "index": 1
                              "config": {
-                                 "index": 3
-                                 "next-hop": "fe80::1"
+                                "index": 1
+                                "next-hop": "fe80::1"
                              }
                              "state": {
-                                  "index": 3
-                                  "next-hop": "fe80::1"
-                              }
+                                "index": 1
+                                "next-hop": "fe80::1"
+                             }
+                             "interface-ref": {
+                                "interface" : "GigabitEthernet0/0/0/1"
+                             }
                         }
                     ]
-                }
-                "interface-ref": {
-                    "interface" : "GigabitEthernet0/0/0/1"
-                }
-            }
-            {
-                "prefix": 1.1.1.1/32
-                "config": {
-                    "prefix": "1.1.1.1/32"
-                }
-                "state": {
-                    "prefix": "1.1.1.1/32"
-                }
-                "interface-ref": {
-                    "interface" : "GigabitEthernet0/0/0/2"
                 }
             }
         ]
     }
 }
 
-TODO: lsdb parameters are not configurable @see https://github.com/openconfig/public/blob/master/release/models/ospf/openconfig-ospfv2-lsdb.yang
+TODO: check permanent (router) vs reuse (openconfig)
+TODO: figure out link from interface-ref to vrf
 
 ```
 
