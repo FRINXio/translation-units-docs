@@ -30,9 +30,17 @@
 | Translate-unit-ios-xr-mpls-Openconfig | openconfig-mpls.yang | [configure load share](../base/configure_load_share.md) | draft |
 | | | [configure rsvp](base/configure_rsvp.md) | draft |
 
+## Show commands for IOS xr 6
+
 #### Local Routing
 
 | Translation unit  | YANG model |  Command  | Status |
 | ----------------- |------------| --------- | ------ |
-| Translate-unit-ios-xr-lr-Openconfig | [openconfig-local-routing.yang](https://github.com/FRINXio/openconfig/tree/master/local-routing) | [show static routes](base/show_static_routes.md) | draft |
+| xr-6-lr-unit | [openconfig-local-routing.yang](https://github.com/FRINXio/openconfig/tree/master/local-routing) | [show static routes](base/show_static_routes.md) | draft |
 
+
+#### PROTOCOLS
+
+| Translation unit  | YANG model |  Command  | Status |
+| ----------------- |------------| --------- | ------ |
+| xr-6-ospf-unit | [openconfig-ospf.yang](https://github.com/FRINXio/openconfig/tree/master/ospf) | [show router ospf](base/show_router_ospf.md) | draft |
