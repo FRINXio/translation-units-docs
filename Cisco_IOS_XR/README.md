@@ -43,4 +43,5 @@
 
 | Translation unit  | YANG model |  Command  | Status |
 | ----------------- |------------| --------- | ------ |
+| xr-6-bgp-unit | [openconfig-bgp.yang](https://github.com/FRINXio/openconfig/tree/master/bgp) | [show router bgp](base/show_router_bgp.md) | draft |
 | xr-6-ospf-unit | [openconfig-ospf.yang](https://github.com/FRINXio/openconfig/tree/master/ospf) | [show router ospf](base/show_router_ospf.md) | draft |

@@ -1,4 +1,4 @@
-# Show router ospf interfaces
+# Show router ospf type, ID, interfaces
 
 ## REST call
 
@@ -6,7 +6,7 @@
 http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/protocol/OSPF2/<process-name>
 ```
 
-## REST call body (required for create only)
+## REST response body
 
 ```
 {
