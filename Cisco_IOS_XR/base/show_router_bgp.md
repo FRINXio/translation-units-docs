@@ -25,11 +25,11 @@ http://localhost:8181/restconf/config/network-topology:network-topology/topology
             "global": {
                 "config": {
                      "router-id": <router-id>
-                     "as": <as>
+                     "as": <proces-name>
                 }
                 "state": {
                      "router-id": <router-id>
-                     "as": <as>
+                     "as": <proces-name>
                 }
             }
         }
