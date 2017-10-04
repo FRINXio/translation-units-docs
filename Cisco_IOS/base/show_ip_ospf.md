@@ -4,7 +4,7 @@
 
 ```
 
-
+http://localhost:8181/restconf/operational/network-topology:network-topology/topology/cli/node/IOS1/yang-ext:mount/openconfig-ospfv2:ospfv2
 
 ```
 
@@ -12,7 +12,35 @@
 
 ```
  
-
+"ospfs": {
+	"ospf": [
+		"global": {
+			"config": {
+				"router-id": "9.9.9.9"
+			}
+		}
+		"areas": {
+			"area": {
+				"area-key": 70
+			}
+			"area": {
+				"area-key": 90
+			}
+		}
+	]
+	"ospf": [
+		"global": {
+			"config": {
+				"router-id": "192.168.56.121"
+			}
+		}
+		"areas": {
+			"area": {
+				"area-key": 20
+			}
+		}
+	]
+}
 
 ```
 
@@ -115,6 +143,5 @@ R121#sh ip ospf
 	Number of DoNotAge LSA 0
 	Flood list length 0
 </pre>
-
 
 
