@@ -3,7 +3,7 @@
 ## REST call
 
 ```
-http://localhost:8181/restconf/operational/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-local-routing:local-routes/static-routes/
+http://localhost:8181/restconf/operational/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/opeconfig-network-instance:network-instances/<vrf_id>/openconfig-local-routing:local-routes/static-routes/
 ```
 
 ## REST response body
@@ -38,12 +38,12 @@ http://localhost:8181/restconf/operational/network-topology:network-topology/top
                              "config": {
                                 "index": 2
                                 "next-hop": "10.1.1.1"
-                                "metric": 200
+                                "metric": 2
                              }
                              "state": {
                                 "index": 2
                                 "next-hop": "10.1.1.1"
-                                "metric": 200
+                                "metric": 2
                              }
                              "interface-ref": {
                                 "interface" : "GigabitEthernet0/0/0/1"
@@ -95,9 +95,6 @@ http://localhost:8181/restconf/operational/network-topology:network-topology/top
     }
 }
 
-TODO: check permanent (router) vs reuse (openconfig)
-TODO: figure out link from interface-ref to vrf
-
 ```
 
 ---
@@ -111,7 +108,7 @@ router static
 
 address-family ipv4 unicast
   1.1.1.1/32 10.1.1.2
-  1.1.1.1/32 GigabitEthernet0/0/0/1 10.1.1.1 200 permanent
+  1.1.1.1/32 GigabitEthernet0/0/0/1 10.1.1.1 metric 2
 !
 
 address-family ipv6 unicast
