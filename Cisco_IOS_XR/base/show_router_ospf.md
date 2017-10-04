@@ -12,14 +12,14 @@ http://localhost:8181/restconf/config/network-topology:network-topology/topology
 {
     "protocol": {
         "identifier": "OSPF2"
-    	"name": "LAB"
+    	"name": <process-name>
         "config": {
             "identifier": "OSPF2"
-            "name": "LAB"
+            "name": <process-name>
         }
         "state": {
             "identifier": "OSPF2"
-            "name": "LAB"
+            "name": <process-name>
         }
         "ospfv-2": {
             "global": {
