@@ -10,8 +10,6 @@ http://localhost:8181/restconf/config/network-topology:network-topology/topology
 
 ```
 {
-    "protocol": {
-        "identifier": "OSPF2"
     	"name": <process-name>
         "config": {
             "identifier": "OSPF2"
@@ -29,32 +27,32 @@ http://localhost:8181/restconf/config/network-topology:network-topology/topology
                 "state": {
                      "router-id":<router-id>
                 }
-                "areas": {
-                    "area": [
-                        {
-                            "identifier": <area-id>
-                            "config": {
-                                "identifier":<area-id>
-                            }
-                            "state": {
-                                "identifier":<area-id>
-                            }
-                            "interfaces": {
-                                "interface": [
-                                    {
-                                        "id": <intf-id>
-                                        "config": {
-                                           "id": <intf-id>
-                                        }
-                                        "state": {
-                                           "id": <intf-id>
-                                        }
-                                    }
-                                ]
-                            }
+            }
+            "areas": {
+                "area": [
+                    {
+                        "identifier": <area-id>
+                        "config": {
+                            "identifier":<area-id>
                         }
-                    ]
-                }
+                        "state": {
+                            "identifier":<area-id>
+                        }
+                        "interfaces": {
+                            "interface": [
+                                {
+                                    "id": <intf-id>
+                                    "config": {
+                                       "id": <intf-id>
+                                    }
+                                    "state": {
+                                       "id": <intf-id>
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
             }
         }
     }

@@ -23,25 +23,25 @@ http://localhost:8181/restconf/operational/network-topology:network-topology/top
                 "next-hops": {
                     "next-hop": [
                         {
-                             "index": 1
+                             "index": "10.1.1.2"
                              "config": {
-                                "index": 1
+                                "index": "10.1.1.2"
                                 "next-hop": "10.1.1.2"
                              }
                              "state": {
-                                "index": 1
+                                "index": "10.1.1.2"
                                 "next-hop": "10.1.1.2"
                              }
                         }
                         {
-                             "index": 2
+                             "index": "10.1.1.1 GigabitEthernet0/0/0/1"
                              "config": {
-                                "index": 2
+                                "index": "10.1.1.1 GigabitEthernet0/0/0/1"
                                 "next-hop": "10.1.1.1"
                                 "metric": 2
                              }
                              "state": {
-                                "index": 2
+                                "index": "10.1.1.1 GigabitEthernet0/0/0/1"
                                 "next-hop": "10.1.1.1"
                                 "metric": 2
                              }
@@ -50,12 +50,12 @@ http://localhost:8181/restconf/operational/network-topology:network-topology/top
                              }
                         }
                         {
-                            "index": 3
+                            "index": "GigabitEthernet0/0/0/2"
                             "config": {
-                                "index": 3
+                                "index": "GigabitEthernet0/0/0/2"
                             }
                             "state": {
-                                "index": 3
+                                "index": "GigabitEthernet0/0/0/2"
                             }
                             "interface-ref": {
                                 "interface" : "GigabitEthernet0/0/0/2"
@@ -75,13 +75,13 @@ http://localhost:8181/restconf/operational/network-topology:network-topology/top
                 "next-hops": {
                     "next-hop": [
                         {
-                             "index": 1
+                             "index": "fe80::1 GigabitEthernet0/0/0/1"
                              "config": {
-                                "index": 1
+                                "index": "fe80::1 GigabitEthernet0/0/0/1"
                                 "next-hop": "fe80::1"
                              }
                              "state": {
-                                "index": 1
+                                "index": "fe80::1 GigabitEthernet0/0/0/1"
                                 "next-hop": "fe80::1"
                              }
                              "interface-ref": {
