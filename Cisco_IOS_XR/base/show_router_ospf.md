@@ -3,59 +3,55 @@
 ## REST call
 
 ```
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/protocol/OSPF2/<process-name>
+http://localhost:8181/restconf/operational/network-topology:network-topology/topology/unified/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/<ni-name>/protocols/protocol/openconfig-policy-types:OSPF/<process-name>
 ```
 
 ## REST response body
 
 ```
 {
-    	"name": <process-name>
-        "config": {
-            "identifier": "OSPF2"
-            "name": <process-name>
-        }
-        "state": {
-            "identifier": "OSPF2"
-            "name": <process-name>
-        }
-        "ospfv-2": {
-            "global": {
-                "config": {
-                     "router-id":<router-id>
-                }
-                "state": {
-                     "router-id":<router-id>
+    "protocol": [
+        {
+            "name": <process-name>,
+            "identifier": "openconfig-policy-types:OSPF",
+            "config": {
+                "name": <process-name>,
+                "identifier": "openconfig-policy-types:OSPF"
+            },
+            "state": {
+                "name": <process-name>,
+                "identifier": "openconfig-policy-types:OSPF"
+            },
+            "ospfv2": {
+                "areas": {
+                    "area": [
+                        {
+                            "identifier": <area-id>,
+                            "config": {
+                                "identifier": <area-id>
+                            },
+                            "interfaces": {
+                                "interface": [
+                                    {
+                                        "id": <intf-id>
+                                        "config": {
+                                            "id": <intf-id>
+                                        },
+                                        "state": {
+                                            "id": <intf-id>
+                                        }
+                                    }
+                                ]
+                            },
+                            "state": {
+                                "identifier": <area-id>
+                            }
+                        }
+                    ]
                 }
             }
-            "areas": {
-                "area": [
-                    {
-                        "identifier": <area-id>
-                        "config": {
-                            "identifier":<area-id>
-                        }
-                        "state": {
-                            "identifier":<area-id>
-                        }
-                        "interfaces": {
-                            "interface": [
-                                {
-                                    "id": <intf-id>
-                                    "config": {
-                                       "id": <intf-id>
-                                    }
-                                    "state": {
-                                       "id": <intf-id>
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ]
-            }
         }
-    }
+    ]
 }
 ```
 
