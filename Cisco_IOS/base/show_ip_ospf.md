@@ -4,15 +4,59 @@
 
 ```
 
-
+http://localhost:8181/restconf/operational/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/<VRF-id>/protocols/protocol/openconfig-policy-types:OSPF/<OSPF-process-id>
 
 ```
 
 ## REST response body
 
 ```
- 
-
+{
+    "protocol": [
+        {
+            "identifier": "openconfig-policy-types:OSPF",
+            "name": "200",
+            "config": {
+                "name": "200",
+                "identifier": "openconfig-policy-types:OSPF"
+            },
+            "state": {
+                "name": "200",
+                "identifier": "openconfig-policy-types:OSPF"
+            },
+            "ospfv2": {
+                "global": {
+                    "config": {
+                        "router-id": "9.9.9.9"
+                    },
+                    "state": {
+                        "router-id": "9.9.9.9"
+                    }
+                },
+                "areas": {
+                    "area": [
+                        {
+                            "identifier": 70,
+                            "config": {
+                                "identifier": 70
+                            },
+                            "interfaces": {
+                                "interface": [
+                                    {
+                                        "id": "Loopback99"
+                                    }
+                                ]
+                            },
+                            "state": {
+                                "identifier": 70
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
 
 ```
 
@@ -116,5 +160,11 @@ R121#sh ip ospf
 	Flood list length 0
 </pre>
 
+Supporting command to determine OPSF - VRF relationships:
+<pre>
 
+XE2#sh run | include ospf
+router ospf <b><mark>200</b></mark> vrf <b><mark>VRF0</b></mark>
+router ospf 100
+</pre>
 
