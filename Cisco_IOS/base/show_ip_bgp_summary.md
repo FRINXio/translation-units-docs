@@ -3,38 +3,93 @@
 ## REST call
 
 ```
-
-
-
+http://localhost:8181/restconf/operational/network-topology:network-topology/topology/unified/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/default/protocols/protocol/openconfig-policy-types:BGP/default
 ```
 
 ## REST response body
 
 ```
- 
-
-
+{
+    "protocol": [
+        {
+            "identifier": "openconfig-policy-types:BGP",
+            "name": "default",
+            "config": {
+                "name": "default",
+                "identifier": "openconfig-policy-types:BGP"
+            },
+            "bgp": {
+                "global": {
+                    "config": {
+                        "as": 65000,
+                        "router-id": "99.99.99.99"
+                    }
+                },
+                "neighbors": {
+                    "neighbor": [
+                        {
+                            "neighbor-address": "10.255.255.5",
+                            "state": {
+                                "session-state": "IDLE"
+                            },
+                            "afi-safis": {
+                                "afi-safi": [
+                                    {
+                                        "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "neighbor-address": "10.255.255.2",
+                            "state": {
+                                "session-state": "IDLE"
+                            },
+                            "afi-safis": {
+                                "afi-safi": [
+                                    {
+                                        "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "neighbor-address": "10.255.255.3",
+                            "state": {
+                                "session-state": "IDLE"
+                            },
+                            "afi-safis": {
+                                "afi-safi": [
+                                    {
+                                        "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            "state": {
+                "name": "default",
+                "identifier": "openconfig-policy-types:BGP"
+            }
+        }
+    ]
+}
 ```
 
 
 ---
 
 <pre>
-R121#sh ip bgp summary 
-BGP router identifier <b><mark>9.9.9.9</b></mark> , local AS number <b><mark>65001</b></mark> 
-BGP table version is 3, main routing table version 3
-2 network entries using 288 bytes of memory
-2 path entries using 160 bytes of memory
-2/2 BGP path/bestpath attribute entries using 272 bytes of memory
-1 BGP AS-PATH entries using 24 bytes of memory
-0 BGP route-map cache entries using 0 bytes of memory
-0 BGP filter-list cache entries using 0 bytes of memory
-BGP using 744 total bytes of memory
-BGP activity 2/0 prefixes, 2/0 paths, scan interval 60 secs
+XE2#sh ip bgp summary
+BGP router identifier 99.99.99.99, local AS number 65000
+BGP table version is 1, main routing table version 1
 
 Neighbor        V           AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
-<b><mark>192.168.56.122</b></mark>  4        <b><mark>65777</b></mark>     668     666        3    0    0 10:01:55        1
-R121#
+10.255.255.2    4        65000       0       0        1    0    0 never    Idle
+10.255.255.3    4        65000       0       0        1    0    0 never    Idle
+10.255.255.5    4        65000       0       0        1    0    0 never    Idle
 </pre>
 
    
