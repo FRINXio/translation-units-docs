@@ -1,6 +1,6 @@
 # Cisco IOS classic translation units
 
-[Link to Postman collection](https://github.com/FRINXio/postman-collections)
+TRanslation units also apply to IOS XE unless otherwise noted.
 
 ## Show commands
 
