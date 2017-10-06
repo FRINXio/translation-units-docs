@@ -13,7 +13,7 @@ http://localhost:8181/restconf/operational/network-topology:network-topology/top
     "protocol": [
         {
             "name": <proces-name>,
-            "identifier": "openconfig-policy-types:BlGP",
+            "identifier": "openconfig-policy-types:BGP",
             "config": {
                 "name": <proces-name>,
                 "identifier": "openconfig-policy-types:BGP"
