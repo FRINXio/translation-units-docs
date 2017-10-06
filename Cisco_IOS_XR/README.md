@@ -32,14 +32,32 @@
 
 ## Show commands for IOS xr 6
 
-#### Local Routing
+### Interface
+
+| Translation unit  | YANG model |  Command  | Status | 
+| ----------------- |------------| --------- | ------ |
+| Translation unit  | YANG model |  Command  | Status | 
+| ----------------- |------------| --------- | ------ |
+| [Translate-unit-xr6-interface-Openconfig](https://NNN) | [openconfig-interfaces.yang](https://github.com/FRINXio/openconfig/tree/master/interfaces) | [show ip interface brief](../base/show_ip_interface_brief.md) | completed |
+|  | | [show run interface &lt;intf id&gt;](../base/show_run_interface.md) | completed |
+|  | | [show interface &lt;intf id&gt;](../base/show_interface.md) | completed |
+
+
+### IP information
+
+| Translation unit  | YANG model |  Command  | Status | 
+| ----------------- |------------| --------- | ------ |
+| [Translate-unit-xr6-interface-Openconfig](https://NNN) | [openconfig-if-ip.yang](https://github.com/FRINXio/openconfig/tree/master/interfaces) | [show ip interface](../base/show_ip_interface.md) | completed |
+|  | | [show ipv6 interface](../base/show_ipv6_interface.md) | completed |
+
+### Local Routing
 
 | Translation unit  | YANG model |  Command  | Status |
 | ----------------- |------------| --------- | ------ |
 | xr-6-lr-unit | [openconfig-local-routing.yang](https://github.com/FRINXio/openconfig/tree/master/local-routing) | [show static routes](base/show_static_routes.md) | draft |
 
 
-#### PROTOCOLS
+### PROTOCOLS
 
 | Translation unit  | YANG model |  Command  | Status |
 | ----------------- |------------| --------- | ------ |
