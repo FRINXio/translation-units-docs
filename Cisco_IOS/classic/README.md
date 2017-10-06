@@ -1,6 +1,6 @@
 # Cisco IOS classic translation units
 
-TRanslation units also apply to IOS XE unless otherwise noted.
+Translation units also apply to IOS XE unless otherwise noted.
 
 ## Show commands
 
