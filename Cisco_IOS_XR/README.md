@@ -36,8 +36,6 @@
 
 | Translation unit  | YANG model |  Command  | Status | 
 | ----------------- |------------| --------- | ------ |
-| Translation unit  | YANG model |  Command  | Status | 
-| ----------------- |------------| --------- | ------ |
 | [Translate-unit-xr6-interface-Openconfig](https://NNN) | [openconfig-interfaces.yang](https://github.com/FRINXio/openconfig/tree/master/interfaces) | [show ip interface brief](../base/show_ip_interface_brief.md) | completed |
 |  | | [show run interface &lt;intf id&gt;](../base/show_run_interface.md) | completed |
 |  | | [show interface &lt;intf id&gt;](../base/show_interface.md) | completed |
