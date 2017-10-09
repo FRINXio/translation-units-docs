@@ -3,7 +3,7 @@
 ## REST call
 
 ```
-
+http://localhost:8181/restconf/operational/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/<ni-name>/protocols/protocol/openconfig-policy-types:STATIC/default
 
 
 ```
@@ -20,7 +20,7 @@
 ---
 
 <pre>
-R122#sh ip route static 
+R121>sh ip route static
 Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
        D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
        N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
@@ -32,11 +32,13 @@ Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
 
 Gateway of last resort is not set
 
-      7.0.0.0/32 is subnetted, 1 subnets
-S        <b><mark>7.7.7.7</b></mark> [<b><mark>1</b></mark>/<b><mark>0</b></mark>] via <b><mark>10.5.5.1</b></mark>
-      9.0.0.0/32 is subnetted, 1 subnets
-S        <b><mark>9.9.9.9</b></mark> [<b><mark>1</b></mark>/<b><mark>0</b></mark>] via <b><mark>10.5.5.1</b></mark>
-R122#
+      10.0.0.0/8 is variably subnetted, 7 subnets, 2 masks
+S        10.255.1.0/24 [1/0] via 192.168.1.5
+                       is directly connected, Null0
+      12.0.0.0/28 is subnetted, 1 subnets
+S        12.255.1.0 [1/0] via 192.168.1.24
+
+R121#
 </pre>
 
 
