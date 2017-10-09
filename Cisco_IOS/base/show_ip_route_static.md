@@ -4,14 +4,52 @@
 
 ```
 http://localhost:8181/restconf/operational/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/<ni-name>/protocols/protocol/openconfig-policy-types:STATIC/default
-
-
 ```
 
 ## REST response body
 
 ```
  
+
+{
+   "protocol": [
+      {
+         "name": "default",
+         "identifier": "openconfig-policy-types:STATIC",
+         "config": {
+            "name": "default",
+            "identifier": "openconfig-policy-types:STATIC"
+         },
+         "static-routes": {
+            "static": [
+               {
+                  "prefix": "10.255.1.0/24",
+                  "config": {
+                     "prefix": "10.255.1.0/24"
+                  },
+                  "next-hops": {
+                     "next-hop": [
+                        {
+                           "index": "Null0"
+                        },
+                        {
+                           "index": "192.168.1.5"
+                        }
+                     ]
+                  },
+                  "state": {
+                     "prefix": "10.255.1.0/24"
+                  }
+               }
+            ]
+         },
+         "state": {
+            "name": "default",
+            "identifier": "openconfig-policy-types:STATIC"
+         }
+      }
+   ]
+}
 
 
 ```
