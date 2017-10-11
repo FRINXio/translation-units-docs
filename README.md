@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Translation Units for the FRINX ODL CLI service module](#translation-units-for-the-frinx-odl-cli-service-module)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Translation Units for the FRINX ODL CLI service module
 
 This repository contains documentation for all available translation units for the FRINX ODL CLI service module. A translation unit is a piece of code that includes handlers to read from or write to a specific device (e.g. Cisco IOS classic router) and facilitates the translation in OpenConfig models. 

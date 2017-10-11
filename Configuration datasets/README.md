@@ -32,15 +32,15 @@ All URLs start with:
 
 ### Interfaces
 
-##### [enable interface](Interfaces/enable_interface.md)
+##### [interface](Interfaces/interface_common.md)
 
 ### LAG interface
 
-##### [bundle](Interfaces/configure_bundle.md)
+##### [bundle](Interfaces/bundle_common.md)
 
 ### LAG member interface
 
-##### [bundle member](Interfaces/configure_bundle_member.md)
+##### [bundle member](Interfaces/bundle_member_common.md)
 
 ## Network Instances (VRFs)
 
@@ -55,7 +55,7 @@ All URLs start with:
 ### MPLS
 
 ##### [tunnel load share](Network%20Instances/MPLS/mpls_tunnel_load_share.md)
-##### [tunnel autoroute](Interfaces/mpls_tunnel_autoroute.md)
+##### [tunnel autoroute](Network%20Instances/MPLS/mpls_tunnel_autoroute.md)
 ##### [rsvp bandwidth](Network%20Instances/MPLS/rsvp_bandwidth.md)
 
 

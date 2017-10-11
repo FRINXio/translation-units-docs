@@ -8,7 +8,7 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
 
 ## OPENCONFIG YANG
 
-```json
+```javascript
 {
     "protocol": [
         {
