@@ -8,7 +8,7 @@ openconfig-interfaces/interfaces/interface/<intf-id>
 
 ## OPENCONFIG YANG
 
-```json
+```javascript
 {
     "interface": [
         {
@@ -25,13 +25,15 @@ openconfig-interfaces/interfaces/interface/<intf-id>
     ]
 }
 
-TODO: bfd configuration not available in open-config
+//TODO: bfd configuration not available in open-config
 
 ```
 
 ## OS Configuration Commands
 
-#### Cisco IOS XR 5.4.3
+### Cisco IOS XR 5.3.4
+
+#### CLI
 
 ---
 <pre>
@@ -44,7 +46,15 @@ interface &lt;intf-id&gt;
 </pre>
 ---
 
-#### Junos
+##### Unit
+
+Unit version range: NOT IMPLEMENTED
+
+Link to github : [xr-unit][]
+
+### Junos 15.1F5
+
+#### CLI
 
 ---
 <pre>
@@ -54,3 +64,9 @@ set interfaces &lt;intf-id&gt; aggregated-ether-options bfd-liveness-detection m
 set interfaces &lt;intf-id&gt; aggregated-ether-options bfd-liveness-detection multiplier &lt;multiplier&gt;
 </pre>
 ---
+
+##### Unit
+
+Unit version range: NOT IMPLEMENTED
+
+Link to github : [junos-unit][]

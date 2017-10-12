@@ -8,7 +8,7 @@ openconfig-interfaces:interfaces/interface/<intf-id>/subinterfaces/subinterface/
 
 ## OPENCONFIG YANG
 
-```json
+```javascript
 {
     "subinterface": [
         {
@@ -36,7 +36,9 @@ TODO: in unit implementation convert prefix to subnet for XR
 
 ## OS Configuration Commands
 
-#### Cisco IOS XR 5.4.3
+### Cisco IOS XR 5.3.4
+
+#### CLI
 
 ---
 <pre>
@@ -45,7 +47,15 @@ interface &lt;intf-id&gt;
 </pre>
 ---
 
-#### Junos
+##### Unit
+
+Unit version range: NOT IMPLEMENTED
+
+Link to github : [xr-unit][]
+
+### Junos 15.1F5
+
+#### CLI
 
 ---
 <pre>
@@ -53,3 +63,9 @@ set interfaces &lt;intf-id&gt;
 set interfaces &lt;intf-id&gt; unit 0 family inet address &lt;ip&gt/&lt;prefix&gt;;
 </pre>
 ---
+
+##### Unit
+
+Unit version range: NOT IMPLEMENTED
+
+Link to github : [junos-unit][]

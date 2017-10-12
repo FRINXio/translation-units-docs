@@ -8,7 +8,7 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/opencon
 
 ## OPENCONFIG YANG
 
-```json
+```javascript
 {
     "interface": [
         {
@@ -32,7 +32,9 @@ TODO: bandwidth is not configurable @see https://github.com/openconfig/public/bl
 
 ## OS Configuration Commands
 
-#### Cisco IOS XR 5.4.3
+### Cisco IOS XR 5.3.4
+
+#### CLI
 
 ---
 <pre>
@@ -42,10 +44,24 @@ rsvp
 </pre>
 ---
 
-#### Junos
+##### Unit
+
+Unit version range: NOT IMPLEMENTED
+
+Link to github : [xr-unit][]
+
+### Junos 15.1F5
+
+#### CLI
 
 ---
 <pre>
 set protocols rsvp interface &lt;intf-id&gt; bandwidth &lt;bandwidth&gt;
 </pre>
 ---
+
+##### Unit
+
+Unit version range: NOT IMPLEMENTED
+
+Link to github : [junos-unit][]

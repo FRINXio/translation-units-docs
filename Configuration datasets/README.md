@@ -1,26 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
-
-- [Configuration datasets](#configuration-datasets)
-    - [Interfaces](#interfaces)
-        - [enable interface](#enable-interface)
-    - [LAG interface](#lag-interface)
-        - [bundle](#bundle)
-    - [LAG member interface](#lag-member-interface)
-        - [bundle member](#bundle-member)
-  - [Network Instances (VRFs)](#network-instances-vrfs)
-    - [PROTOCOLS](#protocols)
-        - [bgp neighbor](#bgp-neighbor)
-        - [ospf interface cost](#ospf-interface-cost)
-        - [max metric](#max-metric)
-    - [MPLS](#mpls)
-        - [tunnel load share](#tunnel-load-share)
-        - [tunnel autoroute](#tunnel-autoroute)
-        - [rsvp bandwidth](#rsvp-bandwidth)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # Configuration datasets
 
 All URLs start with:
@@ -30,17 +7,26 @@ All URLs start with:
 - &lt;topo-name&gt; can be either <b>cli</b> or <b>unified</b>
 - &lt;node-id&gt; mountpoint name
 
-### Interfaces
+## Interfaces
+
+##### [sub-interface](Interfaces/subinterface_common.md)
 
 ##### [interface](Interfaces/interface_common.md)
 
+##### [interface policy](Interfaces/interface_policy.md)
+
+##### [interface LACP](Interfaces/interface_lacp.md)
+
+##### [interface ACL](Interfaces/interface_acl.md)
+
 ### LAG interface
 
-##### [bundle](Interfaces/bundle_common.md)
+##### [bundle](Interfaces/LAG%20interfaces/bundle_common.md)
+##### [bundle BFD](Interfaces/LAG%20interfaces/bundle_bfd.md)
 
 ### LAG member interface
 
-##### [bundle member](Interfaces/bundle_member_common.md)
+##### [bundle member](Interfaces/LAG%20member%20interfaces/bundle_member_common.md)
 
 ## Network Instances (VRFs)
 
@@ -55,7 +41,7 @@ All URLs start with:
 ### MPLS
 
 ##### [tunnel load share](Network%20Instances/MPLS/mpls_tunnel_load_share.md)
+
 ##### [tunnel autoroute](Network%20Instances/MPLS/mpls_tunnel_autoroute.md)
+
 ##### [rsvp bandwidth](Network%20Instances/MPLS/rsvp_bandwidth.md)
-
-

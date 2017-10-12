@@ -1,9 +1,9 @@
-# configure LAG bundle member
+# Interface LACP configuration
 
 ## URL
 
 ```
-openconfig-interfaces:interfaces/interface/<intf-id>
+openconfig-lacp:lacp/interfaces/interface/<intf-id>
 ```
 
 ## OPENCONFIG YANG
@@ -12,21 +12,15 @@ openconfig-interfaces:interfaces/interface/<intf-id>
 {
     "interface": [
         {
+            "name": <intf-id>
             "config": {
-                "type": "iana-if-type:ieee8023adLag",
-                "enabled": true,
-                "name": "<intf-id>"
-            }
-            "aggregation": {
-                "config": {
-                    "lag-type": LACP
-                }
+                "name": <intf-id>
+                "interval": "FAST"
+                "lacp-mode": "ACTIVE"
             }
         }
     ]
 }
-
-//TODO: specify mode active
 
 ```
 
@@ -39,7 +33,7 @@ openconfig-interfaces:interfaces/interface/<intf-id>
 ---
 <pre>
 interface &lt;intf-id&gt;
- bundle-id &lt;bundle-id&gt; mode active
+   lacp period short
 </pre>
 ---
 
@@ -55,7 +49,8 @@ Link to github : [xr-unit][]
 
 ---
 <pre>
-TODO
+set interfaces &lt;intf-id&gt; aggregated-ether-options lacp active
+set interfaces &lt;intf-id&gt; aggregated-ether-options lacp periodic fast
 </pre>
 ---
 

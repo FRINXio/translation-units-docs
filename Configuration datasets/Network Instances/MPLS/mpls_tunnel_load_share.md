@@ -8,7 +8,7 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/opencon
 
 ## OPENCONFIG YANG
 
-```json
+```javascript
 {
     "tunnel": [
          {
@@ -27,7 +27,9 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/opencon
 
 ## OS Configuration Commands
 
-### Cisco IOS XR (note:range 5.4.3 )
+### Cisco IOS XR 5.3.4
+
+#### CLI
 
 ---
 <pre>
@@ -36,11 +38,24 @@ interface tunnel-te &lt;tunnel-id&gt;
 </pre>
 ---
 
-### Junos
+##### Unit
+
+Unit version range: NOT IMPLEMENTED
+
+Link to github : [xr-unit][]
+
+### Junos 15.1F5
+
+#### CLI
 
 ---
 <pre>
-set protocols mpls label-switched-path &lt;tunnel-id&gt;
+UNSUPPORTED
 </pre>
 ---
 
+##### Unit
+
+Unit version range: NOT IMPLEMENTED
+
+Link to github : [junos-unit][]
