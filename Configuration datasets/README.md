@@ -12,13 +12,14 @@ All URLs start with:
        * [<a href="Interfaces/subinterface_common.md">sub-interface</a>](#sub-interface)
        * [<a href="Interfaces/interface_common.md">interface</a>](#interface)
        * [<a href="Interfaces/interface_policy.md">interface policy</a>](#interface-policy)
-       * [<a href="Interfaces/interface_lacp.md">interface LACP</a>](#interface-lacp)
        * [<a href="Interfaces/interface_acl.md">interface ACL</a>](#interface-acl)
      * [LAG interface](#lag-interface)
        * [<a href="Interfaces/LAG interfaces/bundle_common.md">bundle</a>](#bundle)
        * [<a href="Interfaces/LAG interfaces/bundle_bfd.md">bundle BFD</a>](#bundle-bfd)
+       * [<a href="Interfaces/LAG interfaces/bundle_dampening.md">bundle damp</a>](#bundle-dampening)
      * [LAG member interface](#lag-member-interface)
        * [<a href="Interfaces/LAG member interfaces/bundle_member_common.md">bundle member</a>](#bundle-member)
+       * [<a href="Interfaces/LAG member interfaces/interface_lacp.md">interface LACP</a>](#interface-lacp)
   * [Network Instances (VRFs)](#network-instances-vrfs)
      * [PROTOCOLS](#protocols)
        * [<a href="Network Instances/Protocols/bgp_neighbor.md">bgp neighbor</a>](#bgp-neighbor)
@@ -38,18 +39,21 @@ All URLs start with:
 
 #### [interface policy](Interfaces/interface_policy.md)
 
-#### [interface LACP](Interfaces/interface_lacp.md)
-
 #### [interface ACL](Interfaces/interface_acl.md)
 
 ### LAG interface
 
 #### [bundle](Interfaces/LAG%20interfaces/bundle_common.md)
+
 #### [bundle BFD](Interfaces/LAG%20interfaces/bundle_bfd.md)
+
+#### [bundle damp](Interfaces/LAG%20interfaces/bundle_dampening.md)
 
 ### LAG member interface
 
 #### [bundle member](Interfaces/LAG%20member%20interfaces/bundle_member_common.md)
+
+#### [interface LACP](Interfaces/LAG%20member%20interfaces/interface_lacp.md)
 
 ## Network Instances (VRFs)
 

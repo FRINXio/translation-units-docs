@@ -30,6 +30,7 @@ openconfig-interfaces:interfaces/interface/<intf-id>
 }
 
 // TODO: augment to set load-interval
+// TODO: add logging
 ```
 
 ## OS Configuration Commands
@@ -46,6 +47,7 @@ interface &lt;intf-id&gt;
  ipv4 address &lt;ip&gt; &lt;subnet&gt;
  carrier-delay up &lt;up&gt; down &lt;down&gt;
  load-interval &lt;load-interval&gt;
+ logging &lt;events&gt; &lt;link-status&gt;
  no shutdown
 </pre>
 ---
@@ -67,6 +69,7 @@ set interfaces &lt;intf-id&gt; description &lt;desc&gt;
 set interfaces &lt;intf-id&gt; mtu &lt;mtu&gt;
 set interfaces &lt;intf-id&gt; unit 0 family inet address &lt;prefix&gt;
 set interfaces &lt;intf-id&gt; hold-time up &lt;up&gt; down &lt;down&gt;
+set event-options policy log-on-snmp-trap-link-up events snmp_trap_link_up
 </pre>
 ---
 

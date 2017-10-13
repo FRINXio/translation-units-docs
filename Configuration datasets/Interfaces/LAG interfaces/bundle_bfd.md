@@ -25,7 +25,7 @@ openconfig-interfaces/interfaces/interface/<intf-id>
     ]
 }
 
-//TODO: bfd configuration not available in open-config
+//TODO: bfd configuration not available in openconfig
 
 ```
 

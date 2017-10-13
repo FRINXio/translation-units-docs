@@ -1,4 +1,4 @@
-# configure interface bundle
+# interface dampening configuration
 
 ## URL
 
@@ -19,13 +19,14 @@ openconfig-interfaces/interfaces/interface/<intf-id>
             }
             "aggregation": {
                 "config": {
-                    "min-links": <min-links>
                 }
             }
         }
     ]
 }
-// TODO: SNMP traps not supported in Openconfig
+
+//TODO: dampening configuration not available in openconfig
+
 ```
 
 ## OS Configuration Commands
@@ -37,8 +38,8 @@ openconfig-interfaces/interfaces/interface/<intf-id>
 ---
 <pre>
 interface &lt;intf-id&gt;
- bundle minimum-active links &lt;min-links&gt;
- snmp-server traps snmp linkup
+ dampening
+ dampening &lt;half-life&gt; &lt;reuse&gt; &lt;supress&gt; &lt;max-supress&gt;
 </pre>
 ---
 
@@ -54,8 +55,11 @@ Link to github : [xr-unit][]
 
 ---
 <pre>
-set interfaces &lt;intf-id&gt; aggregated-ether-options minimum-links &lt;min-links&gt;
-set interfaces &lt;intf-id&gt; traps
+set interfaces &lt;intf-id&gt; damping enable
+set interfaces &lt;intf-id&gt; damping half-life &lt;half-life&gt;
+set interfaces &lt;intf-id&gt; damping max-suppress &lt;max-supress&gt;
+set interfaces &lt;intf-id&gt; damping reuse &lt;reuse&gt;
+set interfaces &lt;intf-id&gt; damping suppress &lt;supress&gt;
 </pre>
 ---
 

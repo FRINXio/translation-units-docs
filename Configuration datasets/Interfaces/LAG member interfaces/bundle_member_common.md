@@ -13,13 +13,13 @@ openconfig-interfaces:interfaces/interface/<intf-id>
     "interface": [
         {
             "config": {
-                "type": "iana-if-type:ieee8023adLag",
+                "type": "ift:ethernetCsmacd",
                 "enabled": true,
                 "name": "<intf-id>"
             }
-            "aggregation": {
+            "openconfig-if-ethernet:ethernet": {
                 "config": {
-                    "lag-type": LACP
+                    "openconfig-if-aggregate:aggregate-id": <bundle-id>
                 }
             }
         }
@@ -55,7 +55,7 @@ Link to github : [xr-unit][]
 
 ---
 <pre>
-TODO
+set interfaces &lt;intf-id&gt; gigether-options 802.3ad &lt;bundle-id&gt;
 </pre>
 ---
 
