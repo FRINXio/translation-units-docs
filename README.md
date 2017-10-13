@@ -209,6 +209,8 @@ Link to github code where this show commmand is implemented along with unit vers
 
 # CONFIGURATION datasets
 
+[go to configuration datasets][Configuration%20datasets/README.md]
+
 ### URL
 PUT operation with given URL will result in creating of data in config datastore
 DELETE operation with given URL will result in removing data in config datastore
