@@ -137,7 +137,9 @@ router bgp &lt;as&gt;
 
 #### PUT
 
+```
 http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/<ni-name>/protocols/protocol/openconfig-bgp:bgp
+```
 
 BODY:
 ```javascript
@@ -209,7 +211,7 @@ Link to github code where this show commmand is implemented along with unit vers
 
 # CONFIGURATION datasets
 
-[go to configuration datasets][Configuration%20datasets/README.md]
+<a href="Configuration%20datasets/README.md">go to configuration datasets</a>
 
 ### URL
 PUT operation with given URL will result in creating of data in config datastore
