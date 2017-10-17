@@ -3,7 +3,7 @@
 ## REST call
 
 ```
-http://localhost:8181/restconf/operational/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/<ni-name>/protocols/protocol/openconfig-policy-types:STATIC/default
+http://localhost:8181/restconf/operational/network-topology:network-topology/topology/unified/node/pe03-unified/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/default/protocols/protocol/openconfig-policy-types:STATIC/default
 ```
 
 ## REST response body
