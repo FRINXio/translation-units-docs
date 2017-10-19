@@ -33,6 +33,12 @@
 | xr-6-ospf-unit | [openconfig-ospf.yang](https://github.com/FRINXio/openconfig/tree/master/ospf) | [show router ospf](base/show_router_ospf.md) | completed |
 
 
+### Platform
+
+| Translation unit  | YANG model |  Command  | Status |
+| ----------------  |------------| --------- | ------ |
+| xr-6-platform-unit | [openconfig-platform.yang](https://github.com/FRINXio/openconig/tree/master/platform) | [show_inventory](base/show_inventory.md) | draft |
+
 ---
 
 ## Configuration commands for IOS xr v5.3.4
