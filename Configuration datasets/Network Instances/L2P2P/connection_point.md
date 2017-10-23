@@ -9,6 +9,46 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/connect
 ## OPENCONFIG YANG
 
 ```javascript
+{
+    "connection-point": [
+        {
+            "config": {
+                "connection-point-id": "<connection_point_id>"
+            }
+            "endpoints": {
+                "endpoint": [
+                    {
+                        "config": {
+                            "endpoint-id": "<endpoint_id>"
+                            "type": "LOCAL"
+                            "local": {
+                                "config": {
+                                    "interface": "<local_interface_id>"
+                                    "subinterface": "<local_vlan>"
+                                }
+                            }
+                        }
+                    }
+                    {
+                        "config": {
+                            "endpoint-id": "<endpoint_id>"
+                            "type": "REMOTE"
+                            "remote": {
+                                "config": {
+                                    "remote-system": "<peer_ip>"
+                                    "virtual-circuit-identifier": "<vccid>"
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+```javascript
 openconfig-network-instances:network-instances/network-instance/<name>
 {
     "network-instance": [
@@ -21,54 +61,7 @@ openconfig-network-instances:network-instances/network-instance/<name>
         }
     ]
 }
-
-openconfig-network-instances:network-instances/network-instance/<name>/connection-points/connection-point/<connection-point-id>
-{
-    "connection-point": [
-        {
-            "config": {
-                "connection-point-id": "<connection_point_id>"
-            }
-        }
-    ]
-}
-openconfig-network-instances:network-instances/network-instance/<name>/connection-points/connection-point/<connection-point-id>/endpoints/endpoint/<endpoint-id>
-{
-    "endpoint": [
-        {
-            "config": {
-                "endpoint-id": "<endpoint_id>"
-                "type": "LOCAL"
-                "local": {
-                	"config": {
-                		"interface": "<local_interface_id>"
-                		"subinterface": "<local_vlan>"
-                	}
-                }
-            }
-        }
-    ]
-}
-
-openconfig-network-instances:network-instances/network-instance/<name>/connection-points/connection-point/<connection-point-id>/endpoints/endpoint/<endpoint-id>
-{
-    "endpoint": [
-        {
-            "config": {
-                "endpoint-id": "<endpoint_id>"
-                "type": "REMOTE"
-                "remote": {
-                	"config": {
-                		"remote-system": "<peer_ip>"
-                		"virtual-circuit-identifier": "<vccid>"
-                	}
-                }
-            }
-        }
-    ]
-}
 ```
-
 
 ## OS Configuration Commands
 
@@ -76,8 +69,7 @@ openconfig-network-instances:network-instances/network-instance/<name>/connectio
 
 #### CLI
 
-##### if endpoint type remote
-
+If endpoint type remote
 ---
 <pre>
 router mpls
@@ -86,8 +78,7 @@ router mpls
 </pre>
 ---
 
-##### if endpoint type local
-###### without subif
+If endpoint type local without subif
 ---
 <pre>
 router mpls
@@ -96,7 +87,7 @@ router mpls
 </pre>
 ---
 
-###### with subif
+With subif
 ---
 <pre>
 router mpls
@@ -106,8 +97,7 @@ router mpls
 </pre>
 ---
 
-##### if both endpoints are type local
-###### without subif
+If both endpoints are type local without subif
 ---
 <pre>
 router mpls
@@ -116,7 +106,7 @@ router mpls
 </pre>
 ---
 
-###### with subif
+With subif
 ---
 <pre>
 router mpls

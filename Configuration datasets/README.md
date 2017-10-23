@@ -21,7 +21,7 @@
     * [<a href="Network Instances/MPLS/mpls_tunnel_autoroute.md">tunnel autoroute</a>](#tunnel-autoroute)
     * [<a href="Network Instances/MPLS/rsvp_bandwidth.md">rsvp bandwidth</a>](#rsvp-bandwidth)
   * [L2P2P (aka. VPWS, VLL)](#l2p2p)
-    * [<a href="Network Instances/L2P2P/connection_instance.md">connection point</a>](#connection-point)
+    * [<a href="Network Instances/L2P2P/connection_point.md">connection point</a>](#connection-point)
 
 
 # Interfaces
