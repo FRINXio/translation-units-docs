@@ -11,7 +11,7 @@
     * [<a href="Interfaces/LAG member interfaces/bundle_member_common.md">bundle member</a>](#bundle-member)
     * [<a href="Interfaces/LAG member interfaces/interface_lacp.md">interface LACP</a>](#interface-lacp)
 * [Network Instances (VRFs)](#network-instances-vrfs)
-    * [<a href="Network Instances/network_instances.md">add network instance</a>](#add-network-instance)
+    * [<a href="Network Instances/network_instance.md">add network instance</a>](#add-network-instance)
   * [PROTOCOLS](#protocols)
     * [<a href="Network Instances/Protocols/bgp_neighbor.md">bgp neighbor</a>](#bgp-neighbor)
     * [<a href="Network Instances/Protocols/ospf_interface_cost.md">ospf interface cost</a>](#ospf-interface-cost)
@@ -48,7 +48,7 @@
 
 # Network Instances (VRFs)
 
-#### [add network instance](Network%20Instances/network_instances.md)
+#### [add network instance](Network%20Instances/network_instance.md)
 
 ## PROTOCOLS
 

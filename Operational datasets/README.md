@@ -2,7 +2,7 @@
 * [<a href="show_inventory.md">inventory</a>](#inventory)
 * [Interfaces](#interfaces)
     * [<a href="Interfaces/interfaces_config_summary.md">config summary</a>](#config-summary)
-    * [<a href="Interfaces/interface_summary.md">summary</a>](#summary)
+    * [<a href="Interfaces/interfaces_summary.md">summary</a>](#summary)
 * [Network Instances (VRFs)](#network-instances-vrfs)
     * [<a href="Network Instances/show_network_instances.md">show network instances</a>](#show-network-instances)
   * [PROTOCOLS](#protocols)
@@ -19,7 +19,7 @@
 
 #### [config summary](Interfaces/interfaces_config_summary.md)
 
-#### [summary](Interfaces/interface_summary.md)
+#### [summary](Interfaces/interfaces_summary.md)
 
 # Network Instances (VRFs)
 
