@@ -73,8 +73,8 @@ If endpoint type remote
 ---
 <pre>
 router mpls
- vll <connection_point_id> <vccid>
-  vll-peer <peer_ip>
+ vll &lt;connection_point_id> &lt;vccid&gt;
+  vll-peer &lt;peer_ip&gt;
 </pre>
 ---
 
@@ -82,8 +82,8 @@ If endpoint type local without subif
 ---
 <pre>
 router mpls
- vll <connection_point_id> <vccid>
-  untag <local_interface_id>
+ vll &lt;connection_point_id> &lt;vccid&gt;
+  untag &lt;local_interface_id&gt;
 </pre>
 ---
 
@@ -91,9 +91,9 @@ With subif
 ---
 <pre>
 router mpls
- vll <connection_point_id> <vccid>
-  vlan <local_vlan>
-   tag <local_interface_id>
+ vll &lt;connection_point_id> &lt;vccid&gt;
+  vlan &lt;local_vlan&gt;
+   tag &lt;local_interface_id&gt;
 </pre>
 ---
 
@@ -101,8 +101,8 @@ If both endpoints are type local without subif
 ---
 <pre>
 router mpls
- vll-local <connection_point_id>
-  untag <local_interface_id>
+ vll-local &lt;connection_point_id&gt;
+  untag &lt;local_interface_id&gt;
 </pre>
 ---
 
@@ -110,9 +110,9 @@ With subif
 ---
 <pre>
 router mpls
- vll-local <connection_point_id>
-  vlan <local_vlan>
-   tag <local_interface_id>
+ vll-local &lt;connection_point_id&gt;
+  vlan &lt;local_vlan&gt;
+   tag &lt;local_interface_id&gt;
 </pre>
 ---
 
