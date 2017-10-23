@@ -18,6 +18,9 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                 "mtu": <mtu>
                 "description": <desc>
                 "name": <intf-id>
+                "cisco-extension:statistics" {
+                    "load-interval" : <load-interval>
+                }
             }
             "hold-time": {
                 "config": {
@@ -29,8 +32,27 @@ openconfig-interfaces:interfaces/interface/<intf-id>
     ]
 }
 
-// TODO: augment to set load-interval
 // TODO: add logging
+```
+
+```
+augment "/oc-if:interfaces/oc-if:interface/oc-if:config" {
+
+    description "Adds CISCO proprietary property of load-interval";
+
+    container statistics {
+        description "Per-interface statistics configuration";
+        leaf load-interval {
+        type uint32 {
+            range "0..600";
+        }
+        default "300";
+        description
+            "Specify interval for load calculation for an
+            interface";
+        }
+    }
+}
 ```
 
 ## OS Configuration Commands
