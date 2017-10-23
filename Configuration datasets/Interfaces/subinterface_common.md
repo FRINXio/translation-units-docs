@@ -30,11 +30,27 @@ openconfig-interfaces:interfaces/interface/<intf-id>/subinterfaces/subinterface/
         }
     ]
 }
-
-TODO: in unit implementation convert prefix to subnet for XR
 ```
 
 ## OS Configuration Commands
+
+### Cisco IOS Classic (15.2(4)S5) / XE (15.3(3)S2)
+
+---
+<pre>
+configure terminal
+interface &lt;intf-id&gt;
+ip address &lt;ip&gt; &lt;subnet&gt;
+exit
+exit
+</pre>
+---
+
+##### Unit
+
+Unit version range: 3.1.1.rc1-frinx
+
+Link to github : [ios-unit][https://github.com/FRINXio/cli-units/tree/master/ios/interface]
 
 ### Cisco IOS XR 5.3.4
 
@@ -60,7 +76,7 @@ Link to github : [xr-unit][]
 ---
 <pre>
 set interfaces &lt;intf-id&gt;
-set interfaces &lt;intf-id&gt; unit 0 family inet address &lt;ip&gt/&lt;prefix&gt;;
+set interfaces &lt;intf-id&gt; unit 0 family inet address &lt;ip&gt/&lt;prefix&gt;l
 </pre>
 ---
 

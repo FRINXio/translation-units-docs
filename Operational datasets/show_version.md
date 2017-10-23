@@ -1,14 +1,14 @@
-# show version
+# Show version
 
-## REST call
-
-```
-http://localhost:8181/restconf/operational/network-topology:network-topology/topology/cli/node/IOS1/yang-ext:mount/ios-essential:version
-```
-
-## REST response body
+## URL
 
 ```
+ios-essential:version
+```
+
+## OPENCONFIG YANG
+
+```javascript
 {
     "version": {
         "conf-reg": "0x2102",
@@ -18,13 +18,20 @@ http://localhost:8181/restconf/operational/network-topology:network-topology/top
         "serial-id": "4279256517",
         "sys-memory": "491520K/32768K",
         "sys-image": "tftp://255.255.255.255/unknown"
+        "storage": {
+            "available-bytes": "14713184749B",
+            "storage-size": "16324145152B"
+        }
     }
 }
 ```
 
+## OS Commands
 
+### Cisco IOS Classic (15.2(4)S5) / XE (15.3(3)S2)
+
+#### CLI
 ---
-
 <pre>
 R121#show version
 <b><mark>Cisco IOS</b></mark> Software, <b><mark>7200</b></mark> Software (C7200-ADVIPSERVICESK9-M), <b><mark>Version 15.2(4)S5, RELEASE SOFTWARE (fc1)</b></mark>
@@ -91,5 +98,11 @@ WARNING: PCI bus mb0_mb1 Exceeds 600 bandwidth points
 8192K bytes of Flash internal SIMM (Sector size 256K).
 Configuration register is <b><mark>0x2102</b></mark>
 </pre>
+---
 
+##### Unit
+
+Unit version range: 3.1.1.rc1-frinx
+
+Link to github : [ios-unit][https://github.com/FRINXio/cli-units/tree/master/ios/essential]
 

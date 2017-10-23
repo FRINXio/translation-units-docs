@@ -1,15 +1,14 @@
-# show ip vrf
+# List all network instances (VRFs)
 
-## REST call
-
-```
-GET
-http://localhost:8181/restconf/operational/network-topology:network-topology/topology/cli/node/IOS1/yang-ext:mount/openconfig-network-instance:network-instances
-```
-
-## REST response body
+## URL
 
 ```
+openconfig-network-instance:network-instances
+```
+
+## OPENCONFIG YANG
+
+```javascript
 {
     "network-instances": {
         "network-instance": [
@@ -63,12 +62,15 @@ http://localhost:8181/restconf/operational/network-topology:network-topology/top
 }
 ```
 
+## OS Commands
+
+### Cisco IOS Classic (15.2(4)S5) / XE (15.3(3)S2)
+
+#### CLI
 
 ---
-
 <pre>
-
-R121#sh ip vrf              
+R121#sh ip vrf
   Name                             Default RD          Interfaces
   <b><mark>DEP_1</b></mark>                            <not set>           <b><mark>Gi1/0</b></mark>
   <b><mark>DEP_1</b></mark>                                                <b><mark>Gi2/0</b></mark>
@@ -80,5 +82,11 @@ Interface              IP-Address      VRF                              Protocol
 <b><mark>Gi1/0</b></mark>                  unassigned      <b><mark>DEP_1</b></mark>                            down
 <b><mark>Gi2/0</b></mark>                  unassigned      <b><mark>DEP_1</b></mark>                            down
 <b><mark>Gi3/0</b></mark>                  unassigned      <b><mark>DEP_2</b></mark>                            down
-
 </pre>
+---
+
+##### Unit
+
+Unit version range: 3.1.1.rc1-frinx
+
+Link to github : [ios-unit][https://github.com/FRINXio/cli-units/tree/master/ios/essential]

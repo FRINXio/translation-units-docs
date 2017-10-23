@@ -1,14 +1,14 @@
 # Show inventory
 
-## REST call
+## URL
 
 ```
-http://localhost:8181/restconf/operational/network-topology:network-topology/topology/unified/node/IOS1-unified/yang-ext:mount/openconfig-platform:components
+openconfig-platform:components
 ```
 
-## REST response body
+## OPENCONFIG YANG
 
-```
+```javascript
 {
     "components": {
         "component": [
@@ -32,8 +32,12 @@ http://localhost:8181/restconf/operational/network-topology:network-topology/top
 }
 ```
 
----
+## OS Commands
 
+### Cisco ASR9K
+
+#### CLI
+---
 <pre>
 RP/0/RSP0/CPU0:ios#admin
 Wed Oct 18 07:47:29.184 UTC
@@ -107,6 +111,13 @@ PID: A9K-750W-AC, VID: V01 , SN: ART2017X10J
 NAME: "chassis ASR-9001", DESCR: "ASR-9001 Chassis"
 PID: ASR-9001, VID: V06 , SN: FOC2026N2TR
 </pre>
-
 ---
+
+#### DEVICE YANG
+
+##### Unit
+
+Unit version range: 3.1.1.rc1-frinx
+
+Link to github : [xr-unit][]
 

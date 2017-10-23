@@ -1,54 +1,58 @@
-# show ip ospf
+# Show router ospf type, ID, interfaces
 
-## REST call
-
-```
-
-http://localhost:8181/restconf/operational/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/<VRF-id>/protocols/protocol/openconfig-policy-types:OSPF/<OSPF-process-id>
+## URL
 
 ```
-
-## REST response body
-
+openconfig-network-instance:network-instances/network-instance/<ni-name>/protocols/protocol/openconfig-policy-types:OSPF/<process-name>
 ```
+
+## OPENCONFIG YANG
+
+```javascript
 {
     "protocol": [
         {
+            "name": <process-name>,
             "identifier": "openconfig-policy-types:OSPF",
-            "name": "200",
             "config": {
-                "name": "200",
+                "name": <process-name>,
                 "identifier": "openconfig-policy-types:OSPF"
             },
             "state": {
-                "name": "200",
+                "name": <process-name>,
                 "identifier": "openconfig-policy-types:OSPF"
             },
             "ospfv2": {
                 "global": {
                     "config": {
-                        "router-id": "9.9.9.9"
+                        "router-id": <router-id>
                     },
                     "state": {
-                        "router-id": "9.9.9.9"
+                        "router-id": <router-id>
                     }
                 },
                 "areas": {
                     "area": [
                         {
-                            "identifier": 70,
+                            "identifier": <area-id>,
                             "config": {
-                                "identifier": 70
+                                "identifier": <area-id>
                             },
                             "interfaces": {
                                 "interface": [
                                     {
-                                        "id": "Loopback99"
+                                        "id": <intf-id>
+                                        "config": {
+                                            "id": <intf-id>
+                                        },
+                                        "state": {
+                                            "id": <intf-id>
+                                        }
                                     }
                                 ]
                             },
                             "state": {
-                                "identifier": 70
+                                "identifier": <area-id>
                             }
                         }
                     ]
@@ -57,12 +61,16 @@ http://localhost:8181/restconf/operational/network-topology:network-topology/top
         }
     ]
 }
-
 ```
 
 
----
+## OS Commands
 
+### Cisco IOS Classic (15.2(4)S5) / XE (15.3(3)S2)
+
+#### CLI
+
+---
 <pre>
 R121#sh ip ospf
  Routing Process "<b><mark>ospf 200</b></mark>" with ID <b><mark>9.9.9.9</b></mark>
@@ -117,7 +125,7 @@ R121#sh ip ospf
 	Number of indication LSA 0
 	Number of DoNotAge LSA 0
 	Flood list length 0
-	
+
  Routing Process "<b><mark>ospf 100</b></mark>" with ID <b><mark>192.168.56.121</b></mark>
  Start time: 00:26:19.132, Time elapsed: 01:35:02.676
  Supports only single TOS(TOS0) routes
@@ -162,9 +170,50 @@ R121#sh ip ospf
 
 Supporting command to determine OPSF - VRF relationships:
 <pre>
-
 XE2#sh run | include ospf
 router ospf <b><mark>200</b></mark> vrf <b><mark>VRF0</b></mark>
 router ospf 100
 </pre>
 
+Supporting command to show interfaces
+<pre>
+R121#sh ip ospf interface brief
+Interface    PID   Area            IP Address/Mask    Cost  State Nbrs F/C
+<b><mark>Lo99</b></mark>          100   20              <b><mark>7.7.7.7/32</b></mark>         1     LOOP  0/0
+R121#
+</pre>
+---
+
+##### Unit
+
+Unit version range: 3.1.1.rc1-frinx
+
+Link to github : [ios-unit][]
+
+### Cisco XR 6.1.2
+
+#### Netconf
+
+---
+<pre>
+RP/0/0/CPU0:XR1#show run router ospf
+Thu Jun  4 17:40:46.790 UTC
+router ospf &lt;process-name&gt;
+ router-id &lt;router-id&gt;
+ address-family ipv4 unicast
+ area &lt;area-id&gt;
+  interface &lt;intf-id&gt;
+  !
+ !
+!
+</pre>
+---
+
+#### Device YANG
+Link to github : [xml-sample][]
+
+##### Unit
+
+Unit version range: 3.1.1.rc1-frinx
+
+Link to github : [xr-unit][]

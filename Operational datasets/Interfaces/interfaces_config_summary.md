@@ -1,12 +1,12 @@
-# show ip interface brief
+# Interface running configuration
 
-## REST call
+## URL
 
 ```
-http://localhost:8181/restconf/operational/network-topology:network-topology/topology/unified/node/IOSXR-unified/yang-ext:mount/openconfig-interfaces:interfaces
+openconfig-interfaces:interfaces
 ```
 
-## REST response body
+## OPENCONFIG YANG
 
 ```
 {
@@ -218,9 +218,53 @@ http://localhost:8181/restconf/operational/network-topology:network-topology/top
 }
 ```
 
+## OS Commands
+
+### Cisco IOS Classic (15.2(4)S5) / XE (15.3(3)S2)
+
+#### CLI
 
 ---
+<pre>
+R121#sh run interface gigabitEthernet 1/0
+Building configuration...
 
+Current configuration : 139 bytes
+!
+interface GigabitEthernet1/0
+ description <b><mark>Test interface description</b></mark>
+ mtu <b><mark>1505</b></mark>
+ ip address 10.5.5.1 255.255.255.0
+ negotiation auto
+end
+
+R121#
+R121#sh run interface gigabitEthernet 2/0
+Building configuration...
+
+Current configuration : 217 bytes
+!
+interface GigabitEthernet2/0
+ no ip address
+ <b><mark>shutdown</b></mark>
+ negotiation auto
+end
+
+R121#
+</pre>
+---
+
+##### Unit
+
+Unit version range: 3.1.1.rc1-frinx
+
+Link to github : [ios-unit][https://github.com/FRINXio/cli-units/tree/master/ios/interface]
+
+### Cisco XR 6.1.2
+
+#### Netconf
+
+---
 <pre>
 RP/0/0/CPU0:PE3#sh run interface
 Fri Oct  6 14:02:10.020 UTC
@@ -245,77 +289,16 @@ interface GigabitEthernet0/0/0/3
 interface GigabitEthernet0/0/0/5
  shutdown
 !
-
 </pre>
-
 ---
 
-```
-<rpc message-id="m-6" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-<get>
-<filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:type="subtree">
-<interface-configurations xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ifmgr-cfg"/>
-</filter>
-</get>
-</rpc>
+#### Device YANG
+Link to github : [xml-sample][]
+
+##### Unit
+
+Unit version range: 3.1.1.rc1-frinx
+
+Link to github : [xr-unit][]
 
 
-<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="m-1">
- <data>
-  <interface-configurations xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ifmgr-cfg">
-   <interface-configuration>
-    <active>act</active>
-    <interface-name>Loopback0</interface-name>
-    <interface-virtual/>
-    <ipv4-network xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-cfg">
-     <addresses>
-      <primary>
-       <address>99.0.0.3</address>
-       <netmask>255.255.255.255</netmask>
-      </primary>
-     </addresses>
-    </ipv4-network>
-   </interface-configuration>
-   <interface-configuration>
-    <active>act</active>
-    <interface-name>MgmtEth0/0/CPU0/0</interface-name>
-    <ipv4-network xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-cfg">
-     <addresses>
-      <primary>
-       <address>192.168.1.213</address>
-       <netmask>255.255.255.0</netmask>
-      </primary>
-     </addresses>
-    </ipv4-network>
-   </interface-configuration>
-   <interface-configuration>
-    <active>act</active>
-    <interface-name>GigabitEthernet0/0/0/0</interface-name>
-    <shutdown/>
-   </interface-configuration>
-   <interface-configuration>
-    <active>act</active>
-    <interface-name>GigabitEthernet0/0/0/1</interface-name>
-    <shutdown/>
-   </interface-configuration>
-   <interface-configuration>
-    <active>act</active>
-    <interface-name>GigabitEthernet0/0/0/2</interface-name>
-    <shutdown/>
-   </interface-configuration>
-   <interface-configuration>
-    <active>act</active>
-    <interface-name>GigabitEthernet0/0/0/3</interface-name>
-    <cdp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-cdp-cfg">
-     <enable/>
-    </cdp>
-   </interface-configuration>
-   <interface-configuration>
-    <active>act</active>
-    <interface-name>GigabitEthernet0/0/0/5</interface-name>
-    <shutdown/>
-   </interface-configuration>
-  </interface-configurations>
- </data>
-</rpc-reply>
-```

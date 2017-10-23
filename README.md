@@ -84,7 +84,7 @@ You can create a minimalistic YANG tree out of the URL:
 openconfig-network-instances: {                 // top-level container
     network-instance: [                         // list
         {                                       // list-item start
-            key: "<VRF-id>"                     // list key
+            key: <VRF-id>                     // list key
             protocols: {
                 protocol: [
                     {
@@ -93,7 +93,7 @@ openconfig-network-instances: {                 // top-level container
                             areas: {
                                 area: [
                                     {
-                                        key: "<area-id>"
+                                        key: <area-id>
                                         interfaces {
                                            ...
                                         }
@@ -188,13 +188,15 @@ DELETE operation always removes the last argument of the URL.
 
 # OPERATIONAL datasets
 
+<a href="Operational%20datasets/README.md">go to operational datasets</a>
+
 Show commands are commands that usually on Cisco device start with 'show'. The aim is to obtain data from the router.
 
 ### URL
 GET operation issued on operational datastore
 
 ### OPENCONFIG YANG
-In case of show commands this section is the output of a particular show command.
+In case of show commands this section is a sample output of a particular show command.
 
 ### OS COMMANDS
 In this section we list the actual router commands with sample outputs, where the data obtained and transformed into Openconfig YANG is marked as bold. We list show commands and outputs for each supported device OS.
@@ -204,6 +206,7 @@ IOS XR | IOS Classic/XE | Junos
 ### DEVICE YANG
 
 In case of CLI units, the unit parses the output of the CLI command directly into OC YANG. In case of Netconf units, the output is mapped to OC YANG through Device YANG (YANG model supported by the device). In case of Netconf units, the YANG is also written in documentation.
+This section is a link to XML unit test input testing this operation.
 
 ### UNIT
 
@@ -228,6 +231,7 @@ IOS XR | IOS Classic/XE | Junos
 
 ### DEVICE YANG
 In case od Netconf units, the device yang represents command sent to the device in device YANG model.
+This section is a link to XML unit test input testing this configuration.
 
 ### UNIT
 

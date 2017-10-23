@@ -35,6 +35,26 @@ openconfig-interfaces:interfaces/interface/<intf-id>
 
 ## OS Configuration Commands
 
+### Cisco IOS Classic (15.2(4)S5) / XE (15.3(3)S2)
+
+---
+<pre>
+configure terminal
+interface &lt;intf-id&gt;
+description &lt;descr&gt;
+mtu &lt;mtu&gt;
+shutdown
+exit
+exit
+</pre>
+---
+
+##### Unit
+
+Unit version range: 3.1.1.rc1-frinx
+
+Link to github : [ios-unit][https://github.com/FRINXio/cli-units/tree/master/ios/interface]
+
 ### Cisco IOS XR 5.3.4
 
 #### CLI
@@ -44,7 +64,6 @@ openconfig-interfaces:interfaces/interface/<intf-id>
 interface &lt;intf-id&gt;
  description &lt;desc&gt;
  mtu &lt;mtu&gt;
- ipv4 address &lt;ip&gt; &lt;subnet&gt;
  carrier-delay up &lt;up&gt; down &lt;down&gt;
  load-interval &lt;load-interval&gt;
  logging &lt;events&gt; &lt;link-status&gt;
@@ -67,7 +86,6 @@ Link to github : [xr-unit][]
 set interfaces &lt;intf-id&gt;
 set interfaces &lt;intf-id&gt; description &lt;desc&gt;
 set interfaces &lt;intf-id&gt; mtu &lt;mtu&gt;
-set interfaces &lt;intf-id&gt; unit 0 family inet address &lt;prefix&gt;
 set interfaces &lt;intf-id&gt; hold-time up &lt;up&gt; down &lt;down&gt;
 set event-options policy log-on-snmp-trap-link-up events snmp_trap_link_up
 </pre>
