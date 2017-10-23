@@ -274,7 +274,7 @@ R121#sh ip inter gigabitEthernet 1/0 | include Internet address
 
 Unit version range: 3.1.1.rc1-frinx
 
-Link to github : [ios-unit][https://github.com/FRINXio/cli-units/tree/master/ios/interface]
+Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/interface)
 
 ### Cisco XR 6.1.2
 

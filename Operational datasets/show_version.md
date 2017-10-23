@@ -104,5 +104,5 @@ Configuration register is <b><mark>0x2102</b></mark>
 
 Unit version range: 3.1.1.rc1-frinx
 
-Link to github : [ios-unit][https://github.com/FRINXio/cli-units/tree/master/ios/essential]
+Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/essential)
 

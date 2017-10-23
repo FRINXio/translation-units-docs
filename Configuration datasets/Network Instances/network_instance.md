@@ -37,5 +37,5 @@ exit
 
 Unit version range: 3.1.1.rc1-frinx
 
-Link to github : [ios-unit][https://github.com/FRINXio/cli-units/tree/master/ios/essential]
+Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/essential)
 

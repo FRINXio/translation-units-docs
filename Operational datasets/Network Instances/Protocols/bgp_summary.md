@@ -106,7 +106,7 @@ XE2#sh bgp vpnv4 unicast all summ
 
 Unit version range: 3.1.1.rc1-frinx
 
-Link to github : [ios-unit][https://github.com/FRINXio/cli-units/tree/master/ios/bgp]
+Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/bgp)
 
 ### Cisco XR 6.1.2
 

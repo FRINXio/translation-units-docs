@@ -53,7 +53,7 @@ exit
 
 Unit version range: 3.1.1.rc1-frinx
 
-Link to github : [ios-unit][https://github.com/FRINXio/cli-units/tree/master/ios/interface]
+Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/interface)
 
 ### Cisco IOS XR 5.3.4
 
