@@ -8,6 +8,8 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
 
 ## OPENCONFIG YANG
 
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/ospf/src/main/yang)
+
 ```javascript
 {
     "protocol": [
@@ -78,7 +80,7 @@ router ospf &lt;process-name&gt;
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [xr-unit][]
+Link to github : [xr-unit]()
 
 ### Junos 15.1F5
 
@@ -94,4 +96,4 @@ set protocols ospf overload timeout 1200
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [junos-unit][]
+Link to github : [junos-unit]()

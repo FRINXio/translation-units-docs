@@ -8,6 +8,8 @@ openconfig-network-instance:network-instance/network-instance/<ni-name>/protocol
 
 ## OPENCONFIG YANG
 
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/ospf/src/main/yang)
+
 ```javascript
 {
     "protocol": [
@@ -61,7 +63,7 @@ router ospf &lt;process-name&gt;
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [xr-unit][]
+Link to github : [xr-unit]()
 
 ### Junos 15.1F5
 
@@ -77,4 +79,4 @@ set protocols ospf area &lt;area-id&gt; interface &lt;intf-id&gt; metric &lt;cos
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [junos-unit][]
+Link to github : [junos-unit]()

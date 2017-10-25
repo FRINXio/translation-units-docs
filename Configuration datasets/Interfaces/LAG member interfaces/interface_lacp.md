@@ -8,6 +8,8 @@ openconfig-lacp:lacp/interfaces/interface/<intf-id>
 
 ## OPENCONFIG YANG
 
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/interfaces/src/main/yang)
+
 ```javascript
 {
     "interface": [
@@ -41,7 +43,7 @@ interface &lt;intf-id&gt;
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [xr-unit][]
+Link to github : [xr-unit]()
 
 ### Junos 15.1F5
 
@@ -58,4 +60,4 @@ set interfaces &lt;intf-id&gt; aggregated-ether-options lacp periodic fast
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [junos-unit][]
+Link to github : [junos-unit]()

@@ -8,6 +8,8 @@ openconfig-interfaces/interfaces/interface/<intf-id>
 
 ## OPENCONFIG YANG
 
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/interfaces/src/main/yang)
+
 ```javascript
 {
     "interface": [
@@ -19,13 +21,24 @@ openconfig-interfaces/interfaces/interface/<intf-id>
             }
             "aggregation": {
                 "config": {
+                    "interfaces-bfd:bfd": {
+                        "address-family": {
+                            "ipv4": {
+                                "destination-address": <ip>
+                                "cisco-if-extension:fast-detect": true
+                                "min-interval": <min-int>
+                                "multiplier": <multiplier>
+                            }
+                        }
+                        "cisco-if-extension:mode": "IETF"
+                    }
                 }
             }
         }
     ]
 }
 
-//TODO: bfd configuration not available in openconfig
+TODO: adjust to JUNIPER (destination address)
 
 ```
 
@@ -38,11 +51,11 @@ openconfig-interfaces/interfaces/interface/<intf-id>
 ---
 <pre>
 interface &lt;intf-id&gt;
-  bfd mode ietf
-  bfd address-family ipv4 destination &lt;ip&gt;
-  bfd address-family ipv4 fast-detect
-  bfd address-family ipv4 minimum-interval &lt;min-int&gt;
-  bfd address-family ipv4 multiplier &lt;multiplier&gt;
+ bfd mode ietf
+ bfd address-family ipv4 destination &lt;ip&gt;
+ bfd address-family ipv4 fast-detect
+ bfd address-family ipv4 minimum-interval &lt;min-int&gt;
+ bfd address-family ipv4 multiplier &lt;multiplier&gt;
 </pre>
 ---
 
@@ -50,7 +63,7 @@ interface &lt;intf-id&gt;
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [xr-unit][]
+Link to github : [xr-unit]()
 
 ### Junos 15.1F5
 
@@ -69,4 +82,4 @@ set interfaces &lt;intf-id&gt; aggregated-ether-options bfd-liveness-detection m
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [junos-unit][]
+Link to github : [junos-unit]()

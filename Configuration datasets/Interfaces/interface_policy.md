@@ -8,13 +8,15 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/opencon
 
 ## OPENCONFIG YANG
 
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/interfaces/src/main/yang)
+
 ```javascript
 {
     "interface": [
         {
             "config": {
                 "interface-id": <intf-id>
-                "apply-forwarding-policy": <policy-name>
+
             }
         }
     ]
@@ -40,7 +42,7 @@ interface &lt;intf-id&gt;
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [xr-unit][]
+Link to github : [xr-unit]()
 
 ### Junos 15.1F5
 
@@ -56,4 +58,4 @@ set class-of-service interfaces &lt;intf-id&gt; scheduler-map &lt;policy-name&gt
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [junos-unit][]
+Link to github : [junos-unit]()

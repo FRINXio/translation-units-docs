@@ -8,6 +8,8 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
 
 ## OPENCONFIG YANG
 
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/bgp/src/main/yang)
+
 ```javascript
 {
     "protocol": [
@@ -59,7 +61,7 @@ router bgp &lt;as&gt; instance &lt;process-name&gt;
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [xr-unit][]
+Link to github : [xr-unit]()
 
 ### Junos 15.1F5
 
@@ -75,4 +77,4 @@ activate protocols bgp group iBGP neighbor &lt;neighbor_address&gt;
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [junos-unit][]
+Link to github : [junos-unit]()

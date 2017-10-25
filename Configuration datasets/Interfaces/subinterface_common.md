@@ -8,6 +8,8 @@ openconfig-interfaces:interfaces/interface/<intf-id>/subinterfaces/subinterface/
 
 ## OPENCONFIG YANG
 
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/interfaces/src/main/yang)
+
 ```javascript
 {
     "subinterface": [
@@ -67,7 +69,7 @@ interface &lt;intf-id&gt;
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [xr-unit][]
+Link to github : [xr-unit]()
 
 ### Junos 15.1F5
 
@@ -84,4 +86,4 @@ set interfaces &lt;intf-id&gt; unit 0 family inet address &lt;ip&gt/&lt;prefix&g
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [junos-unit][]
+Link to github : [junos-unit]()

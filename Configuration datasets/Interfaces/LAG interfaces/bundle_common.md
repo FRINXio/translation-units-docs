@@ -1,4 +1,4 @@
-# configure interface bundle
+l# configure interface bundle
 
 ## URL
 
@@ -7,6 +7,8 @@ openconfig-interfaces/interfaces/interface/<intf-id>
 ```
 
 ## OPENCONFIG YANG
+
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/interfaces/src/main/yang)
 
 ```javascript
 {
@@ -46,7 +48,7 @@ interface &lt;intf-id&gt;
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [xr-unit][]
+Link to github : [xr-unit]()
 
 ### Junos 15.1F5
 
@@ -63,4 +65,4 @@ set interfaces &lt;intf-id&gt; traps
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [junos-unit][]
+Link to github : [junos-unit]()

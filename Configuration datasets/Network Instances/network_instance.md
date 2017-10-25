@@ -8,6 +8,8 @@ ios-essential:vrfs/vrf/<vrf>
 
 ## OPENCONFIG YANG
 
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/network-instance/src/main/yang)
+
 ```javascript
 {
 	"vrf": {

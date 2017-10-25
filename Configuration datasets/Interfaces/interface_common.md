@@ -8,6 +8,8 @@ openconfig-interfaces:interfaces/interface/<intf-id>
 
 ## OPENCONFIG YANG
 
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/interfaces/src/main/yang)
+
 ```javascript
 {
     "interface": [
@@ -18,8 +20,8 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                 "mtu": <mtu>
                 "description": <desc>
                 "name": <intf-id>
-                "cisco-extension:statistics" {
-                    "load-interval" : <load-interval>
+                "cisco-if-extension:statistics": {
+                    "load-interval": <load-interval>
                 }
             }
             "hold-time": {
@@ -33,26 +35,6 @@ openconfig-interfaces:interfaces/interface/<intf-id>
 }
 
 // TODO: add logging
-```
-
-```
-augment "/oc-if:interfaces/oc-if:interface/oc-if:config" {
-
-    description "Adds CISCO proprietary property of load-interval";
-
-    container statistics {
-        description "Per-interface statistics configuration";
-        leaf load-interval {
-        type uint32 {
-            range "0..600";
-        }
-        default "300";
-        description
-            "Specify interval for load calculation for an
-            interface";
-        }
-    }
-}
 ```
 
 ## OS Configuration Commands
@@ -95,9 +77,9 @@ interface &lt;intf-id&gt;
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
+Unit version range: 3.1.1.rc1-frinx
 
-Link to github : [xr-unit][]
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr-6-interface-unit)
 
 ### Junos 15.1F5
 
@@ -117,4 +99,4 @@ set event-options policy log-on-snmp-trap-link-up events snmp_trap_link_up
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [junos-unit][]
+Link to github : [junos-unit]()

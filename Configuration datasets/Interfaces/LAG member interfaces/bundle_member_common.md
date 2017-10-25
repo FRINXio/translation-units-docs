@@ -8,6 +8,8 @@ openconfig-interfaces:interfaces/interface/<intf-id>
 
 ## OPENCONFIG YANG
 
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/interfaces/src/main/yang)
+
 ```javascript
 {
     "interface": [
@@ -20,13 +22,12 @@ openconfig-interfaces:interfaces/interface/<intf-id>
             "openconfig-if-ethernet:ethernet": {
                 "config": {
                     "openconfig-if-aggregate:aggregate-id": <bundle-id>
+                    "cisco-if-extension:mode": ACTIVE
                 }
             }
         }
     ]
 }
-
-//TODO: specify mode active
 
 ```
 
@@ -47,7 +48,7 @@ interface &lt;intf-id&gt;
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [xr-unit][]
+Link to github : [xr-unit]()
 
 ### Junos 15.1F5
 
@@ -63,4 +64,4 @@ set interfaces &lt;intf-id&gt; gigether-options 802.3ad &lt;bundle-id&gt;
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [junos-unit][]
+Link to github : [junos-unit]()

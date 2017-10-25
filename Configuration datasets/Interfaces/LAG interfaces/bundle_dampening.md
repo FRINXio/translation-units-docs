@@ -8,6 +8,8 @@ openconfig-interfaces/interfaces/interface/<intf-id>
 
 ## OPENCONFIG YANG
 
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/interfaces/src/main/yang)
+
 ```javascript
 {
     "interface": [
@@ -19,14 +21,18 @@ openconfig-interfaces/interfaces/interface/<intf-id>
             }
             "aggregation": {
                 "config": {
+                    "interfaces-damp:damp": {
+                        "enabled": true,
+                        "half-life": <half-life>,
+                        "reuse": <reuse>,
+                        "suppress": <suppres>,
+                        "max-supress": <max-supress>
+                    }
                 }
             }
         }
     ]
 }
-
-//TODO: dampening configuration not available in openconfig
-
 ```
 
 ## OS Configuration Commands
@@ -47,7 +53,7 @@ interface &lt;intf-id&gt;
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [xr-unit][]
+Link to github : [xr-unit]()
 
 ### Junos 15.1F5
 
@@ -67,4 +73,4 @@ set interfaces &lt;intf-id&gt; damping suppress &lt;supress&gt;
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [junos-unit][]
+Link to github : [junos-unit]()
