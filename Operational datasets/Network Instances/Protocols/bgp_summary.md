@@ -8,6 +8,8 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
 
 ## OPENCONFIG YANG
 
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/bgp)
+
 ```javascript
 {
     "protocol": [
@@ -124,10 +126,10 @@ router bgp &lt;as&gt; instance &lt;process-name&gt;
 ---
 
 #### Device YANG
-Link to github : [xml-sample][]
+Link to github : [xml-sample]()
 
 ##### Unit
 
 Unit version range: 3.1.1.rc1-frinx
 
-Link to github : [xr-unit][]
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr-6-bgp-unit)

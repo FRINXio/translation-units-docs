@@ -8,6 +8,8 @@ openconfig-platform:components
 
 ## OPENCONFIG YANG
 
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/platform/src/main/yang)
+
 ```javascript
 {
     "components": {
@@ -119,5 +121,5 @@ PID: ASR-9001, VID: V06 , SN: FOC2026N2TR
 
 Unit version range: 3.1.1.rc1-frinx
 
-Link to github : [xr-unit][]
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr-6-platform-unit)
 

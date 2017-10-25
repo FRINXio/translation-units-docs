@@ -8,6 +8,8 @@ openconfig-network-instance:network-instances
 
 ## OPENCONFIG YANG
 
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/network-instance/src/main/yang)
+
 ```javascript
 {
     "network-instances": {

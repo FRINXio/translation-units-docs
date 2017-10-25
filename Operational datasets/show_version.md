@@ -8,6 +8,9 @@ ios-essential:version
 
 ## OPENCONFIG YANG
 
+[YANG models IOS](https://github.com/FRINXio/cli-units/blob/master/ios/essential/src/main/yang/ios-essential.yang)
+[YANG models XR](https://github.com/FRINXio/cli-units/blob/master/ios-xr/essential/src/main/yang/ios-essential.yang)
+
 ```javascript
 {
     "version": {
@@ -106,3 +109,10 @@ Unit version range: 3.1.1.rc1-frinx
 
 Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/essential)
 
+### Cisco XR 6.1.2
+
+##### Unit
+
+Unit version range: 3.1.1.rc1-frinx
+
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/essential)

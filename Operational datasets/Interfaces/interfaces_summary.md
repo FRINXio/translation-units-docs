@@ -8,6 +8,8 @@ openconfig-interfaces:interfaces
 
 ## OPENCONFIG YANG
 
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/interfaces/src/main/yang)
+
 ```javascript
 {
     "interfaces": {
@@ -504,10 +506,10 @@ GigabitEthernet0/0/0/5 is administratively down, line protocol is administrative
 ---
 
 #### Device YANG
-Link to github : [xml-sample][]
+Link to github : [xml-sample](https://github.com/FRINXio/unitopo-units/blob/master/xr-6-interface-unit/src/test/resources/data_nodes.xml)
 
 ##### Unit
 
 Unit version range: 3.1.1.rc1-frinx
 
-Link to github : [xr-unit][]
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr-6-interface-unit)

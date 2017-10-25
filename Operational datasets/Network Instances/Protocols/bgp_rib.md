@@ -8,6 +8,8 @@ openconfig-rib-bgp:bgp-rib
 
 ## OPENCONFIG YANG
 
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/rib/src/main/yang)
+
 ```javascript
 {
     "bgp-rib": {
