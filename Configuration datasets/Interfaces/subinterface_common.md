@@ -40,13 +40,11 @@ openconfig-interfaces:interfaces/interface/<intf-id>/subinterfaces/subinterface/
 
 ---
 <pre>
-configure terminal
 interface &lt;intf-id&gt;
-ip address &lt;ip&gt; &lt;subnet&gt;
-exit
-exit
+ ip address &lt;ip&gt; &lt;subnet&gt;
 </pre>
 ---
+&lt;subnet&gt; is conversion of &lt;prefix&gt;
 
 ##### Unit
 
@@ -64,6 +62,7 @@ interface &lt;intf-id&gt;
  ipv4 address &lt;ip&gt; &lt;subnet&gt;
 </pre>
 ---
+&lt;subnet&gt; is conversion of &lt;prefix&gt;
 
 ##### Unit
 
@@ -78,7 +77,7 @@ Link to github : [xr-unit]()
 ---
 <pre>
 set interfaces &lt;intf-id&gt;
-set interfaces &lt;intf-id&gt; unit 0 family inet address &lt;ip&gt/&lt;prefix&gt;l
+set interfaces &lt;intf-id&gt; unit 0 family inet address &lt;ip&gt/&lt;prefix&gt;
 </pre>
 ---
 
