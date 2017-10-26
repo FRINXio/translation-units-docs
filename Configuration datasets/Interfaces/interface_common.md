@@ -14,9 +14,10 @@ openconfig-interfaces:interfaces/interface/<intf-id>
 {
     "interface": [
         {
+            "name": "<intf-id>"
             "config": {
-                "type": "iana-if-type:softwareLoopback"
-                "enabled": true
+                "type": "iana-if-type:<interface-type>"
+                "enabled": <true/false>
                 "mtu": <mtu>
                 "description": <desc>
                 "name": <intf-id>
@@ -30,11 +31,35 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                     "down": <down>
                 }
             }
+            "subinterfaces": {
+                "subinterface": [
+                    {
+                        "index": 0
+                        "config": {
+                            "index": 0
+                        }
+                        "ipv4": {
+                            "addresses": {
+                                "address": [
+                                    {
+                                        "ip":
+                                        "config": {
+                                            "ip": <ip>
+                                            "prefix-length": <prefix>
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            }
         }
     ]
 }
 
 // TODO: add logging
+// TODO: add valid format after it is implemented
 ```
 
 ## OS Configuration Commands
@@ -43,14 +68,17 @@ openconfig-interfaces:interfaces/interface/<intf-id>
 
 ---
 <pre>
-configure terminal
 interface &lt;intf-id&gt;
-description &lt;descr&gt;
-mtu &lt;mtu&gt;
-shutdown
-exit
-exit
+ description &lt;descr&gt;
+ mtu &lt;mtu&gt;
+ ip address &lt;ip&gt; &lt;subnet&gt;
+ no shutdown
 </pre>
+
+&lt;subnet&gt; is conversion of &lt;prefix&gt;  
+*no shutdown* is conversion of *"enabled": true*  
+*shutdown* is conversion of *"enabled": false*
+
 ---
 
 ##### Unit
@@ -69,10 +97,16 @@ interface &lt;intf-id&gt;
  description &lt;desc&gt;
  mtu &lt;mtu&gt;
  carrier-delay up &lt;up&gt; down &lt;down&gt;
- load-interval &lt;load-interval&gt;
+ ipv4 address &lt;ip&gt; &lt;subnet&gt;
  logging &lt;events&gt; &lt;link-status&gt;
+ load-interval &lt;load-interval&gt;
  no shutdown
 </pre>
+
+&lt;subnet&gt; is conversion of &lt;prefix&gt;  
+*no shutdown* is conversion of *"enabled": true*  
+*shutdown* is conversion of *"enabled": false*
+
 ---
 
 ##### Unit
@@ -87,12 +121,17 @@ Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/
 
 ---
 <pre>
-set interfaces &lt;intf-id&gt;
 set interfaces &lt;intf-id&gt; description &lt;desc&gt;
 set interfaces &lt;intf-id&gt; mtu &lt;mtu&gt;
 set interfaces &lt;intf-id&gt; hold-time up &lt;up&gt; down &lt;down&gt;
+set interfaces &lt;intf-id&gt; unit 0 family inet address &lt;ip&gt/&lt;prefix&gt;
 set event-options policy log-on-snmp-trap-link-up events snmp_trap_link_up
+delete interface &lt;intf-id&gt; disable
 </pre>
+
+*delete interface &lt;intf-id&gt; disable* is conversion of *"enabled": true*  
+*set interface &lt;intf-id&gt; disable* is conversion of *"enabled": false*
+
 ---
 
 ##### Unit

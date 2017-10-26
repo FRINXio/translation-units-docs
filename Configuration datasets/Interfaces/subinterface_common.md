@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-interfaces:interfaces/interface/<intf-id>/subinterfaces/subinterface/0
+openconfig-interfaces:interfaces/interface/<intf-id>/subinterfaces/subinterface/<index>
 ```
 
 ## OPENCONFIG YANG
@@ -14,9 +14,9 @@ openconfig-interfaces:interfaces/interface/<intf-id>/subinterfaces/subinterface/
 {
     "subinterface": [
         {
-            "index": 0
+            "index": <index>
             "config": {
-                "index": 0
+                "index": <index>
             }
             "ipv4": {
                 "addresses": {
@@ -40,11 +40,13 @@ openconfig-interfaces:interfaces/interface/<intf-id>/subinterfaces/subinterface/
 
 ---
 <pre>
-interface &lt;intf-id&gt;
+interface &lt;intf-id&gt;.&lt;index&gt;
  ip address &lt;ip&gt; &lt;subnet&gt;
 </pre>
----
+
 &lt;subnet&gt; is conversion of &lt;prefix&gt;
+
+---
 
 ##### Unit
 
@@ -58,11 +60,13 @@ Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios
 
 ---
 <pre>
-interface &lt;intf-id&gt;
+interface &lt;intf-id&gt;.&lt;index&gt;
  ipv4 address &lt;ip&gt; &lt;subnet&gt;
 </pre>
----
+
 &lt;subnet&gt; is conversion of &lt;prefix&gt;
+
+---
 
 ##### Unit
 
@@ -76,8 +80,7 @@ Link to github : [xr-unit]()
 
 ---
 <pre>
-set interfaces &lt;intf-id&gt;
-set interfaces &lt;intf-id&gt; unit 0 family inet address &lt;ip&gt/&lt;prefix&gt;
+set interfaces &lt;intf-id&gt; unit &lt;index&gt; family inet address &lt;ip&gt/&lt;prefix&gt;
 </pre>
 ---
 
