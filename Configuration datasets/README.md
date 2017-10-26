@@ -1,6 +1,6 @@
 * [Interfaces](#interfaces)
-    * [<a href="Interfaces/subinterface_common.md">sub-interface</a>](#sub-interface)
     * [<a href="Interfaces/interface_common.md">interface</a>](#interface)
+    * [<a href="Interfaces/subinterface_common.md">subinterface</a>](#subinterface)
     * [<a href="Interfaces/interface_policy.md">interface policy</a>](#interface-policy)
     * [<a href="Interfaces/interface_acl.md">interface ACL</a>](#interface-acl)
   * [LAG interface](#lag-interface)
@@ -20,15 +20,15 @@
     * [<a href="Network Instances/MPLS/mpls_tunnel_load_share.md">tunnel load share</a>](#tunnel-load-share)
     * [<a href="Network Instances/MPLS/mpls_tunnel_autoroute.md">tunnel autoroute</a>](#tunnel-autoroute)
     * [<a href="Network Instances/MPLS/rsvp_bandwidth.md">rsvp bandwidth</a>](#rsvp-bandwidth)
-  * [L2P2P (aka. VPWS, VLL)](#l2p2p)
+  * [L2P2P](#l2p2p)
     * [<a href="Network Instances/L2P2P/connection_point.md">connection point</a>](#connection-point)
 
 
 # Interfaces
 
-#### [sub-interface](Interfaces/subinterface_common.md)
-
 #### [interface](Interfaces/interface_common.md)
+
+#### [subinterface](Interfaces/subinterface_common.md)
 
 #### [interface policy](Interfaces/interface_policy.md)
 
