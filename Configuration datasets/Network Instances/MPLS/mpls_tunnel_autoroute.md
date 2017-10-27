@@ -18,6 +18,7 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/opencon
              "auto-route": {
                  "config": {
                     "set": <true/false>
+                    "metric": <metric>
                  }
              }
          }
