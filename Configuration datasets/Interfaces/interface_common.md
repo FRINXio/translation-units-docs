@@ -38,6 +38,11 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                     "down": <down>
                 }
             }
+            "logging": {
+                "config": {
+                    "link-status": {}
+                }
+            }
             "subinterfaces": {
                 "subinterface": [
                     {
@@ -65,7 +70,7 @@ openconfig-interfaces:interfaces/interface/<intf-id>
     ]
 }
 
-// TODO: add logging
+// TODO: SNMP traps not supported in OpenConfig
 ```
 
 ## OS Configuration Commands
@@ -78,6 +83,7 @@ interface &lt;intf-id&gt;
  description &lt;descr&gt;
  mtu &lt;mtu&gt;
  ip address &lt;ip&gt; &lt;subnet&gt;
+ logging events link-status
  dampening
   dampening &lt;half-life&gt; &lt;reuse&gt; &lt;supress&gt; &lt;max-supress&gt;
  no shutdown
@@ -111,6 +117,7 @@ interface &lt;intf-id&gt;
  logging &lt;events&gt; &lt;link-status&gt;
  load-interval &lt;load-interval&gt;
  no shutdown
+ snmp-server traps snmp linkup
 </pre>
 
 &lt;subnet&gt; is conversion of &lt;prefix&gt;  
@@ -142,6 +149,7 @@ set interfaces &lt;intf-id&gt; damping max-suppress &lt;max-supress&gt;
 set interfaces &lt;intf-id&gt; damping reuse &lt;reuse&gt;
 set interfaces &lt;intf-id&gt; damping suppress &lt;supress&gt;
 delete interface &lt;intf-id&gt; disable
+set interfaces &lt;intf-id&gt; traps
 </pre>
 
 *delete interface &lt;intf-id&gt; disable* is conversion of *"enabled": true*  
