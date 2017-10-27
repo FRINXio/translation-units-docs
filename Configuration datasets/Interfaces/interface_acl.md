@@ -14,6 +14,15 @@ openconfig-acl:acl/interfaces/interface/<intf-id>
 {
     "interface": [
         {
+            "id": <intf-id>
+            "config": {
+                "id": <intf-id>
+            }
+            "interface-ref": {
+                "config": {
+                    "interface": <intf-id>
+                }
+            }
             "ingress-acl-sets": {
                 "ingress-acl-set": [
                     {

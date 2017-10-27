@@ -14,15 +14,20 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/opencon
 {
     "interface": [
         {
+            "interface-id": <intf-id>
             "config": {
                 "interface-id": <intf-id>
-
+                "apply-forwarding-policy": <policy-name>
+                "direction": <ingress/egress>
+            }
+            "interface-ref": {
+                "config": {
+                    "interface": <intf-id>
+                }
             }
         }
     ]
 }
-
-// TODO add augment to 'input/output' - for XR, because we don't model policy
 ```
 
 ## OS Configuration Commands
@@ -34,8 +39,12 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/opencon
 ---
 <pre>
 interface &lt;intf-id&gt;
- service-policy input &lt;policy-name&gt;
+ service-policy &lt;input/output&gt; &lt;policy-name&gt;
 </pre>
+
+*input* is conversion of *"direction": "ingress"*  
+*output* is conversion of *"direction": "egress"*
+
 ---
 
 ##### Unit
