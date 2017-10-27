@@ -46,7 +46,7 @@ rsvp
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [xr-unit][]
+Link to github : [xr-unit]()
 
 ### Junos 15.1F5
 
@@ -62,4 +62,4 @@ set protocols rsvp interface &lt;intf-id&gt; bandwidth &lt;bandwidth&gt;
 
 Unit version range: NOT IMPLEMENTED
 
-Link to github : [junos-unit][]
+Link to github : [junos-unit]()
