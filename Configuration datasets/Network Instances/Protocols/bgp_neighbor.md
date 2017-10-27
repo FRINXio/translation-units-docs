@@ -31,7 +31,7 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
                         {
                             "config": {
                                 "neighbor-address": <neighbor_address>
-                                "enabled": true
+                                "enabled": <true/false>
                             }
                         }
                     ]
@@ -57,6 +57,9 @@ router bgp &lt;as&gt; instance &lt;process-name&gt;
 </pre>
 ---
 
+*no shutdown* is conversion of *"enabled": true*
+*shutdown* is conversion of *"enabled": false*
+
 ##### Unit
 
 Unit version range: NOT IMPLEMENTED
@@ -72,6 +75,9 @@ Link to github : [xr-unit]()
 activate protocols bgp group iBGP neighbor &lt;neighbor_address&gt;
 </pre>
 ---
+
+*activate* is conversion of *"enabled": true*
+*deactivate* is conversion of *"enabled": false*
 
 ##### Unit
 

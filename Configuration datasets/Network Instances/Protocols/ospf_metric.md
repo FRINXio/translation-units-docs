@@ -25,42 +25,15 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
                     "max-metric": {
                         "config": {
                             "set":true
-                            "include": [ { "MAX_METRIC_INCLUDE_STUB" } ]
+                            "include": [ { "MAX_METRIC_INCLUDE_STUB", "AS_EXTERNAL_LSA", "SUMMARY_ASBR_LSA" } ]
                         }
                     }
-                }
-                "areas": {
-                    "area": [
-                        {
-                            "identifier": <area-id>,
-                            "config": {
-                                "identifier": <area-id>
-                            },
-                            "lsdb": {
-                                "lsa-types": [
-                                    {
-                                         "lsa-type": {
-                                             "type":"ROUTER_LSA"
-                                         }
-                                         "lsa-type": {
-                                             "type":"SUMMARY_ASBR_LSA"
-                                         }
-                                         "lsa-type": {
-                                             "type":"AS_EXTERNAL_LSA"
-                                         }
-                                    }
-                                ]
-                            }
-                        }
-                    ]
                 }
             }
         }
     ]
 }
 
-TODO: lsdb parameters are not configurable @see https://github.com/openconfig/public/blob/master/release/models/ospf/openconfig-ospfv2-lsdb.yang
-TODO: commands are not related to area (configure for all areas?)
 ```
 
 ## OS Configuration Commands

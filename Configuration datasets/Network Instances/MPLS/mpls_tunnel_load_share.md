@@ -12,6 +12,7 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/opencon
 {
     "tunnel": [
          {
+             "name": <tunnel-id>
              "config": {
                  "name": <tunnel-id>
              }

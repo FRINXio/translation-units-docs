@@ -12,22 +12,20 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/opencon
 {
     "interface": [
         {
+            "interface-id": <intf-id>
             "config": {
                 "interface-id": <intf-id>
-            }
-            "bandwidth-reservations": {
-                 "bandwidth-reservation": [
-                     {
-                        "reserved-bandwidth": <bandwidth>
-                     }
-                 ]
+                "bandwidth-reservations": {
+                     "bandwidth-reservation": [
+                         {
+                            "reserved-bandwidth": <bandwidth>
+                         }
+                     ]
+                }
             }
         }
     ]
 }
-
-
-TODO: bandwidth is not configurable @see https://github.com/openconfig/public/blob/master/release/models/mpls/openconfig-mpls-rsvp.yang
 ```
 
 ## OS Configuration Commands

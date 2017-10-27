@@ -6,7 +6,6 @@
   * [LAG interface](#lag-interface)
     * [<a href="Interfaces/LAG interfaces/bundle_bfd.md">bundle BFD</a>](#bundle-bfd)
     * [<a href="Interfaces/LAG interfaces/bundle_common.md">bundle</a>](#bundle)
-    * [<a href="Interfaces/LAG interfaces/bundle_dampening.md">bundle damp</a>](#bundle-damp)
   * [LAG member interface](#lag-member-interface)
     * [<a href="Interfaces/LAG member interfaces/bundle_member_common.md">bundle member</a>](#bundle-member)
     * [<a href="Interfaces/LAG member interfaces/interface_lacp.md">interface LACP</a>](#interface-lacp)
@@ -39,8 +38,6 @@
 #### [bundle BFD](Interfaces/LAG%20interfaces/bundle_bfd.md)
 
 #### [bundle](Interfaces/LAG%20interfaces/bundle_common.md)
-
-#### [bundle damp](Interfaces/LAG%20interfaces/bundle_dampening.md)
 
 ## LAG member interface
 

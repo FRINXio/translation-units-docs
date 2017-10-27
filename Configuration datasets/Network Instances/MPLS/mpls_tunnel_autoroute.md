@@ -17,14 +17,12 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/opencon
              }
              "auto-route": {
                  "config": {
-                    "set": true
+                    "set": <true/false>
                  }
              }
          }
     ]
 }
-
-TODO: auto-route not implemented, need to augment
 ```
 
 ## OS Configuration Commands
@@ -40,6 +38,9 @@ interface tunnel-te &lt;tunnel-id&gt;
    metric absolute &lt;metric&gt;
 </pre>
 ---
+
+*autoroute announce* is conversion of *"enabled": true*
+*no autoroute announce* is conversion of *"enabled": false*
 
 ##### Unit
 
