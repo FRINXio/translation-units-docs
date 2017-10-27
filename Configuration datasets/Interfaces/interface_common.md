@@ -24,6 +24,13 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                 "cisco-if-extension:statistics": {
                     "load-interval": <load-interval>
                 }
+                "interfaces-damp:damp": {
+                    "enabled": <true/false>,
+                    "half-life": <half-life>,
+                    "reuse": <reuse>,
+                    "suppress": <suppres>,
+                    "max-supress": <max-supress>
+                }
             }
             "hold-time": {
                 "config": {
@@ -59,7 +66,6 @@ openconfig-interfaces:interfaces/interface/<intf-id>
 }
 
 // TODO: add logging
-// TODO: add valid format after it is implemented
 ```
 
 ## OS Configuration Commands
@@ -72,12 +78,16 @@ interface &lt;intf-id&gt;
  description &lt;descr&gt;
  mtu &lt;mtu&gt;
  ip address &lt;ip&gt; &lt;subnet&gt;
+ dampening
+  dampening &lt;half-life&gt; &lt;reuse&gt; &lt;supress&gt; &lt;max-supress&gt;
  no shutdown
 </pre>
 
 &lt;subnet&gt; is conversion of &lt;prefix&gt;  
 *no shutdown* is conversion of *"enabled": true*  
 *shutdown* is conversion of *"enabled": false*
+*no dampening* is conversion of *"enabled": false*
+*dampening* is conversion od *"enabled": true*
 
 ---
 
@@ -126,6 +136,11 @@ set interfaces &lt;intf-id&gt; mtu &lt;mtu&gt;
 set interfaces &lt;intf-id&gt; hold-time up &lt;up&gt; down &lt;down&gt;
 set interfaces &lt;intf-id&gt; unit 0 family inet address &lt;ip&gt/&lt;prefix&gt;
 set event-options policy log-on-snmp-trap-link-up events snmp_trap_link_up
+set interfaces &lt;intf-id&gt; damping enable
+set interfaces &lt;intf-id&gt; damping half-life &lt;half-life&gt;
+set interfaces &lt;intf-id&gt; damping max-suppress &lt;max-supress&gt;
+set interfaces &lt;intf-id&gt; damping reuse &lt;reuse&gt;
+set interfaces &lt;intf-id&gt; damping suppress &lt;supress&gt;
 delete interface &lt;intf-id&gt; disable
 </pre>
 
