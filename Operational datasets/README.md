@@ -1,6 +1,7 @@
 * [<a href="show_version.md">version</a>](#version)
 * [<a href="show_inventory.md">inventory</a>](#inventory)
 * [<a href="lldp.md">lldp</a>](#lldp)
+* [<a href="cdp.md">cdp</a>](#cdp)
 * [Interfaces](#interfaces)
     * [<a href="Interfaces/interfaces_config_summary.md">config summary</a>](#config-summary)
     * [<a href="Interfaces/interfaces_summary.md">summary</a>](#summary)
@@ -17,6 +18,8 @@
 #### [inventory](show_inventory.md)
 
 #### [lldp](lldp.md)
+
+#### [cdp](cdp.md)
 
 # Interfaces
 
