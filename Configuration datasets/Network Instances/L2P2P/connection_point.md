@@ -67,10 +67,12 @@ openconfig-network-instances:network-instances/network-instance/<name>
 
 ### Cisco IOS (VIOS 15.6(2)T)
 
+#### CLI
+
 If endpoints remote and local without subif
 ---
 <pre>
-interface &lt;(local)local_interface_id.&gt;
+interface &lt;(local)local_interface_id&gt;
  xconnect &lt;(remote)peer_ip&gt; &lt;(remote)vccid&gt; encapsulation mpls
 </pre>
 ---
@@ -100,6 +102,8 @@ connect &lt;connection_point_id&gt; &lt;(local_1)local_interface_id&gt.&lt;(loca
 
 ### CISCO IOS XR (5.1.3) (6.1.2)
 
+#### CLI
+
 If endpoint type remote
 ---
 <pre>
@@ -123,7 +127,7 @@ l2vpn
 </pre>
 ---
 
-If endpoint type local with subif (only this works in XRv)
+If endpoint type local with subif (for XRv 5.1.3)
 ---
 <pre>
 interface &lt;local_interface_id&gt.&lt;local_vlan&gt; l2transport
@@ -136,7 +140,7 @@ l2vpn
 </pre>
 ---
 
-If endpoint type local with subif (only this works in XRv)
+If endpoint type local with subif (for XRv 6.1.2)
 ---
 <pre>
 interface &lt;local_interface_id&gt.&lt;local_vlan&gt; l2transport
