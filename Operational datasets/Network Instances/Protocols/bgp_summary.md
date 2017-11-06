@@ -45,7 +45,7 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
                                 "afi-safi": [
                                     {
                                         "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
-                                        config": {
+                                        "config": {
                                             "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
                                         }
                                     }
@@ -64,7 +64,7 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
                                 "afi-safi": [
                                     {
                                         "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
-                                        config": {
+                                        "config": {
                                             "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
                                         }
                                     }
@@ -83,7 +83,7 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
                                 "afi-safi": [
                                     {
                                         "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
-                                        config": {
+                                        "config": {
                                             "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
                                         }
                                     },
