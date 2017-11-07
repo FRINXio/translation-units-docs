@@ -76,7 +76,7 @@ R121#sh ip bgp | section &lt;prefix1&gt;
 </pre>
 ---
 
-'*' (valid route) translates to <b>"valid-route" : true</b>
+'*' (valid route) translates to <b>"valid-route" : true</b>  
 'i' (internal) translates to <b>"origin": "i"</be>
 
 ##### Unit

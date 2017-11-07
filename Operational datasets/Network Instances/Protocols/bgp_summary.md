@@ -206,7 +206,7 @@ router bgp &lt;as&gt; instance &lt;process-name&gt;
 ---
 
 #### Device YANG
-Link to github : [xml-sample]()
+Link to github : [xml-sample](https://github.com/FRINXio/unitopo-units/tree/master/xr-6-bgp-unit/src/test/resources/bgp-oper.xml)
 
 ##### Unit
 
