@@ -89,14 +89,14 @@ interface &lt;(local)local_interface_id&gt.&lt;(local)local_vlan&gt;
 If both endpoints are type local without subif
 ---
 <pre>
-connect &lt;connection_point_id&gt; &lt;(local_1)local_interface_id&gt &lt;(local_2)local_interface_id&gt; interworking ethernet
+connect &lt;ni-name&gt; &lt;(local_1)local_interface_id&gt &lt;(local_2)local_interface_id&gt; interworking ethernet
 </pre>
 ---
 
 If both endpoints are type local with subif
 ---
 <pre>
-connect &lt;connection_point_id&gt; &lt;(local_1)local_interface_id&gt.&lt;(local_1)local_vlan&gt; &lt;(local_2)local_interface_id&gt.&lt;(local_2)local_vlan&gt; interworking ethernet
+connect &lt;ni-name&gt; &lt;(local_1)local_interface_id&gt.&lt;(local_1)local_vlan&gt; &lt;(local_2)local_interface_id&gt.&lt;(local_2)local_vlan&gt; interworking ethernet
 </pre>
 ---
 
@@ -109,7 +109,7 @@ If endpoint type remote
 <pre>
 l2vpn
  xconnect group frinx
-  p2p &lt;connection_point_id&gt;
+  p2p &lt;ni-name&gt;
    neighbor ipv4 &lt;peer_ip&gt; pw-id &lt;vccid&gt;
 </pre>
 ---
@@ -122,7 +122,7 @@ interface &lt;local_interface_id&gt
 
 l2vpn
  xconnect group frinx
-  p2p &lt;connection_point_id&gt;
+  p2p &lt;ni-name&gt;
    interface &lt;local_interface_id&gt
 </pre>
 ---
@@ -135,7 +135,7 @@ interface &lt;local_interface_id&gt.&lt;local_vlan&gt; l2transport
 
 l2vpn
  xconnect group frinx
-  p2p &lt;connection_point_id&gt;
+  p2p &lt;ni-name&gt;
    interface &lt;local_interface_id&gt.&lt;local_vlan&gt;
 </pre>
 ---
@@ -149,7 +149,7 @@ interface &lt;local_interface_id&gt.&lt;local_vlan&gt; l2transport
  
 l2vpn
  xconnect group frinx
-  p2p &lt;connection_point_id&gt;
+  p2p &lt;ni-name&gt;
    interface &lt;local_interface_id&gt.&lt;local_vlan&gt;
 </pre>
 ---
@@ -165,7 +165,7 @@ interface &lt;(local_2)local_interface_id&gt
 
 l2vpn
  xconnect group frinx
-  p2p &lt;connection_point_id&gt;
+  p2p &lt;ni-name&gt;
    interface &lt;(local_1)local_interface_id&gt
    interface &lt;(local_2)local_interface_id&gt
 </pre>
@@ -179,7 +179,7 @@ If endpoint type remote
 ---
 <pre>
 router mpls
- vll &lt;connection_point_id&gt; &lt;vccid&gt;
+ vll &lt;ni-name&gt; &lt;vccid&gt;
   vll-peer &lt;peer_ip&gt;
 </pre>
 ---
@@ -188,7 +188,7 @@ If endpoint type local without subif
 ---
 <pre>
 router mpls
- vll &lt;connection_point_id&gt; &lt;vccid&gt;
+ vll &lt;ni-name&gt; &lt;vccid&gt;
   untag &lt;local_interface_id&gt;
 </pre>
 ---
@@ -200,7 +200,7 @@ With subif
 ---
 <pre>
 router mpls
- vll &lt;connection_point_id&gt; &lt;vccid&gt;
+ vll &lt;ni-name&gt; &lt;vccid&gt;
   vlan &lt;local_vlan&gt;
    tag &lt;local_interface_id&gt;
 </pre>
@@ -210,7 +210,7 @@ If both endpoints are type local without subif
 ---
 <pre>
 router mpls
- vll-local &lt;connection_point_id&gt;
+ vll-local &lt;ni-name&gt;
   untag &lt;local_interface_id&gt;
 </pre>
 ---
@@ -219,7 +219,7 @@ With subif
 ---
 <pre>
 router mpls
- vll-local &lt;connection_point_id&gt;
+ vll-local &lt;ni-name&gt;
   vlan &lt;local_vlan&gt;
    tag &lt;local_interface_id&gt;
 </pre>
