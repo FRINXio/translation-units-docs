@@ -15,55 +15,88 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
     "protocol": [
         {
             "identifier": "openconfig-policy-types:BGP",
-            "name": <process-name>,
+            "name": "<process-name>",
             "config": {
-                "name": <process-name>,
+                "name": "<process-name>",
                 "identifier": "openconfig-policy-types:BGP"
             },
             "bgp": {
                 "global": {
                     "config": {
-                        "as": <as>,
-                        "router-id": <router-id>
+                        "as": "<as>",
+                        "router-id": "<router-id>"
+                    }
+                    "state": {
+                        "as": "<as>",
+                        "router-id": "<router-id>"
                     }
                 },
                 "neighbors": {
                     "neighbor": [
                         {
-                            "neighbor-address": "10.255.255.5",
+                            "neighbor-address": "<neighbor3>",
+                            "config": {
+                                "neighbor-address": "<neighbor3>"
+                            },
                             "state": {
-                                "session-state": "IDLE"
+                                "session-state": "<state3>"
                             },
                             "afi-safis": {
                                 "afi-safi": [
                                     {
                                         "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
+                                        "config": {
+                                            "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
+                                        }
                                     }
                                 ]
                             }
                         },
                         {
-                            "neighbor-address": "10.255.255.2",
+                            "neighbor-address": "<neighbor1>",
+                            "config": {
+                                "neighbor-address": "<neighbor1>"
+                            },
                             "state": {
-                                "session-state": "IDLE"
+                                "session-state": "<state1>"
                             },
                             "afi-safis": {
                                 "afi-safi": [
                                     {
                                         "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
+                                        "config": {
+                                            "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
+                                        }
                                     }
                                 ]
                             }
                         },
                         {
-                            "neighbor-address": "10.255.255.3",
+                            "neighbor-address": "<neighbor2>",
+                            "config": {
+                                "neighbor-address": "<neighbor2>"
+                            },
                             "state": {
-                                "session-state": "IDLE"
+                                "session-state": "<state2>"
                             },
                             "afi-safis": {
                                 "afi-safi": [
                                     {
                                         "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
+                                        "config": {
+                                            "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
+                                        }
+                                    },
+                                    {
+                                        "afi-safi-name": "openconfig-bgp-types:L3VPN_IPV4_UNICAST",
+                                        "config": {
+                                            "afi-safi-name": "openconfig-bgp-types:L3VPN_IPV4_UNICAST"
+                                        },
+                                        "state": {
+                                            "prefixes": {
+                                                "received": <prefs>
+                                            }
+                                        }
                                     }
                                 ]
                             }
@@ -72,7 +105,7 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
                 }
             },
             "state": {
-                "name": "default",
+                "name": "<process-name>",
                 "identifier": "openconfig-policy-types:BGP"
             }
         }
@@ -89,18 +122,65 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
 
 ---
 <pre>
-XE2#sh bgp summary
+XE2#show bgp all summary
+For address family: IPv4 Unicast
+BGP router identifier &lt;router-id&gt;, local AS number &lt;as&gt;
+BGP table version is 2, main routing table version 2
+1 network entries using 144 bytes of memory
+1 path entries using 80 bytes of memory
+1/1 BGP path/bestpath attribute entries using 136 bytes of memory
+0 BGP route-map cache entries using 0 bytes of memory
+0 BGP filter-list cache entries using 0 bytes of memory
+BGP using 360 total bytes of memory
+BGP activity 1/0 prefixes, 1/0 paths, scan interval 60 secs
+
+Neighbor        V           AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+&lt;neighbor1&gt;    4        65000       0       0        1    0    0 6d04h    &lt;state1&gt;
+&lt;neighbor2&gt;    4        65000       0       0        1    0    0 never    &lt;state2&gt;
+&lt;neighbor3&gt;    4        65000       0       0        1    0    0 never    &lt;state3&gt;
+
+For address family: VPNv4 Unicast
 BGP router identifier &lt;router-id&gt;, local AS number &lt;as&gt;
 BGP table version is 1, main routing table version 1
 
 Neighbor        V           AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
-10.255.255.2    4        65000       0       0        1    0    0 never    Idle
-10.255.255.3    4        65000       0       0        1    0    0 never    Idle
-10.255.255.5    4        65000       0       0        1    0    0 never    Idle
+&lt;prefix2&gt;    4        65000   11217   11215        1    0    0 1w0d            &lt;prefs&gt;
 
-XE2#sh bgp ipv4 unicast summ
 
-XE2#sh bgp vpnv4 unicast all summ
+XE2#show bgp neighbor &lt;neighbor3&gt; | section family
+For address family: IPv4 Unicast
+  BGP table version 2, neighbor version 1/2
+  Output queue size : 0
+  Index 0, Advertise bit 0
+  Slow-peer detection is disabled
+  Slow-peer split-update-group dynamic is disabled
+                                 Sent       Rcvd
+  Prefix activity:               ----       ----
+    Prefixes Current:               0          0
+    Prefixes Total:                 0          0
+    Implicit Withdraw:              0          0
+    Explicit Withdraw:              0          0
+    Used as bestpath:             n/a          0
+    Used as multipath:            n/a          0
+
+                                   Outbound    Inbound
+  Local Policy Denied Prefixes:    --------    -------
+    Total:                                0          0
+  Number of NLRIs in the update sent: max 0, min 0
+  Last detected as dynamic slow peer: never
+  Dynamic slow peer recovered: never
+  Refresh Epoch: 1
+  Last Sent Refresh Start-of-rib: never
+  Last Sent Refresh End-of-rib: never
+  Last Received Refresh Start-of-rib: never
+  Last Received Refresh End-of-rib: never
+
+
+XE2#show bgp ipv4 unicast summary | section &lt;neighbor3&gt;
+&lt;neighbor3&gt;   4        65000       0       0        1    0    0 never    &lt;state3&gt;
+
+XE2#show bgp vpnv4 unicast all summary | section &lt;neighbor2&gt;
+&lt;neighbor2&gt;    4        65000   11220   11219        1    0    0 1w0d            &lt;prefs&gt
 </pre>
 ---
 
@@ -126,7 +206,7 @@ router bgp &lt;as&gt; instance &lt;process-name&gt;
 ---
 
 #### Device YANG
-Link to github : [xml-sample]()
+Link to github : [xml-sample](https://github.com/FRINXio/unitopo-units/tree/master/xr-6-bgp-unit/src/test/resources/bgp-oper.xml)
 
 ##### Unit
 

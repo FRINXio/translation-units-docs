@@ -22,20 +22,20 @@ openconfig-rib-bgp:bgp-rib
                             "routes": {
                                 "route": [
                                     {
-                                        "prefix": "10.5.5.0/24",
+                                        "prefix": "<prefix1>",
                                         "origin": "i",
                                         "path-id": "0",
                                         "state": {
-                                            "prefix": "10.5.5.0/24",
+                                            "prefix": "<prefix1>",
                                             "valid-route": true
                                         }
                                     },
                                     {
-                                        "prefix": "10.7.7.0/24",
+                                        "prefix": "<prefix2>",
                                         "origin": "i",
                                         "path-id": "0",
                                         "state": {
-                                            "prefix": "10.7.7.0/24",
+                                            "prefix": "<prefix2>",
                                             "valid-route": true
                                         }
                                     }
@@ -68,14 +68,19 @@ Origin codes: i - IGP, e - EGP, ? - incomplete
 RPKI validation codes: V valid, I invalid, N Not found
 
      Network          Next Hop            Metric LocPrf Weight Path
- *>  <b><mark>10.5.5.0/24</b></mark>      <b><mark>0.0.0.0</b></mark>                   0         <b><mark>32768</b></mark>  <b><mark>i</b></mark>
- *>  <b><mark>10.7.7.0/24</b></mark>      <b><mark>192.168.56.122</b></mark>           0             <b><mark>0</b></mark>  <b><mark>65777 i</b></mark>
-R121#
+ *>  <b><mark>&lt;prefix1&gt;</b></mark>      <b><mark>0.0.0.0</b></mark>                   0         <b><mark>32768</b></mark>  <b><mark>i</b></mark>
+ *>  <b><mark>&lt;prefix2&gt;</b></mark>      <b><mark>192.168.56.122</b></mark>           0             <b><mark>0</b></mark>  <b><mark>65777 i</b></mark>
+
+R121#sh ip bgp | section &lt;prefix1&gt;
+ *>  <b><mark>&lt;prefix1&gt;</b></mark>      <b><mark>0.0.0.0</b></mark>                   0         <b><mark>32768</b></mark>  <b><mark>i</b></mark>
 </pre>
 ---
+
+'*' (valid route) translates to <b>"valid-route" : true</b>  
+'i' (internal) translates to <b>"origin": "i"</be>
 
 ##### Unit
 
 Unit version range: 3.1.1.rc1-frinx
 
-Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/bgp)
+Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/rib)
