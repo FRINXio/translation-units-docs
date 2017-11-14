@@ -74,7 +74,7 @@ interface &lt;intf-id&gt;
 
 ##### Unit
 
-### Brocade
+### Brocade (V5.6.0fT163)
 
 #### CLI
 

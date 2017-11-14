@@ -154,7 +154,7 @@ l2vpn
    interface &lt;(local_2)local_interface_id&gt
 </pre>
 
-### Brocade
+### Brocade (V5.6.0fT163)
 
 #### CLI
 

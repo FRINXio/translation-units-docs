@@ -28,7 +28,7 @@ fdp:fdp
 ```
 
 
-### Brocade
+### Brocade (V5.6.0fT163)
 
 #### CLI
 
