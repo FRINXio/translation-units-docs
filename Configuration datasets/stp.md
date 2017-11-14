@@ -40,7 +40,6 @@ interface &lt;intf-id&gt;
 ---
 
 If /interfaces/interface/<intf-id> exists and /stp/interfaces/interface/<intf-id> does not exist
-
 ---
 <pre>
 interface &lt;intf-id&gt;
