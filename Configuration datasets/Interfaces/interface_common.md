@@ -162,3 +162,18 @@ set interfaces &lt;intf-id&gt; traps
 Unit version range: NOT IMPLEMENTED
 
 Link to github : [junos-unit]()
+
+### Brocade (V5.6.0fT163)
+
+#### CLI
+---
+<pre>
+interface &lt;intf-id&gt;
+  port-name &lt;desc&gt;
+  enable | disable
+</pre>
+
+*enable* is conversion of *"enabled": true*  
+*disable* is conversion of *"enabled": false*
+
+---
