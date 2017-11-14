@@ -21,7 +21,9 @@
     * [<a href="Network Instances/MPLS/rsvp_bandwidth.md">rsvp bandwidth</a>](#rsvp-bandwidth)
   * [L2P2P](#l2p2p)
     * [<a href="Network Instances/L2P2P/connection_point.md">connection point</a>](#connection-point)
-
+  * [Discovery protocols](#dp)
+    * [<a href="cdp.md">Cisco Discovery Protocol</a>](#cdp)
+    * [<a href="fdp.md">Foundry Discovery Protocol</a>](#fdp)
 
 # Interfaces
 
@@ -68,3 +70,9 @@
 ## L2P2P
 
 #### [connection point](Network%20Instances/L2P2P/connection_point.md)
+
+## Discovery protocols
+
+#### [cdp](cdp.md)
+
+#### [fdp](fdp.md)
