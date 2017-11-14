@@ -32,20 +32,11 @@ fdp:fdp
 
 #### CLI
 
-If fdp/interfaces/interface/<intf-id>/config/enabled is true
----
 <pre>
 interface &lt;intf-id&gt;
- fdp enable
+ fdp enable | no fdp enable
 </pre>
----
 
-If fdp/interfaces/interface/<intf-id>/config/enabled is false
----
-<pre>
-interface &lt;intf-id&gt;
- no fdp enable
-</pre>
----
-
+*fdp enable* is conversion of *"enabled": true*  
+*no fdp enable* is conversion of *"enabled": false*
 ##### Unit

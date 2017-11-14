@@ -24,7 +24,7 @@
   * [Discovery protocols](#dp)
     * [<a href="cdp.md">Cisco Discovery Protocol</a>](#cdp)
     * [<a href="fdp.md">Foundry Discovery Protocol</a>](#fdp)
-  * [Discovery protocols](#stp)
+  * [Spanning Tree Protocols](#stp)
     * [<a href="stp.md">Spanning Tree Protocol</a>](#stp)
 
 # Interfaces

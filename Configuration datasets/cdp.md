@@ -34,43 +34,27 @@ cdp:cdp
 
 #### CLI
 
-If cdp/interfaces/interface/<intf-id>/config/enabled is true
----
 <pre>
 interface &lt;intf-id&gt;
- cdp enable
+ cdp enable | no cdp enable
 </pre>
----
 
-If cdp/interfaces/interface/<intf-id>/config/enabled is false
----
-<pre>
-interface &lt;intf-id&gt;
- no cdp enable
-</pre>
----
+*cdp enable* is conversion of *"enabled": true*  
+*no cdp enable* is conversion of *"enabled": false*
 
 ##### Unit
 
-### Cisco IOS Xr (XRv 5.1.3 and XRv 6.1.2 tested)
+### Cisco IOS XR (XRv 5.1.3 and XRv 6.1.2 tested)
 
 #### CLI
 
-If cdp/interfaces/interface/<intf-id>/config/enabled is true
----
 <pre>
 interface &lt;intf-id&gt;
- cdp
+ cdp | no cdp
 </pre>
----
 
-If cdp/interfaces/interface/<intf-id>/config/enabled is false
----
-<pre>
-interface &lt;intf-id&gt;
- no cdp
-</pre>
----
+*cdp* is conversion of *"enabled": true*  
+*no cdp* is conversion of *"enabled": false*
 
 ##### Unit
 
@@ -78,20 +62,12 @@ interface &lt;intf-id&gt;
 
 #### CLI
 
-If cdp/interfaces/interface/<intf-id>/config/enabled is true
----
 <pre>
 interface &lt;intf-id&gt;
- cdp enable
+ cdp enable | no cdp enable
 </pre>
----
 
-If cdp/interfaces/interface/<intf-id>/config/enabled is false
----
-<pre>
-interface &lt;intf-id&gt;
- no cdp enable
-</pre>
----
+*cdp enable* is conversion of *"enabled": true*  
+*no cdp enable* is conversion of *"enabled": false*
 
 ##### Unit
