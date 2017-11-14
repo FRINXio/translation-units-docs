@@ -32,6 +32,7 @@ stp:stp
 #### CLI
 
 If /stp/interfaces/interface/&lt;intf-id&gt; exists 
+
 ---
 <pre>
 interface &lt;intf-id&gt;
@@ -40,6 +41,7 @@ interface &lt;intf-id&gt;
 ---
 
 If /interfaces/interface/&lt;intf-id&gt; exists and /stp/interfaces/interface/&lt;intf-id&gt; does not exist
+
 ---
 <pre>
 interface &lt;intf-id&gt;
