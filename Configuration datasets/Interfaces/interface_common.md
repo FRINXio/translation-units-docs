@@ -77,7 +77,6 @@ openconfig-interfaces:interfaces/interface/<intf-id>
 
 ### Cisco IOS Classic (15.2(4)S5) / XE (15.3(3)S2)
 
----
 <pre>
 interface &lt;intf-id&gt;
  description &lt;descr&gt;
@@ -95,7 +94,6 @@ interface &lt;intf-id&gt;
 *no dampening* is conversion of *"enabled": false*
 *dampening* is conversion od *"enabled": true*
 
----
 
 ##### Unit
 
@@ -107,7 +105,6 @@ Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios
 
 #### CLI
 
----
 <pre>
 interface &lt;intf-id&gt;
  description &lt;desc&gt;
@@ -124,8 +121,6 @@ interface &lt;intf-id&gt;
 *no shutdown* is conversion of *"enabled": true*  
 *shutdown* is conversion of *"enabled": false*
 
----
-
 ##### Unit
 
 Unit version range: 3.1.1.rc1-frinx
@@ -136,7 +131,6 @@ Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/
 
 #### CLI
 
----
 <pre>
 set interfaces &lt;intf-id&gt; description &lt;desc&gt;
 set interfaces &lt;intf-id&gt; mtu &lt;mtu&gt;
@@ -155,10 +149,22 @@ set interfaces &lt;intf-id&gt; traps
 *delete interface &lt;intf-id&gt; disable* is conversion of *"enabled": true*  
 *set interface &lt;intf-id&gt; disable* is conversion of *"enabled": false*
 
----
-
 ##### Unit
 
 Unit version range: NOT IMPLEMENTED
 
 Link to github : [junos-unit]()
+
+### Brocade (V5.6.0fT163)
+
+#### CLI
+
+<pre>
+interface &lt;intf-id&gt;
+  port-name &lt;desc&gt;
+  enable | disable
+</pre>
+
+*enable* is conversion of *"enabled": true*  
+*disable* is conversion of *"enabled": false*
+

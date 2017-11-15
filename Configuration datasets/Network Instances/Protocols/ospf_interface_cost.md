@@ -50,14 +50,12 @@ openconfig-network-instance:network-instance/network-instance/<ni-name>/protocol
 
 #### CLI
 
----
 <pre>
 router ospf &lt;process-name&gt;
  area &lt;area-id&gt;
   interface &lt;intf-id&gt;
    cost &lt;cost&gt;
 </pre>
----
 
 ##### Unit
 
@@ -65,15 +63,29 @@ Unit version range: NOT IMPLEMENTED
 
 Link to github : [xr-unit]()
 
+### Cisco IOS Classic (IOSv 15.6(2)T)
+
+#### CLI
+
+<pre>
+interface &lt;intf-id&gt;
+ ip ospf &lt;process-name&gt; area &lt;area-id&gt;
+ ip ospf cost &lt;cost&gt;
+</pre>
+
+##### Unit
+
+Unit version range: NOT IMPLEMENTED
+
+Link to github : 
+
 ### Junos 15.1F5
 
 #### CLI
 
----
 <pre>
 set protocols ospf area &lt;area-id&gt; interface &lt;intf-id&gt; metric &lt;cost&gt;
 </pre>
----
 
 ##### Unit
 
