@@ -1,4 +1,4 @@
-# Interface ACL configuration
+# Access Control List
 
 ## URL
 
@@ -8,7 +8,7 @@ openconfig-acl:acl/interfaces/interface/<intf-id>
 
 ## OPENCONFIG YANG
 
-[YANG models](https://github.com/FRINXio/openconfig/tree/master/interfaces/src/main/yang)
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/acl/src/main/yang)
 
 ```javascript
 {
@@ -26,10 +26,10 @@ openconfig-acl:acl/interfaces/interface/<intf-id>
             "ingress-acl-sets": {
                 "ingress-acl-set": [
                     {
-                        "set-name": <acl_name>
+                        "set-name": <in_acl_name>
                         "type": "ACL_IPV4"
                         "config": {
-                            "set-name": <acl_name>
+                            "set-name": <in_acl_name>
                             "type": "ACL_IPV4"
                         }
                     }
@@ -38,10 +38,10 @@ openconfig-acl:acl/interfaces/interface/<intf-id>
             "egress-acl-sets": {
                 "egress-acl-set": [
                     {
-                        "set-name": <acl_name>
+                        "set-name": <out_acl_name>
                         "type": "ACL_IPV4"
                         "config": {
-                            "set-name": <acl_name>
+                            "set-name": <out_acl_name>
                             "type": "ACL_IPV4"
                         }
                     }
@@ -59,12 +59,11 @@ openconfig-acl:acl/interfaces/interface/<intf-id>
 
 #### CLI
 
----
 <pre>
 interface &lt;intf-id&gt;
-  ipv4 access-group &lt;acl_name&gt; &lt;ingress/egress&gt;
+  ipv4 access-group &lt;in_acl_name&gt; &lt;ingress&gt;
+  ipv4 access-group &lt;out_acl_name&gt; &lt;egress&gt;
 </pre>
----
 
 ##### Unit
 
@@ -72,15 +71,14 @@ Unit version range: NOT IMPLEMENTED
 
 Link to github : [xr-unit]()
 
-### Junos 15.1F5
+### Junos 15.1F-6.9
 
 #### CLI
 
----
 <pre>
-set interfaces &lt;intf-id&gt; unit 0 family inet filter &lt;input/output&gt; &lt;acl_name&gt;
+set interfaces &lt;intf-id&gt; unit 0 family inet filter &lt;input&gt; &lt;in_acl_name&gt;
+set interfaces &lt;intf-id&gt; unit 0 family inet filter &lt;output&gt; &lt;out_acl_name&gt;
 </pre>
----
 
 ##### Unit
 
