@@ -26,10 +26,10 @@ openconfig-acl:acl/interfaces/interface/<intf-id>
             "ingress-acl-sets": {
                 "ingress-acl-set": [
                     {
-                        "set-name": <in_acl_name>
+                        "set-name": <in-acl-name>
                         "type": "ACL_IPV4"
                         "config": {
-                            "set-name": <in_acl_name>
+                            "set-name": <in-acl-name>
                             "type": "ACL_IPV4"
                         }
                     }
@@ -38,10 +38,10 @@ openconfig-acl:acl/interfaces/interface/<intf-id>
             "egress-acl-sets": {
                 "egress-acl-set": [
                     {
-                        "set-name": <out_acl_name>
+                        "set-name": <out-acl-name>
                         "type": "ACL_IPV4"
                         "config": {
-                            "set-name": <out_acl_name>
+                            "set-name": <out-acl-name>
                             "type": "ACL_IPV4"
                         }
                     }
@@ -61,8 +61,8 @@ openconfig-acl:acl/interfaces/interface/<intf-id>
 
 <pre>
 interface &lt;intf-id&gt;
-  ipv4 access-group &lt;in_acl_name&gt; &lt;ingress&gt;
-  ipv4 access-group &lt;out_acl_name&gt; &lt;egress&gt;
+  ipv4 access-group &lt;in-acl-name&gt; ingress
+  ipv4 access-group &lt;out-acl-name&gt; egress
 </pre>
 
 ##### Unit
@@ -76,8 +76,8 @@ Link to github : [xr-unit]()
 #### CLI
 
 <pre>
-set interfaces &lt;intf-id&gt; unit 0 family inet filter &lt;input&gt; &lt;in_acl_name&gt;
-set interfaces &lt;intf-id&gt; unit 0 family inet filter &lt;output&gt; &lt;out_acl_name&gt;
+set interfaces &lt;intf-id&gt; unit 0 family inet filter input &lt;in-acl-name&gt;
+set interfaces &lt;intf-id&gt; unit 0 family inet filter output &lt;out-acl-name&gt;
 </pre>
 
 ##### Unit
