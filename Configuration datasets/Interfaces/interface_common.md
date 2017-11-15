@@ -16,20 +16,13 @@ openconfig-interfaces:interfaces/interface/<intf-id>
         {
             "name": "<intf-id>"
             "config": {
-                "type": "iana-if-type:<interface-type>"
+                "type": "iana-if-type:ethernetCsmacd"
                 "enabled": <true/false>
                 "mtu": <mtu>
                 "description": <desc>
                 "name": <intf-id>
                 "cisco-if-extension:statistics": {
                     "load-interval": <load-interval>
-                }
-                "interfaces-damp:damp": {
-                    "enabled": <true/false>,
-                    "half-life": <half-life>,
-                    "reuse": <reuse>,
-                    "suppress": <suppres>,
-                    "max-supress": <max-supress>
                 }
             }
             "hold-time": {
@@ -38,9 +31,23 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                     "down": <down>
                 }
             }
-            "logging": {
+            "ethernet": {
                 "config": {
-                    "link-status": {}
+                    "openconfig-if-aggregate:aggregate-id": <bundle-id>
+                }
+                "damping:damping": {
+                    "config": {
+                        "enabled": <true/false>,
+                        "half-life": <half-life>,
+                        "reuse": <reuse>,
+                        "suppress": <suppres>,
+                        "max-supress": <max-supress>
+                    }
+                }
+                "cisco-if-extension:statistics": {
+                    "config": {
+                        "load-interval": <load_interval>
+                    }
                 }
             }
             "subinterfaces": {
@@ -50,11 +57,11 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                         "config": {
                             "index": 0
                         }
-                        "ipv4": {
+                        "openconfig-if-ip:ipv4": {
                             "addresses": {
                                 "address": [
                                     {
-                                        "ip":
+                                        "ip": <ip>
                                         "config": {
                                             "ip": <ip>
                                             "prefix-length": <prefix>
@@ -69,8 +76,6 @@ openconfig-interfaces:interfaces/interface/<intf-id>
         }
     ]
 }
-
-// TODO: SNMP traps not supported in OpenConfig
 ```
 
 ## OS Configuration Commands
@@ -82,7 +87,6 @@ interface &lt;intf-id&gt;
  description &lt;descr&gt;
  mtu &lt;mtu&gt;
  ip address &lt;ip&gt; &lt;subnet&gt;
- logging events link-status
  dampening
   dampening &lt;half-life&gt; &lt;reuse&gt; &lt;supress&gt; &lt;max-supress&gt;
  no shutdown
@@ -90,8 +94,8 @@ interface &lt;intf-id&gt;
 
 &lt;subnet&gt; is conversion of &lt;prefix&gt;  
 *no shutdown* is conversion of *"enabled": true*  
-*shutdown* is conversion of *"enabled": false*
-*no dampening* is conversion of *"enabled": false*
+*shutdown* is conversion of *"enabled": false*  
+*no dampening* is conversion of *"enabled": false*  
 *dampening* is conversion od *"enabled": true*
 
 
@@ -109,12 +113,13 @@ Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios
 interface &lt;intf-id&gt;
  description &lt;desc&gt;
  mtu &lt;mtu&gt;
- carrier-delay up &lt;up&gt; down &lt;down&gt;
  ipv4 address &lt;ip&gt; &lt;subnet&gt;
- logging &lt;events&gt; &lt;link-status&gt;
+ dampening
+  dampening &lt;half-life&gt; &lt;reuse&gt; &lt;supress&gt; &lt;max-supress&gt;
+ carrier-delay up &lt;up&gt; down &lt;down&gt;
  load-interval &lt;load-interval&gt;
+ bundle-id &lt;bundle-id&gt; mode on
  no shutdown
- snmp-server traps snmp linkup
 </pre>
 
 &lt;subnet&gt; is conversion of &lt;prefix&gt;  
@@ -125,25 +130,24 @@ interface &lt;intf-id&gt;
 
 Unit version range: 3.1.1.rc1-frinx
 
-Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr-6-interface-unit)
+Link to github : [xr-unit]()
 
-### Junos 15.1F5
+### Junos 15.1F-6.9
 
 #### CLI
 
 <pre>
 set interfaces &lt;intf-id&gt; description &lt;desc&gt;
 set interfaces &lt;intf-id&gt; mtu &lt;mtu&gt;
-set interfaces &lt;intf-id&gt; hold-time up &lt;up&gt; down &lt;down&gt;
 set interfaces &lt;intf-id&gt; unit 0 family inet address &lt;ip&gt/&lt;prefix&gt;
-set event-options policy log-on-snmp-trap-link-up events snmp_trap_link_up
 set interfaces &lt;intf-id&gt; damping enable
 set interfaces &lt;intf-id&gt; damping half-life &lt;half-life&gt;
 set interfaces &lt;intf-id&gt; damping max-suppress &lt;max-supress&gt;
 set interfaces &lt;intf-id&gt; damping reuse &lt;reuse&gt;
 set interfaces &lt;intf-id&gt; damping suppress &lt;supress&gt;
+set interfaces &lt;intf-id&gt; hold-time up &lt;up&gt; down &lt;down&gt;
+set interfaces &lt;intf-id&gt; gigether-options 802.3ad &lt;bundle-id&gt;
 delete interface &lt;intf-id&gt; disable
-set interfaces &lt;intf-id&gt; traps
 </pre>
 
 *delete interface &lt;intf-id&gt; disable* is conversion of *"enabled": true*  
