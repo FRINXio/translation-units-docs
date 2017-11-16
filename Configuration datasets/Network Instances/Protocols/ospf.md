@@ -1,4 +1,4 @@
-# OSPF interface cost configuration
+# Open Shortest Path First (OSPF)
 
 ## URL
 
