@@ -20,6 +20,17 @@ openconfig-network-instance:network-instance/network-instance/<ni-name>/protocol
                 "name": <process-name>,
                 "identifier": "openconfig-policy-types:OSPF"
             }
+            "global": {
+                "timers": {
+                    "max-metric": {
+                        "config": {
+                            "set": <true|false>
+                            "timeout": <timeout>
+                            "include": [ { "MAX_METRIC_INCLUDE_STUB", "AS_EXTERNAL_LSA", "SUMMARY_ASBR_LSA" } ]
+                        }
+                    }
+                }
+            }
             "ospfv2": {
                 "areas": {
                     "area": [
@@ -32,7 +43,13 @@ openconfig-network-instance:network-instance/network-instance/<ni-name>/protocol
                                 {
                                     "id":<intf-id>
                                     "config": {
-                                    "metric:"<cost>
+                                        "metric:"<cost>
+                                    }
+                                    "interface-ref": {
+                                        "config": {
+                                            "interface": <intf-id>
+                                        }
+                                    }
                                 }
                             ]
                         }
@@ -52,6 +69,7 @@ openconfig-network-instance:network-instance/network-instance/<ni-name>/protocol
 
 <pre>
 router ospf &lt;process-name&gt;
+ max-metric router-lsa on-startup &lt;timeout&gt; include-stub summary-lsa external-lsa
  area &lt;area-id&gt;
   interface &lt;intf-id&gt;
    cost &lt;cost&gt;
@@ -71,6 +89,8 @@ Link to github : [xr-unit]()
 interface &lt;intf-id&gt;
  ip ospf &lt;process-name&gt; area &lt;area-id&gt;
  ip ospf cost &lt;cost&gt;
+ 
+// TODO add max-metric if possible
 </pre>
 
 ##### Unit
@@ -79,11 +99,12 @@ Unit version range: NOT IMPLEMENTED
 
 Link to github : 
 
-### Junos 15.1F5
+### Junos 15.1F-6.9
 
 #### CLI
 
 <pre>
+set protocols ospf overload timeout &lt;timeout&gt;
 set protocols ospf area &lt;area-id&gt; interface &lt;intf-id&gt; metric &lt;cost&gt;
 </pre>
 
