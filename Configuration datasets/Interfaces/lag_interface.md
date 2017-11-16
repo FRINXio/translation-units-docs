@@ -83,7 +83,7 @@ openconfig-interfaces:interfaces/interface/<intf-id>
 #### CLI
 
 <pre>
-interface &lt;intf-id&gt;
+interface bundle-ether &lt;intf-id&gt;
  description &lt;desc&gt;
  mtu &lt;mtu&gt;
  ipv4 address &lt;ip&gt; &lt;subnet&gt;
