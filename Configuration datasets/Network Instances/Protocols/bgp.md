@@ -1,4 +1,4 @@
-# BGP neighbor configuration
+# Border Gateway Protocol (BGP)
 
 ## URL
 
@@ -31,7 +31,7 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
                         {
                             "config": {
                                 "neighbor-address": <neighbor_address>
-                                "enabled": <true/false>
+                                "enabled": <true|false>
                             }
                         }
                     ]
@@ -66,7 +66,7 @@ Unit version range: NOT IMPLEMENTED
 
 Link to github : [xr-unit]()
 
-### Junos 15.1F5
+### Junos 15.1F-6.9
 
 #### CLI
 
