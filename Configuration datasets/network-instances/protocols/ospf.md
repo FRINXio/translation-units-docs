@@ -29,8 +29,8 @@ openconfig-network-instance:network-instance/network-instance/<ni-name>/protocol
                                 "timeout": <timeout>,
                                 "include": [ 
                                     "openconfig-ospf-types:MAX_METRIC_INCLUDE_STUB", 
-                                    "openconfig-ospf-types:AS_EXTERNAL_LSA", 
-                                    "openconfig-ospf-types:SUMMARY_ASBR_LSA" 
+                                    "openconfig-ospf-types:MAX_METRIC_INCLUDE_TYPE2_EXTERNAL", 
+                                    "openconfig-ospf-types:MAX_METRIC_SUMMARY_ASBR_LSA" 
                                 ]
                             }
                         }
