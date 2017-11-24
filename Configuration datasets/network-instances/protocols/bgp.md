@@ -14,23 +14,25 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
 {
     "protocol": [
         {
-            "name": <proces-name>,
+            "name": "<proces-name>",
             "identifier": "openconfig-policy-types:BGP",
             "config": {
-                "name": <proces-name>,
+                "name": "<proces-name>",
                 "identifier": "openconfig-policy-types:BGP"
             },
             "bgp": {
                 "global": {
                     "config": {
-                        "as": <as>,
+                        "as": <as>
                     }
-                }
+                },
                 "neighbors": {
                     "neighbor": [
                         {
+                            "neighbor-address": "<neighbor_address>",
                             "config": {
-                                "neighbor-address": <neighbor_address>
+                                "neighbor-address": "<neighbor_address>",
+                                "peer-as": <peer-as>,
                                 "enabled": <true|false>
                             }
                         }
@@ -53,6 +55,7 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
 <pre>
 router bgp &lt;as&gt; instance &lt;process-name&gt;
  neighbor &lt;neighbor_address&gt;
+   remote-as &lt;peer-as&gt;
    no shutdown
 </pre>
 ---
