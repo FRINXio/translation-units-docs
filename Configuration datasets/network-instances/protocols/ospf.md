@@ -20,18 +20,22 @@ openconfig-network-instance:network-instance/network-instance/<ni-name>/protocol
                 "name": <process-name>,
                 "identifier": "openconfig-policy-types:OSPF"
             }
-            "global": {
-                "timers": {
-                    "max-metric": {
-                        "config": {
-                            "set": <true|false>
-                            "timeout": <timeout>
-                            "include": [ { "MAX_METRIC_INCLUDE_STUB", "AS_EXTERNAL_LSA", "SUMMARY_ASBR_LSA" } ]
+            "ospfv2": {
+                "global": {
+                    "timers": {
+                        "max-metric": {
+                            "config": {
+                                "set": <true|false>,
+                                "timeout": <timeout>,
+                                "include": [ 
+                                    "openconfig-ospf-types:MAX_METRIC_INCLUDE_STUB", 
+                                    "openconfig-ospf-types:AS_EXTERNAL_LSA", 
+                                    "openconfig-ospf-types:SUMMARY_ASBR_LSA" 
+                                ]
+                            }
                         }
                     }
-                }
-            }
-            "ospfv2": {
+                },
                 "areas": {
                     "area": [
                         {
@@ -39,19 +43,21 @@ openconfig-network-instance:network-instance/network-instance/<ni-name>/protocol
                             "config": {
                                 "identifier": <area-id>
                             },
-                            "interfaces": [
-                                {
-                                    "id":<intf-id>
-                                    "config": {
-                                        "metric:"<cost>
-                                    }
-                                    "interface-ref": {
+                            "interfaces": {
+                                "interface": [
+                                    {
+                                        "id": "<intf-id>",
                                         "config": {
-                                            "interface": <intf-id>
+                                            "metric": <cost>
+                                        },
+                                        "interface-ref": {
+                                            "config": {
+                                                "interface": <intf-id>
+                                            }
                                         }
                                     }
-                                }
-                            ]
+                                ]
+                            }
                         }
                     ]
                 }
