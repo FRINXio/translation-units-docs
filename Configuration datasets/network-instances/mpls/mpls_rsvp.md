@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-network-instance:network-instances/network-instance/<ni-name>/openconfig-mpls:mpls/signaling-protocols/rsvp-te/interface-attributes/interface/<intf-id>
+openconfig-network-instance:network-instances/network-instance/<ni-name>/mpls/signaling-protocols/rsvp-te/interface-attributes/interface/<intf-id>
 ```
 
 ## OPENCONFIG YANG
@@ -16,10 +16,10 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/opencon
 {
     "interface": [
          {
-             "interface-id": <intf-id>
+             "interface-id": "<intf-id>",
              "config": {
-                 "interface-id": <intf-id>
-             }
+                 "interface-id": "<intf-id>"
+             },
              "subscription": {
                 "config": {
                     "mpls-rsvp-extension:bandwidth": <bandwidth>
