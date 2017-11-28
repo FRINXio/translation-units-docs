@@ -16,7 +16,7 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/mpls/te
 {
     "interface": [
         {
-            "interface-id": "<intf-id>"
+            "interface-id": "<intf-id>",
             "config": {
                 "interface-id": <intf-id>
             }
@@ -38,7 +38,7 @@ mpls traffic-eng
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
+Unit version range: 3.1.1.rc4
 
 Link to github : [xr-unit]()
 
