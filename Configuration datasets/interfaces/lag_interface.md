@@ -45,22 +45,22 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                     }
                 ]
             }
+            "damping:damping": {
+                "config": {
+                    "enabled": <true/false>,
+                    "half-life": <half-life>,
+                    "reuse": <reuse>,
+                    "suppress": <suppres>,
+                    "max-supress": <max-supress>
+                }
+            }
+            "cisco-if-extension:statistics": {
+                "load-interval": <load-interval>
+            }
             "openconfig-if-aggregate:aggregation": {
                 "config": {
                     "min-links": <min-links>
                     "juniper-if-aggregate-extension:link-speed": <link_speed>
-                }
-                "damping:damping": {
-                    "config": {
-                        "enabled": <true/false>,
-                        "half-life": <half-life>,
-                        "reuse": <reuse>,
-                        "suppress": <suppres>,
-                        "max-supress": <max-supress>
-                    }
-                }
-                "cisco-if-extension:statistics": {
-                    "load-interval": <load-interval>
                 }
                 "bfd:bfd": {
                     "config": {

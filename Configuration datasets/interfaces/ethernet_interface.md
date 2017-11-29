@@ -54,24 +54,24 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                     }
                 ]
             }
+            "damping:damping": {
+                "config": {
+                    "enabled": <true/false>,
+                    "half-life": <half-life>,
+                    "reuse": <reuse>,
+                    "suppress": <suppres>,
+                    "max-supress": <max-supress>
+                }
+            }
+            "cisco-if-extension:statistics": {
+                "config": {
+                    "load-interval": <load_interval>
+                }
+            }
             "openconfig-if-ethernet:ethernet": {
                 "config": {
                     "openconfig-if-aggregate:aggregate-id": <bundle-id>
-                }
-                "damping:damping": {
-                    "config": {
-                        "enabled": <true/false>,
-                        "half-life": <half-life>,
-                        "reuse": <reuse>,
-                        "suppress": <suppres>,
-                        "max-supress": <max-supress>
-                    }
-                }
-                "cisco-if-extension:statistics": {
-                    "config": {
-                        "load-interval": <load_interval>
-                    }
-                }
+		}
             }
         }
     ]
