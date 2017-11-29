@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-network-instance:network-instances/network-instance/<ni-name>/openconfig-mpls:mpls/lsps/constrained-path/tunnels/tunnel/<tunnel-id>
+openconfig-network-instance:network-instances/network-instance/default/mpls/lsps/constrained-path/tunnels/tunnel/<tunnel-id>
 ```
 
 ## OPENCONFIG YANG
@@ -16,13 +16,13 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/opencon
 {
     "tunnel": [
          {
-             "name": <tunnel-id>
+             "name": "<tunnel-id>",
              "config": {
-                 "name": <tunnel-id>
-                 "shortcut-eligible": <true|false>
-                 "metric-type": "openconfig-mpls-types:LSP_METRIC_ABSOLUTE"
+                 "name": "<tunnel-id>",
+                 "shortcut-eligible": <true|false>,
+                 "metric-type": "openconfig-mpls-types:LSP_METRIC_ABSOLUTE",
                  "metric": <metric>
-             }
+             },
              "cisco-mpls-te-extension:cisco-mpls-te-extension": {
                 "config": {
                     "load-share": <load-share>
@@ -48,6 +48,7 @@ interface tunnel-te &lt;tunnel-id&gt;
 
 *autoroute announce* is conversion of *"shortcut-eligible": true*  
 *no autoroute announce* is conversion of *"shortcut-eligible": false*  
+*load-share* is not supported on any Cisco IOS XR (only ASR9K)
 
 ##### Unit
 
