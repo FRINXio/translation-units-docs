@@ -14,37 +14,37 @@ openconfig-interfaces:interfaces/interface/<intf-id>
 {
     "interface": [
         {
-            "name": "<intf-id>"
+            "name": "<intf-id>",
             "config": {
-                "type": "iana-if-type:ethernetCsmacd"
-                "enabled": <true/false>
-                "mtu": <mtu>
-                "description": <desc>
-                "name": <intf-id>
+                "type": "iana-if-type:ethernetCsmacd",
+                "enabled": <true/false>,
+                "mtu": <mtu>,
+                "description": "<desc>",
+                "name": "<intf-id>",
                 "cisco-if-extension:statistics": {
                     "load-interval": <load-interval>
                 }
-            }
+            },
             "hold-time": {
                 "config": {
-                    "up": <up>
+                    "up": <up>,
                     "down": <down>
                 }
-            }
+            },
             "subinterfaces": {
                 "subinterface": [
                     {
-                        "index": 0
+                        "index": 0,
                         "config": {
                             "index": 0
-                        }
+                        },
                         "openconfig-if-ip:ipv4": {
                             "addresses": {
                                 "address": [
                                     {
-                                        "ip": <ip>
+                                        "ip": "<ip>",
                                         "config": {
-                                            "ip": <ip>
+                                            "ip": "<ip>",
                                             "prefix-length": <prefix>
                                         }
                                     }
@@ -53,7 +53,7 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                         }
                     }
                 ]
-            }
+            },
             "damping:damping": {
                 "config": {
                     "enabled": <true/false>,
@@ -62,15 +62,15 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                     "suppress": <suppres>,
                     "max-supress": <max-supress>
                 }
-            }
+            },
             "cisco-if-extension:statistics": {
                 "config": {
                     "load-interval": <load_interval>
                 }
-            }
+            },
             "openconfig-if-ethernet:ethernet": {
                 "config": {
-                    "openconfig-if-aggregate:aggregate-id": <bundle-id>
+                    "openconfig-if-aggregate:aggregate-id": "<bundle-id>"
 		}
             }
         }
