@@ -112,15 +112,15 @@ openconfig-network-instance:network-instances/network-instance/<vrf>
             	"table-connection": [
             		{
             			"config": {
-                	        "src-protocol": <redistribute2_from>"ospf <ospf-process-id>"
-                	        "dst-protocol": <redistribute2_to>"bgp <as-number>"
+                	        "src-protocol": "<redistribute2_from>" = "ospf <ospf-process-id>"
+                	        "dst-protocol": "<redistribute2_to>" = "bgp <as-number>"
           	            }
           	            "address-family": "ipv4"
           	    	}
           	    	{
             			"config": {
-                	        "src-protocol": <redistribute1_from>="bgp <as-number>"
-                	        "dst-protocol": <redistribute1_to>"="ospf <ospf-process-id>"
+                	        "src-protocol": "<redistribute1_from>" = "bgp <as-number>"
+                	        "dst-protocol": "<redistribute1_to>" = "ospf <ospf-process-id>"
           	            }
           	            "address-family": "ipv4"
           	    	}
