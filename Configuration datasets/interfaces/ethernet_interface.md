@@ -21,6 +21,7 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                 "mtu": <mtu>,
                 "description": "<desc>",
                 "name": "<intf-id>",
+                "tpid": "<tpid>",
                 "cisco-if-extension:statistics": {
                     "load-interval": <load-interval>
                 }
@@ -164,6 +165,8 @@ Link to github : [junos-unit]()
 #### CLI
 
 <pre>
+tag-type &lt;tpid&gt; &lt;intf-id&gt;
+
 interface &lt;intf-id&gt;
   port-name &lt;desc&gt;
   enable | disable
