@@ -1,84 +1,93 @@
 * [Interfaces](#interfaces)
-    * [<a href="Interfaces/interface_common.md">interface</a>](#interface)
-    * [<a href="Interfaces/subinterface_common.md">subinterface</a>](#subinterface)
-    * [<a href="Interfaces/interface_policy.md">interface policy</a>](#interface-policy)
-    * [<a href="Interfaces/interface_acl.md">interface ACL</a>](#interface-acl)
-  * [LAG interface](#lag-interface)
-    * [<a href="Interfaces/LAG interfaces/bundle_bfd.md">bundle BFD</a>](#bundle-bfd)
-    * [<a href="Interfaces/LAG interfaces/bundle_common.md">bundle</a>](#bundle)
-  * [LAG member interface](#lag-member-interface)
-    * [<a href="Interfaces/LAG member interfaces/bundle_member_common.md">bundle member</a>](#bundle-member)
-    * [<a href="Interfaces/LAG member interfaces/interface_lacp.md">interface LACP</a>](#interface-lacp)
-* [Network Instances (VRFs)](#network-instances-vrfs)
-    * [<a href="Network Instances/network_instance.md">add network instance</a>](#add-network-instance)
-  * [PROTOCOLS](#protocols)
-    * [<a href="Network Instances/Protocols/bgp_neighbor.md">bgp neighbor</a>](#bgp-neighbor)
-    * [<a href="Network Instances/Protocols/ospf_interface_cost.md">ospf interface cost</a>](#ospf-interface-cost)
-    * [<a href="Network Instances/Protocols/ospf_metric.md">max metric</a>](#max-metric)
+    * [<a href="interfaces/ethernet_interface.md">Ethernet interface</a>](#ethernet-interface)
+    * [<a href="interfaces/lag_interface.md">LAG interface</a>](#lag-interface)
+    * [<a href="interfaces/subinterface_common.md">subinterface</a>](#subinterface)
+* [Network Instances](#network-instances)
+    * [<a href="network-instances/network_instance.md">Network Instance</a>](#network-instance)
+  * [Protocols](#protocols)
+    * [<a href="network-instances/protocols/bgp.md">BGP</a>](#bgp)
+    * [<a href="network-instances/protocols/ospf.md">OSPF</a>](#ospf)
   * [MPLS](#mpls)
-    * [<a href="Network Instances/MPLS/mpls_tunnel_load_share.md">tunnel load share</a>](#tunnel-load-share)
-    * [<a href="Network Instances/MPLS/mpls_tunnel_autoroute.md">tunnel autoroute</a>](#tunnel-autoroute)
-    * [<a href="Network Instances/MPLS/rsvp_bandwidth.md">rsvp bandwidth</a>](#rsvp-bandwidth)
+    * [<a href="network-instances/mpls/mpls_te.md">MPLS TE</a>](#mpls-te)
+    * [<a href="network-instances/mpls/mpls_tunnel.md">MPLS Tunnel</a>](#mpls-tunnel)
+    * [<a href="network-instances/mpls/mpls_rsvp.md">MPLS TE RSVP</a>](#mpls-te-rsvp)
+  * [Policy Forwarding](#policy-forwarding)
+    * [<a href="policy-forwarding/pf_interfaces.md">PF interfaces</a>](#pf-interfaces)
   * [L2P2P](#l2p2p)
-    * [<a href="Network Instances/L2P2P/connection_point.md">connection point</a>](#connection-point)
-  * [Discovery protocols](#dp)
-    * [<a href="cdp.md">Cisco Discovery Protocol</a>](#cdp)
-    * [<a href="fdp.md">Foundry Discovery Protocol</a>](#fdp)
-  * [Spanning Tree Protocols](#stp)
-    * [<a href="stp.md">Spanning Tree Protocol</a>](#stp)
+    * [<a href="network-instances/l2p2p/connection_point.md">connection point</a>](#connection-point)
+* [Discovery protocols](#discovery-protocols)
+    * [<a href="cdp.md">CDP</a>](#cdp)
+    * [<a href="fdp.md">FDP</a>](#fdp)
+* [Monitoring](#monitoring)
+    * [<a href="snmp.md">SNMP</a>](#snmp)
+    * [<a href="logging.md">SYSLOG</a>](#syslog)
+* [Access control](#access-control)
+    * [<a href="acl/acl_interfaces.md">ACL interfaces</a>](#acl-interfaces)
+* [Spanning Tree Protocol](#spanning-tree-protocol)
+    * [<a href="stp.md">STP</a>](#stp)
+* [Link Aggregation Control Protocol](#link-aggregation-control-protocol)
+    * [<a href="lacp.md">LACP</a>](#lacp)
+
+
+
+
 
 # Interfaces
 
-#### [interface](Interfaces/interface_common.md)
+#### [Ethernet interface](interfaces/ethernet_interface.md)
 
-#### [subinterface](Interfaces/subinterface_common.md)
+#### [LAG interface](interfaces/lag_interface.md)
 
-#### [interface policy](Interfaces/interface_policy.md)
+#### [subinterface](interfaces/subinterface_common.md)
 
-#### [interface ACL](Interfaces/interface_acl.md)
+# Network Instances
 
-## LAG interface
+#### [Network Instance](network-instances/network_instance.md)
 
-#### [bundle BFD](Interfaces/LAG%20interfaces/bundle_bfd.md)
+## Protocols
 
-#### [bundle](Interfaces/LAG%20interfaces/bundle_common.md)
+#### [BGP](network-instances/protocols/bgp.md)
 
-## LAG member interface
-
-#### [bundle member](Interfaces/LAG%20member%20interfaces/bundle_member_common.md)
-
-#### [interface LACP](Interfaces/LAG%20member%20interfaces/interface_lacp.md)
-
-# Network Instances (VRFs)
-
-#### [add network instance](Network%20Instances/network_instance.md)
-
-## PROTOCOLS
-
-#### [bgp neighbor](Network%20Instances/Protocols/bgp_neighbor.md)
-
-#### [ospf interface cost](Network%20Instances/Protocols/ospf_interface_cost.md)
-
-#### [max metric](Network%20Instances/Protocols/ospf_metric.md)
+#### [OSPF](network-instances/protocols/ospf.md)
 
 ## MPLS
 
-#### [tunnel load share](Network%20Instances/MPLS/mpls_tunnel_load_share.md)
+#### [MPLS TE](network-instances/mpls/mpls_te.md)
 
-#### [tunnel autoroute](Network%20Instances/MPLS/mpls_tunnel_autoroute.md)
+#### [MPLS Tunnel](network-instances/mpls/mpls_tunnel.md)
 
-#### [rsvp bandwidth](Network%20Instances/MPLS/rsvp_bandwidth.md)
+#### [MPLS TE RSVP](network-instances/mpls/mpls_rsvp.md)
+
+## Policy Forwarding
+
+#### [PF interfaces](policy-forwarding/pf_interfaces.md)
 
 ## L2P2P
 
-#### [connection point](Network%20Instances/L2P2P/connection_point.md)
+#### [connection point](network-instances/l2p2p/connection_point.md)
 
-## Discovery protocols
+# Discovery protocols
 
-#### [cdp](cdp.md)
+#### [CDP](cdp.md)
 
-#### [fdp](fdp.md)
+#### [FDP](fdp.md)
 
-## Spanning tree
+# Monitoring
 
-#### [stp](stp.md)
+#### [SNMP](snmp.md)
+
+#### [SYSLOG](logging.md)
+
+# Access control
+
+#### [ACL interfaces](acl/acl_interfaces.md)
+
+# Spanning Tree Protocol
+
+#### [STP](stp.md)
+
+# Link Aggregation Control Protocol
+
+#### [LACP](lacp.md)
+
+
