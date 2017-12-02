@@ -17,7 +17,7 @@
     * [<a href="network-instances/l2p2p/connection_point.md">connection point</a>](#connection-point)
   * [L3VPN](#l3vpn)
     * [<a href="network-instances/l3vpn/network_instance_l3vpn_bgp.md">l3vpn with BGP</a>](#l3vpn-bgp)
-    * [<a href="network-instances/l3vpn/network_instance_l3vpn_ospf.md">l3vpn with OSPF/a>](#l3vpn-ospf)
+    * [<a href="network-instances/l3vpn/network_instance_l3vpn_ospf.md">l3vpn with OSPF</a>](#l3vpn-ospf)
 * [Discovery protocols](#discovery-protocols)
     * [<a href="cdp.md">CDP</a>](#cdp)
     * [<a href="fdp.md">FDP</a>](#fdp)
