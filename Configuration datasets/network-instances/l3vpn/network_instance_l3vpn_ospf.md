@@ -270,3 +270,31 @@ router &lt;redistribute2-to&gt;
   address-family ipv4 unicast
    redistribute &lt;redistribute2-from&gt;
 </pre>
+
+### Cisco IOS (VIOS 15.6(2)T)
+
+#### CLI
+
+<pre>
+ip vrf &lt;vrf&gt;
+ rd &lt;rd&gt;
+ route-target export {&lt;rt_exp_1&gt;}
+ route-target export {&lt;rt_exp_2&gt;}
+ route-target export {&lt;rt_exp_3&gt;}
+ route-target import {&lt;rt_imp_1&gt;}
+ route-target import {&lt;rt_imp_2&gt;}
+ route-target import {&lt;rt_imp_3&gt;}
+
+interface &lt;interface-id&gt;
+ ip vrf forwarding &lt;vrf&gt;
+ ip ospf &lt;ospf-process-id&gt; area &lt;area-id&gt;
+
+router &lt;ospf-process-id&gt; vrf &lt;vrf&gt;
+
+router &lt;redistribute1-to&gt; vrf &lt;vrf&gt;
+ redistribute b&lt;redistribute1-from&gt; subnets
+
+router &lt;redistribute2-to&gt;
+ address-family ipv4 vrf &lt;vrf&gt;
+  redistribute &lt;redistribute2-from&gt; 
+</pre>

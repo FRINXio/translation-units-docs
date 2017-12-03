@@ -235,3 +235,27 @@ router bgp &lt;as-number&gt;
     route-policy &lt;import-policy&gt; in
     route-policy &lt;export-policy&gt; out
 </pre>
+
+### Cisco IOS (VIOS 15.6(2)T)
+
+#### CLI
+
+<pre>
+ip vrf &lt;vrf&gt;
+ rd &lt;rd&gt;
+ route-target export {&lt;rt_exp_1&gt;}
+ route-target export {&lt;rt_exp_2&gt;}
+ route-target export {&lt;rt_exp_3&gt;}
+ route-target import {&lt;rt_imp_1&gt;}
+ route-target import {&lt;rt_imp_2&gt;}
+ route-target import {&lt;rt_imp_3&gt;}
+
+interface &lt;interface-id&gt;
+ ip vrf forwarding &lt;vrf&gt;
+
+router bgp &lt;as-number&gt;
+ address-family ipv4 vrf &lt;vrf&gt;
+  network &lt;network-prefix&gt;
+  neighbor &lt;neighbor-address&gt; remote-as &lt;remote-as&gt;
+  neighbor &lt;neighbor-address&gt; activate
+</pre>
