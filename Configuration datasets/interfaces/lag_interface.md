@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-interfaces:interfaces/interface/<intf-id>
+frinx-openconfig-interfaces:interfaces/interface/<intf-id>
 ```
 
 ## OPENCONFIG YANG
@@ -29,7 +29,7 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                         "config": {
                             "index": 0
                         }
-                        "openconfig-if-ip:ipv4": {
+                        "frinx-openconfig-if-ip:ipv4": {
                             "addresses": {
                                 "address": [
                                     {
@@ -45,7 +45,7 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                     }
                 ]
             }
-            "damping:damping": {
+            "frinx-damping:damping": {
                 "config": {
                     "enabled": <true/false>,
                     "half-life": <half-life>,
@@ -54,15 +54,15 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                     "max-supress": <max-supress>
                 }
             }
-            "cisco-if-extension:statistics": {
+            "frinx-cisco-if-extension:statistics": {
                 "load-interval": <load-interval>
             }
-            "openconfig-if-aggregate:aggregation": {
+            "frinx-openconfig-if-aggregate:aggregation": {
                 "config": {
                     "min-links": <min-links>
-                    "juniper-if-aggregate-extension:link-speed": <link_speed>
+                    "frinx-juniper-if-aggregate-extension:link-speed": <link_speed>
                 }
-                "bfd:bfd": {
+                "frinx-bfd:bfd": {
                     "config": {
                         "local-address": <local_ip>
                         "destination-address": <destination_ip>

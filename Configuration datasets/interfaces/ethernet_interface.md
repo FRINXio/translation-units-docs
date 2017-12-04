@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-interfaces:interfaces/interface/<intf-id>
+frinx-openconfig-interfaces:interfaces/interface/<intf-id>
 ```
 
 ## OPENCONFIG YANG
@@ -21,7 +21,7 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                 "mtu": <mtu>,
                 "description": "<desc>",
                 "name": "<intf-id>",
-                "cisco-if-extension:statistics": {
+                "frinx-cisco-if-extension:statistics": {
                     "load-interval": <load-interval>
                 }
             },
@@ -38,7 +38,7 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                         "config": {
                             "index": 0
                         },
-                        "openconfig-if-ip:ipv4": {
+                        "frinx-openconfig-if-ip:ipv4": {
                             "addresses": {
                                 "address": [
                                     {
@@ -54,7 +54,7 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                     }
                 ]
             },
-            "damping:damping": {
+            "frinx-damping:damping": {
                 "config": {
                     "enabled": <true/false>,
                     "half-life": <half-life>,
@@ -63,14 +63,14 @@ openconfig-interfaces:interfaces/interface/<intf-id>
                     "max-supress": <max-supress>
                 }
             },
-            "cisco-if-extension:statistics": {
+            "frinx-cisco-if-extension:statistics": {
                 "config": {
                     "load-interval": <load_interval>
                 }
             },
-            "openconfig-if-ethernet:ethernet": {
+            "frinx-openconfig-if-ethernet:ethernet": {
                 "config": {
-                    "openconfig-if-aggregate:aggregate-id": "<bundle-id>"
+                    "frinx-openconfig-if-aggregate:aggregate-id": "<bundle-id>"
 		}
             }
         }

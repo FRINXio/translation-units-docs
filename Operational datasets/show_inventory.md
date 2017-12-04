@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-platform:components
+frinx-openconfig-platform:components
 ```
 
 ## OPENCONFIG YANG
@@ -26,7 +26,7 @@ openconfig-platform:components
                     "serial-no": "FOC2025NGA1",
                     "id": "module 0/0/CPU0",
                     "description": "ASR 9001, Modular Line Card",
-                    "type": "openconfig-platform-types:LINECARD"
+                    "type": "frinx-openconfig-platform-types:LINECARD"
                 }
             }
         ]

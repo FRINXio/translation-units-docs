@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-lldp:lldp
+frinx-openconfig-lldp:lldp
 ```
 
 ## OPENCONFIG YANG

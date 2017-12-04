@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-network-instance:network-instances/network-instance/<ni-name>
+frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>
 ```
 
 ## OPENCONFIG YANG

@@ -52,7 +52,7 @@ URLs are modular. By changing the URL you can move along the YANG data tree.
 <strong>Example:</strong>
 
 ```
-http://localhost:8181/restconf/operational/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/<VRF-id>/protocols/protocol/openconfig-policy-types:OSPF/<OSPF-process-id>/ospfv2/areas/area/<area-id>/interfaces
+http://localhost:8181/restconf/operational/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance/<VRF-id>/protocols/protocol/frinx-openconfig-policy-types:OSPF/<OSPF-process-id>/ospfv2/areas/area/<area-id>/interfaces
 ```
 
 - very specific URL listing interfaces under one specific area in OSPF under specific VRF
@@ -70,25 +70,25 @@ The general steps in creating the URL are following:
 
 <strong>Example:</strong>
 ```
-http://localhost:8181/restconf/operational/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/<VRF-id>/protocols/protocol/openconfig-policy-types:OSPF/<OSPF-process-id>/ospfv2/areas/area/<area-id>/interfaces
+http://localhost:8181/restconf/operational/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance/<VRF-id>/protocols/protocol/frinx-openconfig-policy-types:OSPF/<OSPF-process-id>/ospfv2/areas/area/<area-id>/interfaces
 ```
 
-- top-level argument contains also YANG model name: ‘openconfig-network-instance’
-- network-instances argument is a list. We want to specify one item from that list (specific network instance), therefore the URL continues with ‘network-instance'. The key in network-instance is the identifier '<VRF-id>' (e.g. vrf1) which follows the list item argument. Complex key is needed for protocol argument. The key is protocol-type followed by process-id. (openconfig-policy-types:OSPF/<OSPF-process-id> )
+- top-level argument contains also YANG model name: ‘frinx-openconfig-network-instance’
+- network-instances argument is a list. We want to specify one item from that list (specific network instance), therefore the URL continues with ‘network-instance'. The key in network-instance is the identifier '<VRF-id>' (e.g. vrf1) which follows the list item argument. Complex key is needed for protocol argument. The key is protocol-type followed by process-id. (frinx-openconfig-policy-types:OSPF/<OSPF-process-id> )
 - same for 'area/<area-id>'
-- the URL contains an identity which is a part of a key for protocol list. This identity is prefixed by model name: ‘openconfig-policy-types:OSPF’
+- the URL contains an identity which is a part of a key for protocol list. This identity is prefixed by model name: ‘frinx-openconfig-policy-types:OSPF’
 
 You can create a minimalistic YANG tree out of the URL:
 
 ```javascript
-openconfig-network-instances: {                 // top-level container
+frinx-openconfig-network-instances: {                 // top-level container
     network-instance: [                         // list
         {                                       // list-item start
             key: <VRF-id>                     // list key
             protocols: {
                 protocol: [
                     {
-                        key: "openconfig-policy-types:OSPF <OSPF-process-id>"
+                        key: "frinx-openconfig-policy-types:OSPF <OSPF-process-id>"
                         ospfv2: {
                             areas: {
                                 area: [
@@ -138,7 +138,7 @@ router bgp &lt;as&gt;
 #### PUT
 
 ```
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/<ni-name>/protocols/protocol/openconfig-bgp:bgp
+http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/protocols/protocol/frinx-openconfig-bgp:bgp
 ```
 
 BODY:
@@ -174,7 +174,7 @@ If we want to DELETE a BGP neighbor, the body is not needed, the URL needs to be
 #### DELETE
 
 ```
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/openconfig-network-instance:network-instances/network-instance/<ni-name>/protocols/protocol/openconfig-bgp:bgp/neighbors/neighbor/<neighbor-address>
+http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/protocols/protocol/frinx-openconfig-bgp:bgp/neighbors/neighbor/<neighbor-address>
 ```
 
 This operation will issue following command:

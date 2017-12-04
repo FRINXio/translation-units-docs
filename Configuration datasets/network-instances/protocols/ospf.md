@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/protocol/OSPF2
+frinx-openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/protocol/OSPF2
 ```
 
 ## OPENCONFIG YANG
@@ -15,10 +15,10 @@ openconfig-network-instance:network-instance/network-instance/<ni-name>/protocol
     "protocol": [
         {
             "name": <process-name>,
-            "identifier": "openconfig-policy-types:OSPF",
+            "identifier": "frinx-openconfig-policy-types:OSPF",
             "config": {
                 "name": <process-name>,
-                "identifier": "openconfig-policy-types:OSPF"
+                "identifier": "frinx-openconfig-policy-types:OSPF"
             }
             "ospfv2": {
                 "global": {
@@ -28,9 +28,9 @@ openconfig-network-instance:network-instance/network-instance/<ni-name>/protocol
                                 "set": <true|false>,
                                 "timeout": <timeout>,
                                 "include": [ 
-                                    "openconfig-ospf-types:MAX_METRIC_INCLUDE_STUB", 
-                                    "openconfig-ospf-types:MAX_METRIC_INCLUDE_TYPE2_EXTERNAL", 
-                                    "openconfig-ospf-types:MAX_METRIC_SUMMARY_ASBR_LSA" 
+                                    "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_STUB", 
+                                    "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_TYPE2_EXTERNAL", 
+                                    "frinx-openconfig-ospf-types:MAX_METRIC_SUMMARY_ASBR_LSA" 
                                 ]
                             }
                         }

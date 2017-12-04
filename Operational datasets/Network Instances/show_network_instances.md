@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-network-instance:network-instances
+frinx-openconfig-network-instance:network-instances
 ```
 
 ## OPENCONFIG YANG
@@ -18,7 +18,7 @@ openconfig-network-instance:network-instances
                 "name": "default",
                 "config": {
                     "name": "default",
-                    "type": "openconfig-network-instance-types:L3VRF"
+                    "type": "frinx-openconfig-network-instance-types:L3VRF"
                 },
                 "interfaces": {
                     "interface": [
@@ -32,7 +32,7 @@ openconfig-network-instance:network-instances
                 "name": "DEP_1",
                 "config": {
                     "name": "DEP_1",
-                    "type": "openconfig-network-instance-types:L3VRF"
+                    "type": "frinx-openconfig-network-instance-types:L3VRF"
                 },
                 "interfaces": {
                     "interface": [
@@ -49,7 +49,7 @@ openconfig-network-instance:network-instances
                 "name": "DEP_2",
                 "config": {
                     "name": "DEP_2",
-                    "type": "openconfig-network-instance-types:L3VRF"
+                    "type": "frinx-openconfig-network-instance-types:L3VRF"
                 },
                 "interfaces": {
                     "interface": [

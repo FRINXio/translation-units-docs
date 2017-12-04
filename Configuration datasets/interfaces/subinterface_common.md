@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-interfaces:interfaces/interface/<intf-id>/subinterfaces/subinterface/<index>
+frinx-openconfig-interfaces:interfaces/interface/<intf-id>/subinterfaces/subinterface/<index>
 ```
 
 ## OPENCONFIG YANG
