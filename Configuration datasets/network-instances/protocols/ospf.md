@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/protocol/OSPF2
+frinx-openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/protocol/OSPF2/<process-name>
 ```
 
 ## OPENCONFIG YANG
@@ -30,7 +30,7 @@ frinx-openconfig-network-instance:network-instance/network-instance/<ni-name>/pr
                                 "include": [ 
                                     "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_STUB", 
                                     "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_TYPE2_EXTERNAL", 
-                                    "frinx-openconfig-ospf-types:MAX_METRIC_SUMMARY_ASBR_LSA" 
+                                    "frinx-cisco-ospf-extension:MAX_METRIC_SUMMARY_LSA"
                                 ]
                             }
                         }
@@ -83,9 +83,9 @@ router ospf &lt;process-name&gt;
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
+Unit version range: 3.1.1.rc4
 
-Link to github : [xr-unit]()
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/ospf)
 
 ### Cisco IOS Classic (IOSv 15.6(2)T)
 
