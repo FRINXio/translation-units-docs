@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/protocol/OSPF2
+openconfig-network-instance:network-instance/network-instance/<ni-name>/protocols/protocol/OSPF2/<process-name>
 ```
 
 ## OPENCONFIG YANG
