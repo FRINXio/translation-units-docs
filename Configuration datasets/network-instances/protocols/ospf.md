@@ -30,7 +30,7 @@ openconfig-network-instance:network-instance/network-instance/<ni-name>/protocol
                                 "include": [ 
                                     "openconfig-ospf-types:MAX_METRIC_INCLUDE_STUB", 
                                     "openconfig-ospf-types:MAX_METRIC_INCLUDE_TYPE2_EXTERNAL", 
-                                    "frinx-cisco-ospf-extension:MAX_METRIC_SUMMARY_ASBR_LSA" 
+                                    "frinx-cisco-ospf-extension:MAX_METRIC_SUMMARY_LSA" 
                                 ]
                             }
                         }
