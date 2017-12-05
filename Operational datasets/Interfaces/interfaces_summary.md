@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-interfaces:interfaces
+frinx-openconfig-interfaces:interfaces
 ```
 
 ## OPENCONFIG YANG
@@ -36,7 +36,7 @@ openconfig-interfaces:interfaces
                     "subinterface": [
                         {
                             "index": 0,
-                            "openconfig-if-ip:ipv4": {
+                            "frinx-openconfig-if-ip:ipv4": {
                                 "addresses": {
                                     "address": [
                                         {
@@ -72,7 +72,7 @@ openconfig-interfaces:interfaces
                     "subinterface": [
                         {
                             "index": 0,
-                            "openconfig-if-ip:ipv4": {
+                            "frinx-openconfig-if-ip:ipv4": {
                                 "addresses": {
                                     "address": [
                                         {
@@ -131,7 +131,7 @@ openconfig-interfaces:interfaces
                     "subinterface": [
                         {
                             "index": 0,
-                            "openconfig-if-ip:ipv4": {
+                            "frinx-openconfig-if-ip:ipv4": {
                                 "addresses": {
                                     "address": [
                                         {
@@ -167,7 +167,7 @@ openconfig-interfaces:interfaces
                     "subinterface": [
                         {
                             "index": 0,
-                            "openconfig-if-ip:ipv4": {
+                            "frinx-openconfig-if-ip:ipv4": {
                                 "addresses": {
                                     "address": [
                                         {
@@ -203,7 +203,7 @@ openconfig-interfaces:interfaces
                     "subinterface": [
                         {
                             "index": 0,
-                            "openconfig-if-ip:ipv4": {
+                            "frinx-openconfig-if-ip:ipv4": {
                                 "addresses": {
                                     "address": [
                                         {

@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-network-instance:network-instances/network-instance/<ni-name>/mpls/te-interface-attributes/interface/<intf-id>
+frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/mpls/te-interface-attributes/interface/<intf-id>
 ```
 
 ## OPENCONFIG YANG

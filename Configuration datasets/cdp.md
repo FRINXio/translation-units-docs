@@ -3,7 +3,7 @@
 ## URL
 
 ```
-cdp:cdp
+frinx-cdp:cdp
 ```
 
 ## OPENCONFIG YANG

@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-rib-bgp:bgp-rib
+frinx-openconfig-rib-bgp:bgp-rib
 ```
 
 ## OPENCONFIG YANG
@@ -16,7 +16,7 @@ openconfig-rib-bgp:bgp-rib
         "afi-safis": {
             "afi-safi": [
                 {
-                    "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST",
+                    "afi-safi-name": "frinx-openconfig-bgp-types:IPV4_UNICAST",
                     "ipv4-unicast": {
                         "loc-rib": {
                             "routes": {

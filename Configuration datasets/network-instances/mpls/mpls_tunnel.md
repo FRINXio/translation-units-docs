@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-network-instance:network-instances/network-instance/default/mpls/lsps/constrained-path/tunnels/tunnel/<tunnel-id>
+frinx-openconfig-network-instance:network-instances/network-instance/default/mpls/lsps/constrained-path/tunnels/tunnel/<tunnel-id>
 ```
 
 ## OPENCONFIG YANG
@@ -20,10 +20,10 @@ openconfig-network-instance:network-instances/network-instance/default/mpls/lsps
              "config": {
                  "name": "<tunnel-id>",
                  "shortcut-eligible": <true|false>,
-                 "metric-type": "openconfig-mpls-types:LSP_METRIC_ABSOLUTE",
+                 "metric-type": "frinx-openconfig-mpls-types:LSP_METRIC_ABSOLUTE",
                  "metric": <metric>
              },
-             "cisco-mpls-te-extension:cisco-mpls-te-extension": {
+             "frinx-cisco-mpls-te-extension:cisco-mpls-te-extension": {
                 "config": {
                     "load-share": <load-share>
                 }

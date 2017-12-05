@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-network-instance:network-instances/network-instance/<ni-name>/mpls/signaling-protocols/rsvp-te/interface-attributes/interface/<intf-id>
+frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/mpls/signaling-protocols/rsvp-te/interface-attributes/interface/<intf-id>
 ```
 
 ## OPENCONFIG YANG
@@ -22,7 +22,7 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/mpls/si
              },
              "subscription": {
                 "config": {
-                    "mpls-rsvp-extension:bandwidth": <bandwidth>
+                    "frinx-mpls-rsvp-extension:bandwidth": <bandwidth>
                 }
              }
          }

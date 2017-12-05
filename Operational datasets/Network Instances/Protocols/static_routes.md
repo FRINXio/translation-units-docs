@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-network-instance:network-instances/network-instance/<ni-name>/protocols/protocol/openconfig-policy-types:STATIC/<process-name>
+frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/protocols/protocol/frinx-openconfig-policy-types:STATIC/<process-name>
 ```
 
 ## OPENCONFIG YANG
@@ -15,10 +15,10 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
     "protocol": [
         {
             "name": <process-name>,
-            "identifier": "openconfig-policy-types:STATIC",
+            "identifier": "frinx-openconfig-policy-types:STATIC",
             "config": {
                 "name": <process-name>,
-                "identifier": "openconfig-policy-types:STATIC"
+                "identifier": "frinx-openconfig-policy-types:STATIC"
             },
             "static-routes": {
                 "static": [

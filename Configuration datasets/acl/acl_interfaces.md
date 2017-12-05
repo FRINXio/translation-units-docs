@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-acl:acl/interfaces/interface/<intf-id>
+frinx-openconfig-acl:acl/interfaces/interface/<intf-id>
 ```
 
 ## OPENCONFIG YANG

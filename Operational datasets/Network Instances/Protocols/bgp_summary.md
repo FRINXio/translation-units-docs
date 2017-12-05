@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-network-instance:network-instances/network-instance/<ni-name>/protocols/protocol/openconfig-policy-types:BGP/<process-name>
+frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/protocols/protocol/frinx-openconfig-policy-types:BGP/<process-name>
 ```
 
 ## OPENCONFIG YANG
@@ -14,11 +14,11 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
 {
     "protocol": [
         {
-            "identifier": "openconfig-policy-types:BGP",
+            "identifier": "frinx-openconfig-policy-types:BGP",
             "name": "<process-name>",
             "config": {
                 "name": "<process-name>",
-                "identifier": "openconfig-policy-types:BGP"
+                "identifier": "frinx-openconfig-policy-types:BGP"
             },
             "bgp": {
                 "global": {
@@ -44,9 +44,9 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
                             "afi-safis": {
                                 "afi-safi": [
                                     {
-                                        "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
+                                        "afi-safi-name": "frinx-openconfig-bgp-types:IPV4_UNICAST"
                                         "config": {
-                                            "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
+                                            "afi-safi-name": "frinx-openconfig-bgp-types:IPV4_UNICAST"
                                         }
                                     }
                                 ]
@@ -63,9 +63,9 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
                             "afi-safis": {
                                 "afi-safi": [
                                     {
-                                        "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
+                                        "afi-safi-name": "frinx-openconfig-bgp-types:IPV4_UNICAST"
                                         "config": {
-                                            "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
+                                            "afi-safi-name": "frinx-openconfig-bgp-types:IPV4_UNICAST"
                                         }
                                     }
                                 ]
@@ -82,15 +82,15 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
                             "afi-safis": {
                                 "afi-safi": [
                                     {
-                                        "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
+                                        "afi-safi-name": "frinx-openconfig-bgp-types:IPV4_UNICAST"
                                         "config": {
-                                            "afi-safi-name": "openconfig-bgp-types:IPV4_UNICAST"
+                                            "afi-safi-name": "frinx-openconfig-bgp-types:IPV4_UNICAST"
                                         }
                                     },
                                     {
-                                        "afi-safi-name": "openconfig-bgp-types:L3VPN_IPV4_UNICAST",
+                                        "afi-safi-name": "frinx-openconfig-bgp-types:L3VPN_IPV4_UNICAST",
                                         "config": {
-                                            "afi-safi-name": "openconfig-bgp-types:L3VPN_IPV4_UNICAST"
+                                            "afi-safi-name": "frinx-openconfig-bgp-types:L3VPN_IPV4_UNICAST"
                                         },
                                         "state": {
                                             "prefixes": {
@@ -106,7 +106,7 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/protoco
             },
             "state": {
                 "name": "<process-name>",
-                "identifier": "openconfig-policy-types:BGP"
+                "identifier": "frinx-openconfig-policy-types:BGP"
             }
         }
     ]

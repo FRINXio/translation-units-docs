@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-network-instance:network-instances/network-instance/<ni-name>/openconfig-policy-forwarding:policy-forwarding/interfaces/interface/<intf-id>
+frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/frinx-openconfig-policy-forwarding:policy-forwarding/interfaces/interface/<intf-id>
 ```
 
 ## OPENCONFIG YANG
@@ -19,10 +19,10 @@ openconfig-network-instance:network-instances/network-instance/<ni-name>/opencon
             "interface-id": <intf-id>
             "config": {
                 "interface-id": <intf-id>
-                "cisco-pf-interfaces-extension:input-service-policy": <in-policy-name>
-                "cisco-pf-interfaces-extension:output-service-policy": <out-policy-name>
-                "juniper-pf-interfaces-extension:scheduler-map": <sched-map-name>
-                "juniper-pf-interfaces-extension:classifiers" {
+                "frinx-cisco-pf-interfaces-extension:input-service-policy": <in-policy-name>
+                "frinx-cisco-pf-interfaces-extension:output-service-policy": <out-policy-name>
+                "frinx-juniper-pf-interfaces-extension:scheduler-map": <sched-map-name>
+                "frinx-juniper-pf-interfaces-extension:classifiers" {
                     "exp": [
                         {
                             "name": <exp-name>

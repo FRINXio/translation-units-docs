@@ -3,7 +3,7 @@
 ## URL
 
 ```
-snmp:snmp/interfaces/interface/<intf-id>
+frinx-snmp:snmp/interfaces/interface/<intf-id>
 ```
 
 ## OPENCONFIG YANG
@@ -19,7 +19,7 @@ snmp:snmp/interfaces/interface/<intf-id>
                 "id": <intf-id>
                 "enabled-trap-for-event": [
                     {
-                        "event-name": "event-types:LINK_UP_DOWN"
+                        "event-name": "frinx-event-types:LINK_UP_DOWN"
                     }
                 ]
             }

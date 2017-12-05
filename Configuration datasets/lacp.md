@@ -3,7 +3,7 @@
 ## URL
 
 ```
-openconfig-lacp:lacp/lacp-lag-member:lag-member-interfaces/lag-member-interface/<intf-id>
+frinx-openconfig-lacp:lacp/lacp-lag-member:lag-member-interfaces/lag-member-interface/<intf-id>
 ```
 
 ## OPENCONFIG YANG
@@ -15,8 +15,8 @@ openconfig-lacp:lacp/lacp-lag-member:lag-member-interfaces/lag-member-interface/
     "lag-member-interface": [
         {
             "name": <intf-id>
-            "interval": "openconfig-lacp:<FAST|SLOW>"
-            "lacp-mode": "openconfig-lacp:<ACTIVE|PASSIVE>"
+            "interval": "frinx-openconfig-lacp:<FAST|SLOW>"
+            "lacp-mode": "frinx-openconfig-lacp:<ACTIVE|PASSIVE>"
         }
     ]
 }
