@@ -48,7 +48,7 @@ interface tunnel-te &lt;tunnel-id&gt;
 
 *autoroute announce* is conversion of *"shortcut-eligible": true*  
 *no autoroute announce* is conversion of *"shortcut-eligible": false*  
-*load-share* is not supported on any Cisco IOS XR (only ASR9K)
+*load-share* is not supported on virtual platform CISCO IOS-XR
 
 ##### Unit
 
