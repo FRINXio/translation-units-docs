@@ -92,6 +92,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>
         }
     ]
 }
+```
 
 ## OS Configuration Commands
 
