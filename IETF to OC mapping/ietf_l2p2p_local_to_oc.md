@@ -1,12 +1,12 @@
 # IETF L2VPN YANG 
 
-##Scenario
+## Scenario
 
-###L2P2P/VPWS 
+### L2P2P/VPWS 
 l2vpn-instance/type == vpws-instance-type
 only two endpoints
 
-###Local-Local
+### Local-Local
 connection between two local ports on a host (pe-node-id`s of endpoints match)
 
 ## IETF  YANG

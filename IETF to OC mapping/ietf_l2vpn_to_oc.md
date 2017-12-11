@@ -1,8 +1,8 @@
 # IETF L2VPN YANG 
 
-##Scenario
+## Scenario
 
-###L2P2P/VPLS
+### L2P2P/VPLS
 l2vpn-instance/type == vpls-instance-type
 Two or more endpoints
 
@@ -22,7 +22,7 @@ Two or more endpoints
           "name":"<connection_point1_id>",
           "template":"PW1",
           "pw-id":"<vpn_vccid>",
-          "request-vlanid":<endpoint1_vlanid>"
+          "request-vlanid":"<endpoint1_vlanid>"
         },
         {
           "name":"<connection_point2_id>",
