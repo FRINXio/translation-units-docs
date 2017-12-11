@@ -39,16 +39,6 @@ frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/p
                         }
                     ]
                 }
-                "peer-groups": {
-                    "peer-group": [
-                        {
-                            "peer-group-name": "<group>",
-                            "config": {
-                                "peer-group-name": "<group>",
-                            }
-                        }
-                    ]
-                }
             }
         }
     ]
@@ -65,7 +55,6 @@ frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/p
 ---
 <pre>
 router bgp &lt;as&gt; instance &lt;process-name&gt;
- neighbor-group &lt;group&gt;
  neighbor &lt;neighbor_address&gt;
    remote-as &lt;peer-as&gt;
    use neighbor-group &lt;group&gt;
@@ -88,7 +77,7 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 
 ---
 <pre>
-activate protocols bgp group iBGP neighbor &lt;neighbor_address&gt;
+activate protocols bgp group &lt;group&gt; neighbor &lt;neighbor_address&gt;
 </pre>
 ---
 
