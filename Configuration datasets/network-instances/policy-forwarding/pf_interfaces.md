@@ -35,11 +35,6 @@ frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/f
                     ]
                 }
             }
-            "interface-ref": {
-                "config": {
-                    "interface": <intf-id>
-                }
-            }
         }
     ]
 }
