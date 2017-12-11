@@ -14,7 +14,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>
         {
             "config": {
                 "name": "<ni-name>"
-                "type": "L2VSI" //matches vpws-instance-type in ietf
+                "type": "L2VSI" //matches vpls-instance-type in ietf
                 "enabled": true
             }
             "connection-points": {
