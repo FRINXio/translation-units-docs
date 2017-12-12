@@ -88,8 +88,6 @@ interface &lt;intf-id&gt;
  description &lt;descr&gt;
  mtu &lt;mtu&gt;
  ip address &lt;ip&gt; &lt;subnet&gt;
- dampening
-  dampening &lt;half-life&gt; &lt;reuse&gt; &lt;supress&gt; &lt;max-supress&gt;
  no shutdown
 </pre>
 
