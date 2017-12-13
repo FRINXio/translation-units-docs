@@ -30,14 +30,14 @@ frinx-openconfig-lacp:lacp/lacp-lag-member:lag-member-interfaces/lag-member-inte
 #### CLI
 
 <pre>
-interface bundle-ether &lt;intf-id&gt;
- bundle id <bundle_id> mode <active|passive>
+interface &lt;intf-id&gt;
+ bundle id &lt;bundle_id&gt; mode &lt;active|passive&gt;
  lacp period short
 </pre>
 
 *<bundle_id>* is not defined by user but is found automatically based
-on interface reference
-*lacp persiod short* is conversion of *"lacp-mode": "openconfig-lacp:ACTIVE"*
+on interface reference  
+*lacp persiod short* is conversion of *"lacp-mode": "openconfig-lacp:ACTIVE"*  
 *no lacp persiod short* is conversion of *"lacp-mode": "openconfig-lacp:PASSIVE"*
 
 ##### Unit
@@ -51,8 +51,8 @@ Link to github : [xr-unit]()
 #### CLI
 
 <pre>
-set interfaces <bundle_id> aggregated-ether-options lacp <active|passive>
-set interfaces <bundle_id> aggregated-ether-options lacp periodic <fast|slow>
+set interfaces &lt;bundle_id&gt; aggregated-ether-options lacp &lt;active|passive&gt;
+set interfaces &lt;bundle_id&gt; aggregated-ether-options lacp periodic &lt;fast|slow&gt;
 </pre>
 
 ##### Unit
