@@ -35,11 +35,19 @@ frinx-snmp:snmp/interfaces/interface/<intf-id>
 
 #### CLI
 
+By default enabled on all interfaces. To disable, use:
+
 <pre>
-snmp-server interface &lt;intf-id&gt; notification linkupdown
+snmp-server interface &lt;intf-id&gt; 
+ notification linkupdown disable
 </pre>
 
-Does work only for subinterfaces.
+To enable disabled interfaces use:
+
+<pre>
+snmp-server interface &lt;intf-id&gt; 
+ no notification linkupdown disable
+</pre>
 
 ##### Unit
 
