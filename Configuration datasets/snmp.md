@@ -14,19 +14,14 @@ frinx-snmp:snmp/interfaces/interface/<intf-id>
 {
     "interface": [
         {
-            "id": <intf-id>
+            "interface-id": "<intf-id>",
             "config": {
-                "id": <intf-id>
+                "interface-id": "<intf-id>",
                 "enabled-trap-for-event": [
                     {
                         "event-name": "frinx-event-types:LINK_UP_DOWN"
                     }
                 ]
-            }
-            "interface-ref": {
-                "config": {
-                    "interface": <intf-id>
-                }
             }
         }
     ]
@@ -44,9 +39,11 @@ frinx-snmp:snmp/interfaces/interface/<intf-id>
 snmp-server interface &lt;intf-id&gt; notification linkupdown
 </pre>
 
+Does work only for subinterfaces.
+
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
+Unit version range: 3.1.1.rc5
 
 Link to github : [xr-unit]()
 
