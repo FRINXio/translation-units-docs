@@ -14,22 +14,17 @@ frinx-openconfig-acl:acl/interfaces/interface/<intf-id>
 {
     "interface": [
         {
-            "id": <intf-id>
+            "id": "<intf-id>"
             "config": {
-                "id": <intf-id>
-            }
-            "interface-ref": {
-                "config": {
-                    "interface": <intf-id>
-                }
-            }
+                "id": "<intf-id>"
+            },
             "ingress-acl-sets": {
                 "ingress-acl-set": [
                     {
-                        "set-name": <in-acl-name>
-                        "type": "ACL_IPV4"
+                        "set-name": "<in-acl-name>",
+                        "type": "ACL_IPV4",
                         "config": {
-                            "set-name": <in-acl-name>
+                            "set-name": "<in-acl-name>",
                             "type": "ACL_IPV4"
                         }
                     }
@@ -38,10 +33,10 @@ frinx-openconfig-acl:acl/interfaces/interface/<intf-id>
             "egress-acl-sets": {
                 "egress-acl-set": [
                     {
-                        "set-name": <out-acl-name>
-                        "type": "ACL_IPV4"
+                        "set-name": "<out-acl-name>",
+                        "type": "ACL_IPV4",
                         "config": {
-                            "set-name": <out-acl-name>
+                            "set-name": "<out-acl-name>",
                             "type": "ACL_IPV4"
                         }
                     }
@@ -67,7 +62,7 @@ interface &lt;intf-id&gt;
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
+Unit version range: 3.1.1.rc5
 
 Link to github : [xr-unit]()
 
