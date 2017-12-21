@@ -14,10 +14,7 @@ frinx-openconfig-acl:acl/interfaces/interface/<intf-id>
 {
     "interface": [
         {
-            "id": "<intf-id>"
-            "config": {
-                "id": "<intf-id>"
-            },
+            "id": "<intf-id>",
             "ingress-acl-sets": {
                 "ingress-acl-set": [
                     {
@@ -29,7 +26,7 @@ frinx-openconfig-acl:acl/interfaces/interface/<intf-id>
                         }
                     }
                 ]
-            }
+            },
             "egress-acl-sets": {
                 "egress-acl-set": [
                     {
