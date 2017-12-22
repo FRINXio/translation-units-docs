@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/mpls/te-interface-attributes/interface/<intf-id>
+frinx-openconfig-network-instance:network-instances/network-instance/default/mpls/te-interface-attributes/interface/{{mpls_intf_id}}
 ```
 
 ## OPENCONFIG YANG
@@ -16,9 +16,9 @@ frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/m
 {
     "interface": [
         {
-            "interface-id": "<intf-id>",
+            "interface-id": "{{mpls_intf_id}}",
             "config": {
-                "interface-id": <intf-id>
+                "interface-id": "{{mpls_intf_id}}"
             }
         }
     ]
@@ -33,26 +33,23 @@ frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/m
 
 <pre>
 mpls traffic-eng
- interface &lt;intf-id&gt;
+ interface {{mpls_intf_id}}
 </pre>
 
 ##### Unit
 
-Unit version range: 3.1.1.rc4
-
-Link to github : [xr-unit]()
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/mpls)
 
 ### Junos 15.1F-6.9
 
 #### CLI
 
 <pre>
-set interfaces &lt;intf-id&gt; unit 0 family mpls
+set interfaces {{mpls_intf_id}} unit 0 family mpls
 </pre>
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
+NOT IMPLEMENTED
 
 Link to github : [junos-unit]()
-

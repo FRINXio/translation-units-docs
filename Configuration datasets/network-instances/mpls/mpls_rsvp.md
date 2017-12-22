@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/mpls/signaling-protocols/rsvp-te/interface-attributes/interface/<intf-id>
+frinx-openconfig-network-instance:network-instances/network-instance/default/mpls/signaling-protocols/rsvp-te/interface-attributes/interface/{{rsvp_intf_id}}
 ```
 
 ## OPENCONFIG YANG
@@ -16,13 +16,13 @@ frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/m
 {
     "interface": [
          {
-             "interface-id": "<intf-id>",
+             "interface-id": "{{rsvp_intf_id}}",
              "config": {
-                 "interface-id": "<intf-id>"
+                 "interface-id": "{{rsvp_intf_id}}"
              },
              "subscription": {
                 "config": {
-                    "frinx-mpls-rsvp-extension:bandwidth": <bandwidth>
+                    "frinx-mpls-rsvp-extension:bandwidth": {{rsvp_bandwidth}}
                 }
              }
          }
@@ -38,27 +38,24 @@ frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/m
 
 <pre>
 rsvp
- interface &lt;intf-id&gt;
-  bandwidth &lt;bandwidth&gt;
+ interface {{rsvp_intf_id}}
+  bandwidth {{rsvp_bandwidth}}
 </pre>
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
-
-Link to github : [xr-unit]()
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/mpls)
 
 ### Junos 15.1F-6.9
 
 #### CLI
 
 <pre>
-set protocols rsvp interface &lt;intf-id&gt; bandwidth &lt;bandwidth&gt;
+set protocols rsvp interface {{rsvp_intf_id}} bandwidth {{rsvp_bandwidth}}
 </pre>
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
+NOT IMPLEMENTED
 
 Link to github : [junos-unit]()
-

@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-logging:logging/interfaces/interface/<intf-id>
+frinx-logging:logging/interfaces/interface/{{intf_id}}
 ```
 
 ## OPENCONFIG YANG
@@ -14,24 +14,18 @@ frinx-logging:logging/interfaces/interface/<intf-id>
 {
     "interface": [
         {
-            "id": <intf-id>
+            "interface-id": "{{intf_id}}",
             "config": {
-                "id": <intf-id>
+                "interface-id": "{{intf_id}}",
                 "enabled-logging-for-event": [
                     {
-                        "event-name": "event-types:LINK_UP_DOWN"
+                        "event-name": "frinx-event-types:LINK_UP_DOWN"
                     }
                 ]
-            }
-            "interface-ref": {
-                "config": {
-                    "interface": <intf-id>
-                }
             }
         }
     ]
 }
-
 ```
 
 ## OS Configuration Commands
@@ -41,12 +35,10 @@ frinx-logging:logging/interfaces/interface/<intf-id>
 #### CLI
 
 <pre>
-interface bundle-ether &lt;intf-id&gt;
+interface {{intf_id}}
  logging events link-status
 </pre>
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
-
-Link to github : [xr-unit]()
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/logging)

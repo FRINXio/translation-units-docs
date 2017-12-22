@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/default/protocols/protocol/frinx-openconfig-policy-types:BGP/<process-name>
+frinx-openconfig-network-instance:network-instances/network-instance/default/protocols/protocol/frinx-openconfig-policy-types:BGP/{{bgp_process_name}}
 ```
 
 ## OPENCONFIG YANG
@@ -14,31 +14,32 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
 {
     "protocol": [
         {
-            "name": "<proces-name>",
+            "name": "{{bgp_process_name}}",
             "identifier": "frinx-openconfig-policy-types:BGP",
             "config": {
-                "name": "<proces-name>",
+                "name": "{{bgp_process_name}}",
                 "identifier": "frinx-openconfig-policy-types:BGP"
             },
             "bgp": {
                 "global": {
                     "config": {
-                        "as": <as>
+                        "as": {{bgp_as}}
                     }
                 },
                 "neighbors": {
                     "neighbor": [
                         {
-                            "neighbor-address": "<neighbor_address>",
+                            "neighbor-address": "{{neighbor_ip}}",
                             "config": {
-                                "neighbor-address": "<neighbor_address>",
-                                "peer-group": "<group>",
-                                "peer-as": <peer-as>,
-                                "enabled": <true|false>
+                                "neighbor-address": "{{neighbor_ip}}",
+                                "peer-group": "{{bgp_group}}",
+                                "peer-as": {{bgp_peer_as}},
+                                "enabled": {{neighbor_enabled}}
                             }
                         }
                     ]
                 }
+          
             }
         }
     ]
@@ -54,20 +55,18 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
 
 ---
 <pre>
-router bgp &lt;as&gt; instance &lt;process-name&gt;
- neighbor &lt;neighbor_address&gt;
-   remote-as &lt;peer-as&gt;
-   use neighbor-group &lt;group&gt;
-   no shutdown
+router bgp {{bgp_as}} instance {{bgp_process_name}}
+ neighbor {{neighbor_ip}}
+   remote-as {{bgp_peer_as}}
+   use neighbor-group {{bgp_group}}
+   no shutdown | shutdown
 </pre>
 ---
 
-*no shutdown* is conversion of *"enabled": true*  
-*shutdown* is conversion of *"enabled": false*
+*no shutdown* is a conversion of {{neighbor_enabled}} set *true*    
+*shutdown* is a conversion of {{neighbor_enabled}} set *false*  
 
 ##### Unit
-
-Unit version range: 3.1.1.rc5
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/bgp)
 
@@ -81,11 +80,11 @@ activate protocols bgp group &lt;group&gt; neighbor &lt;neighbor_address&gt;
 </pre>
 ---
 
-*activate* is conversion of *"enabled": true*  
-*deactivate* is conversion of *"enabled": false*
+*activate* is a conversion of {{neighbor_enabled}} set *true*    
+*deactivate* is a conversion of {{neighbor_enabled}} set *false*  
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
+NOT IMPLEMENTED
 
 Link to github : [junos-unit]()

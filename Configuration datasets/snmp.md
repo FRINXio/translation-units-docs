@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-snmp:snmp/interfaces/interface/<intf-id>
+frinx-snmp:snmp/interfaces/interface/{{snm_intf_if}}
 ```
 
 ## OPENCONFIG YANG
@@ -14,9 +14,9 @@ frinx-snmp:snmp/interfaces/interface/<intf-id>
 {
     "interface": [
         {
-            "interface-id": "<intf-id>",
+            "interface-id": "{{snm_intf_if}}",
             "config": {
-                "interface-id": "<intf-id>",
+                "interface-id": "{{snm_intf_if}}",
                 "enabled-trap-for-event": [
                     {
                         "event-name": "frinx-event-types:LINK_UP_DOWN"
@@ -26,7 +26,6 @@ frinx-snmp:snmp/interfaces/interface/<intf-id>
         }
     ]
 }
-
 ```
 
 ## OS Configuration Commands
@@ -38,33 +37,31 @@ frinx-snmp:snmp/interfaces/interface/<intf-id>
 By default enabled on all interfaces. To disable, use:
 
 <pre>
-snmp-server interface &lt;intf-id&gt; 
+snmp-server interface {{snm_intf_if}} 
  notification linkupdown disable
 </pre>
 
 To enable disabled interfaces use:
 
 <pre>
-snmp-server interface &lt;intf-id&gt; 
+snmp-server interface {{snm_intf_if}} 
  no notification linkupdown disable
 </pre>
 
 ##### Unit
 
-Unit version range: 3.1.1.rc5
-
-Link to github : [xr-unit]()
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/snmp)
 
 ### Junos 15.1F-6.9
 
 #### CLI
 
 <pre>
-set interfaces &lt;intf-id&gt; traps
+set interfaces {{snm_intf_if}} traps
 </pre>
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
+NOT IMPLEMENTED  
 
 Link to github : [junos-unit]()
