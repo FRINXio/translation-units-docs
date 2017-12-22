@@ -34,8 +34,8 @@ interface {{lacp_intf_id}}
  lacp period short | no lacp period short
 </pre>
 
-*lacp persiod short* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:FAST*  
-*no lacp persiod short* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:SLOW* 
+*lacp persiod short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:FAST*  
+*no lacp persiod short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:SLOW* 
 
 ##### Unit
 

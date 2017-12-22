@@ -53,7 +53,7 @@ frinx-openconfig-acl:acl/interfaces/interface/{{iacl_intf_id}}
 <pre>
 interface {{iacl_intf_id}}
   ipv4 access-group {{iacl_in_acl_name}} ingress
-  ipv4 access-group {{iacl_in_out_name}} egress
+  ipv4 access-group {{iacl_out_acl_name}} egress
 </pre>
 
 ##### Unit
@@ -66,7 +66,7 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 
 <pre>
 set interfaces {{iacl_intf_id}} unit 0 family inet filter input {{iacl_in_acl_name}}
-set interfaces {{iacl_intf_id}} unit 0 family inet filter output {{iacl_in_out_name}}
+set interfaces {{iacl_intf_id}} unit 0 family inet filter output {{iacl_out_acl_name}}
 </pre>
 
 ##### Unit
