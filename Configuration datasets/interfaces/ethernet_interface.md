@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-interfaces:interfaces/interface/<intf-id>
+frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
 ```
 
 ## OPENCONFIG YANG
@@ -14,22 +14,19 @@ frinx-openconfig-interfaces:interfaces/interface/<intf-id>
 {
     "interface": [
         {
-            "name": "<intf-id>",
+            "name": "{{eth_intf_id}}",
             "config": {
                 "type": "iana-if-type:ethernetCsmacd",
-                "enabled": <true/false>,
-                "mtu": <mtu>,
-                "description": "<desc>",
-                "name": "<intf-id>",
-                "tpid": "<tpid>",
-                "frinx-cisco-if-extension:statistics": {
-                    "load-interval": <load-interval>
-                }
+                "name": "{{eth_intf_id}}",
+		"mtu": {{eth_mtu}},
+		"description": "{{eth_description}}",
+                "enabled": {{eth_enabled}},
+		"tpid": "{{eth_tpid}}"
             },
-            "hold-time": {
+      	    "hold-time": {
                 "config": {
-                    "up": <up>,
-                    "down": <down>
+                    "up": {{eth_hold_time_up}},
+                    "down": {{eth_hold_time_down}}
                 }
             },
             "subinterfaces": {
@@ -39,14 +36,14 @@ frinx-openconfig-interfaces:interfaces/interface/<intf-id>
                         "config": {
                             "index": 0
                         },
-                        "frinx-openconfig-if-ip:ipv4": {
+		        "frinx-openconfig-if-ip:ipv4": {
                             "addresses": {
                                 "address": [
                                     {
-                                        "ip": "<ip>",
+                                        "ip": "{{eth_ip}}",
                                         "config": {
-                                            "ip": "<ip>",
-                                            "prefix-length": <prefix>
+                                            "ip": "{{eth_ip}}",
+                                            "prefix-length": {{eth_prefix}}
                                         }
                                     }
                                 ]
@@ -57,22 +54,22 @@ frinx-openconfig-interfaces:interfaces/interface/<intf-id>
             },
             "frinx-damping:damping": {
                 "config": {
-                    "enabled": <true/false>,
-                    "half-life": <half-life>,
-                    "reuse": <reuse>,
-                    "suppress": <suppres>,
-                    "max-supress": <max-supress>
-                }
-            },
-            "frinx-cisco-if-extension:statistics": {
-                "config": {
-                    "load-interval": <load_interval>
+                    "enabled": {{eth_damping_enabled}},
+                    "half-life": {{eth_half-time}},
+                    "reuse": {{eth_reuse}},
+                    "suppress": {{eth_suppress}},
+                    "max-suppress": {{eth_max-suppress}}
                 }
             },
             "frinx-openconfig-if-ethernet:ethernet": {
                 "config": {
-                    "frinx-openconfig-if-aggregate:aggregate-id": "<bundle-id>"
+                    "frinx-openconfig-if-aggregate:aggregate-id": "{{eth_lag_intf-id}}"
 		}
+            },
+            "frinx-cisco-if-extension:statistics": {
+                "config": {
+                    "load-interval": {{eth_load_interval}}
+                }
             }
         }
     ]
@@ -84,23 +81,18 @@ frinx-openconfig-interfaces:interfaces/interface/<intf-id>
 ### Cisco IOS Classic (15.2(4)S5) / XE (15.3(3)S2)
 
 <pre>
-interface &lt;intf-id&gt;
- description &lt;descr&gt;
- mtu &lt;mtu&gt;
- ip address &lt;ip&gt; &lt;subnet&gt;
- no shutdown
+interface {{eth_intf_id}}
+ description {{eth_description}}
+ mtu {{eth_mtu}}
+ ip address {{eth_ip}} &lt;subnet&gt;
+ shutdown | no shutdown
 </pre>
 
-&lt;subnet&gt; is conversion of &lt;prefix&gt;  
-*no shutdown* is conversion of *"enabled": true*  
-*shutdown* is conversion of *"enabled": false*  
-*no dampening* is conversion of *"enabled": false*  
-*dampening* is conversion od *"enabled": true*
-
+&lt;subnet&gt; is a conversion of {{eth_prefix}}  
+*no shutdown* is a conversion of {{eth_enabled}} set *true*  
+*shutdown* is a conversion of {{eth_enabled}} set *false*  
 
 ##### Unit
-
-Unit version range: 3.1.1.rc1-frinx
 
 Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/interface)
 
@@ -109,52 +101,51 @@ Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios
 #### CLI
 
 <pre>
-interface &lt;intf-id&gt;
- description &lt;desc&gt;
- mtu &lt;mtu&gt;
- ipv4 address &lt;ip&gt; &lt;subnet&gt;
- dampening
-  dampening &lt;half-life&gt; &lt;reuse&gt; &lt;supress&gt; &lt;max-supress&gt;
- carrier-delay up &lt;up&gt; down &lt;down&gt;
- load-interval &lt;load-interval&gt;
+interface {{eth_intf_id}}
+ description {{eth_description}}
+ mtu {{eth_mtu}}
+ ipv4 address {{eth_ip}} {{eth_prefix}}
+ dampening {{eth_half-life}} {{reuse}} {{suppress}} {{max-suppress}} | no dampening
+ carrier-delay up {{eth_hold_time_up}} down {{eth_hold_time_down}} 
+ load-interval {{eth_load-interval}}
  bundle-id &lt;bundle-id&gt; mode on
- no shutdown
+ shutdown | no shutdown
 </pre>
 
-&lt;subnet&gt; is conversion of &lt;prefix&gt;  
-*no shutdown* is conversion of *"enabled": true*  
-*shutdown* is conversion of *"enabled": false*
+&lt;bundle-id&gt; is a conversion of {{eth_lag_intf-id}}  
+*no shutdown* is a conversion of {{eth_enabled}} set *true*  
+*shutdown* is a conversion of {{eth_enabled}} set *false*  
+*no dampening* is a conversion of {{eth_damping_enabled}} set *false*  
 
 ##### Unit
 
-Unit version range: 3.1.1.rc1-frinx
-
-Link to github : [xr-unit]()
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/interface)
 
 ### Junos 15.1F-6.9
 
 #### CLI
 
 <pre>
-set interfaces &lt;intf-id&gt; description &lt;desc&gt;
-set interfaces &lt;intf-id&gt; mtu &lt;mtu&gt;
-set interfaces &lt;intf-id&gt; unit 0 family inet address &lt;ip&gt/&lt;prefix&gt;
-set interfaces &lt;intf-id&gt; damping enable
-set interfaces &lt;intf-id&gt; damping half-life &lt;half-life&gt;
-set interfaces &lt;intf-id&gt; damping max-suppress &lt;max-supress&gt;
-set interfaces &lt;intf-id&gt; damping reuse &lt;reuse&gt;
-set interfaces &lt;intf-id&gt; damping suppress &lt;supress&gt;
-set interfaces &lt;intf-id&gt; hold-time up &lt;up&gt; down &lt;down&gt;
-set interfaces &lt;intf-id&gt; gigether-options 802.3ad &lt;bundle-id&gt;
-delete interface &lt;intf-id&gt; disable
+set interfaces {{eth_intf_id}} description {{eth_description}}
+set interfaces {{eth_intf_id}} mtu {{eth_mtu}}
+set interfaces {{eth_intf_id}} unit 0 family inet address {{eth_ip}}/{{eth_prefix}}
+set interfaces {{eth_intf_id}} damping enable
+set interfaces {{eth_intf_id}} damping half-life {{eth_half-life}}
+set interfaces {{eth_intf_id}} damping max-suppress {{eth_max-supress}}
+set interfaces {{eth_intf_id}} damping reuse {{eth_reuse}}
+set interfaces {{eth_intf_id}} damping suppress {{eth_supress}}
+set interfaces {{eth_intf_id}} hold-time up {{eth_hold_time_up}} down {{eth_hold_time_down}}
+set interfaces {{eth_intf_id}} gigether-options 802.3ad &lt;bundle-id&gt;
+delete interface {{eth_intf_id}} disable | set interface {{eth_intf_id}} disable
 </pre>
 
-*delete interface &lt;intf-id&gt; disable* is conversion of *"enabled": true*  
-*set interface &lt;intf-id&gt; disable* is conversion of *"enabled": false*
+&lt;bundle-id&gt; is a conversion of {{eth_lag_intf-id}}  
+*delete interface {{lag_intf_id}} disable* is a conversion of {{lag_enabled}} set *true*  
+*set interface {{lag_intf_id}} disable* is conversion of {{lag_enabled}} set *false* 
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
+NOT IMPLEMENTED
 
 Link to github : [junos-unit]()
 
@@ -163,13 +154,16 @@ Link to github : [junos-unit]()
 #### CLI
 
 <pre>
-tag-type &lt;tpid&gt; &lt;intf-id&gt;
+tag-type {{eth_tpid}} {{eth_intf_id}}
 
-interface &lt;intf-id&gt;
-  port-name &lt;desc&gt;
+interface {{eth_intf_id}}
+  port-name {{eth_description}}
   enable | disable
 </pre>
 
-*enable* is conversion of *"enabled": true*  
-*disable* is conversion of *"enabled": false*
+*enable* is a conversion of {{eth_enabled}} set *true*  
+*disable* is a conversion of {{eth_enabled}} set *false*  
 
+##### Unit
+
+Link to github : [brocade-unit](https://github.com/FRINXio/cli-units/tree/master/brocade/interface)
