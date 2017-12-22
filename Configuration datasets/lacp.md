@@ -3,24 +3,23 @@
 ## URL
 
 ```
-frinx-openconfig-lacp:lacp/lacp-lag-member:lag-member-interfaces/lag-member-interface/<intf-id>
+frinx-openconfig-interfaces:interfaces/interface/{{lacp_intf_id}}/frinx-openconfig-if-ethernet:ethernet
 ```
 
 ## OPENCONFIG YANG
 
-[YANG models](https://github.com/FRINXio/openconfig/tree/master/snmp/src/main/yang)
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/lacp/src/main/yang)
 
 ```javascript
 {
-    "lag-member-interface": [
-        {
-            "name": <intf-id>
-            "interval": "frinx-openconfig-lacp:<FAST|SLOW>"
-            "lacp-mode": "frinx-openconfig-lacp:<ACTIVE|PASSIVE>"
-        }
-    ]
+    "frinx-openconfig-if-ethernet:ethernet": {
+        "config": {
+            "frinx-openconfig-if-aggregate:aggregate-id": "{{lacp_bundle_id}}",
+            "lacp-mode": "{{lacp_mode}}",
+            "interval": "{{lacp_interval}}"
+	}
+    }
 }
-
 ```
 
 ## OS Configuration Commands
@@ -30,33 +29,29 @@ frinx-openconfig-lacp:lacp/lacp-lag-member:lag-member-interfaces/lag-member-inte
 #### CLI
 
 <pre>
-interface &lt;intf-id&gt;
- bundle id &lt;bundle_id&gt; mode &lt;active|passive&gt;
- lacp period short
+interface {{lacp_intf_id}}
+ bundle id {{lacp_bundle_id}} mode {{lacp_mode}}
+ lacp period short | no lacp period short
 </pre>
 
-*<bundle_id>* is not defined by user but is found automatically based
-on interface reference  
-*lacp persiod short* is conversion of *"lacp-mode": "openconfig-lacp:ACTIVE"*  
-*no lacp persiod short* is conversion of *"lacp-mode": "openconfig-lacp:PASSIVE"*
+*lacp persiod short* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:FAST*  
+*no lacp persiod short* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:SLOW* 
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
-
-Link to github : [xr-unit]()
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/interface)
 
 ### Junos 15.1F-6.9
 
 #### CLI
 
 <pre>
-set interfaces &lt;bundle_id&gt; aggregated-ether-options lacp &lt;active|passive&gt;
-set interfaces &lt;bundle_id&gt; aggregated-ether-options lacp periodic &lt;fast|slow&gt;
+set interfaces {{lacp_bundle_id}} aggregated-ether-options lacp {{lacp_mode}}
+set interfaces &lt;bundle_id&gt; aggregated-ether-options lacp periodic {{lacp_interva}}
 </pre>
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
+NOT IMPLEMENTED
 
 Link to github : [junos-unit]()
