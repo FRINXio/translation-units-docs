@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/frinx-openconfig-policy-forwarding:policy-forwarding/interfaces/interface/<intf-id>
+frinx-openconfig-network-instance:network-instances/network-instance/default/frinx-openconfig-policy-forwarding:policy-forwarding/interfaces/interface/{{policy_interface}}
 ```
 
 ## OPENCONFIG YANG
@@ -16,21 +16,21 @@ frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/f
 {
     "interface": [
         {
-            "interface-id": <intf-id>
+            "interface-id": {{policy_interface}},
             "config": {
-                "interface-id": <intf-id>
-                "frinx-cisco-pf-interfaces-extension:input-service-policy": <in-policy-name>
-                "frinx-cisco-pf-interfaces-extension:output-service-policy": <out-policy-name>
-                "frinx-juniper-pf-interfaces-extension:scheduler-map": <sched-map-name>
+                "interface-id": {{policy_interface}},
+                "frinx-cisco-pf-interfaces-extension:input-service-policy": "{{input_policy}}",
+                "frinx-cisco-pf-interfaces-extension:output-service-policy": "{{output_policy}}",
+                "frinx-juniper-pf-interfaces-extension:scheduler-map": "{{sched_map_name}}",
                 "frinx-juniper-pf-interfaces-extension:classifiers" {
                     "exp": [
                         {
-                            "name": <exp-name>
+                            "name": "{{exp_name}}"
                         }
-                    ]
+                    ],
                     "inet-precedence": [
                         {
-                            "name": <inet-precedence-name>
+                            "name": "{{inet_precedence_name}}"
                         }
                     ]
                 }
@@ -47,29 +47,27 @@ frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/f
 #### CLI
 
 <pre>
-interface &lt;intf-id&gt;
- service-policy input &lt;in-policy-name&gt;
- service-policy output &lt;out-policy-name&gt;
+interface {{policy_interface}}
+ service-policy input {{input_policy}}
+ service-policy output {{output_policy}}
 </pre>
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
-
-Link to github : [xr-unit]()
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/network-instance)
 
 ### Junos 15.1F-6.9
 
 #### CLI
 
 <pre>
-set class-of-service interfaces &lt;intf-id&gt; scheduler-map &lt;sched-map-name&gt;
-set class-of-service interfaces &lt;intf-id&gt; unit 0 classifiers exp <exp-name>
-set class-of-service interfaces &lt;intf-id&gt; unit 0 classifiers inet-precedence <inet-precedence-name>
+set class-of-service interfaces {{policy_interface}} scheduler-map {{sched_map_name}}
+set class-of-service interfaces {{policy_interface}} unit 0 classifiers exp {{exp_name}}
+set class-of-service interfaces {{policy_interface}} unit 0 classifiers inet-precedence {{inet_precedence_name}}
 </pre>
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
+NOT IMPLEMENTED
 
 Link to github : [junos-unit]()
