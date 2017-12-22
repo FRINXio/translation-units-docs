@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-acl:acl/interfaces/interface/<intf-id>
+frinx-openconfig-acl:acl/interfaces/interface/{{iacl_intf_id}}
 ```
 
 ## OPENCONFIG YANG
@@ -14,14 +14,14 @@ frinx-openconfig-acl:acl/interfaces/interface/<intf-id>
 {
     "interface": [
         {
-            "id": "<intf-id>",
+            "id": "{{iacl_intf-id}}",
             "ingress-acl-sets": {
                 "ingress-acl-set": [
                     {
-                        "set-name": "<in-acl-name>",
+                        "set-name": "{{iacl_in_acl_name}}",
                         "type": "ACL_IPV4",
                         "config": {
-                            "set-name": "<in-acl-name>",
+                            "set-name": "{{iacl_in_acl_name}}",
                             "type": "ACL_IPV4"
                         }
                     }
@@ -30,10 +30,10 @@ frinx-openconfig-acl:acl/interfaces/interface/<intf-id>
             "egress-acl-sets": {
                 "egress-acl-set": [
                     {
-                        "set-name": "<out-acl-name>",
+                        "set-name": "{{iacl_out_acl_name}}",
                         "type": "ACL_IPV4",
                         "config": {
-                            "set-name": "<out-acl-name>",
+                            "set-name": "{{iacl_out_acl_name}}",
                             "type": "ACL_IPV4"
                         }
                     }
@@ -42,7 +42,6 @@ frinx-openconfig-acl:acl/interfaces/interface/<intf-id>
         }
     ]
 }
-
 ```
 
 ## OS Configuration Commands
@@ -52,28 +51,26 @@ frinx-openconfig-acl:acl/interfaces/interface/<intf-id>
 #### CLI
 
 <pre>
-interface &lt;intf-id&gt;
-  ipv4 access-group &lt;in-acl-name&gt; ingress
-  ipv4 access-group &lt;out-acl-name&gt; egress
+interface {{iacl_intf_id}}
+  ipv4 access-group {{iacl_in_acl_name}} ingress
+  ipv4 access-group {{iacl_in_out_name}} egress
 </pre>
 
 ##### Unit
 
-Unit version range: 3.1.1.rc5
-
-Link to github : [xr-unit]()
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/acl)
 
 ### Junos 15.1F-6.9
 
 #### CLI
 
 <pre>
-set interfaces &lt;intf-id&gt; unit 0 family inet filter input &lt;in-acl-name&gt;
-set interfaces &lt;intf-id&gt; unit 0 family inet filter output &lt;out-acl-name&gt;
+set interfaces {{iacl_intf_id}} unit 0 family inet filter input {{iacl_in_acl_name}}
+set interfaces {{iacl_intf_id}} unit 0 family inet filter output {{iacl_in_out_name}}
 </pre>
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
+NOT IMPLEMENTED
 
 Link to github : [junos-unit]()
