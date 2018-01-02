@@ -14,7 +14,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_id}}
 {
     "interface": [
         {
-            "name": "{{lag_intf_id}}",
+            "name": "Bundle-Ether{{lag_intf_id}}",
             "config": {
                 "type": "iana-if-type:ieee8023adLag",
                 "enabled": {{lag_enabled}},
@@ -85,7 +85,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_id}}
 #### CLI
 
 <pre>
-interface {{lag_intf_id}} 
+interface Bundle-Ether{{lag_intf_id}} 
  description {{lag_description}} 
  mtu {{lag_mtu}}
  ipv4 address {{lag_ip}} {{lag_prefix_length}}
@@ -113,20 +113,20 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 #### CLI
 
 <pre>
-set interfaces {{lag_intf_id}} description {{lag_description}}
-set interfaces {{lag_intf_id}} mtu {{lag_mtu}}
-set interfaces {{lag_intf_id}} unit 0 family inet address {{lag_ip}}/{{lag_prefix_length}}
-set interfaces {{lag_intf_id}} aggregated-ether-options minimum-links {{lag_min_links}}
-set interfaces {{lag_intf_id}} aggregated-ether-options bfd-liveness-detection neighbor {{lag_bfd_destination_address}}
-set interfaces {{lag_intf_id}} aggregated-ether-options bfd-liveness-detection local-address {{lag_bfd_local_address}}
-set interfaces {{lag_intf_id}} aggregated-ether-options bfd-liveness-detection minimum-interval {{lag_bfd_min_interval}}
-set interfaces {{lag_intf_id}} aggregated-ether-options bfd-liveness-detection multiplier {{lag_bfd_multiplier}}
-set interfaces {{lag_intf_id}} aggregated-ether-options link-speed {{lag_link_speed}}
-delete interface {{lag_intf_id}} disable | set interface {{lag_intf_id}} disable
+set interfaces ae{{lag_intf_id}} description {{lag_description}}
+set interfaces ae{{lag_intf_id}} mtu {{lag_mtu}}
+set interfaces ae{{lag_intf_id}} unit 0 family inet address {{lag_ip}}/{{lag_prefix_length}}
+set interfaces ae{{lag_intf_id}} aggregated-ether-options minimum-links {{lag_min_links}}
+set interfaces ae{{lag_intf_id}} aggregated-ether-options bfd-liveness-detection neighbor {{lag_bfd_destination_address}}
+set interfaces ae{{lag_intf_id}} aggregated-ether-options bfd-liveness-detection local-address {{lag_bfd_local_address}}
+set interfaces ae{{lag_intf_id}} aggregated-ether-options bfd-liveness-detection minimum-interval {{lag_bfd_min_interval}}
+set interfaces ae{{lag_intf_id}} aggregated-ether-options bfd-liveness-detection multiplier {{lag_bfd_multiplier}}
+set interfaces ae{{lag_intf_id}} aggregated-ether-options link-speed {{lag_link_speed}}
+delete interface ae{{lag_intf_id}} disable | set interface ae{{lag_intf_id}} disable
 </pre>
 
-*delete interface {{lag_intf_id}} disable* is a conversion of {{lag_enabled}} set *true*  
-*set interface {{lag_intf_id}} disable* is conversion of {{lag_enabled}} set *false*  
+*delete interface ae{{lag_intf_id}} disable* is a conversion of {{lag_enabled}} set *true*  
+*set interface ae{{lag_intf_id}} disable* is conversion of {{lag_enabled}} set *false*  
 
 **Device does not support damping on LAG interface.**
 
