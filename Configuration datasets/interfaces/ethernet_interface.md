@@ -63,7 +63,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
             },
             "frinx-openconfig-if-ethernet:ethernet": {
                 "config": {
-                    "frinx-openconfig-if-aggregate:aggregate-id": "{{eth_lag_intf-id}}"
+                    "frinx-openconfig-if-aggregate:aggregate-id": "Bundle-Ether{{eth_lag_intf-id}}"
 		}
             },
             "frinx-cisco-if-extension:statistics": {
@@ -108,11 +108,10 @@ interface {{eth_intf_id}}
  dampening {{eth_half-life}} {{reuse}} {{suppress}} {{max-suppress}} | no dampening
  carrier-delay up {{eth_hold_time_up}} down {{eth_hold_time_down}} 
  load-interval {{eth_load-interval}}
- bundle-id &lt;bundle-id&gt; mode on
+ bundle-id {{eth_lag_intf-id}} mode on
  shutdown | no shutdown
 </pre>
 
-&lt;bundle-id&gt; is a conversion of {{eth_lag_intf-id}}  
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
 *shutdown* is a conversion of {{eth_enabled}} set *false*  
 *no dampening* is a conversion of {{eth_damping_enabled}} set *false*  
@@ -135,11 +134,10 @@ set interfaces {{eth_intf_id}} damping max-suppress {{eth_max-supress}}
 set interfaces {{eth_intf_id}} damping reuse {{eth_reuse}}
 set interfaces {{eth_intf_id}} damping suppress {{eth_supress}}
 set interfaces {{eth_intf_id}} hold-time up {{eth_hold_time_up}} down {{eth_hold_time_down}}
-set interfaces {{eth_intf_id}} gigether-options 802.3ad &lt;bundle-id&gt;
+set interfaces {{eth_intf_id}} gigether-options 802.3ad {{eth_lag_intf-id}};
 delete interface {{eth_intf_id}} disable | set interface {{eth_intf_id}} disable
 </pre>
 
-&lt;bundle-id&gt; is a conversion of {{eth_lag_intf-id}}  
 *delete interface {{lag_intf_id}} disable* is a conversion of {{lag_enabled}} set *true*  
 *set interface {{lag_intf_id}} disable* is conversion of {{lag_enabled}} set *false* 
 
