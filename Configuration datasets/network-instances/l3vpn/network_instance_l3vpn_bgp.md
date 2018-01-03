@@ -129,7 +129,7 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets<vrf>
     }
 }
 ```
-CONSTRAINTS:
+*CONSTRAINTS*  
 Network-instance with name &lt;vrf&gt; must exist before defined-sets or both must be created in the same transaction.  
 Delete must be executed in reverse order or in the same transaction.  
 Policy &lt;import-policy&gt; and &lt;export-policy&gt; must exist on device before are used in network-instance.
