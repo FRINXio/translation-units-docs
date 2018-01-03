@@ -29,16 +29,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                     }
                 ]
             }
-            
-            "inter-instance-policies": {
-                "apply-policy": [
-                    "config": {
-                        "export-policy": "<vrf>-route-target-export"
-                        "import-policy": "<vrf>-route-target-import"
-                    }
-                ]
-            }
-            
+
             "protocols": {
                 "protocol": [
                     {
@@ -139,67 +130,8 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets<vrf>
 }
 ```
 
-```
-frinx-openconfig-routing-policy:routing-policy/policy-definitions<vrf>
-```
-
-```
-{
-    "policy-definition" [
-        {            
-            "config": {
-                "name": "<vrf>-route-target-import"
-                "statements": {
-                    "statement" [
-                        {
-                            "conditions" {
-                                "bgp-conditions" {
-                                    "match-ext-community-set" {
-                                        "config": {
-                                            "ext-community-set": "<vrf>-route-target-import-set"
-                                        }
-                                    }
-                                }
-                            }
-                            "actions" {
-                                "config": {
-                                    "policy-result": "ACCEPT_ROUTE"
-                                }
-                            }
-                        }
-                    ]
-                }
-            }
-        }
-        {            
-            "config": {
-                "name": "<vrf>-route-target-export"
-                "statements": {
-                    "statement" [
-                        {
-                            "name": "<vrf>-route-target-export-statement"
-                            "actions" {
-                                "bgp-actions" {
-                                    "set-ext-community" {
-                                        "config": {
-                                            "method": "REFERENCE"
-                                            "reference" {
-                                                "config": {
-                                                    "ext-community-set-ref": "<vrf>-route-target-export-set"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    ]
-                }
-            }
-        }
-    ]
-}
-```
+Network-instance with name <vrf> must exist before defined-sets or both must be created in the same transaction.
+Delete must be executed in reverse order or in the same transaction.
 
 ## OS Configuration Commands
 
