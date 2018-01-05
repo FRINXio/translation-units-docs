@@ -16,7 +16,7 @@ stp:stp
         "interfaces": {
             "interface": [
                 {
-                    "name": "<intf-id>",
+                    "name": "{{intf-id}}",
                 }
             ]
         }
@@ -31,16 +31,20 @@ stp:stp
 
 #### CLI
 
-If /stp/interfaces/interface/&lt;intf-id&gt; exists 
+If /stp/interfaces/interface/{{intf-id}} exists 
 <pre>
-interface &lt;intf-id&gt;
+interface {{intf-id}}
  spanning-tree
 </pre>
 
-If /interfaces/interface/&lt;intf-id&gt; exists and /stp/interfaces/interface/&lt;intf-id&gt; does not exist
+If /interfaces/interface/{{intf-id}} exists and /stp/interfaces/interface/{{intf-id}} does not exist
 <pre>
-interface &lt;intf-id&gt;
+interface {{intf-id}}
  no spanning-tree
 </pre>
 
 ##### Unit
+
+NOT IMPLEMENTED
+
+Link to github : [brocade-unit]()
