@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-snmp:snmp/interfaces/interface/{{snm_intf_if}}
+frinx-snmp:snmp/interfaces/interface/{{snmp_intf_if}}
 ```
 
 ## OPENCONFIG YANG
@@ -14,9 +14,9 @@ frinx-snmp:snmp/interfaces/interface/{{snm_intf_if}}
 {
     "interface": [
         {
-            "interface-id": "{{snm_intf_if}}",
+            "interface-id": "{{snmp_intf_if}}",
             "config": {
-                "interface-id": "{{snm_intf_if}}",
+                "interface-id": "{{snmp_intf_if}}",
                 "enabled-trap-for-event": [
                     {
                         "event-name": "frinx-event-types:LINK_UP_DOWN"
@@ -37,14 +37,14 @@ frinx-snmp:snmp/interfaces/interface/{{snm_intf_if}}
 By default enabled on all interfaces. To disable, use:
 
 <pre>
-snmp-server interface {{snm_intf_if}} 
+snmp-server interface {{snmp_intf_if}} 
  notification linkupdown disable
 </pre>
 
 To enable disabled interfaces use:
 
 <pre>
-snmp-server interface {{snm_intf_if}} 
+snmp-server interface {{snmp_intf_if}} 
  no notification linkupdown disable
 </pre>
 
@@ -57,7 +57,7 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 #### CLI
 
 <pre>
-set interfaces {{snm_intf_if}} traps
+set interfaces {{snmp_intf_if}} traps
 </pre>
 
 ##### Unit
