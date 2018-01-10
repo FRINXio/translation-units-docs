@@ -13,43 +13,43 @@
                 }
             ]
         }
-		"sites": {
+        "sites": {
             "site": [
                 {
                     "site-id": <site-id>
                 }
                 "site-network-accesses": {
-            		"site-network-access": [
-                		{
-                    		"site-network-access-id": <site-network-access-id>
-                        	"bearer": {
-                            	"bearer-reference": <node-id>/<interface-id>
-                        	}
-                        	"routing-protocols": {
-            					"routing-protocol": [
-                					{
-                    					"type": bgp
-                    					"bgp": {
-                            				"address-family": ipv4
-                            				"autonomous-system": <remote-as>
-                        				}
-                					}
-            					]
-        					}
-            				"ip-connection": [
-                				{
-                					"ipv4": {
-                						"addresses": {
-                        					"provider-address": <interface-ip>
-                        					"customer-address": <neighbor-address>
-                        					"prefix-length": <interface-mask>
-                    					}
-                    				}
-            					}
-            				]
-                		}
-            		]
-        		}
+                    "site-network-access": [
+                        {
+                            "site-network-access-id": <site-network-access-id>
+                            "bearer": {
+                                "bearer-reference": <node-id>/<interface-id>
+                            }
+                            "routing-protocols": {
+                                "routing-protocol": [
+                                    {
+                                        "type": bgp
+                                        "bgp": {
+                                            "address-family": ipv4
+                                            "autonomous-system": <remote-as>
+                                        }
+                                    }
+                                ]
+                            }
+                            "ip-connection": [
+                                {
+                                    "ipv4": {
+                                        "addresses": {
+                                            "provider-address": <interface-ip>
+                                            "customer-address": <neighbor-address>
+                                            "prefix-length": <interface-mask>
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
             ]
         }
     ]
@@ -160,7 +160,7 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets<vrf>
                         "ext-community-set-member": [
                             {<rt_exp_1>} //autoprovisioning
                         ]
-                       }
+                    }
                 }
                 {            
                     "config": {
@@ -168,7 +168,7 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets<vrf>
                         "ext-community-set-member": [
                             {<rt_imp_1>} //autoprovisioning
                         ]
-                       }
+                    }
                 }
             ]
         }
