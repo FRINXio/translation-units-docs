@@ -1,12 +1,62 @@
-# L3VPN configuration (BGP as CE-PE protocol)
+# IETF L3VPN YANG 
 
-## URL
+## IETF YANG
 
+```javascript
+{
+    "l3vpn-svc": [
+        "vpn-services": {
+            "vpn-service": [
+                {
+                    "vpn-id": <vrf>
+                    "vpn-service-topology": any-to-any
+                }
+            ]
+        }
+		"sites": {
+            "site": [
+                {
+                    "site-id": <site-id>
+                }
+                "site-network-accesses": {
+            		"site-network-access": [
+                		{
+                    		"site-network-access-id": <site-network-access-id>
+                        	"bearer": {
+                            	"bearer-reference": <node-id>/<interface-id>
+                        	}
+                        	"routing-protocols": {
+            					"routing-protocol": [
+                					{
+                    					"type": bgp
+                    					"bgp": {
+                            				"address-family": ipv4
+                            				"autonomous-system": <remote-as>
+                        				}
+                					}
+            					]
+        					}
+            				"ip-connection": [
+                				{
+                					"ipv4": {
+                						"addresses": {
+                        					"provider-address": <interface-ip>
+                        					"customer-address": <neighbor-address>
+                        					"prefix-length": <interface-mask>
+                    					}
+                    				}
+            					}
+            				]
+                		}
+            		]
+        		}
+            ]
+        }
+    ]
+}
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
-```
 
-## OPENCONFIG YANG
+## OPENCONFIG YANG 
 
 ```javascript
 {
@@ -15,8 +65,8 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
             "config": {
                 "name": "<vrf>"
                 "type": "L3VRF" //matches vpws-instance-type in ietf
-                "route-distinguisher": "<rd>"
-                "enabled-address-families": "<enabled-address-families>"
+                "route-distinguisher": "auto"
+                "enabled-address-families": "ipv4"
                 "enabled": true
             }
             
@@ -42,7 +92,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                             "aggregate": [
                                 {
                                     "config": {
-                                        "prefix": "<network-prefix>"
+                                        "prefix": "<network-prefix>" // is a transformation of <interface-ip> and <interface-mask>
                                     }
                                 }
                             ]
@@ -50,8 +100,8 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                         
                         "bgp": {
                             "global": {
-                                "as": "<as-number>"
-                                "router-id": "<router-id>"
+                                "as": "<as-number>" //to be filled out based on reconciliation
+                                "router-id": "<router-id>" //to be filled out based on reconciliation
                                 "afi-safis": {
                                     "afi-safi": [
                                         "config": {
@@ -76,8 +126,8 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                                                     }
                                                     "apply-policy": {
                                                         "config": {
-                                                            "import-policy": "<import-policy>"
-                                                            "export-policy": "<export-policy>"
+                                                            "import-policy": "RPL_PASS_ALL"
+                                                            "export-policy": "RPL_PASS_ALL
                                                         }
                                                     }
                                                 ]
@@ -108,9 +158,7 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets<vrf>
                     "config": {
                         "ext-community-set-name": "<vrf>-route-target-export-set"
                         "ext-community-set-member": [
-                            {<rt_exp_1>}
-                            {<rt_exp_2>}
-                            {<rt_exp_3>}
+                            {<rt_exp_1>} //autoprovisioning
                         ]
                        }
                 }
@@ -118,9 +166,7 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets<vrf>
                     "config": {
                         "ext-community-set-name": "<vrf>-route-target-import-set"
                         "ext-community-set-member": [
-                            {<rt_imp_1>}
-                            {<rt_imp_2>}
-                            {<rt_imp_3>}
+                            {<rt_imp_1>} //autoprovisioning
                         ]
                        }
                 }
@@ -129,89 +175,3 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets<vrf>
     }
 }
 ```
-*CONSTRAINTS*  
-Network-instance with name &lt;vrf&gt; must exist before defined-sets or both must be created in the same transaction.  
-Delete must be executed in reverse order or in the same transaction.  
-Policy &lt;import-policy&gt; and &lt;export-policy&gt; must exist on device before are used in network-instance.
-
-## OS Configuration Commands
-
-### CISCO IOS XR (5.1.3) (6.1.2)
-
-#### CLI
-
-<pre>
-vrf &lt;vrf&gt;
- address-family ipv4 unicast
-  import route-target 
-   {&lt;rt_imp_1&gt;}
-   {&lt;rt_imp_2&gt;}
-   {&lt;rt_imp_3&gt;}
-  export route-target 
-   {&lt;rt_exp_1&gt;}
-   {&lt;rt_exp_2&gt;}
-   {&lt;rt_exp_3&gt;}
-
-interface &lt;interface-id&gt;
- vrf &lt;vrf&gt;
- 
-router bgp &lt;as-number&gt;
- vrf &lt;vrf&gt;
-  rd &lt;rd&gt;
-  
-  address-family ipv4 unicast
-   network &lt;network-prefix&gt;
-   
-  neighbor &lt;neighbor-address&gt;
-   remote-as &lt;remote-as&gt;
-   address-family ipv4 unicast
-    route-policy &lt;import-policy&gt; in
-    route-policy &lt;export-policy&gt; out
-</pre>
-
-### Cisco IOS (VIOS 15.6(2)T)
-
-#### CLI
-
-<pre>
-ip vrf &lt;vrf&gt;
- rd &lt;rd&gt;
- route-target export {&lt;rt_exp_1&gt;}
- route-target export {&lt;rt_exp_2&gt;}
- route-target export {&lt;rt_exp_3&gt;}
- route-target import {&lt;rt_imp_1&gt;}
- route-target import {&lt;rt_imp_2&gt;}
- route-target import {&lt;rt_imp_3&gt;}
-
-interface &lt;interface-id&gt;
- ip vrf forwarding &lt;vrf&gt;
-
-router bgp &lt;as-number&gt;
- address-family ipv4 vrf &lt;vrf&gt;
-  network &lt;network-prefix&gt;
-  neighbor &lt;neighbor-address&gt; remote-as &lt;remote-as&gt;
-  neighbor &lt;neighbor-address&gt; activate
-</pre>
-
-### Huawei NE5000E (V800R009C10SPC310)
-
-#### CLI
-
-<pre>
-ip vpn-instance &lt;vrf&gt;
- ipv4-family
-  route-distinguisher &lt;rd&gt;
-  vpn-target {&lt;rt_exp_1&gt;} export-extcommunity
-  vpn-target {&lt;rt_imp_1&gt;} import-extcommunity
-  
-interface &lt;interface-id&gt;
- undo shutdown
- ip binding vpn-instance &lt;vrf&gt;
-
-bgp &lt;as-number&gt;
- ipv4-family vpn-instance &lt;vrf&gt;
-  network &lt;network-prefix&gt;
-  peer &lt;neighbor-address&gt; as-number &lt;remote-as&gt;
-  peer &lt;neighbor-address&gt; route-policy &lt;import-policy&gt; import
-  peer &lt;neighbor-address&gt; route-policy &lt;export-policy&gt; export
-</pre>
