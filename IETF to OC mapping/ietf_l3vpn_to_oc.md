@@ -127,7 +127,7 @@
                                                     "apply-policy": {
                                                         "config": {
                                                             "import-policy": "RPL_PASS_ALL"
-                                                            "export-policy": "RPL_PASS_ALL
+                                                            "export-policy": "RPL_PASS_ALL"
                                                         }
                                                     }
                                                 ]
