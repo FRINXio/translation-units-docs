@@ -46,7 +46,7 @@ rsvp
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/mpls)
 
-### Junos Junos 17.3R1.10
+### Junos 17.3R1.10
 
 #### CLI
 
