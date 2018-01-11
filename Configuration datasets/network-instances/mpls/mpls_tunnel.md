@@ -54,7 +54,7 @@ interface tunnel-te {{mpls_tunnel_id}}
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/mpls)
 
-### Junos 15.1F-6.9
+### Junos 17.3R1.10
 
 #### CLI
 
