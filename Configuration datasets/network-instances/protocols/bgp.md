@@ -70,7 +70,7 @@ router bgp {{bgp_as}} instance {{bgp_process_name}}
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/bgp)
 
-### Junos 15.1F-6.9
+### Junos 17.3R1.10
 
 #### CLI
 
