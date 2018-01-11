@@ -74,7 +74,7 @@ Unit version range: NOT IMPLEMENTED
 
 Link to github : [xr-unit]()
 
-### Junos 15.1F5
+### Junos 17.3R1.10
 
 #### CLI
 
