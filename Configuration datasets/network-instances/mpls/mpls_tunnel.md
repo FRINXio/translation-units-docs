@@ -21,7 +21,13 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/mpl
                 "name": "{{mpls_tunnel_id}}",
                 "shortcut-eligible": {{mpls_shortcut_eligible}},
                 "metric-type": "frinx-openconfig-mpls-types:LSP_METRIC_ABSOLUTE",
-                "metric": {{mpls_metric}}
+                "metric": {{mpls_metric}},
+                "type": "frinx-openconfig-mpls-types:P2P"
+            },
+            "p2p-tunnel-attributes": {
+                "config": {
+                    "destination": "{{mpls_tunnel_destination}}"
+                }
             },
             "frinx-cisco-mpls-te-extension:cisco-mpls-te-extension": {
                 "config": {
@@ -44,6 +50,7 @@ interface tunnel-te {{mpls_tunnel_id}}
  load-share {{mpls_load_share}}
  autoroute announce | no autoroute announce
  metric absolute {{mpls_metric}}
+ destination {{mpls_tunnel_destination}}
 </pre>
 
 *autoroute announce* is a conversion of {{mpls_shorcut_eligible}} set *true*  
@@ -59,8 +66,8 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 #### CLI
 
 <pre>
-set protocols mpls label-switched-path {{mpls_tunnel_id}}
-set protocols mpls label-switched-path {{mpls_tunnel_id}} metric {{mpls_metric}}
+set protocols mpls label-switched-path {{mpls_tunnel_id}} to {{mpls_tunnel_destination}}
+set protocols mpls label-switched-path {{mpls_tunnel_id}} to {{mpls_tunnel_destination}} metric {{mpls_metric}}
 </pre>
 
 *set protocols mpls label-switched-path {{mpls_tunnel_id}}* is a conversion of {{mpls_shortcut_eligible}} set *true*  
