@@ -76,7 +76,8 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 
 ---
 <pre>
-activate protocols bgp group {{bgp_group}} neighbor {{neighbor_ip}}
+set routing-options autonomous-system {{bgp_as}}
+activate protocols bgp group {{bgp_group}} neighbor {{neighbor_ip}} peer-as {{bgp_peer_as}}
 </pre>
 ---
 
