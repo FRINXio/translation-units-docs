@@ -76,7 +76,7 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 
 ---
 <pre>
-activate protocols bgp group &lt;group&gt; neighbor &lt;neighbor_address&gt;
+activate protocols bgp group {{bgp_group}} neighbor {{neighbor_ip}}
 </pre>
 ---
 
