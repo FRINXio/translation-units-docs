@@ -23,16 +23,16 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/fri
                 "frinx-cisco-pf-interfaces-extension:output-service-policy": "{{output_policy}}",
                 "frinx-juniper-pf-interfaces-extension:scheduler-map": "{{sched_map_name}}",
                 "frinx-juniper-pf-interfaces-extension:classifiers" {
-                    "exp": [
+                    "exp": {
                         {
                             "name": "{{exp_name}}"
                         }
-                    ],
-                    "inet-precedence": [
+                    },
+                    "inet-precedence": {
                         {
                             "name": "{{inet_precedence_name}}"
                         }
-                    ]
+                    }
                 }
             }
         }
