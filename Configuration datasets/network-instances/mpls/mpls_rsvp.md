@@ -33,6 +33,9 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/mpl
 ## OS Configuration Commands
 
 ### Cisco IOS XR 5.3.4
+{{rsvp_bandwidth}} 
+- setting to _true_ results in 'bandwidth' meaning setting default device bandwidth
+- setting to numeric value results in 'bandwith &lt;number&gt;
 
 #### CLI
 
@@ -58,4 +61,4 @@ set protocols rsvp interface {{rsvp_intf_id}} bandwidth {{rsvp_bandwidth}}
 
 NOT IMPLEMENTED
 
-Link to github : [junos-unit]()
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-mpls-unit)
