@@ -30,8 +30,6 @@
     * [<a href="acl/acl_interfaces.md">ACL interfaces</a>](#acl-interfaces)
 * [Spanning Tree Protocol](#spanning-tree-protocol)
     * [<a href="stp.md">STP</a>](#stp)
-* [Link Aggregation Control Protocol](#link-aggregation-control-protocol)
-    * [<a href="lacp.md">LACP</a>](#lacp)
 
 
 
@@ -100,9 +98,5 @@
 # Spanning Tree Protocol
 
 #### [STP](stp.md)
-
-# Link Aggregation Control Protocol
-
-#### [LACP](lacp.md)
 
 
