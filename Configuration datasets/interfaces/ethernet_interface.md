@@ -64,8 +64,8 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
             "frinx-openconfig-if-ethernet:ethernet": {
                 "config": {
                     "frinx-openconfig-if-aggregate:aggregate-id": "Bundle-Ether{{eth_lag_intf-id}}",
-		    "lacp-mode": "{{lacp_mode}}",
-		    "interval": "{{lacp_interval}}"
+		    "frinx-lacp-lag-member:lacp-mode": "{{lacp_mode}}",
+		    "frinx-lacp-lag-member:interval": "{{lacp_interval}}"
 		}
             },
             "frinx-cisco-if-extension:statistics": {
