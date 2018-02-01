@@ -63,7 +63,9 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
             },
             "frinx-openconfig-if-ethernet:ethernet": {
                 "config": {
-                    "frinx-openconfig-if-aggregate:aggregate-id": "Bundle-Ether{{eth_lag_intf-id}}"
+                    "frinx-openconfig-if-aggregate:aggregate-id": "Bundle-Ether{{eth_lag_intf-id}}",
+		    "lacp-mode": "{{lacp_mode}}",
+		    "interval": "{{lacp_interval}}"
 		}
             },
             "frinx-cisco-if-extension:statistics": {
@@ -108,13 +110,17 @@ interface {{eth_intf_id}}
  dampening {{eth_half-life}} {{reuse}} {{suppress}} {{max-suppress}} | no dampening
  carrier-delay up {{eth_hold_time_up}} down {{eth_hold_time_down}} 
  load-interval {{eth_load-interval}}
- bundle-id {{eth_lag_intf-id}} mode on
+ bundle id {{eth_lag_intf-id}} mode {{lacp_mode}}
+ lacp period short | no lacp period short
  shutdown | no shutdown
 </pre>
 
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
 *shutdown* is a conversion of {{eth_enabled}} set *false*  
 *no dampening* is a conversion of {{eth_damping_enabled}} set *false*  
+*lacp persiod short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:FAST*  
+*no lacp persiod short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:SLOW*  
+if {{lacp_mode}} is not specified then command *bundle id {{eth_lag_intf-id}} mode on* is used
 
 ##### Unit
 
@@ -134,7 +140,9 @@ set interfaces {{eth_intf_id}} damping max-suppress {{eth_max-supress}}
 set interfaces {{eth_intf_id}} damping reuse {{eth_reuse}}
 set interfaces {{eth_intf_id}} damping suppress {{eth_supress}}
 set interfaces {{eth_intf_id}} hold-time up {{eth_hold_time_up}} down {{eth_hold_time_down}}
-set interfaces {{eth_intf_id}} gigether-options 802.3ad {{eth_lag_intf-id}};
+set interfaces {{eth_intf_id}} gigether-options 802.3ad {{eth_lag_intf-id}}
+set interfaces ae{{eth_lag_intf-id}} aggregated-ether-options lacp {{lacp_mode}}
+set interfaces ae{{eth_lag_intf-id}} aggregated-ether-options lacp periodic {{lacp_interval}}
 delete interface {{eth_intf_id}} disable | set interface {{eth_intf_id}} disable
 </pre>
 
@@ -143,9 +151,7 @@ delete interface {{eth_intf_id}} disable | set interface {{eth_intf_id}} disable
 
 ##### Unit
 
-NOT IMPLEMENTED
-
-Link to github : [junos-unit]()
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-interface-unit)
 
 ### Brocade (V5.6.0fT163)
 
