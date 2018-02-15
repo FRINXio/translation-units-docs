@@ -49,6 +49,26 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
                                 ]
                             }
                         }
+                "frinx-openconfig-if-ip:ipv6": {
+                            "addresses": {
+                                "address": [
+                                    {
+                                        "ip": "{{eth_ip}}",
+                                        "config": {
+                                            "ip": "{{eth_ip6}}",
+                                            "prefix-length": {{eth_prefix6}}
+                                        }
+                                    }
+                                ]
+                            }
+                            "router-advertisement": {
+                                {
+                                    "config": {
+                                        "suppress": "{{ip6_nd_suppress_ra}}",
+                                    }
+                                }
+                            }
+                        }
                     }
                 ]
             },
@@ -107,6 +127,8 @@ interface {{eth_intf_id}}
  description {{eth_description}}
  mtu {{eth_mtu}}
  ipv4 address {{eth_ip}} {{eth_prefix}}
+ ipv6 address {{eth_ip6}} {{eth_prefix6}}
+ ipv6 nd suppress-ra
  dampening {{eth_half-life}} {{reuse}} {{suppress}} {{max-suppress}} | no dampening
  carrier-delay up {{eth_hold_time_up}} down {{eth_hold_time_down}} 
  load-interval {{eth_load-interval}}
@@ -121,6 +143,7 @@ interface {{eth_intf_id}}
 *lacp persiod short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:FAST*  
 *no lacp persiod short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:SLOW*  
 if {{lacp_mode}} is not specified then command *bundle id {{eth_lag_intf-id}} mode on* is used
+*ipv6 nd suppress-ra* is a conversion of {{ip6_nd_suppress_ra}} set *true*
 
 ##### Unit
 
@@ -171,3 +194,14 @@ interface {{eth_intf_id}}
 ##### Unit
 
 Link to github : [brocade-unit](https://github.com/FRINXio/cli-units/tree/master/brocade/interface)
+
+### Huawei NE5000E (V800R009C10SPC310)
+
+#### CLI
+
+<pre>
+interface {{eth_intf_id}}
+ ipv4 address {{eth_ip}} {{subnet}}
+</pre>
+
+{{subnet}} is conversion of {{eth_prefix}}
