@@ -19,10 +19,10 @@ frinx-openconfig-acl:acl/interfaces/interface/{{iacl_intf_id}}
                 "ingress-acl-set": [
                     {
                         "set-name": "{{iacl_in_acl_name}}",
-                        "type": "ACL_IPV4",
+                        "type": "ACL_IPV4|ACL_IPV6",
                         "config": {
                             "set-name": "{{iacl_in_acl_name}}",
-                            "type": "ACL_IPV4"
+                            "type": "ACL_IPV4|ACL_IPV6"
                         }
                     }
                 ]
@@ -31,10 +31,10 @@ frinx-openconfig-acl:acl/interfaces/interface/{{iacl_intf_id}}
                 "egress-acl-set": [
                     {
                         "set-name": "{{iacl_out_acl_name}}",
-                        "type": "ACL_IPV4",
+                        "type": "ACL_IPV4|ACL_IPV6",
                         "config": {
                             "set-name": "{{iacl_out_acl_name}}",
-                            "type": "ACL_IPV4"
+                            "type": "ACL_IPV4|ACL_IPV6"
                         }
                     }
                 ]
@@ -52,8 +52,8 @@ frinx-openconfig-acl:acl/interfaces/interface/{{iacl_intf_id}}
 
 <pre>
 interface {{iacl_intf_id}}
-  ipv4 access-group {{iacl_in_acl_name}} ingress
-  ipv4 access-group {{iacl_out_acl_name}} egress
+  ipv4|ipv6 access-group {{iacl_in_acl_name}} ingress
+  ipv4|ipv6 access-group {{iacl_out_acl_name}} egress
 </pre>
 
 ##### Unit

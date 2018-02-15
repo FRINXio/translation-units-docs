@@ -89,3 +89,23 @@ set interfaces &lt;intf-id&gt; unit &lt;index&gt; family inet address &lt;ip&gt/
 Unit version range: NOT IMPLEMENTED
 
 Link to github : [junos-unit]()
+
+### Huawei NE5000E (V800R009C10SPC310)
+
+#### CLI
+
+---
+<pre>
+interface &lt;intf-id&gt;.&lt;index&gt;
+ ipv4 address &lt;ip&gt; &lt;subnet&gt;
+</pre>
+
+&lt;subnet&gt; is conversion of &lt;prefix&gt;
+
+---
+
+##### Unit
+
+Unit version range: NOT IMPLEMENTED
+
+Link to github : [-unit]()
