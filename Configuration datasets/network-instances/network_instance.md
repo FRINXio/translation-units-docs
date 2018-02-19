@@ -3,7 +3,7 @@
 ## URL
 
 ```
-ios-essential:vrfs/vrf/<vrf>
+ios-essential:vrfs/vrf/{{l3_vpn_bgp_vrf}}
 ```
 
 ## OPENCONFIG YANG
@@ -12,10 +12,10 @@ ios-essential:vrfs/vrf/<vrf>
 
 ```javascript
 {
-	"vrf": {
-    	"id": <vrf>
-    	"description": <desc>
-	}
+    "vrf": {
+        "id": {{l3_vpn_bgp_vrf}}
+	"description": {{l3_vpn_bgp_vrf_desc}}
+    }
 }
 ```
 
@@ -27,17 +27,11 @@ ios-essential:vrfs/vrf/<vrf>
 
 ---
 <pre>
-configure terminal
- ip vrf &lt;vrf&gt;
- description &lt;desc&gt;
-exit
-exit
+ip {{l3_vpn_bgp_vrf}}
+description {{l3_vpn_bgp_vrf_desc}}
 </pre>
 ---
 
 ##### Unit
 
-Unit version range: 3.1.1.rc1-frinx
-
 Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/essential)
-
