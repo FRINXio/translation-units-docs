@@ -21,13 +21,13 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vpls_ni_n
                 "connection-point": [
                     {
                         "config": {
-                            "connection-point-id": "<connection_point_id>"
+                            "connection-point-id": "1"
                         }
                         "endpoints": {
                             "endpoint": [
                                 {
                                     "config": {
-                                        "endpoint-id": "<endpoint_id>"
+                                        "endpoint-id": "{{vpls_endpoint_id}}"
                                         "type": "LOCAL"
                                         "local": {
                                             "config": {
@@ -42,7 +42,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vpls_ni_n
                     }
                     {
                         "config": {
-                            "connection-point-id": "<connection_point_id>"
+                            "connection-point-id": "2"
                         }
                         "endpoints": {
                             "endpoint": [
