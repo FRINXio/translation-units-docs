@@ -48,7 +48,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
                                     }
                                 ]
                             }
-                        }
+                        },
                 "frinx-openconfig-if-ip:ipv6": {
                             "addresses": {
                                 "address": [
@@ -60,13 +60,11 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
                                         }
                                     }
                                 ]
-                            }
+                            },
                             "router-advertisement": {
-                                {
-                                    "config": {
-                                        "suppress": "{{ip6_nd_suppress_ra}}",
-                                    }
-                                }
+			        "config": {
+				    "suppress": "{{ip6_nd_suppress_ra}}"
+			        }
                             }
                         }
                     }
