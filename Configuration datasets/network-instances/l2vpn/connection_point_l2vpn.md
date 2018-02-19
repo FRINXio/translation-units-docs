@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>
+frinx-openconfig-network-instance:network-instances/network-instance/{{vpls_ni_name}}
 ```
 
 ## OPENCONFIG YANG
@@ -13,7 +13,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>
     "network-instance": [
         {
             "config": {
-                "name": "<ni-name>"
+                "name": "{{vpls_ni_name}}"
                 "type": "L2VSI" //matches vpls-instance-type in ietf
                 "enabled": true
             }
@@ -31,8 +31,8 @@ frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>
                                         "type": "LOCAL"
                                         "local": {
                                             "config": {
-                                                "interface": "<local_interface_id>"
-                                                "subinterface": "<local_vlan>"
+                                                "interface": "{{vpls_show_interface3}}"
+                                                "subinterface": {{vpls_show_sub_interface_index}}
                                             }
                                         }
                                     }
@@ -48,11 +48,11 @@ frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>
                             "endpoint": [
                                 {
                                     "config": {
-                                        "endpoint-id": "<endpoint_id>"
+                                        "endpoint-id": "{{vpls_endpoint_id}}"
                                         "type": "REMOTE"
                                         "remote": {
                                             "config": {
-                                                "virtual-circuit-identifier": "<vccid>"
+                                                "virtual-circuit-identifier": {{vpls_vccid}}
                                             }
                                         }
                                     }
@@ -83,7 +83,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>
                         }
                         "bgp": {
                             "global": {
-                                "as": "<as-number>"
+                                "as": {{vpls_bgp_as_number}}
                             }
                         }
                     }
@@ -102,33 +102,37 @@ frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>
 
 If connection point type remote
 <pre>
-bridge-domain &lt;ni-name&gt;
+bridge-domain {{vpls_ni_name}}
 
-l2 vfi &lt;ni-name&gt; autodiscovery
- vpn id &lt;vccid&gt;
- bridge-domain &lt;ni-name&gt;
+l2 vfi {{vpls_ni_name}} autodiscovery
+ vpn id {{vpls_vccid}}
+ bridge-domain {{vpls_ni_name}}
 </pre>
 
 If connection point type local without subif
 <pre>
-bridge-domain &lt;ni-name&gt;
+bridge-domain {{vpls_ni_name}}
 
-interface &lt;local_interface_id&gt;
- service instance &lt;endpoint_id&gt; ethernet
+interface {{vpls_show_interface3}}
+ service instance {{vpls_endpoint_id}} ethernet
   encapsulation untagged
-  bridge-domain &lt;ni-name&gt;
+  bridge-domain {{vpls_ni_name}}
 </pre>
 
 If connection point type local with subif
 <pre>
-bridge-domain &lt;ni-name&gt;
+bridge-domain {{vpls_ni_name}}
 
-interface &lt;local_interface_id&gt;
- service instance &lt;endpoint_id&gt; ethernet
-  encapsulation dot1q &lt;local_vlan&gt;
+interface {{vpls_show_interface3}}
+ service instance {{vpls_endpoint_id}} ethernet
+  encapsulation dot1q{{vpls_show_sub_interface_index}}
   rewrite ingress tag pop 1 symmetric
-  bridge-domain &lt;ni-name&gt;
+  bridge-domain {{vpls_ni_name}}
 </pre>
+
+##### Unit
+
+NOT IMPLEMENTED
 
 ### CISCO IOS XR (5.1.3) (6.1.2)
 
@@ -138,47 +142,50 @@ If connection point type remote
 <pre>
 l2vpn
  bridge group frinx
-  bridge-domain &lt;ni-name&gt;
-   vfi &lt;ni-name&gt;
-    vpn-id &lt;vccid&gt;
+  bridge-domain {{vpls_ni_name}}
+   vfi {{vpls_ni_name}}
+    vpn-id {{vpls_vccid}}
     autodiscovery bgp
      rd auto
-     route-target &lt;as-number&gt;:&lt;vccid&gt;
+     route-target {{vpls_bgp_as_number}}:{{vpls_vccid}}
      signaling-protocol bgp
-      ve-id &lt;endpoint_id&gt;
+      ve-id {{vpls_endpoint_id}}
 </pre>
 
 If connection point type local without subif
 <pre>
-interface &lt;local_interface_id&gt
+interface {{vpls_show_interface3}}
  l2transport
 
 l2vpn
  bridge group frinx
-  bridge-domain &lt;ni-name&gt;
-   interface &lt;local_interface_id&gt
+  bridge-domain {{vpls_ni_name}}
+   interface {{vpls_show_interface3}}
 </pre>
 
 If connection point type local with subif (for XRv 5.1.3)
 <pre>
-interface &lt;local_interface_id&gt.&lt;local_vlan&gt; l2transport
- dot1q vlan &lt;local_vlan&gt;
+interface {{vpls_show_interface3}}.{{vpls_show_sub_interface_index}} l2transport
+ dot1q vlan {{vpls_show_sub_interface_index}}
 
 l2vpn
  bridge group frinx
-  bridge-domain &lt;ni-name&gt;
-   interface &lt;local_interface_id&gt.&lt;local_vlan&gt;
+  bridge-domain {{vpls_ni_name}}
+   interface {{vpls_show_interface3}}.{{vpls_show_sub_interface_index}}
 </pre>
 
 If connection point type local with subif (for XRv 6.1.2)
 <pre>
-interface &lt;local_interface_id&gt.&lt;local_vlan&gt; l2transport
- encapsulation dot1q &lt;local_vlan&gt;
+interface {{vpls_show_interface3}}.{{vpls_show_sub_interface_index}} l2transport
+ encapsulation dot1q {{vpls_show_sub_interface_index}}
  rewrite ingress tag pop 1 symmetric
  
 l2vpn
  bridge group frinx
-  bridge-domain &lt;ni-name&gt;
-   interface &lt;local_interface_id&gt.&lt;local_vlan&gt;
+  bridge-domain {{vpls_ni_name}}
+   interface {{vpls_show_interface3}}.{{vpls_show_sub_interface_index}}
 </pre>
 
+##### Unit
+
+NOT IMPLEMENTED
