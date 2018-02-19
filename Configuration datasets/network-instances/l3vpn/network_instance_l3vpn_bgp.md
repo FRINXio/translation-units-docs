@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
+frinx-openconfig-network-instance:network-instances/network-instance/{{l3_vpn_bgp_vrf}}
 ```
 
 ## OPENCONFIG YANG
@@ -13,10 +13,10 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
     "network-instance": [
         {
             "config": {
-                "name": "<vrf>"
+                "name": "{{l3_vpn_bgp_vrf}}"
                 "type": "L3VRF" //matches vpws-instance-type in ietf
-                "route-distinguisher": "<rd>"
-                "enabled-address-families": "<enabled-address-families>"
+                "route-distinguisher": "{{l3_vpn_bgp_rd}}"
+                "enabled-address-families": "{{l3_vpn_bgp_enabled_address_families}}"
                 "enabled": true
             }
             
@@ -24,7 +24,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                 "interface": [
                     {
                         "config": {
-                            "id": <interface-id>
+                            "id": "{{l3_vpn_bgp_interface_id}}"
                         }
                     }
                 ]
@@ -42,7 +42,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                             "aggregate": [
                                 {
                                     "config": {
-                                        "prefix": "<network-prefix>"
+                                        "prefix": "{{l3_vpn_bgp_network_prefix}}"
                                     }
                                 }
                             ]
@@ -50,8 +50,8 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                         
                         "bgp": {
                             "global": {
-                                "as": "<as-number>"
-                                "router-id": "<router-id>"
+                                "as": "{{l3_vpn_bgp_as_number}}"
+                                "router-id": "{{l3_vpn_bgp_router_id}}"
                                 "afi-safis": {
                                     "afi-safi": [
                                         "config": {
@@ -65,9 +65,9 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                                 "neighbor": [
                                     {
                                         "config": {
-                                            "neighbor-address": "<neighbor-address>"
+                                            "neighbor-address": "{{l3_vpn_bgp_neighbor_address}}"
                                             "enabled": true
-                                            "peer-as": "<remote-as>"
+                                            "peer-as": "{{l3_vpn_bgp_remote_as}}"
                                             "afi-safis": {
                                                 "afi-safi": [
                                                     "config": {
@@ -76,8 +76,8 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                                                     }
                                                     "apply-policy": {
                                                         "config": {
-                                                            "import-policy": "<import-policy>"
-                                                            "export-policy": "<export-policy>"
+                                                            "import-policy": "{{l3_vpn_bgp_vrf}}-route-target-import"
+                                                            "export-policy": "{{l3_vpn_bgp_vrf}}-route-target-export"
                                                         }
                                                     }
                                                 ]
@@ -96,7 +96,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
 ```
 
 ```
-frinx-openconfig-routing-policy:routing-policy/defined-sets<vrf>
+frinx-openconfig-routing-policy:routing-policy/defined-sets{{l3_vpn_bgp_vrf}}
 ```
 
 ```
@@ -106,23 +106,23 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets<vrf>
             ext-community-set [
                 {            
                     "config": {
-                        "ext-community-set-name": "<vrf>-route-target-export-set"
+                        "ext-community-set-name": "{{l3_vpn_bgp_vrf}}-route-target-export-set"
                         "ext-community-set-member": [
-                            {<rt_exp_1>}
-                            {<rt_exp_2>}
-                            {<rt_exp_3>}
+                            {{l3_vpn_bgp_rt_exp_1}},
+                            {{l3_vpn_bgp_rt_exp_2}},
+                            {{l3_vpn_bgp_rt_exp_3}}
                         ]
                        }
                 }
                 {            
                     "config": {
-                        "ext-community-set-name": "<vrf>-route-target-import-set"
+                        "ext-community-set-name": "{{l3_vpn_bgp_vrf}}-route-target-import-set"
                         "ext-community-set-member": [
-                            {<rt_imp_1>}
-                            {<rt_imp_2>}
-                            {<rt_imp_3>}
+                            {{l3_vpn_bgp_rt_imp_1}},
+                            {{l3_vpn_bgp_rt_imp_2}},
+                            {{l3_vpn_bgp_rt_imp_3}}
                         ]
-                       }
+                    }
                 }
             ]
         }
@@ -130,9 +130,9 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets<vrf>
 }
 ```
 *CONSTRAINTS*  
-Network-instance with name &lt;vrf&gt; must exist before defined-sets or both must be created in the same transaction.  
+Network-instance with name {{l3_vpn_bgp_vrf}} must exist before defined-sets or both must be created in the same transaction.  
 Delete must be executed in reverse order or in the same transaction.  
-Policy &lt;import-policy&gt; and &lt;export-policy&gt; must exist on device before are used in network-instance.
+Policy {{l3_vpn_bgp_vrf}}-route-target-import and {{l3_vpn_bgp_vrf}}-route-target-export must exist on device before are used in network-instance.
 
 ## OS Configuration Commands
 
@@ -141,32 +141,32 @@ Policy &lt;import-policy&gt; and &lt;export-policy&gt; must exist on device befo
 #### CLI
 
 <pre>
-vrf &lt;vrf&gt;
+vrf {{l3_vpn_bgp_vrf}}
  address-family ipv4 unicast
   import route-target 
-   {&lt;rt_imp_1&gt;}
-   {&lt;rt_imp_2&gt;}
-   {&lt;rt_imp_3&gt;}
+   {{l3_vpn_bgp_rt_imp_1}}
+   {{l3_vpn_bgp_rt_imp_2}}
+   {{l3_vpn_bgp_rt_imp_3}}
   export route-target 
-   {&lt;rt_exp_1&gt;}
-   {&lt;rt_exp_2&gt;}
-   {&lt;rt_exp_3&gt;}
+   {{l3_vpn_bgp_rt_exp_1}}
+   {{l3_vpn_bgp_rt_exp_2}}
+   {{l3_vpn_bgp_rt_exp_3}}
 
-interface &lt;interface-id&gt;
- vrf &lt;vrf&gt;
+interface {{l3_vpn_bgp_interface_id}}
+ vrf {{l3_vpn_bgp_vrf}}
  
-router bgp &lt;as-number&gt;
- vrf &lt;vrf&gt;
-  rd &lt;rd&gt;
+router bgp {{l3_vpn_bgp_as_number}}
+ vrf {{l3_vpn_bgp_vrf}}
+  rd {{l3_vpn_bgp_rd}}
   
   address-family ipv4 unicast
-   network &lt;network-prefix&gt;
+   network {{l3_vpn_bgp_network_prefix}}
    
-  neighbor &lt;neighbor-address&gt;
-   remote-as &lt;remote-as&gt;
+  neighbor {{l3_vpn_bgp_neighbor_address}}
+   remote-as {{l3_vpn_bgp_remote_as}}
    address-family ipv4 unicast
-    route-policy &lt;import-policy&gt; in
-    route-policy &lt;export-policy&gt; out
+    route-policy {{l3_vpn_bgp_vrf}}-route-target-import in
+    route-policy {{l3_vpn_bgp_vrf}}-route-target-export out
 </pre>
 
 ### Cisco IOS (VIOS 15.6(2)T)
@@ -174,23 +174,23 @@ router bgp &lt;as-number&gt;
 #### CLI
 
 <pre>
-ip vrf &lt;vrf&gt;
- rd &lt;rd&gt;
- route-target export {&lt;rt_exp_1&gt;}
- route-target export {&lt;rt_exp_2&gt;}
- route-target export {&lt;rt_exp_3&gt;}
- route-target import {&lt;rt_imp_1&gt;}
- route-target import {&lt;rt_imp_2&gt;}
- route-target import {&lt;rt_imp_3&gt;}
+ip vrf {{l3_vpn_bgp_vrf}}
+ rd {{l3_vpn_bgp_rd}}
+ route-target export {{l3_vpn_bgp_rt_exp_1}}
+ route-target export {{l3_vpn_bgp_rt_exp_2}}
+ route-target export {{l3_vpn_bgp_rt_exp_3}}
+ route-target import {{l3_vpn_bgp_rt_imp_1}}
+ route-target import {{l3_vpn_bgp_rt_imp_2}}
+ route-target import {{l3_vpn_bgp_rt_imp_3}}
 
-interface &lt;interface-id&gt;
- ip vrf forwarding &lt;vrf&gt;
+interface {{l3_vpn_bgp_interface_id}}
+ ip vrf forwarding {{l3_vpn_bgp_vrf}}
 
-router bgp &lt;as-number&gt;
- address-family ipv4 vrf &lt;vrf&gt;
-  network &lt;network-prefix&gt;
-  neighbor &lt;neighbor-address&gt; remote-as &lt;remote-as&gt;
-  neighbor &lt;neighbor-address&gt; activate
+router bgp {{l3_vpn_bgp_as_number}}
+ address-family ipv4 vrf {{l3_vpn_bgp_vrf}}
+  network {{l3_vpn_bgp_network_prefix}}
+  neighbor {{l3_vpn_bgp_neighbor_address}} remote-as {{l3_vpn_bgp_remote_as}}
+  neighbor {{l3_vpn_bgp_neighbor_address}} activate
 </pre>
 
 ### Huawei NE5000E (V800R009C10SPC310)
@@ -198,20 +198,20 @@ router bgp &lt;as-number&gt;
 #### CLI
 
 <pre>
-ip vpn-instance &lt;vrf&gt;
+ip vpn-instance {{l3_vpn_bgp_vrf}}
  ipv4-family
-  route-distinguisher &lt;rd&gt;
-  vpn-target {&lt;rt_exp_1&gt;} export-extcommunity
-  vpn-target {&lt;rt_imp_1&gt;} import-extcommunity
+  route-distinguisher {{l3_vpn_bgp_rd}}
+  vpn-target {{l3_vpn_bgp_rt_exp_1}} export-extcommunity
+  vpn-target {{l3_vpn_bgp_rt_imp_1}} import-extcommunity
   
-interface &lt;interface-id&gt;
+interface {{l3_vpn_bgp_interface_id}}
  undo shutdown
- ip binding vpn-instance &lt;vrf&gt;
+ ip binding vpn-instance {{l3_vpn_bgp_vrf}}
 
-bgp &lt;as-number&gt;
- ipv4-family vpn-instance &lt;vrf&gt;
-  network &lt;network-prefix&gt;
-  peer &lt;neighbor-address&gt; as-number &lt;remote-as&gt;
-  peer &lt;neighbor-address&gt; route-policy &lt;import-policy&gt; import
-  peer &lt;neighbor-address&gt; route-policy &lt;export-policy&gt; export
+bgp {{l3_vpn_bgp_as_number}}
+ ipv4-family vpn-instance {{l3_vpn_bgp_vrf}}
+  network {{l3_vpn_bgp_network_prefix}}
+  peer {{l3_vpn_bgp_neighbor_address}} as-number {{l3_vpn_bgp_remote_as}}
+  peer {{l3_vpn_bgp_neighbor_address}} route-policy {{l3_vpn_bgp_vrf}}-route-target-import import
+  peer {{l3_vpn_bgp_neighbor_address}} route-policy {{l3_vpn_bgp_vrf}}-route-target-export export
 </pre>
