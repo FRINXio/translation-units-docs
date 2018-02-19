@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-interfaces:interfaces/interface/<intf-id>/subinterfaces/subinterface/<index>
+frinx-openconfig-interfaces:interfaces/interface/<intf-id>/subinterfaces/subinterface/{{eth_url_intf-id}}/subinterfaces
 ```
 
 ## OPENCONFIG YANG
@@ -12,25 +12,29 @@ frinx-openconfig-interfaces:interfaces/interface/<intf-id>/subinterfaces/subinte
 
 ```javascript
 {
-    "subinterface": [
-        {
-            "index": <index>
-            "config": {
-                "index": <index>
-            }
-            "ipv4": {
-                "addresses": {
-                    "address": {
-                        "ip":
-                        "config": {
-                            "ip": <ip>
-                            "prefix-length": <prefix>
-                        }
+    "subinterfaces": {
+        "subinterface": [
+            {
+                "index": 0,
+                "config": {
+                    "index": 0
+                },
+                "frinx-openconfig-if-ip:ipv4": {
+                    "addresses": {
+                        "address": [
+                            {
+                                "ip": "{{eth_ifc_ip}}",
+                                "config": {
+                                    "ip": "{{eth_ifc_ip}}",
+                                    "prefix-length": {{eth_ifc_pref_length}}
+                                }
+                            }
+                        ]
                     }
                 }
             }
-        }
-    ]
+        ]
+    }
 }
 ```
 
@@ -40,17 +44,15 @@ frinx-openconfig-interfaces:interfaces/interface/<intf-id>/subinterfaces/subinte
 
 ---
 <pre>
-interface &lt;intf-id&gt;.&lt;index&gt;
- ip address &lt;ip&gt; &lt;subnet&gt;
+interface {{eth_url_intf-id}}
+ ip address {{eth_ifc_ip}}{{subnet}}
 </pre>
 
-&lt;subnet&gt; is conversion of &lt;prefix&gt;
+{{subnet}} is conversion of {{eth_ifc_pref_length}}
 
 ---
 
 ##### Unit
-
-Unit version range: 3.1.1.rc1-frinx
 
 Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/interface)
 
@@ -60,19 +62,17 @@ Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios
 
 ---
 <pre>
-interface &lt;intf-id&gt;.&lt;index&gt;
- ipv4 address &lt;ip&gt; &lt;subnet&gt;
+interface {{eth_url_intf-id}}.0
+ ipv4 address {{subnet}}
 </pre>
 
-&lt;subnet&gt; is conversion of &lt;prefix&gt;
+{{subnet}} is conversion of {{eth_ifc_pref_length}}
 
 ---
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
-
-Link to github : [xr-unit]()
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/interface)
 
 ### Junos 17.3R1.10
 
@@ -80,15 +80,13 @@ Link to github : [xr-unit]()
 
 ---
 <pre>
-set interfaces &lt;intf-id&gt; unit &lt;index&gt; family inet address &lt;ip&gt/&lt;prefix&gt;
+set interfaces {{eth_url_intf-id}} unit 0 family inet address {{eth_ifc_ip}}/{{eth_ifc_pref_length}}
 </pre>
 ---
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
-
-Link to github : [junos-unit]()
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-interface-unit)
 
 ### Huawei NE5000E (V800R009C10SPC310)
 
@@ -96,16 +94,14 @@ Link to github : [junos-unit]()
 
 ---
 <pre>
-interface &lt;intf-id&gt;.&lt;index&gt;
- ipv4 address &lt;ip&gt; &lt;subnet&gt;
+interface {{eth_url_intf-id}}.0
+ ipv4 address {{eth_ifc_ip}} {{subnet}}
 </pre>
 
-&lt;subnet&gt; is conversion of &lt;prefix&gt;
+{{subnet}} is conversion of {{eth_ifc_pref_length}}
 
 ---
 
 ##### Unit
 
-Unit version range: NOT IMPLEMENTED
-
-Link to github : [-unit]()
+Link to github : [huawei-unit](https://github.com/FRINXio/cli-units/tree/master/huawei/interface)
