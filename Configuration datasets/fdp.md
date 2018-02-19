@@ -16,9 +16,9 @@ fdp:fdp
         "interfaces": {
             "interface": [
                 {
-                    "name": "<intf-id>",
+                    "name": "{{intf-id}}",
                     "config": {
-                        "name": "<intf-id>",
+                        "name": "{{intf-id}}",
                         "enabled": true
                 }
             ]
@@ -33,10 +33,13 @@ fdp:fdp
 #### CLI
 
 <pre>
-interface &lt;intf-id&gt;
+interface {{intf-id}}
  fdp enable | no fdp enable
 </pre>
 
 *fdp enable* is conversion of *"enabled": true*  
 *no fdp enable* is conversion of *"enabled": false*
+
 ##### Unit
+
+NOT IMPLEMENTED
