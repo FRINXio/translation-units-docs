@@ -92,6 +92,4 @@ set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} metric {{o
 
 ##### Unit
 
-NOT IMPLEMENTED
-
-Link to github : [junos-unit]()
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-ospf-unit)
