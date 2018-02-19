@@ -16,10 +16,11 @@ frinx-cdp:cdp
         "interfaces": {
             "interface": [
                 {
-                    "name": "<intf-id>",
+                    "name": "{{cdp_lldp_test_interface}}",
                     "config": {
-                        "name": "<intf-id>",
+                        "name": "{{cdp_lldp_test_interface}}",
                         "enabled": true
+                    }
                 }
             ]
         }
@@ -35,7 +36,7 @@ frinx-cdp:cdp
 #### CLI
 
 <pre>
-interface &lt;intf-id&gt;
+interface {{cdp_lldp_test_interface}}
  cdp enable | no cdp enable
 </pre>
 
@@ -44,12 +45,14 @@ interface &lt;intf-id&gt;
 
 ##### Unit
 
+Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/cdp)
+
 ### Cisco IOS XR (XRv 5.1.3 and XRv 6.1.2 tested)
 
 #### CLI
 
 <pre>
-interface &lt;intf-id&gt;
+interface {{cdp_lldp_test_interface}}
  cdp | no cdp
 </pre>
 
@@ -58,12 +61,14 @@ interface &lt;intf-id&gt;
 
 ##### Unit
 
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr-6-cdp-unit)
+
 ### Brocade (V5.6.0fT163)
 
 #### CLI
 
 <pre>
-interface &lt;intf-id&gt;
+interface {{cdp_lldp_test_interface}}
  cdp enable | no cdp enable
 </pre>
 
@@ -71,3 +76,5 @@ interface &lt;intf-id&gt;
 *no cdp enable* is conversion of *"enabled": false*
 
 ##### Unit
+
+Link to github : [brocade-unit](https://github.com/FRINXio/cli-units/tree/master/brocade/cdp)
