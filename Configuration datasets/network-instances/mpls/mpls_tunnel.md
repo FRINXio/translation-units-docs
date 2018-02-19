@@ -74,6 +74,4 @@ set protocols mpls label-switched-path {{mpls_tunnel_id}} to {{mpls_tunnel_desti
 
 ##### Unit
 
-NOT IMPLEMENTED
-
-Link to github : [junos-unit]()
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-mpls-unit)
