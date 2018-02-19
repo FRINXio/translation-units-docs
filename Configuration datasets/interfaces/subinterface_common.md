@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-interfaces:interfaces/interface/<intf-id>/subinterfaces/subinterface/{{eth_url_intf-id}}/subinterfaces
+frinx-openconfig-interfaces:interfaces/interface/{{eth_url_intf-id}}/subinterfaces
 ```
 
 ## OPENCONFIG YANG
