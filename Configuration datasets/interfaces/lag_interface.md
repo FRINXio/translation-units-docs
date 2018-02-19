@@ -66,7 +66,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_id}}
                 },
                 "frinx-bfd:bfd": {
                     "config": {
-			"local-address": "{{lag_bfd_local_address}}"
+			"local-address": "{{lag_bfd_local_address}}",
                         "destination-address": "{{lag_bfd_destination_address}}",
                         "multiplier": {{lag_bfd_multiplier}},
                         "min-interval": {{lag_bfd_min_interval}}
@@ -134,4 +134,4 @@ delete interface ae{{lag_intf_id}} disable | set interface ae{{lag_intf_id}} dis
 
 NOT IMPLEMENTED
 
-Link to github : [junos-unit]()
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-interface-unit)
