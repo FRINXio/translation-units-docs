@@ -32,7 +32,7 @@
 * [Spanning Tree Protocol](#spanning-tree-protocol)
     * [<a href="stp.md">STP</a>](#stp)
 * [Routing Policy](#routing-policy)
-    * [<a href="routing-policy/routing-policy.md">Routing Policy</a>](#stp)
+    * [<a href="routing-policy/routing-policy.md">Routing Policy</a>](#routing-policy)
 
 
 

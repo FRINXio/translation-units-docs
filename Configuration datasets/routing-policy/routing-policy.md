@@ -144,7 +144,7 @@ frinx-openconfig-routing-policy:/routing-policy/policy-definitions/policy-defini
 ```
 
 ```
-/routing-policy/defined-sets/bgp-defined-sets/as-path-sets/as-path-set/{{pset_name}}
+/routing-policy/defined-sets/bgp-defined-sets/as-path-sets/as-path-set/{{aset_name}}
 ```
 
 ```javascript
