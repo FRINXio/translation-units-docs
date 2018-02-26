@@ -62,10 +62,12 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                                             "export-policy": "{{bgp_rpol_export}}"
                                         }
                                     }
-                                    "ipv4|ipv6-unicast": {
+                                     "ipv4|ipv6-unicast": {
+                                        "config": {
+                                            "send-default-route" "{{bgp_nbr_defaultoriginate}}"
+                                        }
                                         "prefix-limit": {
                                             "config": {
-                                                "send-default-route" "{{bgp_nbr_defaultoriginate}}",
                                                 "max-prefixes": "{{bgp_nbr_maxprefixes}}",
                                                 "shutdown-threshold-pct": "{{bgp_nbr_maxprefixes_pct}}"
                                             }

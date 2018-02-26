@@ -31,6 +31,8 @@
     * [<a href="acl/acl_interfaces.md">ACL interfaces</a>](#acl-interfaces)
 * [Spanning Tree Protocol](#spanning-tree-protocol)
     * [<a href="stp.md">STP</a>](#stp)
+* [Routing Policy](#routing-policy)
+    * [<a href="routing-policy/routing-policy.md">Routing Policy</a>](#routing-policy)
 
 
 
@@ -102,4 +104,6 @@
 
 #### [STP](stp.md)
 
+# Routing Policy
 
+#### [Routing Policy](routing-policy/routing-policy.md)
