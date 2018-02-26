@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-routing-policy:/routing-policy/policy-definitions/policy-definition/{{rpol_name}}
+frinx-openconfig-routing-policy:routing-policy/policy-definitions/policy-definition/{{rpol_name}}
 ```
 
 ## OPENCONFIG YANG
@@ -93,7 +93,7 @@ frinx-openconfig-routing-policy:/routing-policy/policy-definitions/policy-defini
 ```
 
 ```
-/routing-policy/defined-sets/prefix-sets/prefix-set/{{pset_name}}
+frinx-openconfig-routing-policy:routing-policy/defined-sets/prefix-sets/prefix-set/{{pset_name}}
 ```
 
 ```javascript
@@ -122,7 +122,7 @@ frinx-openconfig-routing-policy:/routing-policy/policy-definitions/policy-defini
 ```
 
 ```
-/routing-policy/defined-sets/bgp-defined-sets/community-sets/community-set/{{cset_name}}
+frinx-openconfig-routing-policy:routing-policy/defined-sets/bgp-defined-sets/community-sets/community-set/{{cset_name}}
 ```
 
 ```javascript
@@ -144,7 +144,7 @@ frinx-openconfig-routing-policy:/routing-policy/policy-definitions/policy-defini
 ```
 
 ```
-/routing-policy/defined-sets/bgp-defined-sets/as-path-sets/as-path-set/{{aset_name}}
+frinx-openconfig-routing-policy:routing-policy/defined-sets/bgp-defined-sets/as-path-sets/as-path-set/{{aset_name}}
 ```
 
 ```javascript
@@ -521,7 +521,3 @@ end-policy
     ]
 }
 ```
-
-##### Unit
-
-Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/acl)
