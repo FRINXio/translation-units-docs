@@ -33,7 +33,8 @@
     * [<a href="stp.md">STP</a>](#stp)
 * [Routing Policy](#routing-policy)
     * [<a href="routing-policy/routing-policy.md">Routing Policy</a>](#routing-policy)
-
+* [NetFlow](#netflow)
+    * [<a href="netflow/netflow_interfaces.md">NetFlow interfaces</a>](#netflow-interfaces)
 
 
 
@@ -107,3 +108,7 @@
 # Routing Policy
 
 #### [Routing Policy](routing-policy/routing-policy.md)
+
+# NetFlow
+
+#### [NetFlow interfaces](netflow/netflow_interfaces.md)
