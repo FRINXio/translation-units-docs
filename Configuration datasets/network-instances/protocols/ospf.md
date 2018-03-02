@@ -50,6 +50,11 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
                                         "id": "{{ospf_interface}}",
                                         "config": {
                                             "metric": {{ospf_cost}}
+                                        },
+                                        "frinx-bfd-extension:enable-bfd": {
+                                            "config": {
+                                                "enabled": {{bfd_interface_enabled}}
+                                            }
                                         }
                                     }
                                 ]
@@ -75,7 +80,10 @@ router ospf {{ospf}}
  area {{ospf_area_id}
   interface {{ospf_interface}}
    cost {{ospf_cost}}
+   bfd fast-detect <disable>
 </pre>
+*bfd fast-detect* is a conversion of {{bfd_interface_enabled}} set *true*  
+*bfd fast-detect disable* is a conversion of {{bfd_interface_enabled}} set *false*
 
 ##### Unit
 
