@@ -140,7 +140,7 @@ interface {{eth_intf_id}}
 *no dampening* is a conversion of {{eth_damping_enabled}} set *false*  
 *lacp persiod short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:FAST*  
 *no lacp persiod short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:SLOW*  
-if {{lacp_mode}} is not specified then command *bundle id {{eth_lag_intf-id}} mode on* is used
+if {{lacp_mode}} is not specified then command *bundle id {{eth_lag_intf-id}} mode on* is used  
 *ipv6 nd suppress-ra* is a conversion of {{ip6_nd_suppress_ra}} set *true*
 
 ##### Unit
