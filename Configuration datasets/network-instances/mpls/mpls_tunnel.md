@@ -55,7 +55,7 @@ interface tunnel-te {{mpls_tunnel_id}}
 
 *autoroute announce* is a conversion of {{mpls_shorcut_eligible}} set *true*  
 *no autoroute announce* is a conversion of {{mpls_shortcut_eligible}} set *false*  
-*load-share* is not supported on virtual platform CISCO IOS-XR
+*load-share* is not supported on virtual platform CISCO IOS-XR  
 *mpls_tunnel_destination* is optional parameter  
 
 ##### Unit
