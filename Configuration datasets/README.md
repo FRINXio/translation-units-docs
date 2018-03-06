@@ -35,7 +35,8 @@
     * [<a href="routing-policy/routing-policy.md">Routing Policy</a>](#routing-policy)
 * [NetFlow](#netflow)
     * [<a href="netflow/netflow_interfaces.md">NetFlow interfaces</a>](#netflow-interfaces)
-
+* [Quality of Service](#quality-of-service)
+    * [<a href="qos.md">Quality of Service</a>](#quality-of-service)
 
 
 
@@ -112,3 +113,7 @@
 # NetFlow
 
 #### [NetFlow interfaces](netflow/netflow_interfaces.md)
+
+# Quality of Service
+
+#### [Quality of Service](qos.md)
