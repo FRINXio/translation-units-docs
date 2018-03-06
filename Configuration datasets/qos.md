@@ -296,7 +296,7 @@ Classifier / Remarking
 
 <pre>
 class-map <match-any/match-all> {{class_name}}
-    match qos-group <0-512> // internal in device and openconfig
+    match qos-group {{term_c_qos_grp}}
     match mpls experimenta topmost {{term_c_tc}}
     match precedence {{term_c_dscp}} // transform prec from dscp or use match dscp instead
     match access-group ipv4|6 {{term_c_acl_ref}}
@@ -304,7 +304,7 @@ end-class-map
 
 policy-map {{policy_name}}
  class {{class_name}}
-  set qos-group <0-31> // internal in device and openconfig
+  set qos-group {{term_s_qos_grp}}
   set mpls experimental topmost {{term_s_tc}}
   set precedence {{term_s_dscp}} // transform prec from dscp or use match dscp instead
 </pre>
