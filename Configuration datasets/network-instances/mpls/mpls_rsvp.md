@@ -51,6 +51,8 @@ rsvp
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/mpls)
 
 ### Junos 17.3R1.10
+{{rsvp_bandwidth}} 
+- transformation: k,m,g from JUNOS router translates to thousand, million, billion
 
 #### CLI
 
