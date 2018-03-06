@@ -51,6 +51,13 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
                                         "config": {
                                             "metric": {{ospf_cost}}
                                         },
+                                        "mpls": {
+                                        	"igp-ldp-sync": {
+                                        		"config": {
+                                        		    "enabled": {{igp_ldp_sync_enabled}}
+                                        		}
+                                        	}
+                                        },
                                         "frinx-bfd-extension:enable-bfd": {
                                             "config": {
                                                 "enabled": {{bfd_interface_enabled}}
@@ -81,9 +88,13 @@ router ospf {{ospf}}
   interface {{ospf_interface}}
    cost {{ospf_cost}}
    bfd fast-detect <disable>
+   mpls ldp sync
+   mpls ldp sync disabled
 </pre>
 *bfd fast-detect* is a conversion of {{bfd_interface_enabled}} set *true*  
 *bfd fast-detect disable* is a conversion of {{bfd_interface_enabled}} set *false*
+*mpls ldp sync* is a conversion of {{igp_ldp_sync_enabled}} set *true*
+*mpls ldp sync disabled* is a conversion of {{igp_ldp_sync_enabled}} set *false*
 
 ##### Unit
 
