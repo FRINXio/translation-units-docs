@@ -35,7 +35,8 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/mpl
 ### Cisco IOS XR 5.3.4
 {{rsvp_bandwidth}} 
 - setting to _default_ results in 'bandwidth' meaning setting default device bandwidth
-- setting to numeric value results in 'bandwith &lt;number&gt;
+- setting to numeric value results in 'bandwith &lt;number&gt;  
+- transformation: input bandwith in bps, in XR router as Kbps
 
 #### CLI
 
