@@ -20,6 +20,18 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                 "name": "{{bgp_process_name}}",
                 "identifier": "frinx-openconfig-policy-types:BGP"
             },
+                        
+            "local-aggregates": {
+                "aggregate": [
+                    {
+                        "config": {
+                            "prefix": "{{network_prefix}}"
+                            "apply-policy": "{{network_prefix_rpl}}" // augument with ref to route policy
+                        }
+                    }
+                ]
+            },
+            
             "bgp": {
                 "global": {
                     "config": {
@@ -95,6 +107,10 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
 ---
 <pre>
 router bgp {{bgp_as}} instance {{bgp_process_name}}
+ 
+ address-family ipv4/ipv6 unicast
+  network {{network_prefix}} route-policy {{network_prefix_rpl}}
+
  neighbor {{neighbor_ip}}
   remote-as {{bgp_peer_as}}
   use neighbor-group {{bgp_group}}
