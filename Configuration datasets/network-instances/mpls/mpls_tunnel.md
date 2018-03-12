@@ -57,6 +57,7 @@ interface tunnel-te {{mpls_tunnel_id}}
 *no autoroute announce* is a conversion of {{mpls_shortcut_eligible}} set *false*  
 *load-share* is not supported on virtual platform CISCO IOS-XR  
 *mpls_tunnel_destination* is optional parameter  
+*metric absolute* command is only valid if autoroute announce is set
 
 ##### Unit
 
