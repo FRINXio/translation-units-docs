@@ -24,10 +24,10 @@ frinx-openconfig-qos:/qos/classifiers/classifier/{{class_name}}
                             "id": "{{term_name}}"
                         },
                         "conditions": {
+                            "qos-grp": {{term_c_qos_grp}}, // augument
                             "ipv4|6": {
                                 "config": {
                                     "dscp": "{{term_c_dscp}}",
-                                    "qos-grp": {{term_c_qos_grp}}, // augument
                                     "acl-ref": "{{term_c_acl_ref}}" // augument (refrence to acl)
                                 }
                             },
