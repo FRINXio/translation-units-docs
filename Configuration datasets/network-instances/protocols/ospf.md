@@ -29,7 +29,6 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
                                     "trigger": {{ospf_trigger}},
                                     "config": {
                                         "trigger": {{ospf_trigger}}, // MAX_METRIC_ON_SYSTEM_BOOT or MAX_METRIC_ON_SWITCHOVER
-                                        "set": true,
                                         "timeout": {{ospf_timeout}},
                                         "include": [ 
                                             "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_STUB", 
