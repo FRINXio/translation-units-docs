@@ -23,13 +23,24 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
             "ospfv2": {
                 "global": {
                     "timers": {
+                        "max-metric": {
+                            "config": {
+                                "set": true,
+                                "timeout": {{ospf_timeout}},
+                                "include": [ 
+                                    "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_STUB", 
+                                    "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_TYPE2_EXTERNAL",
+                                    "frinx-cisco-ospf-extension:MAX_METRIC_SUMMARY_LSA"
+                                ]
+                            }
+                        },
                         "max-metric-timers" {
                             "max-metric-timer": [
                                 {
                                     "trigger": {{ospf_trigger}},
                                     "config": {
                                         "trigger": {{ospf_trigger}}, // MAX_METRIC_ON_SYSTEM_BOOT or MAX_METRIC_ON_SWITCHOVER
-                                        "timeout": {{ospf_timeout}},
+                                        "timeout": {{ospf_trigger_timeout}},
                                         "include": [ 
                                             "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_STUB", 
                                             "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_TYPE2_EXTERNAL",
@@ -87,7 +98,8 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
 
 <pre>
 router ospf {{ospf}}
- max-metric router-lsa {{ospf_trigger}} {{ospf_timeout}} include-stub summary-lsa external-lsa
+ max-metric router-lsa on-startup {{ospf_timeout}} include-stub summary-lsa external-lsa
+ max-metric router-lsa {{ospf_trigger}} {{ospf_trigger_timeout}} include-stub summary-lsa external-lsa
  area {{ospf_area_id}
   interface {{ospf_interface}}
    cost {{ospf_cost}}
