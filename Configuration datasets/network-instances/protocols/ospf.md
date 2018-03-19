@@ -23,17 +23,22 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
             "ospfv2": {
                 "global": {
                     "timers": {
-                        "max-metric": {
-                            "config": {
-                                "set": true,
-                                "timeout": {{ospf_timeout}},
-                                "include": [ 
-                                    "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_STUB", 
-                                    "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_TYPE2_EXTERNAL",
-                                    "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE",
-                                    "frinx-cisco-ospf-extension:MAX_METRIC_SUMMARY_LSA"
-                                ]
-                            }
+                        "max-metric-timers" {
+                            "max-metric-timer": [
+                                {
+                                    "trigger": {{ospf_trigger}},
+                                    "config": {
+                                        "trigger": {{ospf_trigger}}, // MAX_METRIC_ON_SYSTEM_BOOT or MAX_METRIC_ON_SWITCHOVER
+                                        "set": true,
+                                        "timeout": {{ospf_timeout}},
+                                        "include": [ 
+                                            "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_STUB", 
+                                            "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_TYPE2_EXTERNAL",
+                                            "frinx-cisco-ospf-extension:MAX_METRIC_SUMMARY_LSA"
+                                        ]
+                                    }
+                                }
+                            ]
                         }
                     }
                 },
@@ -52,11 +57,11 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
                                             "metric": {{ospf_cost}}
                                         },
                                         "mpls": {
-                                        	"igp-ldp-sync": {
-                                        		"config": {
-                                        		    "enabled": {{igp_ldp_sync_enabled}}
-                                        		}
-                                        	}
+                                            "igp-ldp-sync": {
+                                                "config": {
+                                                    "enabled": {{igp_ldp_sync_enabled}}
+                                                }
+                                            }
                                         },
                                         "frinx-bfd-extension:enable-bfd": {
                                             "config": {
@@ -83,7 +88,7 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
 
 <pre>
 router ospf {{ospf}}
- max-metric router-lsa on-startup {{ospf_timeout}} include-stub summary-lsa external-lsa
+ max-metric router-lsa {{ospf_trigger}} {{ospf_timeout}} include-stub summary-lsa external-lsa
  area {{ospf_area_id}
   interface {{ospf_interface}}
    cost {{ospf_cost}}
@@ -95,6 +100,13 @@ router ospf {{ospf}}
 *bfd fast-detect disable* is a conversion of {{bfd_interface_enabled}} set *false*  
 *mpls ldp sync* is a conversion of {{igp_ldp_sync_enabled}} set *true*  
 *mpls ldp sync disabled* is a conversion of {{igp_ldp_sync_enabled}} set *false*
+
+*{{ospf_trigger}}* value MAX_METRIC_ON_SYSTEM_BOOT is to be converted to *on-startup*
+*{{ospf_trigger}}* value MAX_METRIC_ON_SWITCHOVER is to be converted to *on-switchover*
+
+*include-stub* is a conversion of *MAX_METRIC_INCLUDE_STUB* in the include list of the max-metric-timer
+*external-lsa* is a conversion of *MAX_METRIC_INCLUDE_TYPE2_EXTERNAL* in the include list of the max-metric-timer
+*summary-lsa* is a conversion of *MAX_METRIC_SUMMARY_LSA* in the include list of the max-metric-timer
 
 ##### Unit
 
