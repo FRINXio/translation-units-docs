@@ -104,7 +104,7 @@ router ospf {{ospf}}
 *{{ospf_trigger}}* value MAX_METRIC_ON_SYSTEM_BOOT is to be converted to *on-startup*  
 *{{ospf_trigger}}* value MAX_METRIC_ON_SWITCHOVER is to be converted to *on-switchover*  
 
-*include-stub* is a conversion of *MAX_METRIC_INCLUDE_STUB* in the include list of the max-metric-timer	 
+*include-stub* is a conversion of *MAX_METRIC_INCLUDE_STUB* in the include list of the max-metric-timer  
 *external-lsa* is a conversion of *MAX_METRIC_INCLUDE_TYPE2_EXTERNAL* in the include list of the max-metric-timer  
 *summary-lsa* is a conversion of *MAX_METRIC_SUMMARY_LSA* in the include list of the max-metric-timer  
 
