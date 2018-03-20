@@ -39,7 +39,7 @@ frinx-openconfig-qos:/qos/classifiers/classifier/{{class_name}}
                         },
                         "actions": {
                             "config": {
-                                "target-group": {{class_name}}
+                                "target-group": {{policy_name}}
                             },
                             "remark": {
                                 "config": {
