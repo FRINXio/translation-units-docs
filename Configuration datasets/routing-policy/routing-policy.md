@@ -212,7 +212,7 @@ end-policy
 
 <pre>
 route-policy route_policy_1
-    set next-hop <ipv6 address>
+    set next-hop {{rpol_s_a_bgp_set_nexthop}}
     apply route_subpolicy_1
 end-policy
 </pre>
