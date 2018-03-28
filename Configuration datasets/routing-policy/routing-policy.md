@@ -291,7 +291,7 @@ end-policy
                                 "as-path-length": {
                                     "config": {
                                         "operator": "ATTRIBUTE_GE",
-                                        "value": "1--"
+                                        "value": "100"
                                     }
                                 }
                             }
