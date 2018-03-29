@@ -25,8 +25,8 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                 "aggregate": [
                     {
                         "config": {
-                            "prefix": "{{network_prefix}}"
-                            "apply-policy": "{{network_prefix_rpl}}" // augument with ref to route policy
+                            "prefix": "{{network_prefix}}",
+                            "frinx-cisco-bgp-extension:apply-policy": "{{network_prefix_rpl}}"
                         }
                     }
                 ]
@@ -66,6 +66,9 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                             "afi-safis": {
                                 "afi-safi": [
                                     "config": {
+                                        "frinx-cisco-bgp-extension:soft-reconfiguration": {
+                                            "always": true|false
+                                        },
                                         "afi-safi-name": ipv4 | ipv6
                                     }
                                     "apply-policy": {
@@ -127,7 +130,7 @@ router bgp {{bgp_as}} instance {{bgp_process_name}}
    remove-private-AS
    next-hop-self
    default-originte
-   soft-reconfiguration inbound always
+   soft-reconfiguration inbound <always>
 </pre>
 ---
 
