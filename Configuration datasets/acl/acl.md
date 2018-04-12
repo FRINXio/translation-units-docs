@@ -30,26 +30,26 @@ frinx-openconfig-acl:/acl/acl-sets/acl-set/{{acl_name}}
                             	"protocol": {{acl_protocol}},
                             	"source-address": "{{acl_src_addr}}",
                             	"destination-address": "{{acl_dst_addr}}",
-                            	"hop-limit": "{{acl_ttl}}"
-                        	}
+                            	"frinx-acl-extension:hop-range": "{{min_acl_ttl}}..{{max_acl_ttl}}"
+                            }
                         },
                         "icmp": {
                             "config": {
-                            	"msg-type": "{{acl_icmp_msg_type}}"
-                        	}
+                            	"msg-type": "{{acl_icmp_msg_type}} | ANY"
+                            }
                         },
                         "transport": {
                             "config": {
                             	"source-port": "{{acl_src_port}}",
                             	"destination-port": "{{acl_dst_port}}"
-                        	}
+                            }
                         },
 
                         "actions": {
                             "config": {
                             	"forwarding-action": "{{acl_fwd_action}}",
                             	"log-action": "{{}}"
-                        	}
+                            }
                         }
                     }
                 ]
@@ -67,7 +67,7 @@ frinx-openconfig-acl:/acl/acl-sets/acl-set/{{acl_name}}
 
 <pre>
 ipv4|ipv6 access-list {{acl_name}} 
-	{{acl_seq_id}} {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {range {{acl_src_port}} }  {{acl_dst_addr}} {range {{acl_dst_port}} } {{acl_icmp_msg_type}} ttl range  {{acl_ttl}}
+	{{acl_seq_id}} {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {range {{acl_src_port}} }  {{acl_dst_addr}} {range {{acl_dst_port}} } {{acl_icmp_msg_type}} ttl range {{min_acl_ttl}} {{max_acl_ttl}}
 </pre>
 
 *ipv4|ipv6* is a conversion of {{acl_type}}
