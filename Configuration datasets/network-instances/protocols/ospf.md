@@ -23,18 +23,17 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
             "ospfv2": {
                 "global": {
                     "timers": {
-                        "max-metric": {
+                        "max-metric": {   // non cisco devices
                             "config": {
                                 "set": true,
                                 "timeout": {{ospf_timeout}},
                                 "include": [ 
                                     "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_STUB", 
                                     "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_TYPE2_EXTERNAL",
-                                    "frinx-cisco-ospf-extension:MAX_METRIC_SUMMARY_LSA"
                                 ]
                             }
                         },
-                        "max-metric-timers" {
+                        ""frinx-cisco-ospf-extension":max-metric-timers" {
                             "max-metric-timer": [
                                 {
                                     "trigger": {{ospf_trigger}},
@@ -44,7 +43,7 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
                                         "include": [ 
                                             "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_STUB", 
                                             "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_TYPE2_EXTERNAL",
-                                            "frinx-cisco-ospf-extension:MAX_METRIC_SUMMARY_LSA"
+                                            "frinx-cisco-ospf-extension":MAX_METRIC_SUMMARY_LSA"
                                         ]
                                     }
                                 }
@@ -92,6 +91,10 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
 
 ## OS Configuration Commands
 
+*include-stub* is a conversion of *MAX_METRIC_INCLUDE_STUB* in the include list of the max-metric-timer  
+*external-lsa* is a conversion of *MAX_METRIC_INCLUDE_TYPE2_EXTERNAL* in the include list of the max-metric-timer  
+*summary-lsa* is a conversion of *MAX_METRIC_SUMMARY_LSA* in the include list of the max-metric-timer  
+
 ### Cisco IOS XR 5.3.4
 
 #### CLI
@@ -114,10 +117,6 @@ router ospf {{ospf}}
 
 *{{ospf_trigger}}* value MAX_METRIC_ON_SYSTEM_BOOT is to be converted to *on-startup*  
 *{{ospf_trigger}}* value MAX_METRIC_ON_SWITCHOVER is to be converted to *on-switchover*  
-
-*include-stub* is a conversion of *MAX_METRIC_INCLUDE_STUB* in the include list of the max-metric-timer  
-*external-lsa* is a conversion of *MAX_METRIC_INCLUDE_TYPE2_EXTERNAL* in the include list of the max-metric-timer  
-*summary-lsa* is a conversion of *MAX_METRIC_SUMMARY_LSA* in the include list of the max-metric-timer  
 
 ##### Unit
 
