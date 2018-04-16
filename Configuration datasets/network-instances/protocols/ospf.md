@@ -28,8 +28,8 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
                                 "set": true,
                                 "timeout": {{ospf_timeout}},
                                 "include": [ 
-                                    "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_STUB", 
-                                    "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_TYPE2_EXTERNAL",
+                                    "frinx-openconfig-ospf-types":"MAX_METRIC_INCLUDE_STUB", 
+                                    "frinx-openconfig-ospf-types":"MAX_METRIC_INCLUDE_TYPE2_EXTERNAL"
                                 ]
                             }
                         },
@@ -41,9 +41,9 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
                                         "trigger": {{ospf_trigger}}, // MAX_METRIC_ON_SYSTEM_BOOT or MAX_METRIC_ON_SWITCHOVER
                                         "timeout": {{ospf_trigger_timeout}},
                                         "include": [ 
-                                            "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_STUB", 
-                                            "frinx-openconfig-ospf-types:MAX_METRIC_INCLUDE_TYPE2_EXTERNAL",
-                                            "frinx-cisco-ospf-extension":MAX_METRIC_SUMMARY_LSA"
+                                            "frinx-openconfig-ospf-types":"MAX_METRIC_INCLUDE_STUB", 
+                                            "frinx-openconfig-ospf-types":"MAX_METRIC_INCLUDE_TYPE2_EXTERNAL",
+                                            "frinx-cisco-ospf-extension":"MAX_METRIC_SUMMARY_LSA"
                                         ]
                                     }
                                 }
