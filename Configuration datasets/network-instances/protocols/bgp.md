@@ -134,10 +134,10 @@ router bgp {{bgp_as}} instance {{bgp_process_name}}
 </pre>
 ---
 
-*remove-private-AS* is a conversion of {{bgp_nbr_removepas}}
-*default-originte* is a conversion of {{bgp_nbr_defaultoriginate}}
-*next-hop-self* is a conversion of {{bgp_rpol_export}} if value is "nexthopself"
-*no shutdown* is a conversion of {{neighbor_enabled}} set *true*    
+*remove-private-AS* is a conversion of {{bgp_nbr_removepas}}  
+*default-originte* is a conversion of {{bgp_nbr_defaultoriginate}}  
+*next-hop-self* is a conversion of {{bgp_rpol_export}} if value is "nexthopself"  
+*no shutdown* is a conversion of {{neighbor_enabled}} set *true*  
 *shutdown* is a conversion of {{neighbor_enabled}} set *false*  
 
 ##### Unit
@@ -155,7 +155,7 @@ activate protocols bgp group {{bgp_group}} neighbor {{neighbor_ip}} peer-as {{bg
 </pre>
 ---
 
-*activate* is a conversion of {{neighbor_enabled}} set *true*    
+*activate* is a conversion of {{neighbor_enabled}} set *true*  
 *deactivate* is a conversion of {{neighbor_enabled}} set *false*  
 
 ##### Unit
