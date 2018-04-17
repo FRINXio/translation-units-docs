@@ -38,13 +38,15 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                         "as": {{bgp_as}}
                     }
                 },
-                "neighbors": {
-                    "neighbor": [
+                "neighbors|peer-groups": {
+                    "neighbor|peer-group": [
                         {
-                            "neighbor-address": "{{neighbor_ip}}",
+                            "neighbor-address": "{{neighbor_ip}}", //only for neighbor
+                            "peer-group-name": "{{peer-group-name}}", //only for peer-group
                             "config": {
-                                "neighbor-address": "{{neighbor_ip}}",
-                                "peer-group": "{{bgp_group}}",
+                                "neighbor-address": "{{neighbor_ip}}", //only for neighbor
+                                "peer-group-name": "{{peer-group-name}}", //only for peer-group
+                                "peer-group": "{{bgp_group}}", //only for neighbor
                                 "peer-as": {{bgp_peer_as}},
                                 "auth-password": "{{bgp_nbr_password}}",
                                 "description": "{{bgp_nbr_description}}",
@@ -54,7 +56,13 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                             }
                             "transport": {
                                 "config": {
-                                    "local-address": "{{bgp_nbr_updatesource}}"
+                                    "local-address": "{{bgp_nbr_updatesource}}",
+                                    "passive-mode": "{{bgp_nbr_passivemode}}"
+                                }
+                            }
+                            "route-reflector": {
+                                "config": {
+                                    "route-reflector-client": "{{bgp_nbr_rrclient}}"
                                 }
                             }
                             "ebgp-multihop": {
@@ -69,7 +77,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                                         "frinx-cisco-bgp-extension:soft-reconfiguration": {
                                             "always": true|false
                                         },
-                                        "afi-safi-name": ipv4 | ipv6
+                                        "afi-safi-name": {{bgp_nbr_afi_safi_name}} //ipv4 | ipv6 | vpnv4
                                     }
                                     "apply-policy": {
                                         "config": {
@@ -77,7 +85,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                                             "export-policy": "{{bgp_rpol_export}}"
                                         }
                                     }
-                                     "ipv4|ipv6-unicast": {
+                                     "ipv4|ipv6|vpnv4-unicast": {
                                         "config": {
                                             "send-default-route" "{{bgp_nbr_defaultoriginate}}"
                                         }
@@ -130,7 +138,7 @@ router bgp {{bgp_as}} instance {{bgp_process_name}}
    remove-private-AS
    next-hop-self
    default-originte
-   soft-reconfiguration inbound <always>
+   soft-reconfiguration inbound always
 </pre>
 ---
 
@@ -143,6 +151,29 @@ router bgp {{bgp_as}} instance {{bgp_process_name}}
 ##### Unit
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/bgp)
+
+### Cisco IOS XE 03.13.01.S
+
+---
+<pre>
+router bgp {{bgp_as}}
+ neighbor {{peer-group-name}} peer-group
+ neighbor {{neighbor_ip}} peer-group {{bgp_group}}
+ neighbor {{neighbor_ip}}|{{peer-group-name}} remote-as {{bgp_peer_as}}
+ neighbor {{neighbor_ip}}|{{peer-group-name}} transport connection-mode passive
+ neighbor {{neighbor_ip}}|{{peer-group-name}} password {{bgp_nbr_password}}
+ neighbor {{neighbor_ip}}|{{peer-group-name}} update-source {{bgp_nbr_updatesource}}
+ neighbor {{neighbor_ip}}|{{peer-group-name}} description {{bgp_nbr_description}}
+ address-family {{bgp_nbr_afi_safi_name}}
+  neighbor {{neighbor_ip}}|{{peer-group-name}} send-community {{bgp_nbr_sendcommunity}}
+  neighbor {{neighbor_ip}}|{{peer-group-name}} route-reflector-client
+  neighbor {{neighbor_ip}}|{{peer-group-name}} route-map {{bgp_rpol_import}}|{{bgp_rpol_export}} in|out
+  neighbor {{neighbor_ip}} activate
+</pre>
+---
+
+*transport connection-mode passive* is a conversion of {{bgp_nbr_passivemode}} set *true* 
+*route-reflector-client* is a conversion of {{bgp_nbr_rrclient}} set *true* 
 
 ### Junos 17.3R1.10
 
