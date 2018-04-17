@@ -172,8 +172,8 @@ router bgp {{bgp_as}}
 </pre>
 ---
 
-*transport connection-mode passive* is a conversion of {{bgp_nbr_passivemode}} set *true* 
-*route-reflector-client* is a conversion of {{bgp_nbr_rrclient}} set *true* 
+*transport connection-mode passive* is a conversion of {{bgp_nbr_passivemode}} set *true*  
+*route-reflector-client* is a conversion of {{bgp_nbr_rrclient}} set *true*  
 
 ### Junos 17.3R1.10
 
