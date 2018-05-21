@@ -49,7 +49,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/mpl
 interface tunnel-te {{mpls_tunnel_id}}
  load-share {{mpls_load_share}}
  autoroute announce | no autoroute announce
- metric absolute {{mpls_metric}}
+  metric absolute {{mpls_metric}}
  destination {{mpls_tunnel_destination}}
 </pre>
 
