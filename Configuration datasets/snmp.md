@@ -20,7 +20,7 @@ frinx-snmp:snmp/interfaces/interface/{{snmp_intf_if}}
                 "enabled-trap-for-event": [
                     {
                         "event-name": "frinx-event-types:LINK_UP_DOWN"
-                        "enabled": true/false                        *true for enable snmp       *false for disable snmp
+                        "enabled": true/false             *true for enable snmp       *false for disable snmp
                     }
                 ]
             }
