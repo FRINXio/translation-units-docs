@@ -32,8 +32,8 @@ frinx-openconfig-acl:/acl/acl-sets/acl-set/{{acl_name}}
                             	"destination-address": "{{acl_dst_addr}}",
                             	"frinx-acl-extension:hop-range": "{{min_acl_ttl}}..{{max_acl_ttl}}",
 				"frinx-acl-extension:source-address-wildcarded": {
-                                    "wildcard-mask": "0.255.255.255",
-                                    "address": "0.0.0.0"
+                                    "wildcard-mask": "{{wildcard-mask}}",
+                                    "address": "{{wildcard_addr}}"
                                 },
                             }
                         },
