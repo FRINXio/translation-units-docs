@@ -51,7 +51,6 @@ snmp-server interface {{snmp_intf_if}}
 
 
 *enabled:true* is a conversion of snmp set *enabled*
-
 *enabled:false* is a conversion of snmp set *disabled*
 
 ##### Unit
