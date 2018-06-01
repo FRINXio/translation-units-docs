@@ -49,6 +49,9 @@ snmp-server interface {{snmp_intf_if}}
  no notification linkupdown disable
 </pre>
 
+enabled:true is a conversion of snmp set true
+enabled:false is a conversion of snmp set false
+
 ##### Unit
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/snmp)
