@@ -49,7 +49,9 @@ snmp-server interface {{snmp_intf_if}}
  no notification linkupdown disable
 </pre>
 
+
 *enabled:true* is a conversion of snmp set *enabled*
+
 *enabled:false* is a conversion of snmp set *disabled*
 
 ##### Unit
