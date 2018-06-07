@@ -50,8 +50,8 @@ frinx-openconfig-acl:/acl/acl-sets/acl-set/{{acl_name}}
                             "config": {
                             	"source-port": "{{acl_src_port}}",
                             	"destination-port": "{{acl_dst_port}}"
-				"source-port-named": "{{source-port-named}}"
-				"destination-port-named": "{{destination-port-named}}"
+				"frinx-acl-extension:source-port-named": "{{source-port-named}}"
+				"frinx-acl-extension:destination-port-named": "{{destination-port-named}}"
                             }
                         },
 
