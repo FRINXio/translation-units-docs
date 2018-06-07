@@ -35,6 +35,10 @@ frinx-openconfig-acl:/acl/acl-sets/acl-set/{{acl_name}}
                                     "wildcard-mask": "{{wildcard-mask}}",
                                     "address": "{{wildcard_addr}}"
                                 },
+				"frinx-acl-extension:destination-address-wildcarded": {
+                                    "wildcard-mask": "{{wildcard-mask}}",
+                                    "address": "{{wildcard_addr}}"
+                                },
                             }
                         },
                         "icmp": {
@@ -46,6 +50,8 @@ frinx-openconfig-acl:/acl/acl-sets/acl-set/{{acl_name}}
                             "config": {
                             	"source-port": "{{acl_src_port}}",
                             	"destination-port": "{{acl_dst_port}}"
+				"source-port-named": "{{source-port-named}}"
+				"destination-port-named": "{{destination-port-named}}"
                             }
                         },
 
