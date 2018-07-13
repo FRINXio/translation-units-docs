@@ -107,7 +107,7 @@ router ospf {{ospf}}
  area {{ospf_area_id}
   interface {{ospf_interface}}
    cost {{ospf_cost}}
-   passive {{ospf_passive}}
+   passive {{ospf_passive}} | no passive
    bfd fast-detect <disable>
    mpls ldp sync
    mpls ldp sync disabled
