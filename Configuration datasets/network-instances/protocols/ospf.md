@@ -63,7 +63,8 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
                                     {
                                         "id": "{{ospf_interface}}",
                                         "config": {
-                                            "metric": {{ospf_cost}}
+                                            "metric": {{ospf_cost}},
+                                            "passive": {{ospf_passive}}
                                         },
                                         "mpls": {
                                             "igp-ldp-sync": {
@@ -106,6 +107,7 @@ router ospf {{ospf}}
  area {{ospf_area_id}
   interface {{ospf_interface}}
    cost {{ospf_cost}}
+   passive {{ospf_passive}}
    bfd fast-detect <disable>
    mpls ldp sync
    mpls ldp sync disabled
@@ -114,6 +116,8 @@ router ospf {{ospf}}
 *bfd fast-detect disable* is a conversion of {{bfd_interface_enabled}} set *false*  
 *mpls ldp sync* is a conversion of {{igp_ldp_sync_enabled}} set *true*  
 *mpls ldp sync disabled* is a conversion of {{igp_ldp_sync_enabled}} set *false*  
+*passive* is a conversion of {{ospf_passive}} set *true*  
+*passive disabled* is a conversion of {{ospf_passive}} set *false*  
 
 *{{ospf_trigger}}* value MAX_METRIC_ON_SYSTEM_BOOT is to be converted to *on-startup*  
 *{{ospf_trigger}}* value MAX_METRIC_ON_SWITCHOVER is to be converted to *on-switchover*  
