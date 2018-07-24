@@ -18,12 +18,12 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
             "config": {
                 "type": "iana-if-type:ethernetCsmacd",
                 "name": "{{eth_intf_id}}",
-		"mtu": {{eth_mtu}},
-		"description": "{{eth_description}}",
+                "mtu": {{eth_mtu}},
+                "description": "{{eth_description}}",
                 "enabled": {{eth_enabled}},
-		"tpid": "{{eth_tpid}}"
+                "tpid": "{{eth_tpid}}"
             },
-      	    "hold-time": {
+            "hold-time": {
                 "config": {
                     "up": {{eth_hold_time_up}},
                     "down": {{eth_hold_time_down}}
@@ -36,7 +36,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
                         "config": {
                             "index": 0
                         },
-		        "frinx-openconfig-if-ip:ipv4": {
+                        "frinx-openconfig-if-ip:ipv4": {
                             "addresses": {
                                 "address": [
                                     {
@@ -49,7 +49,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
                                 ]
                             }
                         },
-                "frinx-openconfig-if-ip:ipv6": {
+                        "frinx-openconfig-if-ip:ipv6": {
                             "addresses": {
                                 "address": [
                                     {
@@ -62,9 +62,9 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
                                 ]
                             },
                             "router-advertisement": {
-			        "config": {
-				    "suppress": "{{ip6_nd_suppress_ra}}"
-			        }
+                                "config": {
+                                    "suppress": "{{ip6_nd_suppress_ra}}"
+                                }
                             }
                         }
                     }
@@ -82,9 +82,18 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
             "frinx-openconfig-if-ethernet:ethernet": {
                 "config": {
                     "frinx-openconfig-if-aggregate:aggregate-id": "Bundle-Ether{{eth_lag_intf-id}}",
-		    "frinx-lacp-lag-member:lacp-mode": "{{lacp_mode}}",
-		    "frinx-lacp-lag-member:interval": "{{lacp_interval}}"
-		}
+                    "frinx-lacp-lag-member:lacp-mode": "{{lacp_mode}}",
+                    "frinx-lacp-lag-member:interval": "{{lacp_interval}}"
+                },
+                "frinx-openconfig-vlan:switched-vlan" : {
+                    "config" : {
+                        "interface-mode": "{{vlan_mode}}",
+                        "trunk-vlans": [
+                             {{vlan_intf_id}}
+                         ],
+                         "access-vlan": {{vlan_intf_id}}
+                    }
+                }
             },
             "frinx-cisco-if-extension:statistics": {
                 "config": {
@@ -128,7 +137,7 @@ interface {{eth_intf_id}}
  ipv6 address {{eth_ip6}} {{eth_prefix6}}
  ipv6 nd suppress-ra
  dampening {{eth_half-life}} {{reuse}} {{suppress}} {{max-suppress}} | no dampening
- carrier-delay up {{eth_hold_time_up}} down {{eth_hold_time_down}} 
+ carrier-delay up {{eth_hold_time_up}} down {{eth_hold_time_down}}
  load-interval {{eth_load-interval}}
  bundle id {{eth_lag_intf-id}} mode {{lacp_mode}}
  lacp period short | no lacp period short
@@ -170,7 +179,7 @@ delete interface {{eth_intf_id}} disable | set interface {{eth_intf_id}} disable
 </pre>
 
 *delete interface {{lag_intf_id}} disable* is a conversion of {{lag_enabled}} set *true*  
-*set interface {{lag_intf_id}} disable* is conversion of {{lag_enabled}} set *false* 
+*set interface {{lag_intf_id}} disable* is conversion of {{lag_enabled}} set *false*
 
 ##### Unit
 
@@ -205,3 +214,24 @@ interface {{eth_intf_id}}
 </pre>
 
 {{subnet}} is conversion of {{eth_prefix}}
+
+
+### Dasan NOS SFU.RR.5.6p5
+
+#### CLI
+
+<pre>
+bridge
+ vlan add br{{vlan_intf_id}} {{phy_port_id}} [un]tagged
+ lacp port {{phy_port_id}} aggregator {{eth_lag_intf-id}}
+ !
+ jumbo-frame {{phy_port_id}} {{eth_mtu}}
+ !
+!
+</pre>
+
+{{phy_port_id}} is parsed from {{eth_intf_id}}  
+example {{eth_intf_id}} is Ethernet1/1 -&gt; {{phy_port_id}} is 1/1  
+
+*tagged* is a conversion of {{vlan_mode}} set *TRUNK*  
+*untagged* is a conversion of {{vlan_mode}} set *ACCESS*  
