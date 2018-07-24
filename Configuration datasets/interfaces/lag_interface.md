@@ -66,7 +66,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_id}}
                 },
                 "frinx-bfd:bfd": {
                     "config": {
-			"local-address": "{{lag_bfd_local_address}}",
+            "local-address": "{{lag_bfd_local_address}}",
                         "destination-address": "{{lag_bfd_destination_address}}",
                         "multiplier": {{lag_bfd_multiplier}},
                         "min-interval": {{lag_bfd_min_interval}}
@@ -85,8 +85,8 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_id}}
 #### CLI
 
 <pre>
-interface Bundle-Ether{{lag_intf_id}} 
- description {{lag_description}} 
+interface Bundle-Ether{{lag_intf_id}}
+ description {{lag_description}}
  mtu {{lag_mtu}}
  ipv4 address {{lag_ip}} {{lag_prefix_length}}
  dampening {{lag_damp_half_life}}  {{lag_damp_reuse}} {{lag_damp_suppress}} {{lag_damp_max-supress}} | no dampening
@@ -135,3 +135,12 @@ delete interface ae{{lag_intf_id}} disable | set interface ae{{lag_intf_id}} dis
 NOT IMPLEMENTED
 
 Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-interface-unit)
+
+### Dasan NOS SFU.RR.5.6p5
+
+#### CLI
+
+<pre>
+bridge
+ lacp aggregator {{lag_intf_id}}
+</pre>
