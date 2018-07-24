@@ -2,6 +2,7 @@
     * [<a href="interfaces/ethernet_interface.md">Ethernet interface</a>](#ethernet-interface)
     * [<a href="interfaces/lag_interface.md">LAG interface</a>](#lag-interface)
     * [<a href="interfaces/subinterface_common.md">subinterface</a>](#subinterface)
+    * [<a href="interfaces/l3vlan_interface.md">L3 VLAN interface</a>](#l3vlan-interface)
 * [Network Instances](#network-instances)
     * [<a href="network-instances/network_instance.md">Network Instance</a>](#network-instance)
   * [Protocols](#protocols)
@@ -47,6 +48,8 @@
 #### [LAG interface](interfaces/lag_interface.md)
 
 #### [subinterface](interfaces/subinterface_common.md)
+
+#### [L3 VLAN interface](interfaces/l3vlan_interface.md)
 
 # Network Instances
 
