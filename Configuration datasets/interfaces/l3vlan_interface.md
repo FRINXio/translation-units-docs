@@ -67,11 +67,10 @@ interface br{{vlan_intf_id}}
  ip redirects | no ip redirects
  mtu {{vlan_mtu}}
  ip address {{vlan_ip}}/{{vlan_prefix}}
-!
 </pre>
 
 *no shutdown* is a conversion of {{vlan_enabled}} set *true*  
 *shutdown* is a conversion of {{vlan_enabled}} set *false*  
-*no ip redirects* is a conversion of {{ip_redirect}} set *true*  
-*ip redirects* is a conversion of {{ip_redirect}} set *false*  
+*no ip redirects* is a conversion of {{ip_redirect}} set *false*  
+*ip redirects* is a conversion of {{ip_redirect}} set *true*  
 
