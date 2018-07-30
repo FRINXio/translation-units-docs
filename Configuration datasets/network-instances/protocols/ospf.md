@@ -33,12 +33,12 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
                                 ]
                             }
                         },
-                        ""frinx-cisco-ospf-extension":max-metric-timers" {
+                        "frinx-cisco-ospf-extension:max-metric-timers" {
                             "max-metric-timer": [
                                 {
                                     "trigger": {{ospf_trigger}},
                                     "config": {
-                                        "trigger": {{ospf_trigger}}, // MAX_METRIC_ON_SYSTEM_BOOT or MAX_METRIC_ON_SWITCHOVER
+                                        "trigger": {{ospf_trigger}}, // frinx-openconfig-ospf-types:MAX_METRIC_ON_SYSTEM_BOOT or MAX_METRIC_ON_SWITCHOVER
                                         "timeout": {{ospf_trigger_timeout}},
                                         "include": [ 
                                             "frinx-openconfig-ospf-types":"MAX_METRIC_INCLUDE_STUB", 
