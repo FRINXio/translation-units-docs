@@ -84,7 +84,16 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
                     "frinx-openconfig-if-aggregate:aggregate-id": "Bundle-Ether{{eth_lag_intf-id}}",
 		    "frinx-lacp-lag-member:lacp-mode": "{{lacp_mode}}",
 		    "frinx-lacp-lag-member:interval": "{{lacp_interval}}"
-		}
+		},
+                "frinx-openconfig-vlan:switched-vlan" : {
+                    "config" : {
+                        "interface-mode": "{{vlan_mode}}",
+                        "trunk-vlans": [
+                             {{vlan_intf_id}}
+                         ],
+                         "access-vlan": {{vlan_intf_id}}
+                    }
+                }
             },
             "frinx-cisco-if-extension:statistics": {
                 "config": {
@@ -205,3 +214,21 @@ interface {{eth_intf_id}}
 </pre>
 
 {{subnet}} is conversion of {{eth_prefix}}
+
+
+### Dasan NOS SFU.RR.5.6p5
+
+#### CLI
+
+<pre>
+bridge
+ vlan add br{{vlan_intf_id}} {{phy_port_id}} [un]tagged
+ lacp port {{phy_port_id}} aggregator {{eth_lag_intf-id}}
+ jumbo-frame {{phy_port_id}} {{eth_mtu}}
+</pre>
+
+{{phy_port_id}} is parsed from {{eth_intf_id}}  
+example {{eth_intf_id}} is Ethernet1/1 -&gt; {{phy_port_id}} is 1/1  
+
+*tagged* is a conversion of {{vlan_mode}} set *TRUNK*  
+*untagged* is a conversion of {{vlan_mode}} set *ACCESS*  
