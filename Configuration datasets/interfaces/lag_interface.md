@@ -135,3 +135,12 @@ delete interface ae{{lag_intf_id}} disable | set interface ae{{lag_intf_id}} dis
 NOT IMPLEMENTED
 
 Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-interface-unit)
+
+### Dasan NOS SFU.RR.5.6p5
+
+#### CLI
+
+<pre>
+bridge
+ lacp aggregator {{lag_intf_id}}
+</pre>
