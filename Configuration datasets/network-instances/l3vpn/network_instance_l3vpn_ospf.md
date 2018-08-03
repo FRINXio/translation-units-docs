@@ -249,7 +249,7 @@ vrf &lt;vrf&gt;
 interface &lt;interface-id&gt;
  vrf &lt;vrf&gt;
 
-ospf &lt;ospf-process-id&gt;
+router ospf &lt;ospf-process-id&gt;
  vrf &lt;vrf&gt;
   router-id &lt;router-id&gt;
   
