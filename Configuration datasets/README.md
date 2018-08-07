@@ -27,6 +27,8 @@
 * [Monitoring](#monitoring)
     * [<a href="snmp.md">SNMP</a>](#snmp)
     * [<a href="logging.md">SYSLOG</a>](#syslog)
+* [Hot Standby Router Protocol](#hsrp)
+    * [<a href="hsrp.md">HSRP</a>](#hsrp)
 * [Access control](#access-control)
     * [<a href="acl/acl.md">ACL</a>](#acl)
     * [<a href="acl/acl_interfaces.md">ACL interfaces</a>](#acl-interfaces)
@@ -98,6 +100,10 @@
 #### [SNMP](snmp.md)
 
 #### [SYSLOG](logging.md)
+
+# Hot Standby Router Protocol
+
+#### [HSRP](hsrp.md)
 
 # Access control
 
