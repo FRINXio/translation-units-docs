@@ -8,6 +8,7 @@
   * [Protocols](#protocols)
     * [<a href="network-instances/protocols/bgp.md">BGP</a>](#bgp)
     * [<a href="network-instances/protocols/ospf.md">OSPF</a>](#ospf)
+    * [<a href="network-instances/protocols/ospfv3.md">OSPFv3</a>](#ospfv3)
   * [MPLS](#mpls)
     * [<a href="network-instances/mpls/mpls_te.md">MPLS TE</a>](#mpls-te)
     * [<a href="network-instances/mpls/mpls_tunnel.md">MPLS Tunnel</a>](#mpls-tunnel)

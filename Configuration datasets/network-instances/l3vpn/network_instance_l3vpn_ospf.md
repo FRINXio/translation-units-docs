@@ -71,6 +71,25 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                         }
                     }
                     {
+                        "name": "<ospfv3-process-id>"
+                        "identifier": "frinx-openconfig-policy-types:OSPFv3"
+                        "config": {
+                            "name": "<ospfv3-process-id>"
+                            "identifier": "frinx-openconfig-policy-types:OSPFv3"
+                        }
+                        "ospfv3": {
+                            "global": {
+                                "stub-router": {
+                                    "config": {
+                                        "set": true
+                                        "advertise-lsas-types": "STUB_ROUTER_MAX_METRIC"
+                                        "always": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    {
                         "config": {
                             "identifier": "bgp"
                             "enabled": true
@@ -256,6 +275,11 @@ router ospf &lt;ospf-process-id&gt;
   area &lt;area-id&gt;
    interface &lt;interface-id&gt;
    
+router ospfv3 &lt;ospfv3-process-id&gt;
+ vrf &lt;vrf&gt;
+  stub-router router-lsa max-metric
+   always
+     
 router bgp &lt;as-number&gt;
  vrf &lt;vrf&gt;
   address-family ipv4 unicast
