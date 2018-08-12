@@ -62,6 +62,8 @@
 
 #### [OSPF](network-instances/protocols/ospf.md)
 
+#### [OSPFv3](network-instances/protocols/ospfv3.md)
+
 ## MPLS
 
 #### [MPLS TE](network-instances/mpls/mpls_te.md)
