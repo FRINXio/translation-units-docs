@@ -51,7 +51,6 @@ router ospfv3 {{ospfv3}}
 {{advertise-lsas-types}} value STUB_ROUTER_MAX_METRIC is to be converted to *max-metric*  
 {{advertise-lsas-types}} value STUB_ROUTER_R_BIT is to be converted to *r-bit*  
 {{advertise-lsas-types}} value STUB_ROUTER_V6_BIT is to be converted to *v6-bit*  
-*always* is a conversion of {{stub_router_always}} set true  
 
 ##### Unit
 
