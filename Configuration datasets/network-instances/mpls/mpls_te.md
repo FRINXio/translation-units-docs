@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/default/mpls/te-interface-attributes/interface/{{mpls_intf_id}}
+frinx-openconfig-network-instance:network-instances/network-instance/default/mpls
 ```
 
 ## OPENCONFIG YANG
@@ -14,14 +14,25 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/mpl
 
 ```javascript
 {
-    "interface": [
-        {
-            "interface-id": "{{mpls_intf_id}}",
-            "config": {
-                "interface-id": "{{mpls_intf_id}}"
+    "mpls" {
+        "te-global-attributes:" {
+            "frinx-cisco-mpls-te-extension": {
+                "config" {
+                    "enabled" : true
+                }
             }
+        },
+        "te-interface-attributes": {
+            "interface": [
+                {
+                    "interface-id": "{{mpls_intf_id}}",
+                    "config": {
+                        "interface-id": "{{mpls_intf_id}}"
+                    }
+                }
+            ]
         }
-    ]
+    }
 }
 ```
 
@@ -35,6 +46,9 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/mpl
 mpls traffic-eng
  interface {{mpls_intf_id}}
 </pre>
+
+- "enabled" MUST be set to true when any te-configuration is pushed
+- "enabled" set to false, will ignore any additional configuration in the PUT request and will result in 'no mpls traffic-eng'
 
 ##### Unit
 
