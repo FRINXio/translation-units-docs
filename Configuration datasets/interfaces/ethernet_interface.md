@@ -225,6 +225,7 @@ bridge
  vlan add br{{vlan_intf_id}} {{phy_port_id}} [un]tagged
  lacp port {{phy_port_id}} aggregator {{eth_lag_intf-id}}
  jumbo-frame {{phy_port_id}} {{eth_mtu}}
+ port enable {{phy_port_id}} | port disable {{phy_port_id}}
 </pre>
 
 {{phy_port_id}} is parsed from {{eth_intf_id}}  
@@ -232,3 +233,5 @@ example {{eth_intf_id}} is Ethernet1/1 -&gt; {{phy_port_id}} is 1/1
 
 *tagged* is a conversion of {{vlan_mode}} set *TRUNK*  
 *untagged* is a conversion of {{vlan_mode}} set *ACCESS*  
+*port enable {{phy_port_id}}* is a conversion of {{eth_enabled}} set *true*  
+*port disable {{phy_port_id}}* is a conversion of {{eth_enabled}} set *false*  
