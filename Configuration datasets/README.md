@@ -13,6 +13,7 @@
     * [<a href="network-instances/mpls/mpls_te.md">MPLS TE</a>](#mpls-te)
     * [<a href="network-instances/mpls/mpls_tunnel.md">MPLS Tunnel</a>](#mpls-tunnel)
     * [<a href="network-instances/mpls/mpls_rsvp.md">MPLS TE RSVP</a>](#mpls-te-rsvp)
+    * [<a href="network-instances/mpls/mpls_ldp.md">MPLS LDP</a>](#mpls-ldp)
   * [Policy Forwarding](#policy-forwarding)
     * [<a href="network-instances/policy-forwarding/pf_interfaces.md">PF interfaces</a>](#pf-interfaces)
   * [L2P2P](#l2p2p)
@@ -73,6 +74,8 @@
 #### [MPLS Tunnel](network-instances/mpls/mpls_tunnel.md)
 
 #### [MPLS TE RSVP](network-instances/mpls/mpls_rsvp.md)
+
+#### [MPLS LDP](network-instances/mpls/mpls_ldp.md)
 
 ## Policy Forwarding
 
