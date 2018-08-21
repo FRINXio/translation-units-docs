@@ -34,9 +34,19 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
             
             "bgp": {
                 "global": {
-                    "config": {
-                        "as": {{bgp_as}}
-                    }
+                   "afi-safis": {
+                       "afi-safi": [
+                           {
+                               "afi-safi-name": "frinx-openconfig-bgp-types:IPV4/6_UNICAST",
+                               "config": {
+                                   "afi-safi-name": "frinx-openconfig-bgp-types:IPV4/6_UNICAST"
+                               }
+                           }
+                       ]
+                   },
+                   "config": {
+                       "as": {{bgp_as}}
+                   }
                 },
                 "neighbors|peer-groups": {
                     "neighbor|peer-group": [
