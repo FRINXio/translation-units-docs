@@ -53,7 +53,10 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_id}}
                                         }
                                     }
                                 ]
-                            }
+                            },
+			    "router-advertisement": {
+			    	"suppress": true
+			    }
                         }
                     }
                 ]
@@ -118,6 +121,7 @@ interface Bundle-Ether{{lag_intf_id}}
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
 *shutdown* is a conversion of {{eth_enabled}} set *false*  
 *no dampening* is a conversion of {{eth_damping_enabled}} set *false*  
+*nd suppress-ra* is a conversion of "suppress": true
 
 ##### Unit
 
