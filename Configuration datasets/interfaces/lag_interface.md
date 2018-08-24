@@ -41,6 +41,19 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_id}}
                                     }
                                 ]
                             }
+                        },
+			"frinx-openconfig-if-ip:ipv6": {
+                            "addresses": {
+                                "address": [
+                                    {
+                                        "ip": "{{lag_ip6}}",
+                                        "config": {
+                                            "ip": "{{lag_ip6}}",
+                                            "prefix-length": "{{lag_prefix6_length}}"
+                                        }
+                                    }
+                                ]
+                            }
                         }
                     }
                 ]
@@ -89,6 +102,8 @@ interface Bundle-Ether{{lag_intf_id}}
  description {{lag_description}} 
  mtu {{lag_mtu}}
  ipv4 address {{lag_ip}} {{lag_prefix_length}}
+ ipv6 address {{lag_ip6}} {{lag_prefix6_length}}
+ ipv6 nd suppress-ra
  dampening {{lag_damp_half_life}}  {{lag_damp_reuse}} {{lag_damp_suppress}} {{lag_damp_max-supress}} | no dampening
  load-interval {{lag_load_interval}}
  bundle minimum-active links {{lag_min-links}}
