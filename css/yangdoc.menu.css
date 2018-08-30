@@ -96,6 +96,10 @@
   color: #00aaff;
 }
 
+.last-child-color {
+ color: #727272;
+}
+
 a {
     color: #e6a40a;
 }
