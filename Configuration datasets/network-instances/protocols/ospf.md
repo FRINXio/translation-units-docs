@@ -104,7 +104,7 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
 router ospf {{ospf}}
  max-metric router-lsa on-startup {{ospf_timeout}} include-stub summary-lsa external-lsa
  max-metric router-lsa {{ospf_trigger}} {{ospf_trigger_timeout}} include-stub summary-lsa external-lsa
- area {{ospf_area_id}
+ area {{ospf_area_id}}
   interface {{ospf_interface}}
    cost {{ospf_cost}}
    passive {{ospf_passive}}
