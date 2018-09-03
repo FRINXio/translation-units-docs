@@ -19,7 +19,8 @@ frinx-openconfig-interfaces:interfaces/interface/Vlan{{vlan_intf_id}}
                 "type": "iana-if-type:l3ipvlan",
                 "enabled": {{vlan_enabled}},
                 "name": "Vlan{{vlan_intf_id}}",
-                "mtu": {{vlan_mtu}}
+                "mtu": {{vlan_mtu}},
+                "tpid": "{{vlan_tpid}}"
             },
             "frinx-l3ipvlan:l3ipvlan":  {
                 "config": {
@@ -31,7 +32,13 @@ frinx-openconfig-interfaces:interfaces/interface/Vlan{{vlan_intf_id}}
                     {
                         "index": 0,
                         "config": {
-                            "index": 0
+                            "index": 0,
+                            "description": "{{vlan_description}}"
+                        },
+                        "vlan": {
+                            "config": {
+                                "vlan-id": {{vlan_id}}
+                            }
                         },
                         "frinx-openconfig-if-ip:ipv4": {
                             "addresses": {
@@ -56,6 +63,17 @@ frinx-openconfig-interfaces:interfaces/interface/Vlan{{vlan_intf_id}}
 
 ## OS Configuration Commands
 
+### Junos 17.3R1.10
+
+#### CLI
+
+<pre>
+set interfaces {{vlan_intf_id}} vlan-tagging
+set interfaces {{vlan_intf_id}} unit 0 description {{vlan_description}}
+set interfaces {{vlan_intf_id}} unit 0 vlan-id {{vlan_id}}
+</pre>
+
+*vlan-tagging* is a conversion of {{vlan_tpid}} set *TPID_0X8100*  
 
 ### Dasan NOS SFU.RR.5.6p5
 
@@ -73,4 +91,3 @@ interface br{{vlan_intf_id}}
 *shutdown* is a conversion of {{vlan_enabled}} set *false*  
 *no ip redirects* is a conversion of {{ip_redirect}} set *false*  
 *ip redirects* is a conversion of {{ip_redirect}} set *true*  
-
