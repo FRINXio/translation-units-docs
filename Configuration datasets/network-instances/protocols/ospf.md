@@ -63,8 +63,11 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
                                     {
                                         "id": "{{ospf_interface}}",
                                         "config": {
+                                            "network-type": {{ospf_network_type}},
+                                            "frinx-ospf-extension:enabled": {{ospf_interface_enabled}},
                                             "metric": {{ospf_cost}},
-                                            "passive": {{ospf_passive}}
+                                            "passive": {{ospf_passive}},
+                                            "priority": {{ospf_priority}}
                                         },
                                         "mpls": {
                                             "igp-ldp-sync": {
@@ -76,6 +79,30 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
                                         "frinx-bfd-extension:enable-bfd": {
                                             "config": {
                                                 "enabled": {{bfd_interface_enabled}}
+                                            }
+                                        },
+                                        "frinx-bfd-extension:bfd": {
+                                            "config": {
+                                                "multiplier": {{bfd_interface_multiplier}},
+                                                "min-interval": {{bfd_interface_min_interval}},
+                                                "min-receive-interval": {{bfd_interface_min_recieve_interval}}
+                                            }
+                                        }
+                                        "frinx-ospf-extension:authentication": {
+                                            "config": {
+                                                "enabled": {{ospf_auth_enabled}},
+                                                "type": "auth-type:md5",
+                                                "passwords": {
+                                                    "password": [
+                                                        {
+                                                            "auth-id": {{ospf_auth_id}},
+                                                            "config": {
+                                                                "auth-id": {{ospf_auth_id}},
+                                                                "auth-password": {{ospf_auth_password}}
+                                                            }
+                                                        }
+                                                    ]
+                                                }
                                             }
                                         }
                                     }
@@ -132,8 +159,22 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 
 <pre>
 set protocols ospf overload timeout {{ospf_timeout}}
+set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} interface-type {{ospf_network_type}}
 set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} metric {{ospf_cost}}
+set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} priority {{ospf_priority}}
+delete protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} disable 
+| set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} disable
+set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} authentication md5 {{ospf_auth_id}} key {{ospf_auth_password}}
+| delete protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} authentication
+set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} bfd-liveness-detection minimum-interval {{bfd_interface_min_interval}}
+set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} bfd-liveness-detection minimum-receive-interval {{bfd_interface_min_recieve_interval}}
+set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} bfd-liveness-detection multiplier {{bfd_interface_multiplier}}
 </pre>
+
+*delete protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} disable* is a conversion of {{ospf_interface_enabled}} set *true*  
+*set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} disable* is a conversion of {{ospf_interface_enabled}} set *false*  
+*set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} authentication* is a conversion of {{ospf_auth_enabled}} set *true*  
+*delete protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} authentication* is a conversion of {{ospf_auth_enabled}} set *false*  
 
 ##### Unit
 
