@@ -23,7 +23,8 @@ frinx-openconfig-acl:/acl/acl-sets/acl-set/{{acl_name}}
                     {
                         "sequence-id": "{{acl_seq_id}}",
                         "config": {
-                            "sequence-id": "{{acl_seq_id}}"
+                            "sequence-id": "{{acl_seq_id}}",
+                            "frinx-acl-extension:term-name": "{{acl_term_name}}"
                         },
                         "ipv4|ipv6": {
                             "config": {
@@ -57,8 +58,9 @@ frinx-openconfig-acl:/acl/acl-sets/acl-set/{{acl_name}}
 
                         "actions": {
                             "config": {
-                            	"forwarding-action": "{{acl_fwd_action}}",
-                            	"log-action": "{{}}"
+                                "forwarding-action": "{{acl_fwd_action}}",
+                                "frinx-acl-extension:instance-name": "{{acl_instance_name}}",
+                                "log-action": "{{}}"
                             }
                         }
                     }
@@ -103,3 +105,22 @@ ipv4 access-list test123
 ##### Unit
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/acl)
+
+### Junos 14.1X53-D40.8
+
+#### CLI
+
+<pre>
+set firewall family inet filter {{acl_name}} term {{acl_term_name}} from source-address {{acl_src_addr}}
+set firewall family inet filter {{acl_name}} term {{acl_term_name}} from protocol {{acl_protocol}}
+set firewall family inet filter {{acl_name}} term {{acl_term_name}} from destination-port {{acl_dst_port}}
+set firewall family inet filter {{acl_name}} term {{acl_term_name}} then {{acl_fwd_action}}
+</pre>
+
+<pre>
+set firewall family inet filter {{acl_name}} term {{acl_term_name}} then routing-instance {{acl_instance_name}}
+</pre>
+
+##### Unit
+
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-acl-unit)
