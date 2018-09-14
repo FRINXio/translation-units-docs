@@ -83,7 +83,8 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
                 "config": {
                     "frinx-openconfig-if-aggregate:aggregate-id": "Bundle-Ether{{eth_lag_intf-id}}",
 		    "frinx-lacp-lag-member:lacp-mode": "{{lacp_mode}}",
-		    "frinx-lacp-lag-member:interval": "{{lacp_interval}}"
+		    "frinx-lacp-lag-member:interval": "{{lacp_interval}}",
+		    "frinx-if-aggregate-extension:admin-key": {{admin-key}}
 		},
                 "frinx-openconfig-vlan:switched-vlan" : {
                     "config" : {
@@ -224,6 +225,7 @@ interface {{eth_intf_id}}
 bridge
  vlan add br{{vlan_intf_id}} {{phy_port_id}} [un]tagged
  lacp port {{phy_port_id}} aggregator {{eth_lag_intf-id}}
+ lacp port admin-key {{phy_port_id}} {{admin-key}}
  jumbo-frame {{phy_port_id}} {{eth_mtu}}
  port enable {{phy_port_id}} | port disable {{phy_port_id}}
 </pre>
