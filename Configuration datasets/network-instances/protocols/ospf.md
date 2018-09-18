@@ -153,12 +153,11 @@ router ospf {{ospf}}
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/ospf)
 
-### Junos 17.3R1.10
+### Junos 14.1X53-D40.8
 
 #### CLI
 
 <pre>
-set protocols ospf overload timeout {{ospf_timeout}}
 set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} interface-type {{ospf_network_type}}
 set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} metric {{ospf_cost}}
 set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} priority {{ospf_priority}}
@@ -175,6 +174,19 @@ set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} bfd-livene
 *set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} disable* is a conversion of {{ospf_interface_enabled}} set *false*  
 *set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} authentication* is a conversion of {{ospf_auth_enabled}} set *true*  
 *delete protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} authentication* is a conversion of {{ospf_auth_enabled}} set *false*  
+
+##### Unit
+
+Link to github : [junos-unit](https://github.com/FRINXio/cli-units/tree/master/junos/ospf)
+
+### Junos 17.3R1.10
+
+#### CLI
+
+<pre>
+set protocols ospf overload timeout {{ospf_timeout}}
+set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} metric {{ospf_cost}}
+</pre>
 
 ##### Unit
 
