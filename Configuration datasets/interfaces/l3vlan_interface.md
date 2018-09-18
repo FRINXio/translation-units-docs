@@ -63,7 +63,7 @@ frinx-openconfig-interfaces:interfaces/interface/Vlan{{vlan_intf_id}}
 
 ## OS Configuration Commands
 
-### Junos 17.3R1.10
+### Junos 14.1X53-D40.8
 
 #### CLI
 
