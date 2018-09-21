@@ -71,6 +71,7 @@ frinx-openconfig-interfaces:interfaces/interface/Vlan{{vlan_intf_id}}
 set interfaces {{vlan_intf_id}} vlan-tagging
 set interfaces {{vlan_intf_id}} unit 0 description {{vlan_description}}
 set interfaces {{vlan_intf_id}} unit 0 vlan-id {{vlan_id}}
+set interfaces {{vlan_intf_id}} unit 0 family inet address {{vlan_ip}}/{{vlan_prefix}}
 </pre>
 
 *vlan-tagging* is a conversion of {{vlan_tpid}} set *TPID_0X8100*  
