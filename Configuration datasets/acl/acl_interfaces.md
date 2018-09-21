@@ -60,6 +60,18 @@ interface {{iacl_intf_id}}
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/acl)
 
+### Junos 14.1X53-D40.8
+
+#### CLI
+
+<pre>
+set interfaces {{iacl_intf_id}} unit 0 family inet filter input {{iacl_in_acl_name}}
+</pre>
+
+##### Unit
+
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-14-acl-unit)
+
 ### Junos 17.3R1.10
 
 #### CLI
