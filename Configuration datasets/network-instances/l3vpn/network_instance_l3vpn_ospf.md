@@ -33,6 +33,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
             "inter-instance-policies": {
                 "apply-policy": [
                     "config": {
+                        "frinx-network-instance-extension:identifier": "<policy-protocol-type>"
                         "export-policy": "<vrf>-route-target-export"
                         "import-policy": "<vrf>-route-target-import"
                     }
@@ -60,8 +61,37 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                                         }
                                         "interfaces" {
                                             "interface" [
+                                                "id": "<ospf_interface>"
                                                 "config": {
-                                                    "identifier": "<interface-id>"
+                                                    "id": "<ospf_interface>"
+                                                    "network-type": "<ospf_network_type>"
+                                                    "frinx-ospf-extension:enabled": "<ospf_interface_enabled>"
+                                                    "metric": <ospf_cost>
+                                                    "priority": <ospf_priority>
+                                                }
+                                                "frinx-bfd-extension:bfd": {
+                                                    "config": {
+                                                        "multiplier": <bfd_interface_multiplier>
+                                                        "min-interval": <bfd_interface_min_interval>
+                                                        "min-receive-interval": <bfd_interface_min_recieve_interval>
+                                                    }
+                                                }
+                                                "frinx-ospf-extension:authentication": {
+                                                    "config": {
+                                                        "enabled": "<ospf_auth_enabled>"
+                                                        "type": "auth-type:md5"
+                                                        "passwords": {
+                                                            "password": [
+                                                                {
+                                                                    "auth-id": "<ospf_auth_id>"
+                                                                    "config": {
+                                                                        "auth-id": "<ospf_auth_id>"
+                                                                        "auth-password": "<ospf_auth_password>"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
                                                 }
                                             ]
                                         }
@@ -322,3 +352,35 @@ router &lt;redistribute2-to&gt;
  address-family ipv4 vrf &lt;vrf&gt;
   redistribute &lt;redistribute2-from&gt; 
 </pre>
+
+
+### Junos 14.1X53-D40.8
+
+#### CLI
+
+<pre>
+set routing-instances &lt;vrf&gt; instance-type virtual-router
+set routing-instances &lt;vrf&gt; interface &lt;ospf_interface&gt;
+set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; interface-type &lt;ospf_network_type&gt;
+set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; metric &lt;ospf_cost&gt;
+set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; priority &lt;ospf_priority&gt;
+delete routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; disable 
+| set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; disable
+set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; authentication md5 &lt;ospf_auth_id&gt; key &lt;ospf_auth_password&gt;
+| delete routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; authentication
+set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; bfd-liveness-detection minimum-interval &lt;bfd_interface_min_interval&gt;
+set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; bfd-liveness-detection minimum-receive-interval &lt;bfd_interface_min_recieve_interval&gt;
+set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; bfd-liveness-detection multiplier &lt;bfd_interface_multiplier&gt;
+</pre>
+
+*virtual-router* is a conversion of &lt;type&gt; set *L3VRF*  
+*delete routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; disable* is a conversion of &lt;ospf_interface_enabled&gt; set *true*  
+*set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; disable* is a conversion of &lt;ospf_interface_enabled&gt; set *false*  
+*set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; authentication* is a conversion of &lt;ospf_auth_enabled&gt; set *true*  
+*delete routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; authentication* is a conversion of &lt;ospf_auth_enabled&gt; set *false*  
+
+<pre>
+set routing-instances &lt;vrf&gt; routing-options instance-import &lt;vrf&gt;-route-target-import
+set routing-instances &lt;vrf&gt; protocols ospf export &lt;vrf&gt;-route-target-export
+</pre>
+*ospf* is a conversion of &lt;policy-protocol-type&gt; set *frinx-openconfig-policy-types:OSPF*  
