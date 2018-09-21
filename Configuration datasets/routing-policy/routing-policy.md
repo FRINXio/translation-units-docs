@@ -58,9 +58,11 @@ frinx-openconfig-routing-policy:routing-policy/policy-definitions/policy-definit
                             "match-protocol-instance": {
                                 "config": {
                                     "prefix-set": "{{pset}}",
-                                    "match-set-options": "{{rpol_s_c_prefixset_opts}}"
+                                    "match-set-options": "{{rpol_s_c_prefixset_opts}}",
+                                    "protocol-identifier": "{{rpol_s_c_protocol_type}}",
+                                    "protocol-name": "{{rpol_s_c_protocol_name}}"
                                 }
-                            },
+                            }
                         },
                         "actions": {
                             "config": {
@@ -87,6 +89,13 @@ frinx-openconfig-routing-policy:routing-policy/policy-definitions/policy-definit
                                     "config": {
                                         "asn": "{{rpol_s_a_bgp_aspathprep_asn}}",
                                         "repeat-n": "{{rpol_s_a_bgp_aspathprep_repeatn}}"
+                                    }
+                                }
+                            },
+                            "ospf-actions": {
+                                "set-metric": {
+                                    "config": {
+                                        "metric": {{rpol_s_a_ospf_metric}}
                                     }
                                 }
                             }
@@ -529,18 +538,18 @@ end-policy
 }
 ```
 
-### Junos 17.3R1.10
+### Junos 14.1X53-D40.8
 
 #### CLI
 
 <pre>
-set policy-options policy-statement {{rpol_name}} term {{rpol_s_name}} from instance master
+set policy-options policy-statement {{rpol_name}} term {{rpol_s_name}} from instance {{rpol_s_c_protocol_name}}
 set policy-options policy-statement {{rpol_name}} term {{rpol_s_name}} then {{rpol_s_a_result}}
 </pre>
 
 <pre>
-set policy-options policy-statement {{rpol_name}} term {{rpol_s_name}} from protocol direct
-set policy-options policy-statement {{rpol_name}} term {{rpol_s_name}} then metric <1-65535>
+set policy-options policy-statement {{rpol_name}} term {{rpol_s_name}} from protocol {{rpol_s_c_protocol_type}}
+set policy-options policy-statement {{rpol_name}} term {{rpol_s_name}} then metric {{rpol_s_a_ospf_metric}}
 set policy-options policy-statement {{rpol_name}} term {{rpol_s_name}} then {{rpol_s_a_result}}
 </pre>
 
@@ -550,6 +559,47 @@ set policy-options policy-statement {{rpol_name}} term {{rpol_s_name}} then {{rp
 <pre>
 set policy-options policy-statement IMPORT term 1 from instance master
 set policy-options policy-statement IMPORT term 1 then accept
+</pre>
+
+```javascript
+{
+    "policy-definition": [
+        {
+            "name": "OUT-FIL",
+            "config": {
+                "name": "OUT-FIL"
+            },
+            "statements": {
+                "statement": [
+                    {
+                        "name": "1",
+                        "config": {
+                            "name": "1"
+                        },
+                        "conditions": {
+                            "oc-ni-pol:match-protocol-instance": {
+                                "config": {
+                                    "protocol-name": "master"
+                                }
+                            }
+                        }
+                        "actions": {
+                            "config": {
+                                "policy-result": "ACCEPT_ROUTE"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+<pre>
+set policy-options policy-statement OUT-FIL term 1 from protocol direct
+set policy-options policy-statement OUT-FIL term 1 then metric 100
+set policy-options policy-statement OUT-FIL term 1 then accept
 </pre>
 
 ```javascript
@@ -570,13 +620,20 @@ set policy-options policy-statement IMPORT term 1 then accept
                         "conditions": {
                             "oc-ni-pol:match-protocol-instance": {
                                 "config": {
-                                    "protocol-name": default
+                                    "protocol-identifier": "frinx-openconfig-policy-types:DIRECTLY_CONNECTED"
                                 }
                             }
                         }
                         "actions": {
                             "config": {
                                 "policy-result": "ACCEPT_ROUTE"
+                            }
+                            "ospf-actions": {
+                                "set-metric": {
+                                    "config": {
+                                        "metric": 100
+                                    }
+                                }
                             }
                         }
                     }
