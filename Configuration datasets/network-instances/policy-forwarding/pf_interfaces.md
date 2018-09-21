@@ -56,6 +56,18 @@ interface {{policy_interface}}
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/network-instance)
 
+### Junos 14.1X53-D40.8
+
+#### CLI
+
+<pre>
+set class-of-service interfaces {{policy_interface}} unit 0 classifiers inet-precedence {{inet_precedence_name}}
+</pre>
+
+##### Unit
+
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-14-policy-forwarding-unit)
+
 ### Junos 17.3R1.10
 
 #### CLI
