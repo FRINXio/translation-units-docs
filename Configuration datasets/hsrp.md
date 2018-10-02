@@ -24,35 +24,20 @@ frinx-openconfig-hsrp:hsrp/interfaces/interface/{{hsrp_intf_id}}
                     {
                         "index": 0,
                         "config": {
-                            "index": 0
-                        }
-                    }
-                ]
-            },
-            "delay": {
-                "config": {
-                    "minimum-delay": {{hsrp_minimum_delay}},
-                    "reload-delay": {{hsrp_reload_delay}}
-                }
-            },
-            "afi-safis": {
-                "afi-safi": [
-                    "config": {
-                        "afi-safi-name": {{hsrp_afi_safi_name}} //ipv4 | ipv6
-                    }
-                     "ipv4|ipv6": {
-                        "groups": {
-                            "group": [
-                                {
-                                     "group-number": {{hsrp_group_number}},
-                                     "config": {
-                                         "group-number": {{hsrp_group_number}},
-                                         "version": {{hsrp_version}},
-                                         "priority": {{hsrp_priority}}
-                                     }
-                                }
-                            ]
-                        }
+                            "index": 0,
+                            "minimum-delay": {{hsrp_minimum_delay}},
+                            "reload-delay": {{hsrp_reload_delay}}
+                        },
+                        "hsrp-group": [
+                            "address-family": "ipv4",
+                            "virtual-router-id":{{hsrp_group_number}},
+                            "config": {
+                                "address-family": "ipv4",
+                                "virtual-router-id": {{hsrp_group_number}},
+                                "version": {{hsrp_version}},
+                                "priority": {{hsrp_priority}}
+                            }
+                        ]
                     }
                 ]
             }
@@ -71,7 +56,7 @@ frinx-openconfig-hsrp:hsrp/interfaces/interface/{{hsrp_intf_id}}
 router hsrp
  interface {{hsrp_intf_id}}
   hsrp delay minimum {{hsrp_minimum_delay}} reload {{hsrp_reload_delay}}
-  address-family ipv4/ipv6
+  address-family ipv4
    hsrp {{hsrp_group_number}} version {{hsrp_version}}
     priority {{hsrp_priority}}
 </pre>
