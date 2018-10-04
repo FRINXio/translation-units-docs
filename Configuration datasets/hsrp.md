@@ -17,30 +17,19 @@ frinx-openconfig-hsrp:hsrp/interfaces/interface/{{hsrp_intf_id}}
             "interface-id": "{{hsrp_intf_id}}",
             "config": {
                 "interface-id": "{{hsrp_intf_id}}"
-                ]
+                "minimum-delay": {{hsrp_minimum_delay}},
+                "reload-delay": {{hsrp_reload_delay}}
             },
-            "subinterfaces": {
-                "subinterface": [
-                    {
-                        "index": 0,
-                        "config": {
-                            "index": 0,
-                            "minimum-delay": {{hsrp_minimum_delay}},
-                            "reload-delay": {{hsrp_reload_delay}}
-                        },
-                        "hsrp-group": [
-                            "address-family": "ipv4",
-                            "virtual-router-id":{{hsrp_group_number}},
-                            "config": {
-                                "address-family": "ipv4",
-                                "virtual-router-id": {{hsrp_group_number}},
-                                "version": {{hsrp_version}},
-                                "priority": {{hsrp_priority}}
-                            }
-                        ]
-                    }
-                ]
-            }
+            "hsrp-group": [
+                "address-family": "ipv4",
+                "virtual-router-id":{{hsrp_group_number}},
+                "config": {
+                    "address-family": "ipv4",
+                    "virtual-router-id": {{hsrp_group_number}},
+                    "version": {{hsrp_version}},
+                    "priority": {{hsrp_priority}}
+                }
+            ]
         }
     ]
 }
