@@ -59,7 +59,7 @@ YANG models used in UniConfig framework need to be located in [https://github.co
 ## <a name="documentation"></a>Documentation
 
 There is [translation-units-docs page](https://github.com/FRINXio/translation-units-docs) as a single point of truth for mapping.
-**Use _{{ip}} _notation** for variables in the templates. This notation is postman compatible.
+**Use _{{ip}}_ notation** for variables in the templates. This notation is postman compatible.
 
 
 # <a name="translation-units-in-general"></a>Translation Units in general
@@ -87,8 +87,8 @@ Translation unit is a self contained project which implements a mapping between 
     *   Unless there is a need to also handle child nodes, in which case register the handler using _subtreeAdd_ method from the registries
 *   There are 2 types of handlers: Readers (Read operation) and Writers (Create, Update, Delete operation)
     *   One can implement just the readers or both readers and writers for YANG models. Writers must have counterpart readers because of reconciliation.
-*   Readers and Writers should use the _InstanceIdentifier _parameter they receive in _readCurrentAttributes_ or _writeCurrentAttributes_ methods to find information about keys for their parent nodes. E.g. Reader registered under ID: /interfaces/interface/config will always receive keyed version of that ID: /interface/interface[Loopback0]/config. So it can use method _firstKeyOf_ on _InstanceIdentifier_ to get the keys.
-*   _RWUtils_ class contains methods for _InstanceIdentifier _manipulation.
+*   Readers and Writers should use the _InstanceIdentifier_ parameter they receive in _readCurrentAttributes_ or _writeCurrentAttributes_ methods to find information about keys for their parent nodes. E.g. Reader registered under ID: /interfaces/interface/config will always receive keyed version of that ID: /interface/interface[Loopback0]/config. So it can use method _firstKeyOf_ on _InstanceIdentifier_ to get the keys.
+*   _RWUtils_ class contains methods for _InstanceIdentifier_ manipulation.
 *   Readers and writers can be easily tested and it is necessary to provide unit tests for all of them. It's important to cover _readCurrentAttributes_ and _writeCurrentAttributes_ with all possible scenarios (all data there, no data there, partial data there...)
 *   Writers may use **Preconditions.checkArgument()** before accessing the device. Fail of the precondition check does not invoke default rollback (opposite operation) on the writer where precondition is located.
 
@@ -104,10 +104,10 @@ CLI Translation units are located in [https://github.com/FRINXio/cli-units](http
 
 *   Readers are handlers responsible for reading and parsing the data coming from a device
 *   There are 2 types of readers: Reader and ListReader. Reader can be used to handle container or argument nodes and ListReader should handle list nodes from YANG.
-    *   Both types need to implement **_readCurrentAttributes _**to fill the builder with appropriate values
-    *   ListReader needs to also implement **_getAllIds()_** where it retrieves a key for each item to be present in current list. After the list is received, framework will invoke **_readCurrentAttributes _**for each item from getAllIds
+    *   Both types need to implement **_readCurrentAttributes_** to fill the builder with appropriate values
+    *   ListReader needs to also implement **_getAllIds()_** where it retrieves a key for each item to be present in current list. After the list is received, framework will invoke **_readCurrentAttributes_** for each item from getAllIds
 *   Readers also need to implement boilerplate methods: 
-    *   **_merge _**- cast the builder parameter to appropriate parent builder type e.g. in builder for /interfaces/interface you would perform: 
+    *   **_merge_**- cast the builder parameter to appropriate parent builder type e.g. in builder for /interfaces/interface you would perform: 
 	
 ```
 	((InterfacesBuilder)builder).setInterface(readValue)
@@ -121,19 +121,19 @@ CLI Translation units are located in [https://github.com/FRINXio/cli-units](http
 
 Each reader needs to implement one of these interfaces based on type of target node in YANG. These interfaces also contain util methods which may be used for better manipulation with data. For more information about methods please read javadocs.
 
-**CliConfigListReader**- implement this interface if target composite node in YANG is list and represents config data.
+**CliConfigListReader** - implement this interface if target composite node in YANG is list and represents config data.
 
-**CliConfigReader**- implement this interface if target composite node in YANG is container or augmentation and represents config data.
+**CliConfigReader** - implement this interface if target composite node in YANG is container or augmentation and represents config data.
 
 **CliOperListReader** - implement this interface if target composite node in YANG is list and represents operational data.
 
-**CliOperReader**- implement this interface if target composite node in YANG is container or augmentation and represents operational data.
+**CliOperReader** - implement this interface if target composite node in YANG is container or augmentation and represents operational data.
 
 In cases where you want to invoke multiple readers on reading one YANG node, extend following abstract classes:
 
-**CompositeListReader -** extend this abstract class if multiple list readers need to be invoked when reading specific list in YANG.
+**CompositeListReader** - extend this abstract class if multiple list readers need to be invoked when reading specific list in YANG.
 
-**CompositeReader -** extend this abstract class if multiple readers need to be invoked when reading specific node in YANG.
+**CompositeReader** - extend this abstract class if multiple readers need to be invoked when reading specific node in YANG.
 
 A practical example of their usage is reading network instance based on it's type. All child readers need to implement a check when the particular reader should be invoked or the parent reader should move on to the next reader.
 
@@ -159,12 +159,12 @@ For example typed readers for bgp (located under _protocol_) needs to check if _
 #### <a name="plaintext-parsing-hints"></a>Plaintext parsing hints
 
 *   **Use** as **specific regular expressions** when parsing CLI output as possible
-*   **For Cisco CLI devices** avoid using _section _and other advanced formatting parameters. **Only _| include_ | _exclude _and | _begin _are allowed**.
+*   **For Cisco CLI devices** avoid using _section_ and other advanced formatting parameters. **Only | _include_ | _exclude_ and | _begin_ are allowed**.
 *   Use CONFIG data as the source of truth when parsing information from device. Except when parsing state containers (or containers explicitly marked as _config false_).
-    *   I.e. use _sh run | include router ospf _instead of _sh ospf _when retrieving ospf routers list. 
+    *   I.e. use _sh run_ | _include router ospf_ instead of _sh ospf_ when retrieving ospf routers list. 
     *   In some cases, it is not possible to just use config data e.g. _sh run interface_ does not show any data for interfaces that have no configuration. In this case it is necessary to use operational information from e.g. _sh ip int brief_
 *   **Use following pattern when parsing multiline output from CLI**, where it is difficult to extract lines and their relationships
-    *   I.e. when parsing configured BGP neighbors per address family following command can be used: **sh run | include ^router bgp|^ *address-family|^ *neighbor **which results in:
+    *   I.e. when parsing configured BGP neighbors per address family following command can be used: **sh run | include ^router bgp|^ **address-family|^ *neighbor*** which results in:
 	```
 	router bgp 65000
      address-family ipv4 vrf vrf1
@@ -189,20 +189,20 @@ For example typed readers for bgp (located under _protocol_) needs to check if _
     *   Update can be often simply implemented as: 1. delete, 2. write
 *   A writer can properly work only if there is a reader for the same composite node
 *   A writer should check whether the command it executed was handled by the device properly (by checking the output) and if not throw one of the Write/Update/Delete FailedException
-*   **Chunk templating framework can be used for more complex writers **it gives us:
+*   **Chunk templating framework can be used for more complex writers** it gives us:
     *   Null safety
     *   if/loop etc. inside templates
     *   Default values and many more
-*   **Use full version of commands **e.g. _show running-config interface_ instead of _sh run int_
+*   **Use full version of commands** e.g. _show running-config interface_ instead of _sh run int_
 
 
 #### <a name="mandatory-interfaces-to-implement2"></a>Mandatory interfaces to implement
 
 Each writer needs to implement one of these interfaces based on type of target node in YANG. Unlike mandatory interfaces for reading, only interfaces for writing config data are available (because it is not possible to write operational data). These interfaces also contain util methods which may be used for better manipulation with data. For more information about methods please read javadocs.
 
-**CliListWriter**- implement this interface if target composite node in YANG is list. An implementation needs to be registered as GenericListWriter.
+**CliListWriter** - implement this interface if target composite node in YANG is list. An implementation needs to be registered as GenericListWriter.
 
-**CliWriter**- implement this interface if target composite node in YANG is container or augmentation. An implementation needs to be registered as GenericWriter.
+**CliWriter** - implement this interface if target composite node in YANG is container or augmentation. An implementation needs to be registered as GenericWriter.
 
 **CompositeWriter** - extend this abstract class when multiple writers need to be invoked on one YANG node. The writers need to have a check whether or not should they be invoked.
 
@@ -220,7 +220,7 @@ Noop writers may be registered in case when target node in YANG does not contain
 
 Translate unit class must implement interface [TranslateUnit](https://gerrit.frinx.io/plugins/gitblit/blob/?f=translation-registry-spi/src/main/java/io/frinx/cli/registry/spi/TranslateUnit.java&r=cli.git&h=carbon/development). Naming convention for translate unit class is device-type+openconfig-domain+Unit (e.g. IosXrInterfaceUnit). Translate unit class is usually instantiated, initialized and closed from Blueprint.
 
-Implementation of TranslateUnit must be registered into _TranslationUnitCollector _and must specify device type and device version during registration. Snippet below shows registration of [IosXRInterfaceUnit](https://github.com/FRINXio/cli-units/blob/master/ios-xr/interface/src/main/java/io/frinx/cli/unit/iosxr/ifc/IosXRInterfaceUnit.java) for device type "ios xr" all versions starting with "5".
+Implementation of TranslateUnit must be registered into _TranslationUnitCollector_ and must specify device type and device version during registration. Snippet below shows registration of [IosXRInterfaceUnit](https://github.com/FRINXio/cli-units/blob/master/ios-xr/interface/src/main/java/io/frinx/cli/unit/iosxr/ifc/IosXRInterfaceUnit.java) for device type "ios xr" all versions starting with "5".
 
 
 ```
@@ -286,7 +286,7 @@ Implementation of TranslateUnit must implement these methods:
 
 
 
-*   Return RPC services implemented in the translation unit. Parameter _context.getTransport() _returns _Cli** **_object containing methods for communication with a device via CLI - may need to be passed to RPC implementations.
+*   Return RPC services implemented in the translation unit. Parameter _context.getTransport()_ returns _Cli_ object containing methods for communication with a device via CLI - may need to be passed to RPC implementations.
 
 **void provideHandlers(@Nonnull ModifiableReaderRegistryBuilder rRegistry,**
 
@@ -317,7 +317,7 @@ rRegistry.addStructuralReader(IIDs.INTERFACES, InterfacesBuilder.class);
 
        
 *   **rRegistry.subtreeAdd**
-    *   Use when a reader implementation also fills composite child nodes of target composite node. Method _subtreeAdd _requires a set of IIDs for all handled children, the IIDs must start from the reader itself, not from root.
+    *   Use when a reader implementation also fills composite child nodes of target composite node. Method _subtreeAdd_ requires a set of IIDs for all handled children, the IIDs must start from the reader itself, not from root.
 
 ```
 rRegistry.subtreeAdd(Sets.newHashSet(IFC_ETH_CONFIG_ROOT_ID.augmentation(Config1.class),
@@ -347,7 +347,7 @@ Last parameter in this method shows dependency on writer registered under IIDs.I
 ```
 
 
-*   **Ordering of writers** - writers are stored in a linear structure and are invoked in order of registration. When registering a writer a relationship with another writer or set of writers can be expressed using _addBefore, addAfter, subtreeAddBefore, subtreeAddAfter _methods. E.g. InterfaceWriter and VRFInterfaceWriter should have a relationship: InterfaceWriter -> VRFInterfaceWriter so that first an interface is created and only then assigned to VRF. Note: VRF writer should be between them. If the order is not expressed during registration, commands might be executed on device in an unpredictable/invalid order.
+*   **Ordering of writers** - writers are stored in a linear structure and are invoked in order of registration. When registering a writer a relationship with another writer or set of writers can be expressed using _addBefore, addAfter, subtreeAddBefore, subtreeAddAfter_ methods. E.g. InterfaceWriter and VRFInterfaceWriter should have a relationship: InterfaceWriter -> VRFInterfaceWriter so that first an interface is created and only then assigned to VRF. Note: VRF writer should be between them. If the order is not expressed during registration, commands might be executed on device in an unpredictable/invalid order.
 
 
 # <a name="cli-init-translation-unit"></a>CLI Init Translation Unit
@@ -378,7 +378,7 @@ These methods may be overridden if necessary:
 
 **getPostFailedHook()** - method that is invoked when commit fails. Should implement aborts or revert strategies.
 
-Methods like _getYangSchemas, getRpcs _should return empty sets and method_ provideHandlers_ should return nothing, just use the read registry and write registry to register handlers..
+Methods like _getYangSchemas, getRpcs_ should return empty sets and method _provideHandlers_ should return nothing, just use the read registry and write registry to register handlers..
 
 
 # <a name="netconf-unified-translation-unit"></a>NETCONF Unified Translation Unit
@@ -393,8 +393,8 @@ Kotlin is used as prefered programming language in NETCONF translation units bec
 
 *   Readers are handlers responsible for reading and parsing the data coming from a device
 *   There are 2 types of readers: Reader and ListReader. Reader can be used to handle container or argument nodes and ListReader should handle list nodes from YANG.
-    *   Both types need to implement **_readCurrentAttributes _** to fill the builder with appropriate values
-    *   ListReader needs to also implement **_getAllIds()_** where it retrieves a key for each item to be present in current list. After the list is received, framework will invoke **_readCurrentAttributes _**for each item from getAllIds
+    *   Both types need to implement **_readCurrentAttributes_** to fill the builder with appropriate values
+    *   ListReader needs to also implement **_getAllIds()_** where it retrieves a key for each item to be present in current list. After the list is received, framework will invoke **_readCurrentAttributes_** for each item from getAllIds
 *   Readers also need to implement boilerplate methods:
     *   **_getBuilder()_** - return builder object for managed node
 
@@ -433,7 +433,7 @@ If data did not pass check, then reader implementing the interface will not be i
 
 **TypedReader** - use when target composite node in YANG is container or augmentation
 
-For example typed readers for bgp (located under _protocol_) needs to check if _identifier _in _protocol _has value _BGP_. Otherwise readers for bgp will be invoked even if _protocol identifier _is _OSPF_.
+For example typed readers for bgp (located under _protocol_) needs to check if _identifier_ in _protocol _has value _BGP_. Otherwise readers for bgp will be invoked even if _protocol identifier_ is _OSPF_.
 
 
 ### <a name="writers2"></a>Writers
@@ -442,7 +442,7 @@ For example typed readers for bgp (located under _protocol_) needs to check if _
 *   A writer needs to implement all 3 methods: Write, Update, Delete in order to fully support default rollback mechanism of the framework
     *   Update can be often simply implemented as: 1. delete, 2. write
 *   A writer can properly work only if there is a reader for the same composite node
-*   **Retrieve and update existing data** of device via NETCONF **in update method. **Every generated builder class has copy constructor which may be used for this purpose. It's important to keep in mind that NETCONF _dataBroker.put(..)_ method overrides existing data in device configuration.
+*   **Retrieve and update existing data** of device via NETCONF **in update method.** Every generated builder class has copy constructor which may be used for this purpose. It's important to keep in mind that NETCONF _dataBroker.put(..)_ method overrides existing data in device configuration.
 
 
 #### <a name="mandatory-interfaces-to-implement4"></a>Mandatory interfaces to implement
@@ -467,7 +467,7 @@ Noop writers may be registered in case when target node in YANG does not contain
 
 Translate unit class must implement interface [TranslateUnit](https://gerrit.frinx.io/plugins/gitblit/blob/?f=translation-registry-spi/src/main/java/io/frinx/cli/registry/spi/TranslateUnit.java&r=cli.git&h=carbon/development). Naming convention for translate unit class is just name Unit. Translate unit class is usually instantiated, initialized and closed from Blueprint.
 
-Implementation of TranslateUnit must be registered into _TranslationUnitCollector _and must provide set of supported underlay YANG models. Snippet below shows registration of [Unit](https://github.com/FRINXio/unitopo-units/blob/master/junos/junos-17-interface-unit/src/main/kotlin/io/frinx/unitopo/unit/junos/interfaces/Unit.kt) for junos device version 17.3.
+Implementation of TranslateUnit must be registered into _TranslationUnitCollector_ and must provide set of supported underlay YANG models. Snippet below shows registration of [Unit](https://github.com/FRINXio/unitopo-units/blob/master/junos/junos-17-interface-unit/src/main/kotlin/io/frinx/unitopo/unit/junos/interfaces/Unit.kt) for junos device version 17.3.
 
 
 ```
@@ -532,7 +532,7 @@ Implementation of TranslateUnit must implement these methods:
 
 
 
-*   Return RPC services implemented in the translation unit. Parameter _underlayAccess _represents**_ _**object containing methods for communication with a device via NETCONF and should be passed to readers/writers. 
+*   Return RPC services implemented in the translation unit. Parameter _underlayAccess_ represents object containing methods for communication with a device via NETCONF and should be passed to readers/writers. 
 
 **provideHandlers(rRegistry: ModifiableReaderRegistryBuilder,**
 **wRegistry: ModifiableWriterRegistryBuilder,**
@@ -540,20 +540,20 @@ Implementation of TranslateUnit must implement these methods:
 
 
 
-*   Handlers(readers/writers) need to be registered in this method. _underlayAccess _represents**_ _**object containing methods for communication with a device via NETCONF and should be passed to readers/writers. 
+*   Handlers(readers/writers) need to be registered in this method. _underlayAccess_ represents object containing methods for communication with a device via NETCONF and should be passed to readers/writers. 
 *   How to register readers/writers is described in [CLI TranslateUnit](#translateunit)
 
 
 # <a name="translation-units-for-different-device-versions"></a>Translation units for different device versions
 
-In case of needing to implement a new [CLI Translation Unit](#cli-translation-unit) for specific version of device we create a new [TranslateUnit](#translateunit) (e.g. located in _iosxr/mpls_)_._
+In case of needing to implement a new [CLI Translation Unit](#cli-translation-unit) for specific version of device we create a new [TranslateUnit](#translateunit) (e.g. located in _iosxr/mpls_).
 
 _In this case we use IOSXR4.* implementation as an example._
 
 
 ### <a name="device-registration"></a>Device registration
 
-In TranslateUnit we had just created, _e.g. MplsUnitXR4.java , _we have to register device as a constant located _../iosxr/utils/IosXrDevices.java _containing device type and version as described in [TranslateUnit](#translateunit) documentation.
+In TranslateUnit we had just created, _e.g. MplsUnitXR4.java_, we have to register device as a constant located _../iosxr/utils/IosXrDevices.java_ containing device type and version as described in [TranslateUnit](#translateunit) documentation.
 
 
 ```
@@ -563,7 +563,7 @@ public void init() {
 ```
 
 
-This unit can reuse all writers/readers from existing ones, except the writer (or other handler)  we want to alter or create (in our example writer for tunnel configuration). We have to create a new writer with desired behaviour and add it into _provideWriters _method.
+This unit can reuse all writers/readers from existing ones, except the writer (or other handler)  we want to alter or create (in our example writer for tunnel configuration). We have to create a new writer with desired behaviour and add it into _provideWriters_ method.
 
 
 ```
