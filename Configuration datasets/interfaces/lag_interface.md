@@ -127,6 +127,21 @@ interface Bundle-Ether{{lag_intf_id}}
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/interface)
 
+### Cisco IOS XR 7.0.1
+
+#### CLI
+
+<pre>
+interface Bundle-Ether{{lag_intf_id}} 
+ description {{lag_description}} 
+ mtu {{lag_mtu}}
+ load-interval {{lag_load_interval}}
+</pre>
+
+##### Unit
+
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-7-interface-unit)
+
 ### Junos 17.3R1.10
 
 #### CLI
