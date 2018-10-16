@@ -74,6 +74,24 @@ interface {{eth_url_intf-id}}.0
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/interface)
 
+### Cisco IOS XR 7.0.1
+
+#### CLI
+
+---
+<pre>
+interface {{eth_url_intf-id}}.0
+ ipv4 address {{subnet}}
+</pre>
+
+{{subnet}} is conversion of {{eth_ifc_pref_length}}
+
+---
+
+##### Unit
+
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-7-interface-unit)
+
 ### Junos 17.3R1.10
 
 #### CLI
