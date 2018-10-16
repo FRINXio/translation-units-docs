@@ -159,6 +159,33 @@ if {{lacp_mode}} is not specified then command *bundle id {{eth_lag_intf-id}} mo
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/interface)
 
+### Cisco IOS XR 7.0.1
+
+#### CLI
+
+<pre>
+interface {{eth_intf_id}}
+ description {{eth_description}}
+ dampening {{eth_half-life}} {{reuse}} {{suppress}} {{max-suppress}} | no dampening
+ load-interval {{eth_load-interval}}
+ bundle id {{eth_lag_intf-id}} mode {{lacp_mode}}
+ lacp period short | no lacp period short
+ shutdown | no shutdown
+</pre>
+
+*no shutdown* is a conversion of {{eth_enabled}} set *true*  
+*shutdown* is a conversion of {{eth_enabled}} set *false*  
+*no dampening* is a conversion of {{eth_damping_enabled}} set *false*  
+*lacp persiod short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:FAST*  
+*no lacp persiod short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:SLOW*  
+if {{lacp_mode}} is not specified then command *bundle id {{eth_lag_intf-id}} mode on* is used  
+*mode active* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:ACTIVE*  
+*mode passive* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:PASSIVE*  
+
+##### Unit
+
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-7-interface-unit)
+
 ### Junos 17.3R1.10
 
 #### CLI
