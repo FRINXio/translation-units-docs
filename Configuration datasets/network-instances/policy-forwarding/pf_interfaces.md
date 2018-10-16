@@ -56,6 +56,20 @@ interface {{policy_interface}}
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/network-instance)
 
+### Cisco IOS XR 7.0.1
+
+#### CLI
+
+<pre>
+interface {{policy_interface}}
+ service-policy input {{input_policy}}
+ service-policy output {{output_policy}}
+</pre>
+
+##### Unit
+
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-7-network-instance-unit)
+
 ### Junos 14.1X53-D40.8
 
 #### CLI
