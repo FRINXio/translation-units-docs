@@ -325,6 +325,29 @@ router &lt;redistribute2-to&gt;
    redistribute &lt;redistribute2-from&gt;
 </pre>
 
+### CISCO IOS XR (7.0.1)
+
+#### CLI
+
+<pre>
+vrf &lt;vrf&gt;
+ address-family ipv4 unicast
+  import route-target 
+   {&lt;rt_imp_1&gt;}
+   {&lt;rt_imp_2&gt;}
+   {&lt;rt_imp_3&gt;}
+  export route-target 
+   {&lt;rt_exp_1&gt;}
+   {&lt;rt_exp_2&gt;}
+   {&lt;rt_exp_3&gt;}
+
+interface &lt;interface-id&gt;
+ vrf &lt;vrf&gt;
+</pre>
+##### Unit
+
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-7-network-instance-unit)
+
 ### Cisco IOS (VIOS 15.6(2)T)
 
 #### CLI
