@@ -1,4 +1,3 @@
-* [<a href="show_version.md">version</a>](#version)
 * [<a href="show_inventory.md">inventory</a>](#inventory)
 * [<a href="lldp.md">lldp</a>](#lldp)
 * [<a href="cdp.md">cdp</a>](#cdp)
@@ -12,8 +11,6 @@
     * [<a href="Network Instances/Protocols/bgp_rib.md">BGP RIB</a>](#bgp-rib)
     * [<a href="Network Instances/Protocols/ospf_summary.md">OSPF summary</a>](#ospf-summary)
     * [<a href="Network Instances/Protocols/static_routes.md">static routes</a>](#static-routes)
-
-#### [version](show_version.md)
 
 #### [inventory](show_inventory.md)
 
