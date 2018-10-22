@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_id}}
+frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_name}}
 ```
 
 ## OPENCONFIG YANG
@@ -14,13 +14,13 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_id}}
 {
     "interface": [
         {
-            "name": "Bundle-Ether{{lag_intf_id}}",
+            "name": "{{lag_intf_name}}",
             "config": {
                 "type": "iana-if-type:ieee8023adLag",
                 "enabled": {{lag_enabled}},
                 "mtu": {{lag_mtu}},
                 "description": "{{lag_description}}",
-                "name": "Bundle-Ether{{lag_intf_id}}"
+                "name": "{{lag_intf_name}}"
             },
             "subinterfaces": {
                 "subinterface": [
@@ -87,6 +87,15 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_id}}
                         "multiplier": {{lag_bfd_multiplier}},
                         "min-interval": {{lag_bfd_min_interval}}
                     }
+                },
+                "frinx-openconfig-vlan:switched-vlan" : {
+                    "config" : {
+                        "interface-mode": "{{vlan_mode}}",
+                        "trunk-vlans": [
+                             {{vlan_intf_id}}
+                         ],
+                         "access-vlan": {{vlan_intf_id}}
+                    }
                 }
             }
         }
@@ -118,6 +127,9 @@ interface Bundle-Ether{{lag_intf_id}}
  shutdown | no shutdown
 </pre>
 
+{{lag_intf_id}} is parsed from {{lag_intf_name}}  
+example {{lag_intf_name}} is Bundle-Ether100 -&gt; {{lag_intf_id}} is 100  
+
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
 *shutdown* is a conversion of {{eth_enabled}} set *false*  
 *no dampening* is a conversion of {{eth_damping_enabled}} set *false*  
@@ -137,6 +149,9 @@ interface Bundle-Ether{{lag_intf_id}}
  mtu {{lag_mtu}}
  load-interval {{lag_load_interval}}
 </pre>
+
+{{lag_intf_id}} is parsed from {{lag_intf_name}}  
+example {{lag_intf_name}} is Bundle-Ether100 -&gt; {{lag_intf_id}} is 100  
 
 ##### Unit
 
@@ -159,6 +174,9 @@ set interfaces ae{{lag_intf_id}} aggregated-ether-options link-speed {{lag_link_
 delete interface ae{{lag_intf_id}} disable | set interface ae{{lag_intf_id}} disable
 </pre>
 
+{{lag_intf_id}} is parsed from {{lag_intf_name}}  
+example {{lag_intf_name}} is ae100 -&gt; {{lag_intf_id}} is 100  
+
 *delete interface ae{{lag_intf_id}} disable* is a conversion of {{lag_enabled}} set *true*  
 *set interface ae{{lag_intf_id}} disable* is conversion of {{lag_enabled}} set *false*  
 
@@ -177,4 +195,15 @@ Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/mast
 <pre>
 bridge
  lacp aggregator {{lag_intf_id}}
+ vlan add br{{vlan_intf_id}} t/{{lag_intf_id}} [un]tagged
 </pre>
+
+{{lag_intf_id}} is parsed from {{lag_intf_name}}  
+example {{lag_intf_name}} is Bundle-Ether100 -&gt; {{lag_intf_id}} is 100 and prefix is Bundle-Ether  
+Dasan supports two kinds of prefixes (Prefix is settled by lag type)  
+* If the prefix of {{lag_intf_name}} is 'Trunk', lag type is port trunking
+* If the prefix of {{lag_intf_name}} is 'Bundle-Ether', lag type is lacp
+
+*tagged* is a conversion of {{vlan_mode}} set *TRUNK*  
+*untagged* is a conversion of {{vlan_mode}} set *ACCESS*  
+*vlan add br{{vlan_intf_id}} t/{{lag_intf_id}} [un]tagged* is only supported by port trunking  
