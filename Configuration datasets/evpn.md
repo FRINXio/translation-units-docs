@@ -12,30 +12,31 @@ frinx-evpn:evpn
 
 ```javascript
 {
-    "group": [
-        {
-            "config": {
-                "id": {{evpn_group_id}}
-            },
-            "core-interfaces": {
-                "interface": [
-                    {
-                        "name": "{{evpn_core_if_name}}",
-                        "config": {
-                            "type": "{{evpn_core_if_type}}",
-                            "name": "{{evpn_core_if_name}}"
+    "groups": {
+        "group": [
+            {
+                "id": {{evpn_group_id}},
+                "config": {
+                    "id": {{evpn_group_id}}
+                },
+                "core-interfaces": {
+                    "interface": [
+                        {
+                            "name": "{{evpn_core_if_name}}",
+                            "config": {
+                                "name": "{{evpn_core_if_name}}"
+                            }
                         }
-                    }
-                ]
+                    ]
+                }
             }
-        }
-    ],
+        ]
+    },
 
     "interfaces": {
         "interface": [
             "name": "{{evpn_if_name}}",
             "config": {
-                "type": "{{evpn_if_type}}",
                 "name": "{{evpn_if_name}}"
             },
             "ethernet-segment": {
@@ -45,7 +46,11 @@ frinx-evpn:evpn
                     "bgp-route-target": "{{bgp_route_target}}"
                 }
             },
-            "core-isolation-group": {{evpn_isolation_group_id}}
+            "core-isolation-group": {
+                "config": {
+                    "id": {{evpn_isolation_group_id}}
+                }
+            }
         ]
     }
 }
