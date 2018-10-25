@@ -1,14 +1,11 @@
-* [<a href="lldp.md">lldp</a>](#lldp)
-* [<a href="cdp.md">cdp</a>](#cdp)
 * [Network Instances](#network-instances)
   * [Protocols](#protocols)
     * [<a href="Network Instances/Protocols/bgp_summary.md">BGP summary</a>](#bgp-summary)
     * [<a href="Network Instances/Protocols/bgp_rib.md">BGP RIB</a>](#bgp-rib)
     * [<a href="Network Instances/Protocols/ospf_summary.md">OSPF summary</a>](#ospf-summary)
-
-#### [lldp](lldp.md)
-
-#### [cdp](cdp.md)
+* [Discovery protocols](#discovery-protocols)
+    * [<a href="cdp.md">CDP</a>](#cdp)
+    * [<a href="lldp.md">LLDP</a>](#lldp)
 
 # Network Instances
 
@@ -19,3 +16,9 @@
 #### [BGP RIB](Network%20Instances/Protocols/bgp_rib.md)
 
 #### [OSPF summary](Network%20Instances/Protocols/ospf_summary.md)
+
+# Discovery protocols
+
+#### [CDP](cdp.md)
+
+#### [LLDP](lldp.md)
