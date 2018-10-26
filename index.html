@@ -71,7 +71,7 @@
       font-weight: 500;
       text-align: center;
     }
-    li {
+    li.myNavbar {
       list-style-type: none;
       text-align: center;
     }
@@ -104,8 +104,23 @@
                         <img alt="brand" src="pics/logo_frinx_main.png" height="70px">
                     </a>
                 </li>
-                <li> <a href="https://github.com/FRINXio">Github</a></li>
-           </ul>
+                <li> <a href="https://frinxio.github.io/translation-units-docs/">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Device<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="devices/frinx-oc-ios-docs.html">CLI IOS</a></li>
+                    <li><a href="devices/frinx-oc-ios-xr-docs.html">CLI IOS-XR</a></li>
+                    <li><a href="devices/frinx-oc-vrp-docs.html">CLI Huawei</a></li>
+                    <li><a href="devices/frinx-oc-ironware-docs.html">CLI Brocade</a></li>
+                    <li><a href="devices/frinx-oc-nexus-docs.html">CLI Nexus</a></li>
+                    <li><a href="devices/frinx-oc-nos-docs.html">CLI Dasan</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="devices/frinx-oc-junos-docs.html">NETCONF Junos</a></li>
+                    <li><a href="devices/frinx-oc-xr-docs.html">NETCONF IOS-XR</a></li>
+                  </ul>
+                </li>
+                <li><a href="https://github.com/FRINXio">Github</a></li>
+            </ul>
         </div>
     </div>
 </nav>
