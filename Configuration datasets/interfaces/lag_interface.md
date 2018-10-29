@@ -42,7 +42,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_name}}
                                 ]
                             }
                         },
-			"frinx-openconfig-if-ip:ipv6": {
+                        "frinx-openconfig-if-ip:ipv6": {
                             "addresses": {
                                 "address": [
                                     {
@@ -53,10 +53,21 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_name}}
                                         }
                                     }
                                 ]
-                            },
-			    "router-advertisement": {
-			    	"suppress": true
-			    }
+                            }
+                        },
+                        "router-advertisement": {
+                            "suppress": true
+                        }
+                    },
+                    {
+                        "index": {{sub_interface_index}},
+                        "config": {
+                            "index": {{sub_interface_index}}
+                        },
+                        "frinx-cisco-if-extension:statistics": {
+                            "config": {
+                                "load-interval": {{lag_sub_load_interval}}
+                            }
                         }
                     }
                 ]
@@ -82,7 +93,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_name}}
                 },
                 "frinx-bfd:bfd": {
                     "config": {
-			"local-address": "{{lag_bfd_local_address}}",
+            "local-address": "{{lag_bfd_local_address}}",
                         "destination-address": "{{lag_bfd_destination_address}}",
                         "multiplier": {{lag_bfd_multiplier}},
                         "min-interval": {{lag_bfd_min_interval}}
@@ -148,6 +159,10 @@ interface Bundle-Ether{{lag_intf_id}}
  description {{lag_description}} 
  mtu {{lag_mtu}}
  load-interval {{lag_load_interval}}
+</pre>
+<pre>
+interface Bundle-Ether{{lag_intf_id}}.{{sub_interface_index}}
+ load-interval {{lag_sub_load_interval}}
 </pre>
 
 {{lag_intf_id}} is parsed from {{lag_intf_name}}  
