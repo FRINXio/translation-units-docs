@@ -1,5 +1,3 @@
-* [Interfaces](#interfaces)
-    * [<a href="interfaces/lag_interface.md">LAG interface</a>](#lag-interface)
 * [Network Instances](#network-instances)
   * [Protocols](#protocols)
     * [<a href="Network Instances/Protocols/bgp_summary.md">BGP summary</a>](#bgp-summary)
@@ -8,10 +6,6 @@
 * [Discovery protocols](#discovery-protocols)
     * [<a href="cdp.md">CDP</a>](#cdp)
     * [<a href="lldp.md">LLDP</a>](#lldp)
-
-# Interfaces
-
-#### [LAG interface](interfaces/lag_interface.md)
 
 # Network Instances
 
