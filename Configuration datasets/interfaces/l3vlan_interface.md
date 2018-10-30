@@ -19,8 +19,7 @@ frinx-openconfig-interfaces:interfaces/interface/Vlan{{vlan_intf_id}}
                 "type": "iana-if-type:l3ipvlan",
                 "enabled": {{vlan_enabled}},
                 "name": "Vlan{{vlan_intf_id}}",
-                "mtu": {{vlan_mtu}},
-                "tpid": "{{vlan_tpid}}"
+                "mtu": {{vlan_mtu}}
             },
             "frinx-l3ipvlan:l3ipvlan":  {
                 "config": {
@@ -32,13 +31,7 @@ frinx-openconfig-interfaces:interfaces/interface/Vlan{{vlan_intf_id}}
                     {
                         "index": 0,
                         "config": {
-                            "index": 0,
-                            "description": "{{vlan_description}}"
-                        },
-                        "vlan": {
-                            "config": {
-                                "vlan-id": {{vlan_id}}
-                            }
+                            "index": 0
                         },
                         "frinx-openconfig-if-ip:ipv4": {
                             "addresses": {
@@ -62,19 +55,6 @@ frinx-openconfig-interfaces:interfaces/interface/Vlan{{vlan_intf_id}}
 ```
 
 ## OS Configuration Commands
-
-### Junos 14.1X53-D40.8
-
-#### CLI
-
-<pre>
-set interfaces {{vlan_intf_id}} vlan-tagging
-set interfaces {{vlan_intf_id}} unit 0 description {{vlan_description}}
-set interfaces {{vlan_intf_id}} unit 0 vlan-id {{vlan_id}}
-set interfaces {{vlan_intf_id}} unit 0 family inet address {{vlan_ip}}/{{vlan_prefix}}
-</pre>
-
-*vlan-tagging* is a conversion of {{vlan_tpid}} set *TPID_0X8100*  
 
 ### Dasan NOS SFU.RR.5.6p5
 
