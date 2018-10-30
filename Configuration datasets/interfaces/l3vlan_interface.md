@@ -53,17 +53,6 @@ frinx-openconfig-interfaces:interfaces/interface/Vlan{{vlan_intf_id}}
                                 ]
                             }
                         }
-                    },
-                    {
-                        "index": {{sub_interface_index}},
-                        "config": {
-                            "index": {{sub_interface_index}}
-                        },
-                        "vlan": {
-                            "config": {
-                                "vlan-id": {{vlan_id}}
-                            }
-                        }
                     }
                 ]
             }
@@ -86,18 +75,6 @@ set interfaces {{vlan_intf_id}} unit 0 family inet address {{vlan_ip}}/{{vlan_pr
 </pre>
 
 *vlan-tagging* is a conversion of {{vlan_tpid}} set *TPID_0X8100*  
-
-### Junos 18.2R2
-
-#### CLI
-
-<pre>
-set interfaces {{vlan_intf_id}} unit {{sub_interface_index}} vlan-id {{vlan_id}}
-set interfaces {{vlan_intf_id}} unit {{sub_interface_index}} vlan-tags inner 0x8100:{{inner_vlan_tag}}
-set interfaces {{vlan_intf_id}} unit {{sub_interface_index}} vlan-tags outer 0x8100:{{outer_vlan_tag}}
-</pre> 
-
-*inner_vlan_tag* , *outer_vlan_tag* is a conversion of {{vlan_id}} set {{inner_vlan_tag}}.{{outer_vlan_tag}}
 
 ### Dasan NOS SFU.RR.5.6p5
 
