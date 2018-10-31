@@ -14,7 +14,7 @@ frinx-openconfig-acl:acl/interfaces/interface/{{iacl_intf_id}}
 {
     "interface": [
         {
-            "id": "{{iacl_intf-id}}",
+            "id": "{{iacl_intf_id}}",
             "ingress-acl-sets": {
                 "ingress-acl-set": [
                     {
@@ -84,3 +84,18 @@ set interfaces {{iacl_intf_id}} unit 0 family inet filter output {{iacl_out_acl_
 ##### Unit
 
 Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-acl-unit)
+
+### Junos 18.2R2
+
+#### CLI
+
+<pre>
+set interfaces {{iacl_intf_index}} unit {{iacl_subintf_index}} family inet filter input {{iacl_in_acl_name}}
+set interfaces {{iacl_intf_index}} unit {{iacl_subintf_index}} family inet filter output {{iacl_out_acl_name}}
+</pre>
+
+*iacl_intf_index* , *iacl_subintf_index* is a conversion of {{iacl_intf_id}} set {{iacl_intf_index}}.{{iacl_subintf_index}}
+
+##### Unit
+
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-18-acl-unit)
