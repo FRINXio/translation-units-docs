@@ -690,3 +690,12 @@ set policy-options policy-statement OUT-FIL term 1 then accept
     ]
 }
 ```
+
+### Junos 18.2R2
+
+#### CLI
+
+<pre>
+set policy-options prefix-list {{pset_name}} {{prefix}}/{{prefix_masklength}}
+</pre>
+
