@@ -407,3 +407,11 @@ set routing-instances &lt;vrf&gt; routing-options instance-import &lt;vrf&gt;-ro
 set routing-instances &lt;vrf&gt; protocols ospf export &lt;vrf&gt;-route-target-export
 </pre>
 *ospf* is a conversion of &lt;policy-protocol-type&gt; set *frinx-openconfig-policy-types:OSPF*  
+
+### Junos 18.2R2
+
+#### CLI
+
+<pre>
+set routing-instances &lt;vrf&gt; interface &lt;ospf_interface&gt;
+</pre>
