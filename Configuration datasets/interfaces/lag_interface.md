@@ -62,8 +62,14 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_name}}
                     {
                         "index": {{sub_interface_index}},
                         "config": {
-                            "index": {{sub_interface_index}}
+                            "index": {{sub_interface_index}},
+                            "enabled": {{lag_sub_enabled}}
                         },
+                        "vlan": {
+                            "config": {
+                                "vlan-id": {{vlan_id}}
+                            }
+                        }
                         "frinx-cisco-if-extension:statistics": {
                             "config": {
                                 "load-interval": {{lag_sub_load_interval}}
@@ -93,7 +99,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_name}}
                 },
                 "frinx-bfd:bfd": {
                     "config": {
-            "local-address": "{{lag_bfd_local_address}}",
+                        "local-address": "{{lag_bfd_local_address}}",
                         "destination-address": "{{lag_bfd_destination_address}}",
                         "multiplier": {{lag_bfd_multiplier}},
                         "min-interval": {{lag_bfd_min_interval}}
@@ -202,6 +208,29 @@ example {{lag_intf_name}} is ae100 -&gt; {{lag_intf_id}} is 100
 NOT IMPLEMENTED
 
 Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-interface-unit)
+
+### Junos 18.2R2
+
+#### CLI
+
+<pre>
+set interfaces ae{{lag_intf_id}} unit {{sub_interface_index}} vlan-id {{vlan_id}}
+set interfaces ae{{lag_intf_id}} unit {{sub_interface_index}} vlan-tags inner 0x8100:{{inner_vlan_tag}}
+set interfaces ae{{lag_intf_id}} unit {{sub_interface_index}} vlan-tags outer 0x8100:{{outer_vlan_tag}}
+delete interface ae{{lag_intf_id}} disable | set interface ae{{lag_intf_id}} disable
+delete interface ae{{lag_intf_id}}.{{sub_interface_index}} disable | set interface ae{{lag_intf_id}}.{{sub_interface_index}} disable
+</pre> 
+
+{{lag_intf_id}} is parsed from {{lag_intf_name}}  
+example {{lag_intf_name}} is ae100 -&gt; {{lag_intf_id}} is 100  
+
+*inner_vlan_tag* , *outer_vlan_tag* is a conversion of {{vlan_id}} set {{inner_vlan_tag}}.{{outer_vlan_tag}}
+*delete interface ae{{lag_intf_id}} disable* is a conversion of {{lag_enabled}} set *true*  
+*set interface ae{{lag_intf_id}} disable* is conversion of {{lag_enabled}} set *false*  
+*delete interface ae{{lag_intf_id}}.{{sub_interface_index}} disable* is a conversion of {{lag_sub_enabled}} set *true*  
+*set interface ae{{lag_intf_id}}.{{sub_interface_index}} disable* is conversion of {{lag_sub_enabled}} set *false*  
+
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-18-interface-unit)
 
 ### Dasan NOS SFU.RR.5.6p5
 
