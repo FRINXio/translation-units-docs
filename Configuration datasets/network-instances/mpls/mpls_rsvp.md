@@ -62,4 +62,4 @@ set protocols rsvp interface {{rsvp_intf_id}} bandwidth {{rsvp_bandwidth}}
 
 ##### Unit
 
-Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-mpls-unit)
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17/junos-17-mpls-unit)

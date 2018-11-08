@@ -80,7 +80,7 @@ set class-of-service interfaces {{policy_interface}} unit 0 classifiers inet-pre
 
 ##### Unit
 
-Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-14-policy-forwarding-unit)
+Link to github : [junos-unit](https://github.com/FRINXio/cli-units/tree/master/junos/policy-forwarding)
 
 ### Junos 17.3R1.10
 
@@ -94,4 +94,4 @@ set class-of-service interfaces {{policy_interface}} unit 0 classifiers inet-pre
 
 ##### Unit
 
-Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-policy-forwarding-unit)
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17/junos-17-policy-forwarding-unit)

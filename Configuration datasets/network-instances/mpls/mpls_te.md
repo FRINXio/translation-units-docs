@@ -64,4 +64,4 @@ set interfaces {{mpls_intf_id}} unit 0 family mpls
 
 ##### Unit
 
-Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-mpls-unit)
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17/junos-17-mpls-unit)

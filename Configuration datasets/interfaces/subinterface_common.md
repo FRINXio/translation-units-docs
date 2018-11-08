@@ -131,7 +131,7 @@ set interfaces {{eth_url_intf-id}} unit 0 family inet address {{eth_ifc_ip}}/{{e
 
 ##### Unit
 
-Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-interface-unit)
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17/junos-17-interface-unit)
 
 ### Huawei NE5000E (V800R009C10SPC310)
 

@@ -95,4 +95,4 @@ rpm_intf_index , rpm_subintf_index is a conversion of {{rpm_intf_id}} set {{rpm_
 
 ##### Unit
 
-Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-18-rpm-unit)
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-18/junos-18-rpm-unit)

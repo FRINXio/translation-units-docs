@@ -68,4 +68,4 @@ set interfaces {{snmp_intf_if}} traps
 
 ##### Unit
 
-Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-snmp-unit)
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17/junos-17-snmp-unit)

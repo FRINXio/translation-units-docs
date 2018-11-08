@@ -207,7 +207,7 @@ example {{lag_intf_name}} is ae100 -&gt; {{lag_intf_id}} is 100
 
 NOT IMPLEMENTED
 
-Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-interface-unit)
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17/junos-17-interface-unit)
 
 ### Junos 18.2R2
 
@@ -230,7 +230,7 @@ example {{lag_intf_name}} is ae100 -&gt; {{lag_intf_id}} is 100
 *delete interface ae{{lag_intf_id}}.{{sub_interface_index}} disable* is a conversion of {{lag_sub_enabled}} set *true*  
 *set interface ae{{lag_intf_id}}.{{sub_interface_index}} disable* is conversion of {{lag_sub_enabled}} set *false*  
 
-Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-18-interface-unit)
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-18/junos-18-interface-unit)
 
 ### Dasan NOS SFU.RR.5.6p5
 

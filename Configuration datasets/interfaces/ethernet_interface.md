@@ -259,7 +259,7 @@ delete interface {{eth_intf_id}} disable | set interface {{eth_intf_id}} disable
 
 ##### Unit
 
-Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-interface-unit)
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17/junos-17-interface-unit)
 
 ### Junos 18.2R2
 
@@ -273,7 +273,7 @@ set interfaces {{eth_intf_id}} unit {{sub_interface_index}} family inet address 
 
 ##### Unit
 
-Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-18-interface-unit)
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-18/junos-18-interface-unit)
 
 
 ### Brocade (V5.6.0fT163)
