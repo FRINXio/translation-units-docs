@@ -467,7 +467,7 @@ Noop writers may be registered in case when target node in YANG does not contain
 
 Translate unit class must implement interface [TranslateUnit](https://gerrit.frinx.io/plugins/gitblit/blob/?f=translation-registry-spi/src/main/java/io/frinx/cli/registry/spi/TranslateUnit.java&r=cli.git&h=carbon/development). Naming convention for translate unit class is just name Unit. Translate unit class is usually instantiated, initialized and closed from Blueprint.
 
-Implementation of TranslateUnit must be registered into _TranslationUnitCollector_ and must provide set of supported underlay YANG models. Snippet below shows registration of [Unit](https://github.com/FRINXio/unitopo-units/blob/master/junos/junos-17-interface-unit/src/main/kotlin/io/frinx/unitopo/unit/junos/interfaces/Unit.kt) for junos device version 17.3.
+Implementation of TranslateUnit must be registered into _TranslationUnitCollector_ and must provide set of supported underlay YANG models. Snippet below shows registration of [Unit](https://github.com/FRINXio/unitopo-units/blob/master/junos/junos-17/junos-17-interface-unit/src/main/kotlin/io/frinx/unitopo/unit/junos/interfaces/Unit.kt) for junos device version 17.3.
 
 
 ```
@@ -488,7 +488,7 @@ class Unit(private val registry: TranslationUnitCollector) : TranslateUnit {
 ```
 
 
-[Blueprint example](https://github.com/FRINXio/unitopo-units/blob/master/junos/junos-17-interface-unit/src/main/resources/org/opendaylight/blueprint/blueprint.xml) of injecting TranslationUnitCollector to Juniper173InterfaceUnit:
+[Blueprint example](https://github.com/FRINXio/unitopo-units/blob/master/junos/junos-17/junos-17-interface-unit/src/main/resources/org/opendaylight/blueprint/blueprint.xml) of injecting TranslationUnitCollector to Juniper173InterfaceUnit:
 
 
 ```

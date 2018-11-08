@@ -237,4 +237,4 @@ activate protocols bgp group {{bgp_group}} neighbor {{neighbor_ip}} peer-as {{bg
 
 ##### Unit
 
-Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17-bgp-unit)
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17/junos-17-bgp-unit)
