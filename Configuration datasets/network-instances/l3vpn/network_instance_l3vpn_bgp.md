@@ -209,6 +209,14 @@ router bgp {{l3_vpn_bgp_as_number}}
   neighbor {{l3_vpn_bgp_neighbor_address}} activate
 </pre>
 
+### Junos 18.2R2
+
+#### CLI
+
+<pre>
+set routing-instances {{l3_vpn_bgp_vrf}} routing-options aggregate route {{l3_vpn_bgp_aggregate_address}} policy {{network_prefix_rpl}}
+</pre>
+
 ### Huawei NE5000E (V800R009C10SPC310)
 
 #### CLI
