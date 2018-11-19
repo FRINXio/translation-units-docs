@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instance/network-instance/default/protocols/protocol/frinx-openconfig-policy-types:OSPF/{{ospf}}
+frinx-openconfig-network-instance:network-instances/network-instance/default/protocols/protocol/frinx-openconfig-policy-types:OSPF/{{ospf}}
 ```
 
 ## OPENCONFIG YANG
@@ -63,6 +63,7 @@ frinx-openconfig-network-instance:network-instance/network-instance/default/prot
                                     {
                                         "id": "{{ospf_interface}}",
                                         "config": {
+                                            "id": "{{ospf_interface}}",
                                             "network-type": {{ospf_network_type}},
                                             "frinx-ospf-extension:enabled": {{ospf_interface_enabled}},
                                             "metric": {{ospf_cost}},
