@@ -26,7 +26,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                     {
                         "config": {
                             "prefix": "{{network_prefix}}",
-                            "frinx-cisco-bgp-extension:apply-policy": "{{network_prefix_rpl}}"
+                            "frinx-bgp-extension:apply-policy": "{{network_prefix_rpl}}"
                         }
                     }
                 ]
@@ -84,7 +84,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                             "afi-safis": {
                                 "afi-safi": [
                                     "config": {
-                                        "frinx-cisco-bgp-extension:soft-reconfiguration": {
+                                        "frinx-bgp-extension:soft-reconfiguration": {
                                             "always": true|false
                                         },
                                         "afi-safi-name": "{{bgp_nbr_afi_safi_name}}"
