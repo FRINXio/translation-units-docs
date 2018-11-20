@@ -43,9 +43,9 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{l3_vpn_bg
                                 {
                                     "config": {
                                         "prefix": "{{l3_vpn_bgp_network_prefix}}",
-                                        "frinx-cisco-bgp-extension:aggregate-address": "{{l3_vpn_bgp_aggregate_address}}",
-                                        "frinx-cisco-bgp-extension:apply-policy": "{{network_prefix_rpl}}",
-                                        "frinx-cisco-bgp-extension:summary-only": true,
+                                        "frinx-bgp-extension:aggregate-address": "{{l3_vpn_bgp_aggregate_address}}",
+                                        "frinx-bgp-extension:apply-policy": "{{network_prefix_rpl}}",
+                                        "frinx-bgp-extension:summary-only": true,
                                     }
                                 }
                             ]
@@ -183,7 +183,7 @@ router bgp {{l3_vpn_bgp_as_number}}
    aggregate-address {{l3_vpn_bgp_aggregate_address}} summary-only route-policy {{network_prefix_rpl}}
 </pre>
 
-*summary-only* is a conversion of "frinx-cisco-bgp-extension:summary-only" set *true* 
+*summary-only* is a conversion of "frinx-bgp-extension:summary-only" set *true* 
 
 ### Cisco IOS (VIOS 15.6(2)T)
 
