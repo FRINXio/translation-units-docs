@@ -102,10 +102,10 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                     }
                     {
                         "name": "<ospfv3-process-id>"
-                        "identifier": "frinx-openconfig-policy-types:OSPFv3"
+                        "identifier": "frinx-openconfig-policy-types:OSPF3"
                         "config": {
                             "name": "<ospfv3-process-id>"
-                            "identifier": "frinx-openconfig-policy-types:OSPFv3"
+                            "identifier": "frinx-openconfig-policy-types:OSPF3"
                         }
                         "ospfv3": {
                             "global": {
@@ -343,6 +343,13 @@ vrf &lt;vrf&gt;
 
 interface &lt;interface-id&gt;
  vrf &lt;vrf&gt;
+
+router ospf &lt;ospf-process-id&gt;
+ vrf &lt;vrf&gt;
+  area &lt;area-id&gt;
+   interface &lt;interface-id&gt;
+    cost &lt;ospf_cost&gt;
+
 </pre>
 ##### Unit
 
