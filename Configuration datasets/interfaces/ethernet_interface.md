@@ -43,6 +43,9 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
                             }
                         },
                         "frinx-openconfig-if-ip:ipv4": {
+                            "config": {
+                                "mtu": {{eth_ipv4_mtu}}
+                            },
                             "addresses": {
                                 "address": [
                                     {
@@ -202,6 +205,7 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 interface {{eth_intf_id}}
  description {{eth_description}}
  ipv4 address {{eth_ip}} {{eth_prefix}}
+ ipv4 mtu {{eth_ipv4_mtu}}
  dampening {{eth_half-life}} {{reuse}} {{suppress}} {{max-suppress}} | no dampening
  load-interval {{eth_load-interval}}
  bundle id {{eth_lag_intf_id}} mode {{lacp_mode}}
