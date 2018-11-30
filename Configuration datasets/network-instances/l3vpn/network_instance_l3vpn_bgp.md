@@ -43,8 +43,9 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{l3_vpn_bg
                                 {
                                     "config": {
                                         "prefix": "{{l3_vpn_bgp_network_prefix}}",
-                                        "frinx-bgp-extension:aggregate-address": "{{l3_vpn_bgp_aggregate_address}}",
-                                        "frinx-bgp-extension:apply-policy": "{{network_prefix_rpl}}",
+                                        "frinx-bgp-extension:apply-policy": [
+                                            "{{network_prefix_rpl}}"
+                                        ],
                                         "frinx-bgp-extension:summary-only": true,
                                     }
                                 }
@@ -180,7 +181,7 @@ router bgp {{l3_vpn_bgp_as_number}}
 router bgp {{l3_vpn_bgp_as_number}}
  vrf {{l3_vpn_bgp_vrf}}
   address-family ipv4 unicast
-   aggregate-address {{l3_vpn_bgp_aggregate_address}} summary-only route-policy {{network_prefix_rpl}}
+   aggregate-address {{l3_vpn_bgp_network_prefix}} summary-only route-policy {{network_prefix_rpl}}
 </pre>
 
 *summary-only* is a conversion of "frinx-bgp-extension:summary-only" set *true* 
@@ -214,7 +215,7 @@ router bgp {{l3_vpn_bgp_as_number}}
 #### CLI
 
 <pre>
-set routing-instances {{l3_vpn_bgp_vrf}} routing-options aggregate route {{l3_vpn_bgp_aggregate_address}} policy {{network_prefix_rpl}}
+set routing-instances {{l3_vpn_bgp_vrf}} routing-options aggregate route {{l3_vpn_bgp_network_prefix}} policy {{network_prefix_rpl}}
 </pre>
 
 ### Huawei NE5000E (V800R009C10SPC310)
