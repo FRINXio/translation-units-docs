@@ -26,7 +26,9 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                     {
                         "config": {
                             "prefix": "{{network_prefix}}",
-                            "frinx-bgp-extension:apply-policy": "{{network_prefix_rpl}}"
+                            "frinx-bgp-extension:apply-policy": [
+                                "{{network_prefix_rpl}}"
+                            ]
                         }
                     }
                 ]
