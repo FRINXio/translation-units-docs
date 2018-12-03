@@ -12,6 +12,10 @@ frinx-evpn:evpn
 
 ```javascript
 {
+    "config": {
+        "enabled": {{evpn_enabled}}
+    },
+
     "groups": {
         "group": [
             {
@@ -74,6 +78,8 @@ evpn
   core-isolation-group {{evpn_isolation_group_id}}
 </pre>
 
+*evpn* is a conversion of {{evpn_enabled}} set to true
+*no evpn* is a conversion of {{evpn_enabled}} set to false  
 {{evpn_core_if_id}} is parsed from {{evpn_core_if_name}}  
 example {{evpn_core_if_name}} is Bundle-Ether100 -> {{evpn_core_if_id}} is 100  
 {{evpn_if_id}} is parsed from {{evpn_if_name}}  
