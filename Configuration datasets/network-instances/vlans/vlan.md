@@ -2,7 +2,7 @@
 
 ## URL
 ```
-frinx-openconfig-network-instance:network-instance/network-instance/default/vlans/vlan/{{vlan_id}}
+frinx-openconfig-network-instance:network-instances/network-instance/default/vlans/vlan/{{vlan_id}}
 ```
 
 ## OPENCONFIG YANG
