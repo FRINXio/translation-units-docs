@@ -17,7 +17,8 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_url_intf-id}}/subinterfac
             {
                 "index": 0,
                 "config": {
-                    "index": 0
+                    "index": 0,
+                    "juniper-if-ext:rpm-type": {{rpm_type}}
                 },
                 "frinx-openconfig-if-ip:ipv4": {
                     "addresses": {
@@ -133,6 +134,22 @@ set interfaces {{eth_url_intf-id}} unit 0 family inet address {{eth_ifc_ip}}/{{e
 
 Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17/junos-17-interface-unit)
 
+### Junos 18.2R2
+
+#### CLI
+
+---
+<pre>
+set interfaces {{rpm_intf_index}} unit {{rpm_subintf_index}} rpm {{rpm_type}}
+</pre>
+---
+
+rpm_intf_index , rpm_subintf_index is a conversion of {{rpm_intf_id}} set {{rpm_intf_index}}.{{rpm_subintf_index}}  
+
+##### Unit
+
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-18/junos-18-interface-unit)
+
 ### Huawei NE5000E (V800R009C10SPC310)
 
 #### CLI
@@ -150,3 +167,4 @@ interface {{eth_url_intf-id}}.0
 ##### Unit
 
 Link to github : [huawei-unit](https://github.com/FRINXio/cli-units/tree/master/huawei/interface)
+
