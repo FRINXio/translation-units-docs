@@ -35,7 +35,8 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
                         "index": 0,
                         "config": {
                             "index": 0,
-                            "description": "{{subif_description}}"
+                            "description": "{{subif_description}}",
+                            "enabled": {{subif_enabled}}
                         },
                         "vlan": {
                             "config": {
@@ -81,7 +82,13 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
                         "index": {{sub_interface_index}},
                         "config": {
                             "index": {{sub_interface_index}},
-                            "description": "{{subif_description}}"
+                            "description": "{{subif_description}}",
+                            "enabled": {{subif_enabled}}
+                        },
+                        "vlan": {
+                            "config": {
+                                "vlan-id": {{vlan_id}}
+                            }
                         },
                         "frinx-openconfig-if-ip:ipv4": {
                             "addresses": {
@@ -274,7 +281,18 @@ Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/mast
 set interfaces {{eth_intf_id}} unit {{sub_interface_index}} description {{subif_description}}
 set interfaces {{eth_intf_id}} unit {{sub_interface_index}} family inet address {{eth_ip}}/{{eth_prefix}}
 set interfaces {{eth_intf_id}} unit {{sub_interface_index}} family inet address {{eth_ip}}/{{eth_prefix}} vrrp-group {{eth_ipv4_virtual_id}} virtual-address {{eth_ipv4_virtual_address}}
+set interfaces {{eth_intf_id}} unit {{sub_interface_index}} vlan-id {{vlan_id}}
+set interfaces {{eth_intf_id}} unit {{sub_interface_index}} vlan-tags inner 0x8100:{{inner_vlan_tag}}
+set interfaces {{eth_intf_id}} unit {{sub_interface_index}} vlan-tags outer 0x8100:{{outer_vlan_tag}}
+delete interface {{eth_intf_id}} disable | set interface {{eth_intf_id}} disable
+delete interface {{eth_intf_id}} unit {{sub_interface_index}} disable | set interface {{eth_intf_id}} unit {{sub_interface_index}} disable
 </pre>
+
+*inner_vlan_tag* , *outer_vlan_tag* is a conversion of {{vlan_id}} set {{outer_vlan_tag}}.{{inner_vlan_tag}}  
+*delete interface {{eth_intf_id}} disable* is a conversion of {{eth_enabled}} set *true*  
+*set interface {{eth_intf_id}} disable* is conversion of {{eth_enabled}} set *false*  
+*delete interface {{eth_intf_id}} unit {{sub_interface_index}} disable* is a conversion of {{subif_enabled}} set *true*  
+*set interface {{eth_intf_id}} unit {{sub_interface_index}} disable* is conversion of {{subif_enabled}} set *false*  
 
 ##### Unit
 
