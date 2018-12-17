@@ -69,7 +69,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_name}}
                             "config": {
                                 "vlan-id": {{vlan_id}}
                             }
-                        }
+                        },
                         "frinx-cisco-if-extension:statistics": {
                             "config": {
                                 "load-interval": {{lag_sub_load_interval}}
@@ -214,21 +214,22 @@ Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/mast
 #### CLI
 
 <pre>
+set interfaces ae{{lag_intf_id}} unit {{sub_interface_index}} description {{lag_description}}
 set interfaces ae{{lag_intf_id}} unit {{sub_interface_index}} vlan-id {{vlan_id}}
 set interfaces ae{{lag_intf_id}} unit {{sub_interface_index}} vlan-tags inner 0x8100:{{inner_vlan_tag}}
 set interfaces ae{{lag_intf_id}} unit {{sub_interface_index}} vlan-tags outer 0x8100:{{outer_vlan_tag}}
 delete interface ae{{lag_intf_id}} disable | set interface ae{{lag_intf_id}} disable
-delete interface ae{{lag_intf_id}}.{{sub_interface_index}} disable | set interface ae{{lag_intf_id}}.{{sub_interface_index}} disable
+delete interface ae{{lag_intf_id}} unit {{sub_interface_index}} disable | set interface ae{{lag_intf_id}} unit {{sub_interface_index}} disable
 </pre> 
 
 {{lag_intf_id}} is parsed from {{lag_intf_name}}  
 example {{lag_intf_name}} is ae100 -&gt; {{lag_intf_id}} is 100  
 
-*inner_vlan_tag* , *outer_vlan_tag* is a conversion of {{vlan_id}} set {{inner_vlan_tag}}.{{outer_vlan_tag}}
+*inner_vlan_tag* , *outer_vlan_tag* is a conversion of {{vlan_id}} set {{outer_vlan_tag}}.{{inner_vlan_tag}}  
 *delete interface ae{{lag_intf_id}} disable* is a conversion of {{lag_enabled}} set *true*  
 *set interface ae{{lag_intf_id}} disable* is conversion of {{lag_enabled}} set *false*  
-*delete interface ae{{lag_intf_id}}.{{sub_interface_index}} disable* is a conversion of {{lag_sub_enabled}} set *true*  
-*set interface ae{{lag_intf_id}}.{{sub_interface_index}} disable* is conversion of {{lag_sub_enabled}} set *false*  
+*delete interface ae{{lag_intf_id}} unit {{sub_interface_index}} disable* is a conversion of {{lag_sub_enabled}} set *true*  
+*set interface ae{{lag_intf_id}} unit {{sub_interface_index}} disable* is conversion of {{lag_sub_enabled}} set *false*  
 
 Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-18/junos-18-interface-unit)
 
