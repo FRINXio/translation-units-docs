@@ -133,11 +133,11 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
                 },
                 "frinx-openconfig-vlan:switched-vlan" : {
                     "config" : {
-                        "interface-mode": "{{vlan_mode}}",
+                        "interface-mode": "TRUNK",
                         "trunk-vlans": [
-                             {{vlan_intf_id}}
+                             {{tagged_vlan_intf_id}}
                          ],
-                         "access-vlan": {{vlan_intf_id}}
+                         "native-vlan": {{untagged_vlan_intf_id}}
                     }
                 }
             },
@@ -336,7 +336,8 @@ interface {{eth_intf_id}}
 
 <pre>
 bridge
- vlan add br{{vlan_intf_id}} {{phy_port_id}} [un]tagged
+ vlan add br{{tagged_vlan_intf_id}} {{phy_port_id}} tagged
+ vlan add br{{untagged_vlan_intf_id}} {{phy_port_id}} untagged
  lacp port {{phy_port_id}} aggregator {{eth_lag_intf_id}}
  lacp port admin-key {{phy_port_id}} {{admin-key}}
  jumbo-frame {{phy_port_id}} {{eth_mtu}}
@@ -346,7 +347,5 @@ bridge
 {{phy_port_id}} is parsed from {{eth_intf_id}}  
 example {{eth_intf_id}} is Ethernet1/1 -&gt; {{phy_port_id}} is 1/1  
 
-*tagged* is a conversion of {{vlan_mode}} set *TRUNK*  
-*untagged* is a conversion of {{vlan_mode}} set *ACCESS*  
 *port enable {{phy_port_id}}* is a conversion of {{eth_enabled}} set *true*  
 *port disable {{phy_port_id}}* is a conversion of {{eth_enabled}} set *false*  
