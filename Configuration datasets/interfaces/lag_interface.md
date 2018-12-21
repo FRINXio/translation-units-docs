@@ -107,11 +107,11 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_name}}
                 },
                 "frinx-openconfig-vlan:switched-vlan" : {
                     "config" : {
-                        "interface-mode": "{{vlan_mode}}",
+                        "interface-mode": "TRUNK",
                         "trunk-vlans": [
-                             {{vlan_intf_id}}
+                             {{tagged_vlan_intf_id}}
                          ],
-                         "access-vlan": {{vlan_intf_id}}
+                         "native-vlan": {{untagged_vlan_intf_id}}
                     }
                 }
             }
@@ -240,7 +240,8 @@ Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/mast
 <pre>
 bridge
  lacp aggregator {{lag_intf_id}}
- vlan add br{{vlan_intf_id}} t/{{lag_intf_id}} [un]tagged
+ vlan add br{{tagged_vlan_intf_id}} t/{{lag_intf_id}} tagged
+ vlan add br{{untagged_vlan_intf_id}} t/{{lag_intf_id}} untagged
 </pre>
 
 {{lag_intf_id}} is parsed from {{lag_intf_name}}  
@@ -249,6 +250,5 @@ Dasan supports two kinds of prefixes (Prefix is settled by lag type)
 * If the prefix of {{lag_intf_name}} is 'Trunk', lag type is port trunking
 * If the prefix of {{lag_intf_name}} is 'Bundle-Ether', lag type is lacp
 
-*tagged* is a conversion of {{vlan_mode}} set *TRUNK*  
-*untagged* is a conversion of {{vlan_mode}} set *ACCESS*  
-*vlan add br{{vlan_intf_id}} t/{{lag_intf_id}} [un]tagged* is only supported by port trunking  
+*vlan add br{{tagged_vlan_intf_id}} t/{{lag_intf_id}} tagged* is only supported by port trunking
+*vlan add br{{untagged_vlan_intf_id}} t/{{lag_intf_id}} untagged* is only supported by port trunking
