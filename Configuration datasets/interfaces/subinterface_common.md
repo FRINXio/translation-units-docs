@@ -37,7 +37,8 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_url_intf-id}}/subinterfac
             {
                 "index": {{sub_ifc_index}},
                 "config": {
-                    "index": {{sub_ifc_index}}
+                    "index": {{sub_ifc_index}},
+                    "description": "{{sub_ifc_description}}"
                 },
                 "frinx-openconfig-if-ip:ipv4": {
                     "addresses": {
@@ -70,7 +71,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_url_intf-id}}/subinterfac
 ---
 <pre>
 interface {{eth_url_intf-id}}
- ip address {{eth_ifc_ip}}{{subnet}}
+ ip address {{eth_ifc_ip}} {{subnet}}
 </pre>
 
 {{subnet}} is conversion of {{eth_ifc_pref_length}}
@@ -88,7 +89,28 @@ Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios
 ---
 <pre>
 interface {{eth_url_intf-id}}.0
- ipv4 address {{subnet}}
+ ipv4 address {{eth_ifc_ip}} {{subnet}}
+</pre>
+
+{{subnet}} is conversion of {{eth_ifc_pref_length}}
+
+---
+
+
+##### Unit
+
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/interface)
+
+### Cisco IOS XR 6.2.3
+
+#### CLI
+
+---
+<pre>
+interface {{eth_url_intf-id}}.{{sub_ifc_index}}
+ description {{sub_ifc_description}}
+ ipv4 address {{eth_ifc_ip}} {{subnet}}
+ encapsulation dot1q {{l3_vlan_id}}
 </pre>
 
 {{subnet}} is conversion of {{eth_ifc_pref_length}}
@@ -106,9 +128,9 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 ---
 <pre>
 interface {{eth_url_intf-id}}.0
- ipv4 address {{subnet}}
+ ipv4 address {{eth_ifc_ip}} {{subnet}}
 interface {{eth_url_intf-id}}.{{sub_ifc_index}}
- ipv4 address {{subnet}}
+ ipv4 address {{eth_ifc_ip}} {{subnet}}
  encapsulation dot1q {{l3_vlan_id}}
 </pre>
 
