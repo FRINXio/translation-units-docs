@@ -111,6 +111,11 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
                                     }
                                 ]
                             }
+                        },
+                        "frinx-cisco-if-extension:statistics": {
+                            "config": {
+                                "load-interval": {{lag_sub_load_interval}}
+                            }
                         }
                     }
                 ]
@@ -203,6 +208,15 @@ if {{lacp_mode}} is not specified then command *bundle id {{eth_lag_intf_id}} mo
 ##### Unit
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/interface)
+
+### Cisco IOS XR 6.2.3
+
+#### CLI
+
+<pre>
+interface {{eth_intf_id}}.{{sub_interface_index}}
+ load-interval {{lag_sub_load_interval}}
+</pre>
 
 ### Cisco IOS XR 7.0.1
 

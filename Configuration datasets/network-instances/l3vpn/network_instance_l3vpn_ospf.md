@@ -325,6 +325,21 @@ router &lt;redistribute2-to&gt;
    redistribute &lt;redistribute2-from&gt;
 </pre>
 
+### CISCO IOS XR (6.2.3)
+
+#### CLI
+
+<pre>
+interface &lt;interface-id&gt;
+ vrf &lt;vrf&gt;
+
+router ospf &lt;ospf-process-id&gt;
+ vrf &lt;vrf&gt;
+  area &lt;area-id&gt;
+   interface &lt;interface-id&gt;
+    cost &lt;ospf_cost&gt;
+</pre>
+
 ### CISCO IOS XR (7.0.1)
 
 #### CLI
