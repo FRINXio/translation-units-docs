@@ -29,7 +29,7 @@
 * [Monitoring](#monitoring)
     * [<a href="snmp.md">SNMP</a>](#snmp)
     * [<a href="logging.md">SYSLOG</a>](#syslog)
-    * [<a href="rpm.md">RPM</a>](#rpm)
+    * [<a href="probes.md">Probes</a>](#probes)
 * [Hot Standby Router Protocol](#hsrp)
     * [<a href="hsrp.md">HSRP</a>](#hsrp)
 * [Access control](#access-control)
@@ -108,7 +108,7 @@
 
 #### [SYSLOG](logging.md)
 
-#### [RPM](rpm.md)
+#### [Probes](probes.md)
 
 # Hot Standby Router Protocol
 

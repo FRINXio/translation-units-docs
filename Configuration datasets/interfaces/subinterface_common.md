@@ -38,6 +38,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_url_intf-id}}/subinterfac
                 "index": {{sub_ifc_index}},
                 "config": {
                     "index": {{sub_ifc_index}},
+                    "juniper-if-ext:rpm-type": {{rpm_type}},
                     "description": "{{sub_ifc_description}}"
                 },
                 "frinx-openconfig-if-ip:ipv4": {
