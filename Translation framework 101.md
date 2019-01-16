@@ -30,12 +30,11 @@
    * [Translation units for different device versions](#translation-units-for-different-device-versions)
       * [Device registration](#device-registration)
       * [Handlers](#handlers2)
+   * [Best practices for handlers (readers/writers)](#best-practices-for-handlers)
 
 # <a name="translation-framework"></a>Translation Framework
 
 The translation framework allows translation units to:
-
-
 
 *   Add YANG model into the system
 *   Register Handlers for all or a subset of nodes defined in the YANG model
@@ -46,6 +45,7 @@ The translation framework allows translation units to:
 
 
 ## <a name="finding-mapping-between-device-and-the-model"></a>Finding mapping between device and the model
+
 
 Prefered YANG models for device config and operational data are [OpenConfig models](https://github.com/openconfig/public/tree/master/release/models).
 
@@ -200,31 +200,13 @@ For example typed readers for bgp (located under _protocol_) needs to check if _
 
 Each writer needs to implement one of these interfaces based on type of target node in YANG. Unlike mandatory interfaces for reading, only interfaces for writing config data are available (because it is not possible to write operational data). These interfaces also contain util methods which may be used for better manipulation with data. For more information about methods please read javadocs.
 
+All writers override updateCurrentAttributes method and avoid delete/write combination, unless specified in a comment
+
 **CliListWriter** - implement this interface if target composite node in YANG is list. An implementation needs to be registered as GenericListWriter.
 
 **CliWriter** - implement this interface if target composite node in YANG is container or augmentation. An implementation needs to be registered as GenericWriter.
 
 **CompositeWriter** - extend this abstract class when multiple writers need to be invoked on one YANG node. The writers need to have a check whether or not should they be invoked.
-
-**Do not push code that contains following:**
-
-1. Static imports
-2. Commented out code
-3. Reflection
-4. Trailing whitespaces or tables
-5. Double blank lines
-
-**Before pushing the code make sure:**
-
-1. New classes/interfaces have the correct license header 
-2. New classes/interfaces/yang model have correct date
-3. All new dependencies and imports are actually used
-4. All variables/methods are actually used
-5. All defined exceptions can be thrown from the code
-6. All writers override updateCurrentAttributes method and avoid delete/write combination, unless specified in a comment
-7. Comments are appropriate to the code behavior
-8. Code has correct spacing
-9. All comments are in English
 
 #### <a name="existing-noop-writers2"></a>Existing noop writers
 
@@ -604,9 +586,26 @@ Similar process apply on every new implementation of different device version.
 # How to write extensions for OpenConfig
 
 
-# Best practices for handlers (readers/writers)
+# <a name="best-practices-for-handlers"></a>Best practices for handlers (readers/writers)
 
+**Do not push code that contains following:**
 
+1. static imports
+2 commented out code
+3. reflection
+4. trailing whitespaces or tabs
+5. double blank lines
+
+**Before pushing the code make sure:**
+
+1. new classes/interfaces have the correct license header 
+2. new classes/interfaces/yang model have correct date
+3. all new dependencies and imports are actually used
+4. all variables/methods are actually used
+5. all defined exceptions can be thrown from the code
+6. comments are appropriate to the code behavior
+7. code has correct spacing
+8. all comments are in English
 
 *   Constants 
     *   Chunk 
