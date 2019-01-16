@@ -590,22 +590,22 @@ Similar process apply on every new implementation of different device version.
 
 **Do not push code that contains following:**
 
-1. static imports
-2 commented out code
-3. reflection
-4. trailing whitespaces or tabs
-5. double blank lines
+1. Static imports
+2. Commented out code
+3. Reflection
+4. Trailing whitespaces or tabs
+5. Double blank lines
 
 **Before pushing the code make sure:**
 
-1. new classes/interfaces have the correct license header 
-2. new classes/interfaces/yang model have correct date
-3. all new dependencies and imports are actually used
-4. all variables/methods are actually used
-5. all defined exceptions can be thrown from the code
-6. comments are appropriate to the code behavior
-7. code has correct spacing
-8. all comments are in English
+1. New classes/interfaces have the correct license header 
+2. New classes/interfaces/yang model have correct date
+3. All new dependencies and imports are actually used
+4. All variables/methods are actually used
+5. All defined exceptions can be thrown from the code
+6. Comments are appropriate to the code behavior
+7. Code has correct spacing
+8. All comments are in English
 
 *   Constants 
     *   Chunk 
