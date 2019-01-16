@@ -206,6 +206,25 @@ Each writer needs to implement one of these interfaces based on type of target n
 
 **CompositeWriter** - extend this abstract class when multiple writers need to be invoked on one YANG node. The writers need to have a check whether or not should they be invoked.
 
+**Do not push code that contains following:**
+
+1. Static imports
+2. Commented out code
+3. Reflection
+4. Trailing whitespaces or tables
+5. Double blank lines
+
+**Before pushing the code make sure:**
+
+1. New classes/interfaces have the correct license header 
+2. New classes/interfaces/yang model have correct date
+3. All new dependencies and imports are actually used
+4. All variables/methods are actually used
+5. All defined exceptions can be thrown from the code
+6. All writers override updateCurrentAttributes method and avoid delete/write combination, unless specified in a comment
+7. Comments are appropriate to the code behavior
+8. Code has correct spacing
+9. All comments are in English
 
 #### <a name="existing-noop-writers2"></a>Existing noop writers
 
