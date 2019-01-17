@@ -405,7 +405,7 @@ router &lt;redistribute2-to&gt;
 
 <pre>
 set routing-instances &lt;vrf&gt; instance-type virtual-router
-set routing-instances &lt;vrf&gt; interface &lt;ospf_interface&gt;
+set routing-instances &lt;vrf&gt; interface &lt;interface-id&gt;
 set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; interface-type &lt;ospf_network_type&gt;
 set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; metric &lt;ospf_cost&gt;
 set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; priority &lt;ospf_priority&gt;
@@ -435,5 +435,5 @@ set routing-instances &lt;vrf&gt; protocols ospf export &lt;vrf&gt;-route-target
 #### CLI
 
 <pre>
-set routing-instances &lt;vrf&gt; interface &lt;ospf_interface&gt;
+set routing-instances &lt;vrf&gt; interface &lt;interface-id&gt;
 </pre>
