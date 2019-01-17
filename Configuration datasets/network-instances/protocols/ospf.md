@@ -91,7 +91,6 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                                         }
                                         "frinx-ospf-extension:authentication": {
                                             "config": {
-                                                "enabled": {{ospf_auth_enabled}},
                                                 "type": "auth-type:md5",
                                                 "passwords": {
                                                     "password": [
@@ -173,8 +172,6 @@ set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} bfd-livene
 
 *delete protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} disable* is a conversion of {{ospf_interface_enabled}} set *true*  
 *set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} disable* is a conversion of {{ospf_interface_enabled}} set *false*  
-*set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} authentication* is a conversion of {{ospf_auth_enabled}} set *true*  
-*delete protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} authentication* is a conversion of {{ospf_auth_enabled}} set *false*  
 
 ##### Unit
 
