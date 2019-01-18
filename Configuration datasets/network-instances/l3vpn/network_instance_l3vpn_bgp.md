@@ -72,20 +72,20 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{l3_vpn_bg
                                             "neighbor-address": "{{l3_vpn_bgp_neighbor_address}}"
                                             "enabled": true
                                             "peer-as": "{{l3_vpn_bgp_remote_as}}"
-                                            "afi-safis": {
-                                                "afi-safi": [
+                                        }
+                                        "afi-safis": {
+                                            "afi-safi": [
+                                                "config": {
+                                                    "afi-safi-name": "ipv4"
+                                                    "enabled": true
+                                                }
+                                                "apply-policy": {
                                                     "config": {
-                                                        "afi-safi-name": "ipv4"
-                                                        "enabled": true
+                                                        "import-policy": "{{l3_vpn_bgp_vrf}}-route-target-import"
+                                                        "export-policy": "{{l3_vpn_bgp_vrf}}-route-target-export"
                                                     }
-                                                    "apply-policy": {
-                                                        "config": {
-                                                            "import-policy": "{{l3_vpn_bgp_vrf}}-route-target-import"
-                                                            "export-policy": "{{l3_vpn_bgp_vrf}}-route-target-export"
-                                                        }
-                                                    }
-                                                ]
-                                            }
+                                                }
+                                            ]
                                         }
                                     }
                                 ]
