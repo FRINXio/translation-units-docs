@@ -12,50 +12,52 @@ frinx-evpn:evpn
 
 ```javascript
 {
-    "config": {
-        "enabled": {{evpn_enabled}}
-    },
+    "frinx-evpn:evpn": {
+        "config": {
+            "enabled": {{evpn_enabled}}
+        },
 
-    "groups": {
-        "group": [
-            {
-                "id": {{evpn_group_id}},
-                "config": {
-                    "id": {{evpn_group_id}}
-                },
-                "core-interfaces": {
-                    "interface": [
-                        {
-                            "name": "{{evpn_core_if_name}}",
-                            "config": {
-                                "name": "{{evpn_core_if_name}}"
+        "groups": {
+            "group": [
+                {
+                    "id": {{evpn_group_id}},
+                    "config": {
+                        "id": {{evpn_group_id}}
+                    },
+                    "core-interfaces": {
+                        "interface": [
+                            {
+                                "name": "{{evpn_core_if_name}}",
+                                "config": {
+                                    "name": "{{evpn_core_if_name}}"
+                                }
                             }
-                        }
-                    ]
+                        ]
+                    }
                 }
-            }
-        ]
-    },
+            ]
+        },
 
-    "interfaces": {
-        "interface": [
-            "name": "{{evpn_if_name}}",
-            "config": {
-                "name": "{{evpn_if_name}}"
-            },
-            "ethernet-segment": {
+        "interfaces": {
+            "interface": [
+                "name": "{{evpn_if_name}}",
                 "config": {
-                    "identifier": "{{ethernet_segment_id}}",
-                    "load-balancing-mode": "{{ethernet_segment_lb_mode}}",
-                    "bgp-route-target": "{{bgp_route_target}}"
+                    "name": "{{evpn_if_name}}"
+                },
+                "ethernet-segment": {
+                    "config": {
+                        "identifier": "{{ethernet_segment_id}}",
+                        "load-balancing-mode": "{{ethernet_segment_lb_mode}}",
+                        "bgp-route-target": "{{bgp_route_target}}"
+                    }
+                },
+                "core-isolation-group": {
+                    "config": {
+                        "id": {{evpn_isolation_group_id}}
+                    }
                 }
-            },
-            "core-isolation-group": {
-                "config": {
-                    "id": {{evpn_isolation_group_id}}
-                }
-            }
-        ]
+            ]
+        }
     }
 }
 ```
