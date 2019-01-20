@@ -202,7 +202,7 @@ interface {{eth_intf_id}}
 *no lacp period short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:SLOW*  
 if {{lacp_mode}} is not specified then command *bundle id {{eth_lag_intf_id}} mode on* is used  
 *mode active* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:ACTIVE*  
-*mode passive* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:PASSIVE*  
+*mode passive* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:PASSIVE*  
 *ipv6 nd suppress-ra* is a conversion of {{ip6_nd_suppress_ra}} set *true*
 
 ##### Unit
@@ -241,7 +241,7 @@ interface {{eth_intf_id}}
 *no lacp period short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:SLOW*  
 if {{lacp_mode}} is not specified then command *bundle id {{eth_lag_intf_id}} mode on* is used  
 *mode active* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:ACTIVE*  
-*mode passive* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:PASSIVE*  
+*mode passive* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:PASSIVE*  
 
 ##### Unit
 
@@ -354,6 +354,7 @@ bridge
  vlan add br{{untagged_vlan_intf_id}} {{phy_port_id}} untagged
  lacp port {{phy_port_id}} aggregator {{eth_lag_intf_id}}
  lacp port admin-key {{phy_port_id}} {{admin-key}}
+ lacp port time-out {{phy_port_id}} {{lacp_interval}}
  jumbo-frame {{phy_port_id}} {{eth_mtu}}
  port enable {{phy_port_id}} | port disable {{phy_port_id}}
 </pre>
@@ -363,3 +364,4 @@ example {{eth_intf_id}} is Ethernet1/1 -&gt; {{phy_port_id}} is 1/1
 
 *port enable {{phy_port_id}}* is a conversion of {{eth_enabled}} set *true*  
 *port disable {{phy_port_id}}* is a conversion of {{eth_enabled}} set *false*  
+*lacp port timeout {{phy_port_id}} short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:FAST*
