@@ -54,9 +54,9 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_url_intf-id}}/subinterfac
                         ]
                     }
                 },
-                "encapsulation": {
-                    "dot1q": {
-                        "vlanid": "{{l3_vlan_id}}"
+                "frinx-openconfig-vlan:vlan": {
+                    "config": {
+                        "vlan-id": "{{l3_vlan_id}}"
                     }
                 }
             }
