@@ -31,13 +31,13 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
             }
             
             "inter-instance-policies": {
-                "apply-policy": [
+                "apply-policy": {
                     "config": {
-                        "frinx-network-instance-extension:identifier": "<policy-protocol-type>"
-                        "export-policy": "<vrf>-route-target-export"
-                        "import-policy": "<vrf>-route-target-import"
+                        "import-policy": [
+                            "<vrf>-route-target-import"
+                        ]
                     }
-                ]
+                }
             }
             
             "protocols": {
@@ -46,6 +46,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                         "config": {
                             "identifier": "ospf <ospf-process-id>"
                             "enabled": true
+                            "frinx-ospf-extension:export-policy": "<ospf-export-policy>"
                         }
                         
                         "ospfv2": {
@@ -426,9 +427,8 @@ set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; inter
 
 <pre>
 set routing-instances &lt;vrf&gt; routing-options instance-import &lt;vrf&gt;-route-target-import
-set routing-instances &lt;vrf&gt; protocols ospf export &lt;vrf&gt;-route-target-export
+set routing-instances &lt;vrf&gt; protocols ospf export &lt;ospf-export-policy&gt;
 </pre>
-*ospf* is a conversion of &lt;policy-protocol-type&gt; set *frinx-openconfig-policy-types:OSPF*  
 
 ### Junos 18.2R2
 
