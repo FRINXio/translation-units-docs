@@ -103,7 +103,7 @@ CLI Translation units are located in [https://github.com/FRINXio/cli-units](http
 
 
 *   Readers are handlers responsible for reading and parsing the data coming from a device
-*   There are 2 types of readers: Reader and ListReader. Reader can be used to handle container or argument nodes and ListReader should handle list nodes from YANG.
+*   There are 2 types of readers: Reader and ListReader. Reader can be used to handle container or augmentation nodes and ListReader should handle list nodes from YANG.
     *   Both types need to implement **_readCurrentAttributes_** to fill the builder with appropriate values
     *   ListReader needs to also implement **_getAllIds()_** where it retrieves a key for each item to be present in current list. After the list is received, framework will invoke **_readCurrentAttributes_** for each item from getAllIds
 *   Readers also need to implement boilerplate methods: 
@@ -115,6 +115,7 @@ CLI Translation units are located in [https://github.com/FRINXio/cli-units](http
 
 
 *   Readers should always use overloaded **_blockingRead_** method which takes in the ReadContext since that method performs caching internally
+*   **Use full version of commands** e.g. _show running-config interface_ instead of _sh run int_
 
 
 #### <a name="mandatory-interfaces-to-implement1"></a>Mandatory interfaces to implement
@@ -148,7 +149,7 @@ If data did not pass check, then reader implementing the interface will not be i
 
 **TypedReader** - use when target composite node in YANG is container or augmentation
 
-For example typed readers for bgp (located under _protocol_) needs to check if _identifier _in _protocol _has value _BGP_. Otherwise readers for bgp will be invoked even if _protocol identifier _is _OSPF_.
+For example typed readers for bgp (located under _protocol_) needs to check if _identifier_ in _protocol_ has value _BGP_. Otherwise readers for bgp will be invoked even if _protocol identifier_ is _OSPF_.
 
 
 #### <a name="util-classes"></a>Util classes
@@ -186,21 +187,21 @@ For example typed readers for bgp (located under _protocol_) needs to check if _
 
 
 *   A writer needs to implement all 3 methods: Write, Update, Delete in order to fully support default rollback mechanism of the framework
-    *   Update can be often simply implemented as: 1. delete, 2. write
+    *   Time showed that update like 1. delete, 2. write is anti-pattern and should not be used.
 *   A writer can properly work only if there is a reader for the same composite node
 *   A writer should check whether the command it executed was handled by the device properly (by checking the output) and if not throw one of the Write/Update/Delete FailedException
-*   **Chunk templating framework can be used for more complex writers** it gives us:
+*   **Chunk templating framework is preferred to use in writers** it gives us:
     *   Null safety
     *   if/loop etc. inside templates
     *   Default values and many more
-*   **Use full version of commands** e.g. _show running-config interface_ instead of _sh run int_
+*   **Use full version of commands** e.g. _configure terminal_ instead of _conf t_
 
 
 #### <a name="mandatory-interfaces-to-implement2"></a>Mandatory interfaces to implement
 
 Each writer needs to implement one of these interfaces based on type of target node in YANG. Unlike mandatory interfaces for reading, only interfaces for writing config data are available (because it is not possible to write operational data). These interfaces also contain util methods which may be used for better manipulation with data. For more information about methods please read javadocs.
 
-All writers override updateCurrentAttributes method and avoid delete/write combination, unless specified in a comment
+All writers override updateCurrentAttributes method and avoid delete/write combination, unless specified in a comment.
 
 **CliListWriter** - implement this interface if target composite node in YANG is list. An implementation needs to be registered as GenericListWriter.
 
@@ -289,11 +290,7 @@ Implementation of TranslateUnit must implement these methods:
 
 *   Return RPC services implemented in the translation unit. Parameter _context.getTransport()_ returns _Cli_ object containing methods for communication with a device via CLI - may need to be passed to RPC implementations.
 
-**void provideHandlers(@Nonnull ModifiableReaderRegistryBuilder rRegistry,**
-
-**@Nonnull ModifiableWriterRegistryBuilder wRegistry,**
-
-**@Nonnull Context context**
+**void provideHandlers(@Nonnull ModifiableReaderRegistryBuilder rRegistry, @Nonnull ModifiableWriterRegistryBuilder wRegistry, @Nonnull Context context)**
 
 *   Handlers(readers/writers) need to be registered in this method. Parameter _context.getTransport()_ returns _Cli_ object containing methods for communication with a device via CLI - should be passed to readers/writers. 
 *   Config readers need to be encapsulated into **_GenericConfigListReader_** (if reader implements translation of YANG list) or **_GenericConfigReader_** (if reader implements translation of YANG container, augmentation). Accordingly, operational readers are encapsulated into **_GenericOperListReader_** or **_GenericOperReader_**
@@ -357,9 +354,7 @@ Init translation unit does not contain readers and writers but it only contains 
 
 The implementation of _TranslateUnit_ needs to override methods:
 
-**SessionInitializationStrategy getInitializer(@Nonnull final RemoteDeviceId id,**
-
-**@Nonnull final CliNode cliNodeConfiguration)**
+**SessionInitializationStrategy getInitializer(@Nonnull final RemoteDeviceId id, @Nonnull final CliNode cliNodeConfiguration)**
 
 *   Implement and return device specific _SessionInitializationStrategy_ where:
     *   Setup device CLI terminal with attributes like width and length allowing to display infinite output.
@@ -441,7 +436,7 @@ For example typed readers for bgp (located under _protocol_) needs to check if _
 
 
 *   A writer needs to implement all 3 methods: Write, Update, Delete in order to fully support default rollback mechanism of the framework
-    *   Update can be often simply implemented as: 1. delete, 2. write
+    *   Time showed that update like 1. delete, 2. write is anti-pattern and should not be used.
 *   A writer can properly work only if there is a reader for the same composite node
 *   **Retrieve and update existing data** of device via NETCONF **in update method.** Every generated builder class has copy constructor which may be used for this purpose. It's important to keep in mind that NETCONF _dataBroker.put(..)_ method overrides existing data in device configuration.
 
