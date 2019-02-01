@@ -75,8 +75,10 @@ Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/
 #### CLI
 
 <pre>
-set class-of-service interfaces {{policy_interface}} unit 0 classifiers inet-precedence {{inet_precedence_name}}
+set class-of-service interfaces {{pf_intf_index}} unit {{pf_subintf_index}} classifiers inet-precedence {{inet_precedence_name}}
 </pre>
+
+pf_intf_index, pf_subintf_index is a conversion of {{policy_interface}} set {{pf_intf_index}}.{{pf_subintf_index}}
 
 ##### Unit
 
