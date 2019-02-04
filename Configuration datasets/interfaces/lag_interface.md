@@ -95,7 +95,9 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_name}}
             "frinx-openconfig-if-aggregate:aggregation": {
                 "config": {
                     "min-links": {{lag_min_links}},
-                    "frinx-juniper-if-aggregate-extension:link-speed": {{lag_link_speed}}
+                    "frinx-juniper-if-aggregate-extension:link-speed": {{lag_link_speed}},
+                    "frinx-if-aggregate-extension:mac-address": {{aggregate_mac_address}},
+                    "frinx-if-aggregate-extension:system-id-mac": {{aggregate_lacp_mac_address}}
                 },
                 "frinx-bfd:bfd": {
                     "config": {
@@ -147,8 +149,8 @@ interface Bundle-Ether{{lag_intf_id}}
 {{lag_intf_id}} is parsed from {{lag_intf_name}}  
 example {{lag_intf_name}} is Bundle-Ether100 -&gt; {{lag_intf_id}} is 100  
 
-*no shutdown* is a conversion of {{eth_enabled}} set *true*  
-*shutdown* is a conversion of {{eth_enabled}} set *false*  
+*no shutdown* is a conversion of {{lag_enabled}} set *true*  
+*shutdown* is a conversion of {{lag_enabled}} set *false*  
 *no dampening* is a conversion of {{eth_damping_enabled}} set *false*  
 *nd suppress-ra* is a conversion of "suppress": true
 
@@ -165,6 +167,9 @@ interface Bundle-Ether{{lag_intf_id}}
  description {{lag_description}} 
  mtu {{lag_mtu}}
  load-interval {{lag_load_interval}}
+ mac-address {{lag_mac_address}}
+ lacp system mac {{lag_lacp_mac_address}}
+ shutdown | no shutdown
 </pre>
 <pre>
 interface Bundle-Ether{{lag_intf_id}}.{{sub_interface_index}}
@@ -173,7 +178,12 @@ interface Bundle-Ether{{lag_intf_id}}.{{sub_interface_index}}
 
 {{lag_intf_id}} is parsed from {{lag_intf_name}}  
 example {{lag_intf_name}} is Bundle-Ether100 -&gt; {{lag_intf_id}} is 100  
-
+{{lag_mac_address}} is parsed from {{aggregate_mac_address}}  
+example {{aggregate_mac_address}} is aa:bb:cc:dd:ee:ff -&gt; aabb.ccdd.eeff  
+{{lag_lacp_mac_address}} is parsed from {{aggregate_lacp_mac_address}}  
+example {{aggregate_lacp_mac_address}} is aa:bb:cc:dd:ee:ff -&gt; aabb.ccdd.eeff  
+*no shutdown* is a conversion of {{lag_enabled}} set *true*  
+*shutdown* is a conversion of {{lag_enabled}} set *false*  
 ##### Unit
 
 Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-7-interface-unit)
