@@ -253,12 +253,15 @@ Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/
 
 <pre>
 set interfaces {{eth_intf_id}} vlan-tagging
+delete interfaces {{eth_intf_id}} disable | set interfaces {{eth_intf_id}} disable
 set interfaces {{eth_intf_id}} unit 0 description {{subif_description}}
 set interfaces {{eth_intf_id}} unit 0 vlan-id {{vlan_id}}
 set interfaces {{eth_intf_id}} unit 0 family inet address {{eth_ip}}/{{eth_prefix}}
 </pre>
 
-*vlan-tagging* is a conversion of {{eth_tpid}} set *TPID_0X8100*
+*vlan-tagging* is a conversion of {{eth_tpid}} set *TPID_0X8100*  
+*delete interfaces {{eth_intf_id}} disable* is a conversion of {{eth_enabled}} set *true*  
+*set interfaces {{eth_intf_id}} disable* is conversion of {{eth_enabled}} set *false*  
 
 ### Junos 17.3R1.10
 
@@ -277,11 +280,11 @@ set interfaces {{eth_intf_id}} hold-time up {{eth_hold_time_up}} down {{eth_hold
 set interfaces {{eth_intf_id}} gigether-options 802.3ad {{eth_lag_intf_id}}
 set interfaces ae{{eth_lag_intf_id}} aggregated-ether-options lacp {{lacp_mode}}
 set interfaces ae{{eth_lag_intf_id}} aggregated-ether-options lacp periodic {{lacp_interval}}
-delete interface {{eth_intf_id}} disable | set interface {{eth_intf_id}} disable
+delete interfaces {{eth_intf_id}} disable | set interfaces {{eth_intf_id}} disable
 </pre>
 
-*delete interface {{lag_intf_id}} disable* is a conversion of {{lag_enabled}} set *true*  
-*set interface {{lag_intf_id}} disable* is conversion of {{lag_enabled}} set *false* 
+*delete interfaces {{eth_intf_id}} disable* is a conversion of {{eth_enabled}} set *true*  
+*set interfaces {{eth_intf_id}} disable* is conversion of {{eth_enabled}} set *false* 
 
 ##### Unit
 
@@ -298,15 +301,15 @@ set interfaces {{eth_intf_id}} unit {{sub_interface_index}} family inet address 
 set interfaces {{eth_intf_id}} unit {{sub_interface_index}} vlan-id {{vlan_id}}
 set interfaces {{eth_intf_id}} unit {{sub_interface_index}} vlan-tags inner 0x8100:{{inner_vlan_tag}}
 set interfaces {{eth_intf_id}} unit {{sub_interface_index}} vlan-tags outer 0x8100:{{outer_vlan_tag}}
-delete interface {{eth_intf_id}} disable | set interface {{eth_intf_id}} disable
-delete interface {{eth_intf_id}} unit {{sub_interface_index}} disable | set interface {{eth_intf_id}} unit {{sub_interface_index}} disable
+delete interfaces {{eth_intf_id}} disable | set interfaces {{eth_intf_id}} disable
+delete interfaces {{eth_intf_id}} unit {{sub_interface_index}} disable | set interfaces {{eth_intf_id}} unit {{sub_interface_index}} disable
 </pre>
 
 *inner_vlan_tag* , *outer_vlan_tag* is a conversion of {{vlan_id}} set {{outer_vlan_tag}}.{{inner_vlan_tag}}  
-*delete interface {{eth_intf_id}} disable* is a conversion of {{eth_enabled}} set *true*  
-*set interface {{eth_intf_id}} disable* is conversion of {{eth_enabled}} set *false*  
-*delete interface {{eth_intf_id}} unit {{sub_interface_index}} disable* is a conversion of {{subif_enabled}} set *true*  
-*set interface {{eth_intf_id}} unit {{sub_interface_index}} disable* is conversion of {{subif_enabled}} set *false*  
+*delete interfaces {{eth_intf_id}} disable* is a conversion of {{eth_enabled}} set *true*  
+*set interfaces {{eth_intf_id}} disable* is conversion of {{eth_enabled}} set *false*  
+*delete interfaces {{eth_intf_id}} unit {{sub_interface_index}} disable* is a conversion of {{subif_enabled}} set *true*  
+*set interfaces {{eth_intf_id}} unit {{sub_interface_index}} disable* is conversion of {{subif_enabled}} set *false*  
 
 ##### Unit
 
