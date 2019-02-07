@@ -77,6 +77,11 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                                                 }
                                             }
                                         },
+                                        "timers": {
+                                            "config": {
+                                                "retransmission-interval": {{ospf_retrans_interval}}
+                                            }
+                                        },
                                         "frinx-bfd-extension:enable-bfd": {
                                             "config": {
                                                 "enabled": {{bfd_interface_enabled}}
@@ -168,6 +173,7 @@ set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} authentica
 set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} bfd-liveness-detection minimum-interval {{bfd_interface_min_interval}}
 set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} bfd-liveness-detection minimum-receive-interval {{bfd_interface_min_recieve_interval}}
 set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} bfd-liveness-detection multiplier {{bfd_interface_multiplier}}
+set protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} retransmit-interval {{ospf_retrans_interval}}
 </pre>
 
 *delete protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} disable* is a conversion of {{ospf_interface_enabled}} set *true*  
