@@ -16,7 +16,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
         {
             "name": "{{eth_intf_id}}",
             "config": {
-                "type": "iana-if-type:ethernetCsmacd",
+                "type": "iana-if-type:ethernetCsmacd/iana-if-type:other",
                 "name": "{{eth_intf_id}}",
                 "mtu": {{eth_mtu}},
                 "description": "{{eth_description}}",
@@ -297,19 +297,15 @@ Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/mast
 <pre>
 set interfaces {{eth_intf_id}} unit {{sub_interface_index}} description {{subif_description}}
 set interfaces {{eth_intf_id}} unit {{sub_interface_index}} family inet address {{eth_ip}}/{{eth_prefix}}
-set interfaces {{eth_intf_id}} unit {{sub_interface_index}} family inet address {{eth_ip}}/{{eth_prefix}} vrrp-group {{eth_ipv4_virtual_id}} virtual-address {{eth_ipv4_virtual_address}}
-set interfaces {{eth_intf_id}} unit {{sub_interface_index}} vlan-id {{vlan_id}}
-set interfaces {{eth_intf_id}} unit {{sub_interface_index}} vlan-tags inner 0x8100:{{inner_vlan_tag}}
-set interfaces {{eth_intf_id}} unit {{sub_interface_index}} vlan-tags outer 0x8100:{{outer_vlan_tag}}
 delete interfaces {{eth_intf_id}} disable | set interfaces {{eth_intf_id}} disable
 delete interfaces {{eth_intf_id}} unit {{sub_interface_index}} disable | set interfaces {{eth_intf_id}} unit {{sub_interface_index}} disable
 </pre>
 
-*inner_vlan_tag* , *outer_vlan_tag* is a conversion of {{vlan_id}} set {{outer_vlan_tag}}.{{inner_vlan_tag}}  
 *delete interfaces {{eth_intf_id}} disable* is a conversion of {{eth_enabled}} set *true*  
 *set interfaces {{eth_intf_id}} disable* is conversion of {{eth_enabled}} set *false*  
 *delete interfaces {{eth_intf_id}} unit {{sub_interface_index}} disable* is a conversion of {{subif_enabled}} set *true*  
 *set interfaces {{eth_intf_id}} unit {{sub_interface_index}} disable* is conversion of {{subif_enabled}} set *false*  
+In the case of *set interfaces ms-x/x/x*, set *iana-if-type:other* instead of *iana-if-type:ethernetCsmacd*
 
 ##### Unit
 
