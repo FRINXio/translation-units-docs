@@ -34,7 +34,7 @@ frinx-openconfig-qos:/qos/classifiers/classifier/{{class_name}}
                             },
                             "mpls": {
                                 "config": {
-                                    "traffic-class": "{{term_c_tc}}"
+                                    "traffic-class": ["{{term_c_tc}}"]
                                 }
                             }
                         },
