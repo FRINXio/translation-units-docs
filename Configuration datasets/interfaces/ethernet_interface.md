@@ -215,6 +215,7 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 
 <pre>
 interface {{eth_intf_id}}.{{sub_interface_index}}
+ ipv4 mtu {{eth_ipv4_mtu}}
  load-interval {{lag_sub_load_interval}}
 </pre>
 
