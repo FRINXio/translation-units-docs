@@ -198,8 +198,8 @@ interface {{eth_intf_id}}
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
 *shutdown* is a conversion of {{eth_enabled}} set *false*  
 *no dampening* is a conversion of {{eth_damping_enabled}} set *false*  
-*lacp period short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:FAST*  
-*no lacp period short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:SLOW*  
+*lacp period short* is a conversion of {{lacp_interval}} set to *FAST*  
+*no lacp period short* is a conversion of {{lacp_interval}} set to *SLOW*  
 if {{lacp_mode}} is not specified then command *bundle id {{eth_lag_intf_id}} mode on* is used  
 *mode active* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:ACTIVE*  
 *mode passive* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:PASSIVE*  
