@@ -64,7 +64,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                                         "id": "{{ospf_interface}}",
                                         "config": {
                                             "id": "{{ospf_interface}}",
-                                            "network-type": {{ospf_network_type}},
+                                            "network-type": "{{ospf_network_type}}",
                                             "frinx-ospf-extension:enabled": {{ospf_interface_enabled}},
                                             "metric": {{ospf_cost}},
                                             "passive": {{ospf_passive}},
