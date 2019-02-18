@@ -12,33 +12,26 @@ frinx-openconfig-probes:probes
 
 ```javascript
 "frinx-openconfig-probes": {
-    "probes": {
-        {
-            "probe": [
+    "name": "{{probe_name}}",
+        "config": {
+            "name": "{{probe_name}}",
+            "juniper-oc-probes:delegate-probes": true/false
+        },
+        "tests": {
                 {
-                    "name": "{{probe_name}}",
-                    "config": {
-                        "name": "{{probe_name}}",
-                        "juniper-oc-probes:delegate-probes": true/false
-                    },
-                    "tests": {
-                            {
-                                "test": [
-                                    "name": "{{probe_test_name}}",
-                                    "config": {
-                                        "name": "{{probe_test_name}}",
-                                        "source": "{{probe_test_source_address}}",
-                                        "juniper-oc-probes:destination-interface": "{{probe_test_dest_intf_id}}"
-                                    },
-                                    "target": {
-                                        "config": {
-                                            "address": "{{probe_test_target_address}}"
-                                        }
-                                    }
-                                ]
+                    "test": [
+                        "name": "{{probe_test_name}}",
+                        "config": {
+                            "name": "{{probe_test_name}}",
+                            "source": "{{probe_test_source_address}}",
+                            "juniper-oc-probes:destination-interface": "{{probe_test_dest_intf_id}}"
+                        },
+                        "target": {
+                            "config": {
+                                "address": "{{probe_test_target_address}}"
                             }
                         }
-                    }
+                    ]
                 }
             }
         }
