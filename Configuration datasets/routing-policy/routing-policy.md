@@ -611,34 +611,34 @@ set policy-options policy-statement IMPORT term 1 then accept
 ```javascript
 {
     "policy-definition": [
-        {
-            "name": "OUT-FIL",
-            "config": {
-                "name": "OUT-FIL"
-            },
-            "statements": {
-                "statement": [
-                    {
-                        "name": "1",
-                        "config": {
-                            "name": "1"
-                        },
-                        "conditions": {
-                            "oc-ni-pol:match-protocol-instance": {
-                                "config": {
-                                    "protocol-identifier": "frinx-openconfig-policy-types:MASTER"
-                                }
-                            }
-                        }
-                        "actions": {
-                            "config": {
-                                "policy-result": "ACCEPT_ROUTE"
-                            }
-                        }
-                    }
-                ]
-            }
-        }
+       {
+           "config": {
+               "name": "IMPORT"
+           },
+           "name": "IMPORT",
+           "statements": {
+               "statement": [
+                   {
+                       "name": "1",
+                       "config": {
+                           "name": "1"
+                       },
+                       "conditions": {
+                           "frinx-openconfig-network-instance-policy:match-protocol-instance": {
+                               "config": {
+                                   "protocol-name": "master"
+                               }
+                           }
+                       },
+                       "actions": {
+                           "config": {
+                               "policy-result": "ACCEPT_ROUTE"
+                           }
+                       }
+                   }
+               ]
+           }
+       }
     ]
 }
 ```
@@ -652,41 +652,41 @@ set policy-options policy-statement OUT-FIL term 1 then accept
 ```javascript
 {
     "policy-definition": [
-        {
-            "name": "IMPORT",
-            "config": {
-                "name": "IMPORT"
-            },
-            "statements": {
-                "statement": [
-                    {
-                        "name": "1",
-                        "config": {
-                            "name": "1"
-                        },
-                        "conditions": {
-                            "oc-ni-pol:match-protocol-instance": {
-                                "config": {
-                                    "protocol-identifier": "frinx-openconfig-policy-types:DIRECTLY_CONNECTED"
-                                }
-                            }
-                        }
-                        "actions": {
-                            "config": {
-                                "policy-result": "ACCEPT_ROUTE"
-                            }
-                            "ospf-actions": {
-                                "set-metric": {
-                                    "config": {
-                                        "metric": 100
-                                    }
-                                }
-                            }
-                        }
-                    }
-                ]
-            }
-        }
+       {
+           "name": "OUT-FIL",
+           "config": {
+               "name": "OUT-FIL"
+           },
+           "statements": {
+               "statement": [
+                   {
+                       "name": "1",
+                       "config": {
+                           "name": "1"
+                       },
+                       "conditions": {
+                           "frinx-openconfig-network-instance-policy:match-protocol-instance": {
+                               "config": {
+                                   "protocol-identifier": "frinx-openconfig-policy-types:DIRECTLY_CONNECTED"
+                               }
+                           }
+                       },
+                       "actions": {
+                           "config": {
+                               "policy-result": "ACCEPT_ROUTE"
+                           },
+                           "frinx-openconfig-ospf-policy:ospf-actions": {
+                               "set-metric": {
+                                   "config": {
+                                       "metric": 100
+                                   }
+                               }
+                           }
+                       }
+                   }
+               ]
+           }
+       }
     ]
 }
 ```
