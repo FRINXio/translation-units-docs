@@ -46,7 +46,9 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                         "config": {
                             "identifier": "ospf <ospf-process-id>"
                             "enabled": true
-                            "frinx-ospf-extension:export-policy": "<ospf-export-policy>"
+                            "frinx-ospf-extension:export-policy": [
+                                "<ospf-export-policy>"
+                            ]
                         }
                         
                         "ospfv2": {
