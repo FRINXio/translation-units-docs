@@ -44,7 +44,7 @@ frinx-openconfig-qos:/qos/classifiers/classifier/{{class_name}}
                             },
                             "remark": {
                                 "config": {
-                                    "frinx-qos-extension:set-precedence": {{term_s_common_prec}},
+                                    "frinx-qos-extension:set-precedence": [{{term_s_common_prec}}],
                                     "frinx-qos-extension:set-qos-group": {{term_s_qos_grp}},
                                     "set-mpls-tc": {{term_s_tc}}
                                 }
