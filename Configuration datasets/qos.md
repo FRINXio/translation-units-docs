@@ -25,7 +25,7 @@ frinx-openconfig-qos:/qos/classifiers/classifier/{{class_name}}
                         },
                         "conditions": {
                             "frinx-qos-extension:qos-group": {{term_c_qos_grp}},
-                            "frinx-qos-extension:precedence": {{term_c_common_prec}},
+                            "frinx-qos-extension:precedence": [{{term_c_common_prec}}],
                             "ipv4|6": {
                                 "config": {
                                     "frinx-qos-extension:precedence": "{{term_c_ipv4_prec}}"
