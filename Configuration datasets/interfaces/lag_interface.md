@@ -151,7 +151,7 @@ example {{lag_intf_name}} is Bundle-Ether100 -&gt; {{lag_intf_id}} is 100
 
 *no shutdown* is a conversion of {{lag_enabled}} set *true*  
 *shutdown* is a conversion of {{lag_enabled}} set *false*  
-*no dampening* is a conversion of {{eth_damping_enabled}} set *false*  
+*no dampening* is a conversion of {{lag_damp_enabled}} set *false*  
 *nd suppress-ra* is a conversion of "suppress": true
 
 ##### Unit
@@ -166,6 +166,7 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 interface Bundle-Ether{{lag_intf_id}} 
  description {{lag_description}} 
  mtu {{lag_mtu}}
+ dampening {{lag_damp_half_life}} {{lag_damp_reuse}} {{lag_damp_suppress}} {{lag_damp_max-supress}} | no dampening
  load-interval {{lag_load_interval}}
  mac-address {{lag_mac_address}}
  lacp system mac {{lag_lacp_mac_address}}
@@ -184,6 +185,7 @@ example {{aggregate_mac_address}} is aa:bb:cc:dd:ee:ff -&gt; aabb.ccdd.eeff
 example {{aggregate_lacp_mac_address}} is aa:bb:cc:dd:ee:ff -&gt; aabb.ccdd.eeff  
 *no shutdown* is a conversion of {{lag_enabled}} set *true*  
 *shutdown* is a conversion of {{lag_enabled}} set *false*  
+*no dampening* is a conversion of {{lag_damp_enabled}} set *false*  
 ##### Unit
 
 Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-7-interface-unit)
