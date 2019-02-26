@@ -74,6 +74,11 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_intf_name}}
                             "config": {
                                 "load-interval": {{lag_sub_load_interval}}
                             }
+                        },
+                        "frinx-cisco-if-extension:hold-time": {
+                            "config": {
+                                "up": {{lag_sub_hold_time_up}}
+                            }
                         }
                     }
                 ]
@@ -175,6 +180,7 @@ interface Bundle-Ether{{lag_intf_id}}
 <pre>
 interface Bundle-Ether{{lag_intf_id}}.{{sub_interface_index}}
  load-interval {{lag_sub_load_interval}}
+ carrier-delay up {{lag_sub_hold_time_up}}
 </pre>
 
 {{lag_intf_id}} is parsed from {{lag_intf_name}}  
