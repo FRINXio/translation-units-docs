@@ -173,7 +173,7 @@ router bgp {{l3_vpn_bgp_as_number}}
     route-policy {{l3_vpn_bgp_vrf}}-route-target-export out
 </pre>
 
-### CISCO IOS XR (7.0.1)
+### CISCO IOS XR (6.6.1)
 
 #### CLI
 

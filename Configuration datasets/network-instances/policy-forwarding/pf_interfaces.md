@@ -56,7 +56,7 @@ interface {{policy_interface}}
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/network-instance)
 
-### Cisco IOS XR 7.0.1
+### Cisco IOS XR 6.6.1
 
 #### CLI
 

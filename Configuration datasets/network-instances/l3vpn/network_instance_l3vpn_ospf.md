@@ -343,7 +343,7 @@ router ospf &lt;ospf-process-id&gt;
     cost &lt;ospf_cost&gt;
 </pre>
 
-### CISCO IOS XR (7.0.1)
+### CISCO IOS XR (6.6.1)
 
 #### CLI
 
