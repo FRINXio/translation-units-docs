@@ -122,7 +122,7 @@ interface {{eth_url_intf-id}}.{{sub_ifc_index}}
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/interface)
 
-### Cisco IOS XR 7.0.1
+### Cisco IOS XR 6.6.1
 
 #### CLI
 

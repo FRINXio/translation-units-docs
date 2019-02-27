@@ -43,7 +43,7 @@ interface {{intf_id}}
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/logging)
 
-### Cisco IOS XR 7.0.1
+### Cisco IOS XR 6.6.1
 
 #### CLI
 

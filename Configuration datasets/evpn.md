@@ -64,7 +64,7 @@ frinx-evpn:evpn
 
 ## OS Configuration Commands
 
-### Cisco IOS XR 7.0.1
+### Cisco IOS XR 6.6.1
 
 #### CLI
 

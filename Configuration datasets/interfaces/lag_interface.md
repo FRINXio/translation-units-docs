@@ -158,7 +158,7 @@ example {{lag_intf_name}} is Bundle-Ether100 -&gt; {{lag_intf_id}} is 100
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/interface)
 
-### Cisco IOS XR 7.0.1
+### Cisco IOS XR 6.6.1
 
 #### CLI
 

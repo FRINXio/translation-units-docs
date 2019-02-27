@@ -219,7 +219,7 @@ interface {{eth_intf_id}}.{{sub_interface_index}}
  load-interval {{lag_sub_load_interval}}
 </pre>
 
-### Cisco IOS XR 7.0.1
+### Cisco IOS XR 6.6.1
 
 #### CLI
 
