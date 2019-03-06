@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-interfaces:interfaces/interface/Vlan{{vlan_intf_id}}
+frinx-openconfig-interfaces:interfaces/interface/{{vlan_ifc_name}}
 ```
 
 ## OPENCONFIG YANG
@@ -14,11 +14,11 @@ frinx-openconfig-interfaces:interfaces/interface/Vlan{{vlan_intf_id}}
 {
     "interface": [
         {
-            "name": "Vlan{{vlan_intf_id}}",
+            "name": "{{vlan_ifc_name}}",
             "config": {
                 "type": "iana-if-type:l3ipvlan",
                 "enabled": {{vlan_enabled}},
-                "name": "Vlan{{vlan_intf_id}}",
+                "name": "{{vlan_ifc_name}}",
                 "mtu": {{vlan_mtu}}
             },
             "frinx-l3ipvlan:l3ipvlan":  {
@@ -40,7 +40,7 @@ frinx-openconfig-interfaces:interfaces/interface/Vlan{{vlan_intf_id}}
                                         "ip": "{{vlan_ip}}",
                                         "config": {
                                             "ip": "{{vlan_ip}}",
-                                            "prefix-length": {{vlan_prefix}}
+                                            "prefix-length": {{vlan_prefix_length}}
                                         }
                                     }
                                 ]
@@ -61,14 +61,22 @@ frinx-openconfig-interfaces:interfaces/interface/Vlan{{vlan_intf_id}}
 #### CLI
 
 <pre>
-interface br{{vlan_intf_id}}
+interface br{{vlan_ifc_id}}
  shutdown | no shutdown
  ip redirects | no ip redirects
  mtu {{vlan_mtu}}
- ip address {{vlan_ip}}/{{vlan_prefix}}
+ ip address {{vlan_ip}}/{{vlan_prefix_length}}
 </pre>
+
+{{vlan_ifc_id}} is parsed from {{vlan_ifc_name}}  
+example {{vlan_ifc_name}} is Vlan10 -&gt; {{vlan_ifc_id}} is 10  
 
 *no shutdown* is a conversion of {{vlan_enabled}} set *true*  
 *shutdown* is a conversion of {{vlan_enabled}} set *false*  
 *no ip redirects* is a conversion of {{ip_redirect}} set *false*  
 *ip redirects* is a conversion of {{ip_redirect}} set *true*  
+
+
+##### Unit
+
+Link to github : [dasan-unit](https://github.com/FRINXio/cli-units/tree/master/dasan/interface)
