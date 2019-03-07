@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
+frinx-openconfig-interfaces:interfaces/interface/{{eth_ifc_name}}
 ```
 
 ## OPENCONFIG YANG
@@ -14,10 +14,10 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
 {
     "interface": [
         {
-            "name": "{{eth_intf_id}}",
+            "name": "{{eth_ifc_name}}",
             "config": {
                 "type": "iana-if-type:ethernetCsmacd/iana-if-type:other",
-                "name": "{{eth_intf_id}}",
+                "name": "{{eth_ifc_name}}",
                 "mtu": {{eth_mtu}},
                 "description": "{{eth_description}}",
                 "enabled": {{eth_enabled}},
@@ -35,13 +35,6 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
                         "index": 0,
                         "config": {
                             "index": 0,
-                            "description": "{{subif_description}}",
-                            "enabled": {{subif_enabled}}
-                        },
-                        "vlan": {
-                            "config": {
-                                "vlan-id": {{vlan_id}}
-                            }
                         },
                         "frinx-openconfig-if-ip:ipv4": {
                             "config": {
@@ -53,7 +46,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
                                         "ip": "{{eth_ip}}",
                                         "config": {
                                             "ip": "{{eth_ip}}",
-                                            "prefix-length": {{eth_prefix}}
+                                            "prefix-length": {{eth_prefix_length}}
                                         }
                                     }
                                 ]
@@ -63,58 +56,53 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
                             "addresses": {
                                 "address": [
                                     {
-                                        "ip": "{{eth_ip}}",
+                                        "ip": "{{eth_ip6}}",
                                         "config": {
                                             "ip": "{{eth_ip6}}",
-                                            "prefix-length": {{eth_prefix6}}
+                                            "prefix-length": {{eth_prefix6_length}}
                                         }
                                     }
                                 ]
                             },
                             "router-advertisement": {
                                 "config": {
-                                    "suppress": "{{ip6_nd_suppress_ra}}"
+                                    "suppress": {{ip6_nd_suppress_ra}}
                                 }
                             }
                         }
                     },
                     {
-                        "index": {{sub_interface_index}},
+                        "index": {{sub_ifc_index}},
                         "config": {
-                            "index": {{sub_interface_index}},
-                            "description": "{{subif_description}}",
+                            "index": {{sub_ifc_index}},
+                            "description": "{{eth_sub_description}}",
+                            "frinx-juniper-if-extension:rpm-type": "{{rpm_type}}",
                             "enabled": {{subif_enabled}}
                         },
-                        "vlan": {
+                        "frinx-openconfig-vlan:vlan": {
                             "config": {
                                 "vlan-id": {{vlan_id}}
                             }
                         },
                         "frinx-openconfig-if-ip:ipv4": {
+                            "config": {
+                                "mtu": {{eth_sub_ipv4_mtu}}
+                            },
                             "addresses": {
                                 "address": [
                                     {
-                                        "ip": "{{eth_ip}}",
+                                        "ip": "{{eth_sub_ip}}",
                                         "config": {
-                                            "ip": "{{eth_ip}}",
-                                            "prefix-length": {{eth_prefix}}
+                                            "ip": "{{eth_sub_ip}}",
+                                            "prefix-length": {{eth_sub_prefix_length}}
                                         }
-                                    }
-                                ]
-                            },
-                            "vrrp": {
-                                "vrrp-group": [
-                                    "virtual-router-id": "{{eth_ipv4_virtual_id}}",
-                                    "config": {
-                                        "virtual-router-id": "{{eth_ipv4_virtual_id}}",
-                                        "virtual-address": "{{eth_ipv4_virtual_address}}"
                                     }
                                 ]
                             }
                         },
                         "frinx-cisco-if-extension:statistics": {
                             "config": {
-                                "load-interval": {{lag_sub_load_interval}}
+                                "load-interval": {{eth_sub_load_interval}}
                             }
                         }
                     }
@@ -123,26 +111,26 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
             "frinx-damping:damping": {
                 "config": {
                     "enabled": {{eth_damping_enabled}},
-                    "half-life": {{eth_half-time}},
+                    "half-life": {{eth_half_life}},
                     "reuse": {{eth_reuse}},
                     "suppress": {{eth_suppress}},
-                    "max-suppress": {{eth_max-suppress}}
+                    "max-suppress": {{eth_max_suppress}}
                 }
             },
             "frinx-openconfig-if-ethernet:ethernet": {
                 "config": {
-                    "frinx-openconfig-if-aggregate:aggregate-id": "Bundle-Ether{{eth_lag_intf_id}}",
+                    "frinx-openconfig-if-aggregate:aggregate-id": "{{lag_ifc_name}}",
                     "frinx-lacp-lag-member:lacp-mode": "{{lacp_mode}}",
                     "frinx-lacp-lag-member:interval": "{{lacp_interval}}",
-                    "frinx-if-aggregate-extension:admin-key": {{admin-key}}
+                    "frinx-if-aggregate-extension:admin-key": {{lacp_admin_key}}
                 },
                 "frinx-openconfig-vlan:switched-vlan" : {
                     "config" : {
                         "interface-mode": "TRUNK",
                         "trunk-vlans": [
-                             {{tagged_vlan_intf_id}}
+                             {{tagged_vlan_ifc_id}}
                          ],
-                         "native-vlan": {{untagged_vlan_intf_id}}
+                         "native-vlan": {{untagged_vlan_ifc_id}}
                     }
                 }
             },
@@ -161,16 +149,24 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_intf_id}}
 ### Cisco IOS Classic (15.2(4)S5) / XE (15.3(3)S2)
 
 <pre>
-interface {{eth_intf_id}}
+interface {{eth_ifc_name}}
  description {{eth_description}}
  mtu {{eth_mtu}}
- ip address {{eth_ip}} &lt;subnet&gt;
+ ip address {{eth_ip}} {{eth_subnet}}
  shutdown | no shutdown
 </pre>
 
-&lt;subnet&gt; is a conversion of {{eth_prefix}}  
+{{eth_subnet}} is a conversion of {{eth_prefix_length}}  
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
 *shutdown* is a conversion of {{eth_enabled}} set *false*  
+
+---
+<pre>
+interface {{eth_ifc_name}}.{{sub_ifc_index}}
+ ip address {{eth_sub_ip}} {{eth_sub_subnet}}
+</pre>
+
+{{eth_sub_subnet}} is conversion of {{eth_sub_prefix_length}}  
 
 ##### Unit
 
@@ -181,16 +177,16 @@ Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios
 #### CLI
 
 <pre>
-interface {{eth_intf_id}}
+interface {{eth_ifc_name}}
  description {{eth_description}}
  mtu {{eth_mtu}}
- ipv4 address {{eth_ip}} {{eth_prefix}}
- ipv6 address {{eth_ip6}} {{eth_prefix6}}
+ ipv4 address {{eth_ip}} {{eth_prefix_length}}
+ ipv6 address {{eth_ip6}} {{eth_prefix6_length}}
  ipv6 nd suppress-ra
- dampening {{eth_half-life}} {{reuse}} {{suppress}} {{max-suppress}} | no dampening
+ dampening {{eth_half_life}} {{eth_reuse}} {{eth_supppress}} {{eth_max_suppress}} | no dampening
  carrier-delay up {{eth_hold_time_up}} down {{eth_hold_time_down}} 
- load-interval {{eth_load-interval}}
- bundle id {{eth_lag_intf_id}} mode {{lacp_mode}}
+ load-interval {{eth_load_interval}}
+ bundle id {{lag_ifc_id}} mode {{lacp_mode}}
  lacp period short | no lacp period short
  shutdown | no shutdown
 </pre>
@@ -198,12 +194,20 @@ interface {{eth_intf_id}}
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
 *shutdown* is a conversion of {{eth_enabled}} set *false*  
 *no dampening* is a conversion of {{eth_damping_enabled}} set *false*  
-*lacp period short* is a conversion of {{lacp_interval}} set to *FAST*  
-*no lacp period short* is a conversion of {{lacp_interval}} set to *SLOW*  
-if {{lacp_mode}} is not specified then command *bundle id {{eth_lag_intf_id}} mode on* is used  
+*lacp period short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:FAST*  
+*no lacp period short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:SLOW*  
+if {{lacp_mode}} is not specified then command *bundle id {{lag_ifc_id}} mode on* is used  
 *mode active* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:ACTIVE*  
 *mode passive* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:PASSIVE*  
-*ipv6 nd suppress-ra* is a conversion of {{ip6_nd_suppress_ra}} set *true*
+*ipv6 nd suppress-ra* is a conversion of {{ip6_nd_suppress_ra}} set *true*  
+
+---
+<pre>
+interface {{eth_ifc_name}}.{{sub_ifc_index}}
+ ipv4 address {{eth_sub_ip}} {{eth_sub_subnet}}
+</pre>
+
+{{eth_sub_subnet}} is conversion of {{eth_sub_prefix_length}}  
 
 ##### Unit
 
@@ -214,23 +218,33 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 #### CLI
 
 <pre>
-interface {{eth_intf_id}}.{{sub_interface_index}}
- ipv4 mtu {{eth_ipv4_mtu}}
- load-interval {{lag_sub_load_interval}}
+interface {{eth_ifc_name}}.{{sub_ifc_index}}
+ ipv4 mtu {{eth_sub_ipv4_mtu}}
+ load-interval {{eth_sub_load_interval}}
 </pre>
+
+---
+<pre>
+interface {{eth_ifc_name}}.{{sub_ifc_index}}
+ description {{eth_sub_description}}
+ ipv4 address {{eth_sub_ip}} {{eth_sub_subnet}}
+ encapsulation dot1q {{vlan_id}}
+</pre>
+
+{{eth_sub_subnet}} is conversion of {{eth_sub_prefix_length}}  
 
 ### Cisco IOS XR 6.6.1
 
 #### CLI
 
 <pre>
-interface {{eth_intf_id}}
+interface {{eth_ifc_name}}
  description {{eth_description}}
- ipv4 address {{eth_ip}} {{eth_prefix}}
+ ipv4 address {{eth_ip}} {{eth_prefix_length}}
  ipv4 mtu {{eth_ipv4_mtu}}
- dampening {{eth_half-life}} {{reuse}} {{suppress}} {{max-suppress}} | no dampening
- load-interval {{eth_load-interval}}
- bundle id {{eth_lag_intf_id}} mode {{lacp_mode}}
+ dampening {{eth_half_life}} {{eth_reuse}} {{eth_suppress}} {{eth_max_suppress}} | no dampening
+ load-interval {{eth_load_interval}}
+ bundle id {{lag_ifc_id}} mode {{lacp_mode}}
  lacp period short | no lacp period short
  shutdown | no shutdown
 </pre>
@@ -240,52 +254,72 @@ interface {{eth_intf_id}}
 *no dampening* is a conversion of {{eth_damping_enabled}} set *false*  
 *lacp period short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:FAST*  
 *no lacp period short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:SLOW*  
-if {{lacp_mode}} is not specified then command *bundle id {{eth_lag_intf_id}} mode on* is used  
+if {{lacp_mode}} is not specified then command *bundle id {{lag_ifc_id}} mode on* is used  
 *mode active* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:ACTIVE*  
 *mode passive* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:PASSIVE*  
 
+---
+<pre>
+interface {{eth_ifc_name}}.{{sub_ifc_index}}
+ description {{eth_sub_description}}
+ ipv4 address {{eth_sub_ip}} {{eth_sub_subnet}}
+ ipv4 mtu {{eth_sub_ipv4_mtu}}
+ load-interval {{eth_sub_load_interval}}
+ encapsulation dot1q {{vlan_id}}
+</pre>
+
+{{eth_sub_subnet}} is conversion of {{eth_sub_prefix_length}}  
+
 ##### Unit
 
-Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-7-interface-unit)
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-7/xr-7-interface-unit)
 
 ### Junos 14.1X53-D40.8
 
 #### CLI
 
 <pre>
-set interfaces {{eth_intf_id}} vlan-tagging
-delete interfaces {{eth_intf_id}} disable | set interfaces {{eth_intf_id}} disable
-set interfaces {{eth_intf_id}} unit 0 description {{subif_description}}
-set interfaces {{eth_intf_id}} unit 0 vlan-id {{vlan_id}}
-set interfaces {{eth_intf_id}} unit 0 family inet address {{eth_ip}}/{{eth_prefix}}
+set interfaces {{eth_ifc_name}} vlan-tagging
+delete interfaces {{eth_ifc_name}} disable | set interfaces {{eth_ifc_name}} disable
+set interfaces {{eth_ifc_name}} unit 0 family inet address {{eth_ip}}/{{eth_prefix_length}}
 </pre>
 
 *vlan-tagging* is a conversion of {{eth_tpid}} set *TPID_0X8100*  
-*delete interfaces {{eth_intf_id}} disable* is a conversion of {{eth_enabled}} set *true*  
-*set interfaces {{eth_intf_id}} disable* is conversion of {{eth_enabled}} set *false*  
+*delete interfaces {{eth_ifc_name}} disable* is a conversion of {{eth_enabled}} set *true*  
+*set interfaces {{eth_ifc_name}} disable* is conversion of {{eth_enabled}} set *false*  
+
+<pre>
+set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} vlan-id {{vlan_id}}
+set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} description {{eth_sub_description}}
+set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} family inet address {{eth_sub_ip}}/{{eth_sub_prefix_length}}
+</pre>
+
+##### Unit
+
+Link to github : [junos-unit](https://github.com/FRINXio/cli-units/tree/master/junos/interface)
 
 ### Junos 17.3R1.10
 
 #### CLI
 
 <pre>
-set interfaces {{eth_intf_id}} description {{eth_description}}
-set interfaces {{eth_intf_id}} mtu {{eth_mtu}}
-set interfaces {{eth_intf_id}} unit 0 family inet address {{eth_ip}}/{{eth_prefix}}
-set interfaces {{eth_intf_id}} damping enable
-set interfaces {{eth_intf_id}} damping half-life {{eth_half-life}}
-set interfaces {{eth_intf_id}} damping max-suppress {{eth_max-supress}}
-set interfaces {{eth_intf_id}} damping reuse {{eth_reuse}}
-set interfaces {{eth_intf_id}} damping suppress {{eth_supress}}
-set interfaces {{eth_intf_id}} hold-time up {{eth_hold_time_up}} down {{eth_hold_time_down}}
-set interfaces {{eth_intf_id}} gigether-options 802.3ad {{eth_lag_intf_id}}
-set interfaces ae{{eth_lag_intf_id}} aggregated-ether-options lacp {{lacp_mode}}
-set interfaces ae{{eth_lag_intf_id}} aggregated-ether-options lacp periodic {{lacp_interval}}
-delete interfaces {{eth_intf_id}} disable | set interfaces {{eth_intf_id}} disable
+set interfaces {{eth_ifc_name}} description {{eth_description}}
+set interfaces {{eth_ifc_name}} mtu {{eth_mtu}}
+set interfaces {{eth_ifc_name}} unit 0 family inet address {{eth_ip}}/{{eth_prefix_length}}
+set interfaces {{eth_ifc_name}} damping enable
+set interfaces {{eth_ifc_name}} damping half-life {{eth_half_life}}
+set interfaces {{eth_ifc_name}} damping max-suppress {{eth_max_suppress}}
+set interfaces {{eth_ifc_name}} damping reuse {{eth_reuse}}
+set interfaces {{eth_ifc_name}} damping suppress {{eth_supress}}
+set interfaces {{eth_ifc_name}} hold-time up {{eth_hold_time_up}} down {{eth_hold_time_down}}
+set interfaces {{eth_ifc_name}} gigether-options 802.3ad {{lag_ifc_id}}
+set interfaces {{eth_ifc_name}} aggregated-ether-options lacp {{lacp_mode}}
+set interfaces {{eth_ifc_name}} aggregated-ether-options lacp periodic {{lacp_interval}}
+delete interfaces {{eth_ifc_name}} disable | set interfaces {{eth_ifc_name}} disable
 </pre>
 
-*delete interfaces {{eth_intf_id}} disable* is a conversion of {{eth_enabled}} set *true*  
-*set interfaces {{eth_intf_id}} disable* is conversion of {{eth_enabled}} set *false* 
+*delete interfaces {{eth_ifc_name}} disable* is a conversion of {{eth_enabled}} set *true*  
+*set interfaces {{eth_ifc_name}} disable* is conversion of {{eth_enabled}} set *false* 
 
 ##### Unit
 
@@ -296,17 +330,24 @@ Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/mast
 #### CLI
 
 <pre>
-set interfaces {{eth_intf_id}} unit {{sub_interface_index}} description {{subif_description}}
-set interfaces {{eth_intf_id}} unit {{sub_interface_index}} family inet address {{eth_ip}}/{{eth_prefix}}
-delete interfaces {{eth_intf_id}} disable | set interfaces {{eth_intf_id}} disable
-delete interfaces {{eth_intf_id}} unit {{sub_interface_index}} disable | set interfaces {{eth_intf_id}} unit {{sub_interface_index}} disable
+set interfaces {{eth_intf_id}} unit 0 family inet address {{eth_ip}}/{{eth_prefix}}
+delete interfaces {{eth_ifc_name}} disable | set interfaces {{eth_ifc_name}} disable
 </pre>
 
-*delete interfaces {{eth_intf_id}} disable* is a conversion of {{eth_enabled}} set *true*  
-*set interfaces {{eth_intf_id}} disable* is conversion of {{eth_enabled}} set *false*  
-*delete interfaces {{eth_intf_id}} unit {{sub_interface_index}} disable* is a conversion of {{subif_enabled}} set *true*  
-*set interfaces {{eth_intf_id}} unit {{sub_interface_index}} disable* is conversion of {{subif_enabled}} set *false*  
+*delete interfaces {{eth_ifc_name}} disable* is a conversion of {{eth_enabled}} set *true*  
+*set interfaces {{eth_ifc_name}} disable* is conversion of {{eth_enabled}} set *false*  
 In the case of *set interfaces ms-x/x/x*, set *iana-if-type:other* instead of *iana-if-type:ethernetCsmacd*
+
+---
+<pre>
+set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} description {{eth_sub_description}}
+set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} family inet address {{eth_sub_ip}}/{{eth_sub_prefix_length}}
+delete interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} disable | set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} disable
+set interfaces {{rpm_ifc_index}} unit {{rpm_subintf_index}} rpm {{rpm_type}}
+</pre>
+
+*delete interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} disable* is a conversion of {{subif_enabled}} set *true*  
+*set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} disable* is conversion of {{subif_enabled}} set *false*  
 
 ##### Unit
 
@@ -318,9 +359,9 @@ Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/mast
 #### CLI
 
 <pre>
-tag-type {{eth_tpid}} {{eth_intf_id}}
+tag-type {{eth_tpid}} {{eth_ifc_name}}
 
-interface {{eth_intf_id}}
+interface {{eth_ifc_name}}
   port-name {{eth_description}}
   enable | disable
 </pre>
@@ -337,12 +378,15 @@ Link to github : [brocade-unit](https://github.com/FRINXio/cli-units/tree/master
 #### CLI
 
 <pre>
-interface {{eth_intf_id}}
- ipv4 address {{eth_ip}} {{subnet}}
+interface {{eth_ifc_name}}
+ ipv4 address {{eth_ip}} {{eth_subnet}}
 </pre>
 
-{{subnet}} is conversion of {{eth_prefix}}
+{{eth_subnet}} is conversion of {{eth_prefix_length}}
 
+##### Unit
+
+Link to github : [huawei-unit](https://github.com/FRINXio/cli-units/tree/master/huawei/interface)
 
 ### Dasan NOS SFU.RR.5.6p5
 
@@ -350,18 +394,23 @@ interface {{eth_intf_id}}
 
 <pre>
 bridge
- vlan add br{{tagged_vlan_intf_id}} {{phy_port_id}} tagged
- vlan add br{{untagged_vlan_intf_id}} {{phy_port_id}} untagged
- lacp port {{phy_port_id}} aggregator {{eth_lag_intf_id}}
- lacp port admin-key {{phy_port_id}} {{admin-key}}
- lacp port time-out {{phy_port_id}} {{lacp_interval}}
+ vlan add br{{tagged_vlan_ifc_id}} {{phy_port_id}} tagged
+ vlan add br{{untagged_vlan_ifc_id}} {{phy_port_id}} untagged
+ lacp port {{phy_port_id}} aggregator {{lag_ifc_id}}
+ lacp port admin-key {{phy_port_id}} {{lacp_admin_key}}
+ lacp port timeout {{phy_port_id}} short | no lacp port timeout {{phy_port_id}}
  jumbo-frame {{phy_port_id}} {{eth_mtu}}
  port enable {{phy_port_id}} | port disable {{phy_port_id}}
 </pre>
 
-{{phy_port_id}} is parsed from {{eth_intf_id}}  
-example {{eth_intf_id}} is Ethernet1/1 -&gt; {{phy_port_id}} is 1/1  
+{{phy_port_id}} is parsed from {{eth_ifc_name}}  
+example {{eth_ifc_name}} is Ethernet1/1 -&gt; {{phy_port_id}} is 1/1  
 
 *port enable {{phy_port_id}}* is a conversion of {{eth_enabled}} set *true*  
 *port disable {{phy_port_id}}* is a conversion of {{eth_enabled}} set *false*  
-*lacp port timeout {{phy_port_id}} short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:FAST*
+*lacp port timeout {{phy_port_id}} short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:FAST*  
+*no lacp port timeout {{phy_port_id}} short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:SLOW*  
+
+##### Unit
+
+Link to github : [dasan-unit](https://github.com/FRINXio/cli-units/tree/master/dasan/interface)
