@@ -8,6 +8,7 @@
     * [<a href="network-instances/protocols/bgp.md">BGP</a>](#bgp)
     * [<a href="network-instances/protocols/ospf.md">OSPF</a>](#ospf)
     * [<a href="network-instances/protocols/ospfv3.md">OSPFv3</a>](#ospfv3)
+    * [<a href="network-instances/protocols/isis.md">IS-IS</a>](#isis)
   * [MPLS](#mpls)
     * [<a href="network-instances/mpls/mpls_te.md">MPLS TE</a>](#mpls-te)
     * [<a href="network-instances/mpls/mpls_tunnel.md">MPLS Tunnel</a>](#mpls-tunnel)
@@ -64,6 +65,8 @@
 #### [OSPF](network-instances/protocols/ospf.md)
 
 #### [OSPFv3](network-instances/protocols/ospfv3.md)
+
+#### [IS-IS](network-instances/protocols/isis.md)
 
 ## MPLS
 
