@@ -191,6 +191,9 @@ interface {{eth_ifc_name}}
  shutdown | no shutdown
 </pre>
 
+{{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
+example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100  
+
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
 *shutdown* is a conversion of {{eth_enabled}} set *false*  
 *no dampening* is a conversion of {{eth_damping_enabled}} set *false*  
@@ -248,6 +251,9 @@ interface {{eth_ifc_name}}
  lacp period short | no lacp period short
  shutdown | no shutdown
 </pre>
+
+{{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
+example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100  
 
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
 *shutdown* is a conversion of {{eth_enabled}} set *false*  
@@ -317,6 +323,9 @@ set interfaces {{eth_ifc_name}} aggregated-ether-options lacp {{lacp_mode}}
 set interfaces {{eth_ifc_name}} aggregated-ether-options lacp periodic {{lacp_interval}}
 delete interfaces {{eth_ifc_name}} disable | set interfaces {{eth_ifc_name}} disable
 </pre>
+
+{{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
+example {{lag_ifc_name}} is ae100 -&gt; {{lag_ifc_id}} is 100  
 
 *delete interfaces {{eth_ifc_name}} disable* is a conversion of {{eth_enabled}} set *true*  
 *set interfaces {{eth_ifc_name}} disable* is conversion of {{eth_enabled}} set *false* 
@@ -405,6 +414,9 @@ bridge
 
 {{phy_port_id}} is parsed from {{eth_ifc_name}}  
 example {{eth_ifc_name}} is Ethernet1/1 -&gt; {{phy_port_id}} is 1/1  
+
+{{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
+example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100  
 
 *port enable {{phy_port_id}}* is a conversion of {{eth_enabled}} set *true*  
 *port disable {{phy_port_id}}* is a conversion of {{eth_enabled}} set *false*  
