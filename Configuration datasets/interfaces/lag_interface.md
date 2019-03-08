@@ -113,7 +113,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_ifc_name}}
                     "half-life": {{lag_damp_half_life}},
                     "reuse": {{lag_damp_reuse}},
                     "suppress": {{lag_damp_suppress}},
-                    "max-suppress": {{lag_damp_max-supress}}
+                    "max-suppress": {{lag_damp_max_supress}}
                 }
             },
             "frinx-cisco-if-extension:statistics": {
@@ -177,14 +177,14 @@ interface Bundle-Ether{{lag_ifc_id}}
  ipv4 address {{lag_ip}} {{lag_prefix_length}}
  ipv6 address {{lag_ip6}} {{lag_prefix6_length}}
  ipv6 nd suppress-ra
- dampening {{lag_damp_half_life}}  {{lag_damp_reuse}} {{lag_damp_suppress}} {{lag_damp_max-supress}} | no dampening
+ dampening {{lag_damp_half_life}}  {{lag_damp_reuse}} {{lag_damp_suppress}} {{lag_damp_max_supress}} | no dampening
  load-interval {{lag_load_interval}}
- bundle minimum-active links {{lag_min-links}}
+ bundle minimum-active links {{lag_min_links}}
  bfd mode ietf
  bfd address-family ipv4 fast-detect
  bfd address-family ipv4 destination {{lag_bfd_destination_address}}
  bfd address-family ipv4 minimum-interval {{lag_bfd_min_interval}}
- bfd address-family ipv4 multiplier {{lag_bfg_multiplier}}
+ bfd address-family ipv4 multiplier {{lag_bfd_multiplier}}
  shutdown | no shutdown
 </pre>
 
@@ -229,7 +229,7 @@ interface Bundle-Ether{{lag_ifc_id}}
  description {{lag_description}} 
  ipv4 address {{lag_sub_ip}} {{lag_sub_subnet}}
  mtu {{lag_mtu}}
- dampening {{lag_damp_half_life}} {{lag_damp_reuse}} {{lag_damp_suppress}} {{lag_damp_max-supress}} | no dampening
+ dampening {{lag_damp_half_life}} {{lag_damp_reuse}} {{lag_damp_suppress}} {{lag_damp_max_supress}} | no dampening
  load-interval {{lag_load_interval}}
  mac-address {{lag_mac_address}}
  lacp system mac {{lag_lacp_mac_address}}
@@ -243,7 +243,7 @@ example {{aggregate_mac_address}} is aa:bb:cc:dd:ee:ff -&gt; aabb.ccdd.eeff
 {{lag_lacp_mac_address}} is parsed from {{aggregate_lacp_mac_address}}  
 example {{aggregate_lacp_mac_address}} is aa:bb:cc:dd:ee:ff -&gt; aabb.ccdd.eeff  
 
-{{lag_subnet}} is conversion of {{lag_prefix_length}}
+{{lag_subnet}} is conversion of {{lag_prefix_length}}  
 *no shutdown* is a conversion of {{lag_enabled}} set *true*  
 *shutdown* is a conversion of {{lag_enabled}} set *false*  
 *no dampening* is a conversion of {{lag_damp_enabled}} set *false*  
