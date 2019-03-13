@@ -221,6 +221,29 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 #### CLI
 
 <pre>
+interface {{eth_ifc_name}}
+ description {{eth_description}}
+ dampening {{eth_half_life}} {{eth_reuse}} {{eth_suppress}} {{eth_max_suppress}} | no dampening
+ load-interval {{eth_load_interval}}
+ bundle id {{lag_ifc_id}} mode {{lacp_mode}}
+ lacp period short | no lacp period short
+ shutdown | no shutdown
+</pre>
+
+{{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
+example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100  
+
+*no shutdown* is a conversion of {{eth_enabled}} set *true*  
+*shutdown* is a conversion of {{eth_enabled}} set *false*  
+*no dampening* is a conversion of {{eth_damping_enabled}} set *false*  
+*lacp period short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:FAST*  
+*no lacp period short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:SLOW*  
+if {{lacp_mode}} is not specified then command *bundle id {{lag_ifc_id}} mode on* is used  
+*mode active* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:ACTIVE*  
+*mode passive* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:PASSIVE*  
+
+---
+<pre>
 interface {{eth_ifc_name}}.{{sub_ifc_index}}
  ipv4 mtu {{eth_sub_ipv4_mtu}}
  load-interval {{eth_sub_load_interval}}
@@ -298,7 +321,12 @@ set interfaces {{eth_ifc_name}} unit 0 family inet address {{eth_ip}}/{{eth_pref
 set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} vlan-id {{vlan_id}}
 set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} description {{eth_sub_description}}
 set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} family inet address {{eth_sub_ip}}/{{eth_sub_prefix_length}}
+set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} disable
+delete interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} disable
 </pre>
+
+*set interfaces {{eth_intf_id}} unit {{sub_interface_index}} disable* is conversion of {{subif_enabled}} set *false*  
+*delete interfaces {{eth_intf_id}} unit {{sub_interface_index}} disable* is a conversion of {{subif_enabled}} set *true*  
 
 ##### Unit
 
