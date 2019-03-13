@@ -691,7 +691,7 @@ set policy-options policy-statement OUT-FIL term 1 then accept
 }
 ```
 
-### Junos 18.2R2
+### Junos 18.2R1-S2.1
 
 #### CLI
 
