@@ -295,7 +295,7 @@ example {{lag_ifc_name}} is ae100 -&gt; {{lag_ifc_id}} is 100
 
 Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17/junos-17-interface-unit)
 
-### Junos 18.2R2
+### Junos 18.2R1-S2.1
 
 #### CLI
 

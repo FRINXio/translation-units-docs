@@ -41,7 +41,7 @@ frinx-openconfig-probes:probes
 
 ## OS Configuration Commands
 
-### Junos 18.2R2
+### Junos 18.2R1-S2.1
 
 #### CLI
 

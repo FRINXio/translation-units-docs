@@ -85,7 +85,7 @@ set interfaces {{iacl_intf_id}} unit 0 family inet filter output {{iacl_out_acl_
 
 Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17/junos-17-acl-unit)
 
-### Junos 18.2R2
+### Junos 18.2R1-S2.1
 
 #### CLI
 

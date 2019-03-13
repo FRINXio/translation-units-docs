@@ -210,7 +210,7 @@ router bgp {{l3_vpn_bgp_as_number}}
   neighbor {{l3_vpn_bgp_neighbor_address}} activate
 </pre>
 
-### Junos 18.2R2
+### Junos 18.2R1-S2.1
 
 #### CLI
 

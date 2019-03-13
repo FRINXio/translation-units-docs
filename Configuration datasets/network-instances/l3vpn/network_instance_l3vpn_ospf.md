@@ -432,7 +432,7 @@ set routing-instances &lt;vrf&gt; routing-options instance-import &lt;vrf&gt;-ro
 set routing-instances &lt;vrf&gt; protocols ospf export &lt;ospf-export-policy&gt;
 </pre>
 
-### Junos 18.2R2
+### Junos 18.2R1-S2.1
 
 #### CLI
 
