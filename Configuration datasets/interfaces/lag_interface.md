@@ -52,6 +52,9 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_ifc_name}}
                             }
                         },
                         "frinx-openconfig-if-ip:ipv6": {
+                            "config": {
+                                "enabled": {{lag_ip6_enabled}}
+                            },
                             "addresses": {
                                 "address": [
                                     {
@@ -214,14 +217,38 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 #### CLI
 
 <pre>
+interface Bundle-Ether{{lag_ifc_id}} 
+ description {{lag_description}} 
+ mtu {{lag_mtu}}
+ ipv4 address {{lag_ip}} {{lag_prefix_length}}
+ ipv6 address {{lag_ip6}} {{lag_prefix6_length}}
+ ipv6 enable | no ipv6 enable
+ dampening {{lag_damp_half_life}}  {{lag_damp_reuse}} {{lag_damp_suppress}} {{lag_damp_max_supress}} | no dampening
+ load-interval {{lag_load_interval}}
+ bundle minimum-active links {{lag_min_links}}
+ bfd mode ietf
+ bfd address-family ipv4 fast-detect
+ bfd address-family ipv4 destination {{lag_bfd_destination_address}}
+ bfd address-family ipv4 minimum-interval {{lag_bfd_min_interval}}
+ bfd address-family ipv4 multiplier {{lag_bfd_multiplier}}
+ shutdown | no shutdown
+</pre>
+
+{{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
+example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100  
+
+*no shutdown* is a conversion of {{lag_enabled}} set *true*  
+*shutdown* is a conversion of {{lag_enabled}} set *false*  
+*no dampening* is a conversion of {{lag_damp_enabled}} set *false*  
+*ipv6 enable* is a conversion of {{lag_ip6_enabled}} set *true*  
+*no ipv6 enable* is a conversion of {{lag_ip6_enabled}} set *false*  
+
+<pre>
 interface Bundle-Ether{{lag_ifc_id}}.{{sub_ifc_index}}
  description {{lag_sub_description}}
  ipv4 address {{lag_sub_ip}} {{lag_sub_subnet}}
  encapsulation dot1q {{vlan_id}}
 </pre>
-
-{{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
-example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100  
 
 {{lag_sub_subnet}} is conversion of {{lag_sub_prefix_length}}  
 
