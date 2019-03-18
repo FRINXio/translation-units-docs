@@ -37,6 +37,15 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_ifc_name}}
                                         "config": {
                                             "ip": "{{lag_ip}}",
                                             "prefix-length": "{{lag_prefix_length}}"
+                                        },
+                                        "vrrp": {
+                                            "vrrp-group": [
+                                                "virtual-router-id": "{{lag_ip_virtual_id}}",
+                                                "config": {
+                                                    "virtual-router-id": "{{lag_ip_virtual_id}}",
+                                                    "virtual-address": "{{lag_ip_virtual_address}}"
+                                                }
+                                            ]
                                         }
                                     }
                                 ]
@@ -301,6 +310,8 @@ Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/mast
 
 <pre>
 delete interface ae{{lag_ifc_id}} disable | set interface ae{{lag_ifc_id}} disable
+set interfaces ae{{lag_ifc_id}} unit 0 family inet address {{lag_ip}}/{{lag_prefix_length}}
+set interfaces ae{{lag_ifc_id}} unit 0 family inet address {{lag_ip}}/{{lag_prefix_length}} vrrp-group {{lag_ip_virtual_id}} virtual-address {{lag_ip_virtual_address}}
 </pre> 
 
 {{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
@@ -317,6 +328,7 @@ set interfaces ae{{lag_ifc_id}} unit {{sub_ifc_index}} vlan-id {{vlan_id}}
 set interfaces ae{{lag_ifc_id}} unit {{sub_ifc_index}} vlan-tags inner 0x8100:{{inner_vlan_tag}}
 set interfaces ae{{lag_ifc_id}} unit {{sub_ifc_index}} vlan-tags outer 0x8100:{{outer_vlan_tag}}
 set interfaces ae{{lag_ifc_id}} unit {{sub_ifc_index}} rpm {{rpm_type}}
+set interfaces ae{{lag_ifc_id}} unit {{sub_ifc_index}} family inet address {{lag_sub_ip}}/{{lag_sub_prefix_length}}
 set interfaces ae{{lag_ifc_id}} unit {{sub_ifc_index}} family inet address {{lag_sub_ip}}/{{lag_sub_prefix_length}} vrrp-group {{lag_sub_ip_virtual_id}} virtual-address {{lag_sub_ip_virtual_address}}
 </pre>
 
