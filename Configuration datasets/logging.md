@@ -43,6 +43,19 @@ interface {{intf_id}}
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/logging)
 
+### Cisco IOS XR 6.2.3
+
+#### CLI
+
+<pre>
+interface {{intf_id}}
+ logging events link-status
+</pre>
+
+##### Unit
+
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-6-logging)
+
 ### Cisco IOS XR 6.6.1
 
 #### CLI
