@@ -79,11 +79,11 @@ router isis {{isis}}
   address-family {{isis_interface_afi_name}} {{isis_interface_safi_name}}
    metric {{isis_interface_metric}}
 </pre>
-*point-to-point* is a conversion of {{isis_circuit_type}} set *circuit-type:POINT_TO_POINT*  
+*point-to-point* is a conversion of {{isis_circuit_type}} set *POINT_TO_POINT*  
 
-{{isis_interface_afi_name}} value afi-type:IPV6 is to be converted to *ipv6*  
-{{isis_interface_safi_name}} value safi-type:UNICAST is to be converted to *unicast*  
-{{isis_interface_level}} value level-type:LEVEL_1 is to be converted to *level-1*  
-{{isis_interface_level}} value level-type:LEVEL_2 is to be converted to *level-2*  
-{{isis_interface_level}} value level-type:LEVEL_1_2 is to be converted to *level-1-2*  
+{{isis_interface_afi_name}} value *frinx-openconfig-isis-types:IPV6* is to be converted to *ipv6*  
+{{isis_interface_safi_name}} value *frinx-openconfig-isis-types:UNICAST* is to be converted to *unicast*  
+{{isis_interface_level}} value *LEVEL_1* is to be converted to *level-1*  
+{{isis_interface_level}} value *LEVEL_2* is to be converted to *level-2*  
+{{isis_interface_level}} value *LEVEL_1_2* is to be converted to *level-1-2*  
 
