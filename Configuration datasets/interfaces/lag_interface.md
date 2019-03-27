@@ -148,6 +148,13 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_ifc_name}}
                         "min-interval": {{lag_bfd_min_interval}}
                     }
                 },
+                "frinx-bfd:bfd-ipv6": {
+                    "config": {
+                        "destination-address": "{{lag_bfd_destination_address_ipv6}}",
+                        "multiplier": {{lag_bfd_multiplier_ipv6}},
+                        "min-interval": {{lag_bfd_min_interval_ipv6}}
+                    }
+                },
                 "frinx-openconfig-vlan:switched-vlan" : {
                     "config" : {
                         "interface-mode": "TRUNK",
@@ -231,6 +238,10 @@ interface Bundle-Ether{{lag_ifc_id}}
  bfd address-family ipv4 destination {{lag_bfd_destination_address}}
  bfd address-family ipv4 minimum-interval {{lag_bfd_min_interval}}
  bfd address-family ipv4 multiplier {{lag_bfd_multiplier}}
+ bfd address-family ipv6 fast-detect
+ bfd address-family ipv6 destination {{lag_bfd_destination_address_ipv6}}
+ bfd address-family ipv6 minimum-interval {{lag_bfd_min_interval_ipv6}}
+ bfd address-family ipv6 multiplier {{lag_bfd_multiplier_ipv6}}
  shutdown | no shutdown
 </pre>
 
