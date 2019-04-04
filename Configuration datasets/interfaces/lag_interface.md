@@ -298,6 +298,7 @@ example {{aggregate_lacp_mac_address}} is aa:bb:cc:dd:ee:ff -&gt; aabb.ccdd.eeff
 ---
 <pre>
 interface Bundle-Ether{{lag_ifc_id}}.{{sub_ifc_index}}
+ description {{lag_sub_description}}
  ipv4 address {{lag_sub_ip}} {{lag_sub_subnet}}
  encapsulation dot1q {{vlan_id}}
  load-interval {{lag_sub_load_interval}}
