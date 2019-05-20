@@ -8,24 +8,26 @@
    * [Translation Units in general](#translation-units-in-general)
      * [Module structure](#module-structure)
      * [Handlers](#handlers1)
+     * [Base Handlers](#base-handlers)
    * [CLI Translation Unit](#cli-translation-unit)
       * [Readers](#readers1)
         * [Mandatory interfaces to implement](#mandatory-interfaces-to-implement1)
-        * [Typed interfaces to implement (optional)](#typed-interfaces-to-implement-optional1)
         * [Util classes](#util-classes)
         * [Plaintext parsing hints](#plaintext-parsing-hints)
+        * [Base readers](#base-cli-readers)
       * [Writers](#writers1)
         * [Mandatory interfaces to implement](#mandatory-interfaces-to-implement2)
-        * [Existing noop writers](#existing-noop-writers1)
+        * [Base writers](#base-cli-writers)
+          * [Chunk templates](#chunk-templates)
       * [TranslateUnit](#translateunit1)
    * [CLI Init Translation Unit](#cli-init-translation-unit)
    * [NETCONF Unified Translation Unit](#netconf-unified-translation-unit)
       * [Readers](#readers2)
         * [Mandatory interfaces to implement](#mandatory-interfaces-to-implement3)
-        * [Typed interfaces to implement (optional)](#typed-interfaces-to-implement-optional2)
+        * [Base Readers](#base-netconf-readers)
       * [Writers](#writers2)
         * [Mandatory interfaces to implement](#mandatory-interfaces-to-implement4)
-        * [Existing noop writers](#existing-noop-writers2)
+        * [Base writers](#base-netconf-writers)
       * [TranslateUnit](#translateunit2)
    * [Translation units for different device versions](#translation-units-for-different-device-versions)
       * [Device registration](#device-registration)
@@ -92,6 +94,15 @@ Translation unit is a self contained project which implements a mapping between 
 *   Readers and writers can be easily tested and it is necessary to provide unit tests for all of them. It's important to cover _readCurrentAttributes_ and _writeCurrentAttributes_ with all possible scenarios (all data there, no data there, partial data there...)
 *   Writers may use **Preconditions.checkArgument()** before accessing the device. Fail of the precondition check does not invoke default rollback (opposite operation) on the writer where precondition is located.
 
+## <a name="base-handlers"></a>Base Handlers
+
+
+
+When a handler for the same YANG node is implemented to conform various devices, it tends to lead to a lot of boilerplate and duplicate code. Therefore, we should implement a **base handler** for such handlers. How does it work:
+*   create a base-project (if there isn't any) to group base handlers (eg. for an interface handler, choose interface-base project)
+*   each base handler needs to be abstract and implement same interfaces as the original handler
+*   extract common functionality in the base handler. Common functionality means that it will conform the majority of the original handlers. If a handler does not share the extracted functionality, it needs to override original interface methods, to _hide_ the extracted functionality.
+*   let original handlers extend base abstract handler
 
 # <a name="cli-translation-unit"></a>CLI Translation Unit
 
@@ -106,14 +117,6 @@ CLI Translation units are located in [https://github.com/FRINXio/cli-units](http
 *   There are 2 types of readers: Reader and ListReader. Reader can be used to handle container or augmentation nodes and ListReader should handle list nodes from YANG.
     *   Both types need to implement **_readCurrentAttributes_** to fill the builder with appropriate values
     *   ListReader needs to also implement **_getAllIds()_** where it retrieves a key for each item to be present in current list. After the list is received, framework will invoke **_readCurrentAttributes_** for each item from getAllIds
-*   Readers also need to implement boilerplate methods: 
-    *   **_merge_**- cast the builder parameter to appropriate parent builder type e.g. in builder for /interfaces/interface you would perform: 
-	
-```
-	((InterfacesBuilder)builder).setInterface(readValue)
-```
-
-
 *   Readers should always use overloaded **_blockingRead_** method which takes in the ReadContext since that method performs caching internally
 *   **Use full version of commands** e.g. _show running-config interface_ instead of _sh run int_
 
@@ -138,18 +141,7 @@ In cases where you want to invoke multiple readers on reading one YANG node, ext
 
 A practical example of their usage is reading network instance based on it's type. All child readers need to implement a check when the particular reader should be invoked or the parent reader should move on to the next reader.
 
-
-#### <a name="typed-interfaces-to-implement-optional1"></a>Typed interfaces to implement (optional)
-
-Interfaces which you may want to implement when some parent node in instance-identifier needs be checked for particular value or other data from data tree needs to be checked.
-
-If data did not pass check, then reader implementing the interface will not be invoked by framework. Each descended reader needs to implement the interface as well.
-
-**TypedListReader** - use when target composite node in YANG is list
-
-**TypedReader** - use when target composite node in YANG is container or augmentation
-
-For example typed readers for bgp (located under _protocol_) needs to check if _identifier_ in _protocol_ has value _BGP_. Otherwise readers for bgp will be invoked even if _protocol identifier_ is _OSPF_.
+For example child reader for bgp (located under _protocol_) needs to check if _identifier_ in _protocol_ has value _BGP_. Otherwise reader for bgp will be invoked even if _protocol identifier_ is _OSPF_.
 
 
 #### <a name="util-classes"></a>Util classes
@@ -182,12 +174,22 @@ For example typed readers for bgp (located under _protocol_) needs to check if _
     *   Find the line that matches required router bgp {{ID}}
     *   Take that line and replace "address-family" with "\naddress-family" to get address-family neighbors per line
 
+
+
+#### <a name="base-cli-readers"></a>Base Readers
+
+Each base reader should contain abstract methods:
+*   **String getReadCommand(\<args\>)** - each child reader should fill in the read command used to get information needed for this reader. Arguments may vary and they are used to be more specific in the read command (eg. when creating a command to gather information about a specific interface, you may want to pass interface name as argument).
+*   **Pattern get\<command\>Line(\args\>)** - there may be more such methods and they are used to get the regular expression needed to parse output of the command (eg. in case of interface reader, you will create methods getDescriptionLine, getShutdownLine etc.)
+
+_Note_: naming of the methods should be unified in order to be easily parsed by auto-generated documentation.
+
 ### <a name="writers1"></a>Writers
 
 
 
 *   A writer needs to implement all 3 methods: Write, Update, Delete in order to fully support default rollback mechanism of the framework
-    *   Time showed that update like 1. delete, 2. write is anti-pattern and should not be used.
+    *   Time showed that update like 1. delete, 2. write is anti-pattern and should not be used. There is just one case where it is necessary: when re-writing list entry, you must first delete the previous entry, then write the new one, otherwise the previous entry would still be present and the new entry will be added to the list.
 *   A writer can properly work only if there is a reader for the same composite node
 *   A writer should check whether the command it executed was handled by the device properly (by checking the output) and if not throw one of the Write/Update/Delete FailedException
 *   **Chunk templating framework is preferred to use in writers** it gives us:
@@ -207,16 +209,33 @@ All writers override updateCurrentAttributes method and avoid delete/write combi
 
 **CliWriter** - implement this interface if target composite node in YANG is container or augmentation. An implementation needs to be registered as GenericWriter.
 
-**CompositeWriter** - extend this abstract class when multiple writers need to be invoked on one YANG node. The writers need to have a check whether or not should they be invoked.
+**CompositeWriter** - extend this abstract class when multiple writers need to be invoked on one YANG node. The writers need to implement a check whether or not should they be invoked.
 
-#### <a name="existing-noop-writers2"></a>Existing noop writers
 
-Noop writers may be registered in case when target node in YANG does not contain any simple nodes (leafs).
 
-**NoopCliListWriter** - register as GenericListWriter if target composite node in YANG is list.
+#### <a name="base-cli-writers"></a>Base Writers
 
-**NoopCliWriter** - register as GenericWriter if target composite node in YANG is container.
+Each base writer should contain abstract methods:
+*   **String updateTemplate(Config before, Config after)** - this method returns Chunk template used for writing and updating data on the device.
+*   **String deleteTemplate(Config data)** - this method returns Chunk template used for deleting data from device.
 
+_Note_: if updating data is done differently than writing new data, method **String writeTemplate(Config data)** might be used as well.
+
+
+##### <a name="chunk-templates"></a>Chunk Templates
+
+Each original writer transformed to use a base writer should have all it's templates written in Chunk. We extended Chunk to achieve easier manipulation with data. There is now a new filter called _update_. It's usage is following:
+*   **"{$data|update(mtu,mtu \`$data.mtu\`\n,no mtu\n)}"** 
+	*    _$data_ represents the data structure on which we check if it was updated from the previous state. 
+	*    _mtu_ first argument represents the **name** of the field that should be checked within the $data
+	*    _mtu \`$data.mtu\`\n_ second argument represents the actual string that will be sent to the device if the value of the field named in first argument was changed or didn't exist before
+	*    _no mtu\n_ third argument represents the actual string that will be sent to the device if the value of the field named in first argument was deleted
+	*    optional _true_ fourth argument, if present, lets the filter know it should send **both** outputs to the device, first the delete string (third argument) then the update string (second argument)
+	
+*   Update filter does not send any of the strings to the device, if the value did not change.
+*   When using this filter in updateTemplate method, you **must** use fT() method (format template) with one pair of the arguments being _"before", before_ to let the template know what data represents the previous state.
+
+_Note_: unfortunately, Opendaylight generates boolean fields instead of Boolean and Chunk does not work with boolean fields in the same way as any other object fields. Therefore for boolean values (eg. shutdown), you cannot use update filter and checking for changes needs to be done in a traditional way.
 
 ### <a name="translateunit1"></a>TranslateUnit
 
@@ -282,7 +301,7 @@ Implementation of TranslateUnit must implement these methods:
 
 
 
-*   Return YANG models containing composite nodes handled by handlers(readers/writers). It must return empty Set if no handlers are implemented.
+*   Return YANG models containing composite nodes handled by handlers(readers/writers). Default implementation returns empty Set if no handlers are implemented.
 
 **Set<RpcService<?, ?>> getRpcs(@Nonnull Context context)**
 
@@ -293,57 +312,54 @@ Implementation of TranslateUnit must implement these methods:
 **void provideHandlers(@Nonnull ModifiableReaderRegistryBuilder rRegistry, @Nonnull ModifiableWriterRegistryBuilder wRegistry, @Nonnull Context context)**
 
 *   Handlers(readers/writers) need to be registered in this method. Parameter _context.getTransport()_ returns _Cli_ object containing methods for communication with a device via CLI - should be passed to readers/writers. 
-*   Config readers need to be encapsulated into **_GenericConfigListReader_** (if reader implements translation of YANG list) or **_GenericConfigReader_** (if reader implements translation of YANG container, augmentation). Accordingly, operational readers are encapsulated into **_GenericOperListReader_** or **_GenericOperReader_**
-*   Writers are encapsulated into **_GenericListWriter_** (if writer implements translation of YANG list) or **_GenericWriter_** (if writer implements translation of YANG container, augmentation).
+*   This method should also register for general Openconfig checks:
+
+```
+CheckRegistry checkRegistry = ChecksMap.getOpenconfigCheckRegistry();
+readRegistry.setCheckRegistry(checkRegistry);
+writeRegistry.setCheckRegistry(checkRegistry);
+```
+
 *   Instance-identifier in generic reader/writer must be without keys pointing to the target composite node used in implemented reader/writer.
 *   Instance-identifiers for YANG container and list (not for augmentations and nodes behind augmentations) are automatically generated to _IIDs_ class (used in examples bellow) during build of openconfig project.
 *   **rRegistry.add**
     *   Use when common _GenericConfigListReader_, _GenericConfigReader_, _GenericOperListReader_ or _GenericOperReader_ need to be registered.
+*   **rRegistry.addNoop**
+    *   Use to register noop writers
 	
 ```     
-rRegistry.add(new GenericConfigListReader<>(IIDs.IN_INTERFACE, new InterfaceReader(cli)));
-
-
+rRegistry.add(IIDs.IN_INTERFACE, new InterfaceReader(cli));
 ```   
-*   **rRegistry.addStructuralReader**
-    *   May be used when composite node does not contain any simple node. In that case unkeyed instance-identifier and builder for target composite node needs to be provided as parameters.
-
-```
-rRegistry.addStructuralReader(IIDs.INTERFACES, InterfacesBuilder.class);
-```
-
-
        
 *   **rRegistry.subtreeAdd**
     *   Use when a reader implementation also fills composite child nodes of target composite node. Method _subtreeAdd_ requires a set of IIDs for all handled children, the IIDs must start from the reader itself, not from root.
 
 ```
-rRegistry.subtreeAdd(Sets.newHashSet(IFC_ETH_CONFIG_ROOT_ID.augmentation(Config1.class),
-IFC_ETH_CONFIG_ROOT_ID.augmentation(LacpEthConfigAug.class)),
-new GenericConfigReader<>(IFC_ETHERNET_CONFIG_ID, new EthernetConfigReader(cli)));
+rRegistry.subtreeAdd(IIDs.IN_IN_AUG_INTERFACE1_ET_CONFIG, new EthernetConfigReader(cli), 
+ Sets.newHashSet(RWUtils.cutIdFromStart(IIDs.IN_IN_ET_CO_AUG_CONFIG1, IFC_ETH_CONFIG_ROOT_ID),
+	RWUtils.cutIdFromStart(io.frinx.openconfig.openconfig.lacp.IIDs.IN_IN_ET_CO_AUG_LACPETHCONFIGAUG,
+                        IFC_ETH_CONFIG_ROOT_ID)));
 ```
-
 
 *   **wRegistry.add**
     *   Use when common _GenericListWriter_ or _GenericWriter_ are registered.
 
 ```
-wRegistry.add(new GenericWriter<>(IIDs.IN_IN_CONFIG, new InterfaceConfigWriter(cli)));
+wRegistry.add(IIDs.IN_IN_CONFIG, new InterfaceConfigWriter(cli));
 ```
-
 
 *   **wRegistry.subtreeAdd**
     *   Use for writers handling data of whole composite node subtrees. This ensures that if only a child node is updated, the writer gets triggered. Method _subtreeAdd_ requires a set of IIDs for all handled children, the IIDs must start from the reader itself, not from root.
 
 ```
-wRegistry.subtreeAddAfter(Sets.newHashSet(IFC_ETH_CONFIG_ROOT_ID.augmentation(Config1.class),
-IFC_ETH_CONFIG_ROOT_ID.augmentation(LacpEthConfigAug.class)),
-new GenericWriter<>(IFC_ETHERNET_CONFIG_ID, new EthernetConfigWriter(cli)), IIDs.IN_IN_CONFIG);
+wRegistry.subtreeAddAfter(IIDs.IN_IN_AUG_INTERFACE1_ET_CONFIG, new EthernetConfigWriter(cli), 
+	Sets.newHashSet(RWUtils.cutIdFromStart(IIDs.IN_IN_ET_CO_AUG_CONFIG1, IFC_ETH_CONFIG_ROOT_ID),
+                RWUtils.cutIdFromStart(io.frinx.openconfig.openconfig.lacp.IIDs.IN_IN_ET_CO_AUG_LACPETHCONFIGAUG,
+                        IFC_ETH_CONFIG_ROOT_ID)), IIDs.IN_IN_CONFIG);
 
 Note: This example uses method subtreeAddAfter instead of subtreeAdd. 
 Last parameter in this method shows dependency on writer registered under IIDs.IN_IN_CONFIG.
 ```
-
 
 *   **Ordering of writers** - writers are stored in a linear structure and are invoked in order of registration. When registering a writer a relationship with another writer or set of writers can be expressed using _addBefore, addAfter, subtreeAddBefore, subtreeAddAfter_ methods. E.g. InterfaceWriter and VRFInterfaceWriter should have a relationship: InterfaceWriter -> VRFInterfaceWriter so that first an interface is created and only then assigned to VRF. Note: VRF writer should be between them. If the order is not expressed during registration, commands might be executed on device in an unpredictable/invalid order.
 
@@ -361,8 +377,6 @@ The implementation of _TranslateUnit_ needs to override methods:
     *   Enter desired CLI mode which will be used as default - every reader and writer gets CLI prompt in this state (e.g. EXEC mode for IOS, config mode for IOS-XR, cli mode for Junos)
 
 **String toString()**
-
-
 
 *   Return unique string among all translation units which will be used as ID for the registration of the translation unit (e.g. "Junos cli init (FRINX) translate unit"). 
 
@@ -391,20 +405,7 @@ Kotlin is used as prefered programming language in NETCONF translation units bec
 *   There are 2 types of readers: Reader and ListReader. Reader can be used to handle container or argument nodes and ListReader should handle list nodes from YANG.
     *   Both types need to implement **_readCurrentAttributes_** to fill the builder with appropriate values
     *   ListReader needs to also implement **_getAllIds()_** where it retrieves a key for each item to be present in current list. After the list is received, framework will invoke **_readCurrentAttributes_** for each item from getAllIds
-*   Readers also need to implement boilerplate methods:
-    *   **_getBuilder()_** - return builder object for managed node
 
-```
-override fun getBuilder(instanceIdentifier: IID<Interface>): InterfaceBuilder = InterfaceBuilder()
-```
-
-   *   **_merge_** - cast the builder parameter to appropriate parent builder type e.g. in builder for /interfaces/interface you would perform: 
-
-```
-override fun merge(builder: Builder<out DataObject>, list: List<Interface>) {
-    (builder as InterfacesBuilder).`interface` = list
-}
-```
 
 #### <a name="mandatory-interfaces-to-implement3"></a>Mandatory interfaces to implement
 
@@ -418,28 +419,28 @@ Each reader needs to implement one of these interfaces based on type of target n
 
 **OperReaderCustomizer** - implement this interface if target composite node in YANG is container or augmentation and represents operational data.
 
+#### <a name="base-netconf-readers"></a>Base Readers
 
-#### <a name="typed-interfaces-to-implement-optional2"></a>Typed interfaces to implement (optional)
+Each base reader for netconf readers should be generic. The generic marks the data element within device YANG that is being parsed into. The base reader should contain abstract methods:
+*   **fun readIid(\<args\>): InstanceIdentifier\<T\>** - each child reader should fill in the device specific InstanceIdentifier that points to the information needed for this reader. Arguments may vary and they are used to be more specific IID (eg. when creating an IID to gather information about a specific interface, you may want to pass interface name as argument). 
+*   **fun readData(data: T?, configBuilder: ConfigBuilder, \<args\>)** - this method is used to transform Openconfig data (contained in ConfigBuilder) into device data (T) using <args>.
 
-Interfaces which you may want to implement when some parent node in instance-identifier needs be checked for particular value or other data from data tree needs to be checked.
+_Note_: naming of the methods should be unified in order to be easily parsed by auto-generated documentation.
 
-If data did not pass check, then reader implementing the interface will not be invoked by framework. Each descended reader needs to implement the interface as well.
-
-**TypedListReader** - use when target composite node in YANG is list
-
-**TypedReader** - use when target composite node in YANG is container or augmentation
-
-For example typed readers for bgp (located under _protocol_) needs to check if _identifier_ in _protocol _has value _BGP_. Otherwise readers for bgp will be invoked even if _protocol identifier_ is _OSPF_.
 
 
 ### <a name="writers2"></a>Writers
 
 
 *   A writer needs to implement all 3 methods: Write, Update, Delete in order to fully support default rollback mechanism of the framework
-    *   Time showed that update like 1. delete, 2. write is anti-pattern and should not be used.
+    *   Time showed that update like 1. delete, 2. write is anti-pattern and should not be used. There is just one case where it is necessary: when re-writing list entry, you must first delete the previous entry, then write the new one, otherwise the previous entry would still be present and the new entry will be added to the list.
 *   A writer can properly work only if there is a reader for the same composite node
-*   **Retrieve and update existing data** of device via NETCONF **in update method.** Every generated builder class has copy constructor which may be used for this purpose. It's important to keep in mind that NETCONF _dataBroker.put(..)_ method overrides existing data in device configuration.
+*   The framework provides safe methods to use when handling data on device:
+	* **safePut** deletes or adds managed data. Does not touch data that was previously on the device and is not handled by the writer.
+	* **safeMerge** stores just the changed data into device. Does not touch data that was previously on the device and is not handled by the writer.
+	* **safeDelete** removes data from the device only if the managed node does not contain any other information (even one not handled by the writer).
 
+[This](https://gerrit.frinx.io/gitweb?p=unitopo.git;a=blob;f=topology-impl/src/test/java/io/frinx/unitopo/topology/impl/UpdateProducerTest.java;hb=refs/heads/carbon/development) test demonstrates the usage of safe methods.
 
 #### <a name="mandatory-interfaces-to-implement4"></a>Mandatory interfaces to implement
 
@@ -449,15 +450,11 @@ Each writer needs to implement one of these interfaces based on type of target n
 
 **WriterCustomizer** - implement this interface if target composite node in YANG is container or augmentation. An implementation needs to be registered as GenericWriter.
 
+#### <a name="base-netconf-writers"></a>Base Writers
 
-#### <a name="existing-noop-writers2"></a>Existing noop writers
-
-Noop writers may be registered in case when target node in YANG does not contain any simple nodes (leafs).
-
-**NoopListWriter** - register as GenericListWriter if target composite node in YANG is list.
-
-**NoopWriter** - register as GenericWriter if target composite node in YANG is container.
-
+Each base writer should be generic and contain abstract methods:
+*   **fun getIid(id: InstanceIdentifier\<Config\>): InstanceIdentifier\<T\>** - this method returns InstanceIdentifier that points to a node where data should be written
+*   **fun getData(data: Config): T** - this method transforms Openconfig data into device specific data (T)
 
 ### <a name="translateunit2"></a>TranslateUnit
 
@@ -528,7 +525,7 @@ Implementation of TranslateUnit must implement these methods:
 
 
 
-*   Return RPC services implemented in the translation unit. Parameter _underlayAccess_ represents object containing methods for communication with a device via NETCONF and should be passed to readers/writers. 
+*   Return RPC services implemented in the translation unit. Default implementation returns an emptySet. Parameter _underlayAccess_ represents object containing methods for communication with a device via NETCONF and should be passed to readers/writers. 
 
 **provideHandlers(rRegistry: ModifiableReaderRegistryBuilder,**
 **wRegistry: ModifiableWriterRegistryBuilder,**
@@ -565,7 +562,7 @@ This unit can reuse all writers/readers from existing ones, except the writer (o
 ```
 private void provideWriters(ModifiableWriterRegistryBuilder wRegistry, Cli cli) {
 …
-wRegistry.add(new GenericWriter<>(IIDs.NE_NE_MP_LS_CO_TU_TU_CONFIG, new TunnelConfigWriterXR4(cli)));
+wRegistry.add(IIDs.NE_NE_MP_LS_CO_TU_TU_CONFIG, new TunnelConfigWriterXR4(cli));
 
 ```
 
