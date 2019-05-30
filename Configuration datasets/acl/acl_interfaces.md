@@ -46,7 +46,7 @@ frinx-openconfig-acl:acl/interfaces/interface/{{iacl_intf_id}}
 
 ## OS Configuration Commands
 
-### Cisco IOS XR 5.3.4
+### Cisco IOS XR 5.3.4, IOS XR 6.6.2
 
 #### CLI
 

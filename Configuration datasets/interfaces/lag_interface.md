@@ -314,6 +314,27 @@ example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100
 
 Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-7/xr-7-interface-unit)
 
+### Cisco IOS XR 6.6.2
+
+#### CLI
+
+<pre>
+interface Bundle-Ether{{lag_ifc_id}}.{{sub_ifc_index}}
+ description {{lag_sub_description}}
+ ipv4 address {{lag_sub_ip}} {{lag_sub_subnet}}
+ ipv6 address {{lag_ip6}} {{lag_prefix6_length}}
+ encapsulation dot1q {{vlan_id}}
+</pre>
+
+{{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
+example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100  
+
+{{lag_sub_subnet}} is conversion of {{lag_sub_prefix_length}}  
+
+##### Unit
+
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/interface)
+
 ### Junos 17.3R1.10
 
 #### CLI
