@@ -42,7 +42,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pol
 
 ## OS Configuration Commands
 
-### Cisco IOS XR 5.3.4
+### Cisco IOS XR 5.3.4, IOS XR 6.6.2
 
 #### CLI
 
