@@ -158,6 +158,20 @@ router ospf {{ospf}}
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/ospf)
 
+### Cisco IOS XR 6.6.2
+
+#### CLI
+
+<pre>
+router ospf {{ospf}}
+ area {{ospf_area_id}}
+  interface {{ospf_interface}}
+</pre>
+
+##### Unit
+
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/ospf)
+
 ### Junos 14.1X53-D40.8
 
 #### CLI
