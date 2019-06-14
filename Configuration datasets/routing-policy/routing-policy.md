@@ -11,7 +11,7 @@ frinx-openconfig-routing-policy:routing-policy/policy-definitions/policy-definit
 
 ```javascript
 {
-    "policy-definition": [
+    "frinx-openconfig-routing-policy:policy-definition": [
         {
             "name": "{{rpol_name}}",
             "config": {
@@ -31,11 +31,11 @@ frinx-openconfig-routing-policy:routing-policy/policy-definitions/policy-definit
                             },
                             "match-prefix-set": {
                                 "config": {
-                                    "prefix-set": "{{pset}}",
+                                    "prefix-set": "{{pset_name}}",
                                     "match-set-options": "{{rpol_s_c_prefixset_opts}}"
                                 }
                             },
-                            "bgp-conditions": {
+                            "frinx-openconfig-bgp-policy:bgp-conditions": {
                                 "as-path-length": {
                                     "config": {
                                         "operator": "{{rpol_s_c_bgp_aslen_oper}}",
@@ -66,7 +66,7 @@ frinx-openconfig-routing-policy:routing-policy/policy-definitions/policy-definit
                             "config": {
                                 "policy-result": {{rpol_s_a_result}}
                             },
-                            "bgp-actions": {
+                            "frinx-openconfig-bgp-policy:bgp-actions": {
                                 "config": {
                                     "set-local-pref": {{rpol_s_a_bgp_set_localpref}},
                                     "set-next-hop": {{rpol_s_a_bgp_set_nexthop}},
@@ -74,12 +74,20 @@ frinx-openconfig-routing-policy:routing-policy/policy-definitions/policy-definit
                                 },
                                 "set-community": {
                                     "config": {
-                                        "method": "REFERENCE",
+                                        "method": "REFERENCE|INLINE",
                                         "options": "{{rpol_s_a_bgp_comset_opts}}"
                                     },
                                     "reference": {
                                         "config": {
                                             "community-set-ref": "{{cset_name}}"
+                                        }
+                                    },
+                                    "inline": {
+                                        "config": {
+                                            "communities": [
+                                                {{rpol_s_a_bgp_well_known_comm}},
+                                                {{rpol_s_a_bgp_comm}}
+                                            ]
                                         }
                                     }
                                 },
@@ -122,7 +130,7 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets/prefix-sets/prefix-s
                 "prefix": [
                     {
                         "ip-prefix": "{{prefix}}",
-                        "masklength-range": "{{prefix_mask}}"
+                        "masklength-range": "{{prefix_mask}}",
                         "config": {
                             "ip-prefix": "{{prefix}}",
                             "masklength-range": "{{prefix_masklength}}"
@@ -180,7 +188,7 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets/bgp-defined-sets/as-
 ```
 ## OS Configuration Commands
 
-### Cisco IOS XR 5.3.4
+### Cisco IOS XR 5.3.4, IOS XR 6.6.2
 
 #### CLI
 
@@ -205,10 +213,10 @@ as-path-set {{aset_name}}
 end-set
 
 route-policy {{rpol_name}}
-    if destination in {{pset_name}} /
-            and as-path length {{rpol_s_c_bgp_aslen_oper}} /
-            and community match-{{rpol_s_c_bgp_comset_opts}} {{cset_name}} /
-            and as-path in {{aset_name}} then
+    if [not] destination in {{pset_name}} /
+            and as-path length le|ge|eq {{rpol_s_c_bgp_aslen_val}}/
+            and community match-any|match-every {{cset_name}} /
+            and [not] as-path in {{aset_name}} then
         drop
         done
         pass
@@ -217,15 +225,33 @@ route-policy {{rpol_name}}
         set next-hop {{rpol_s_a_bgp_set_nexthop}}
         set med {{rpol_s_a_bgp_set_med}}
         set community {{cset_name}} {{rpol_s_a_bgp_comset_opts}}
+        set community (no-export, no-advertise, local-as, {{rpol_s_a_bgp_comm}})
         prepend as-path {{rpol_s_a_bgp_aspathprep_asn}} {{rpol_s_a_bgp_aspathprep_repeatn}}
     endif
 end-policy
 
 </pre>
 
+*destination in {{pset_name}}* is a conversion of {{rpol_s_c_prefixset_opts}} set to *ANY*  
+*not destination in {{pset_name}}* is a conversion of {{rpol_s_c_prefixset_opts}} set to *INVERT*  
+
+*as-path length le* is a conversion of {{rpol_s_c_bgp_aslen_oper}} set to *frinx-openconfig-policy-types:ATTRIBUTE_LE*  
+*as-path length ge* is a conversion of {{rpol_s_c_bgp_aslen_oper}} set to *frinx-openconfig-policy-types:ATTRIBUTE_GE*  
+*as-path length eq* is a conversion of {{rpol_s_c_bgp_aslen_oper}} set to *frinx-openconfig-policy-types:ATTRIBUTE_EQ*  
+
+*community match-any* is a conversion of {{rpol_s_c_bgp_comset_opts}} set to *ANY*  
+*community match-every* is a conversion of {{rpol_s_c_bgp_comset_opts}} set to *ALL*  
+
 *drop* is a conversion of {{rpol_s_a_result}} set to *REJECT_ROUTE*  
 *done* is a conversion of {{rpol_s_a_result}} set to *ACCEPT_ROUTE*  
 *pass* is a conversion of {{rpol_s_a_result}} set to *PASS_ROUTE*  
+
+*set community (no-export)* is a conversion of {{rpol_s_a_bgp_well_known_comm}} set to *frinx-openconfig-bgp-types:NO_EXPORT*  
+*set community (no-advertise)* is a conversion of {{rpol_s_a_bgp_well_known_comm}} set to *frinx-openconfig-bgp-types:NO_ADVERTISE*  
+*set community (local-as)* is a conversion of {{rpol_s_a_bgp_well_known_comm}} set to *frinx-openconfig-bgp-types:NO_EXPORT_SUBCONFED*  
+
+*as-path in {{aset_name}}* is a conversion of {{rpol_s_c_bgp_aspathset_opts}} set to *ANY*  
+*not as-path in {{aset_name}}* is a conversion of {{rpol_s_c_bgp_aspathset_opts}} set to *INVERT*  
 
 ##### Examples
 
@@ -255,9 +281,9 @@ end-policy
                             "config": {
                                 "call-policy": route_subpolicy_1
                             }
-                        }
+                        },
                         "actions": {
-                            "bgp-actions": {
+                            "frinx-openconfig-bgp-policy:bgp-actions": {
                                 "config": {
                                     "set-next-hop": {{rpol_s_a_bgp_set_nexthop}}
                                 }
@@ -306,7 +332,7 @@ end-policy
                             "name": "statement_1"
                         },
                         "conditions": {
-                            "bgp-conditions": {
+                            "frinx-openconfig-bgp-policy:bgp-conditions": {
                                 "as-path-length": {
                                     "config": {
                                         "operator": "ATTRIBUTE_GE",
@@ -320,7 +346,7 @@ end-policy
                                 "policy-result": "REJECT_ROUTE"
                             }
                         }
-                    }
+                    },
                     {
                         "name": "statement_2",
                         "config": {
@@ -338,7 +364,7 @@ end-policy
                             "config": {
                                 "policy-result": "ACCEPT_ROUTE"
                             },
-                            "bgp-actions": {
+                            "frinx-openconfig-bgp-policy:bgp-actions": {
                                 "config": {
                                     "set-local-pref": 15,
                                     "set-med": 10
@@ -356,14 +382,14 @@ end-policy
                                 }
                             }
                         }
-                    }
+                    },
                     {
                         "name": "statement_3",
                         "config": {
                             "name": "statement_3"
                         },
                         "conditions": {
-                            "bgp-conditions": {
+                            "frinx-openconfig-bgp-policy:bgp-conditions": {
                                 "as-path-set": {
                                     "config": {
                                         "as-path-set": "aset_name",
@@ -376,13 +402,13 @@ end-policy
                             "config": {
                                 "policy-result": "ACCEPT_ROUTE"
                             },
-                            "bgp-actions": {
+                            "frinx-openconfig-bgp-policy:bgp-actions": {
                                 "config": {
                                     "set-med": 20
                                 }
                             }
                         }
-                    }
+                    },
                     {
                         "name": "statement_4",
                         "config": {
@@ -392,7 +418,7 @@ end-policy
                             "config": {
                                 "policy-result": "ACCEPT_ROUTE"
                             },
-                            "bgp-actions": {
+                            "frinx-openconfig-bgp-policy:bgp-actions": {
                                 "config": {
                                     "set-local-pref": 15
                                 }
@@ -453,14 +479,14 @@ end-policy
                                 "policy-result": "REJECT_ROUTE"
                             }
                         }
-                    }
+                    },
                     {
                         "name": "statement_2",
                         "config": {
                             "name": "statement_2"
                         },
                         "conditions": {
-                            "bgp-conditions": {
+                            "frinx-openconfig-bgp-policy:bgp-conditions": {
                                 "match-community-set": {
                                     "config": {
                                         "community-set": "cset_name",
@@ -473,7 +499,7 @@ end-policy
                             "config": {
                                 "policy-result": "ACCEPT_ROUTE"
                             },
-                            "bgp-actions": {
+                            "frinx-openconfig-bgp-policy:bgp-actions": {
                                 "config": {
                                     "set-med": 1
                                 },
@@ -485,7 +511,7 @@ end-policy
                                 }
                             }
                         }
-                    }
+                    },
                     {
                         "name": "statement_3",
                         "config": {
@@ -497,8 +523,8 @@ end-policy
                                     "prefix-set": "pset_name",
                                     "match-set-options": "ANY"
                                 }
-                            }
-                            "bgp-conditions": {
+                            },
+                            "frinx-openconfig-bgp-policy:bgp-conditions": {
                                 "as-path-set": {
                                     "config": {
                                         "as-path-set": "aset_name",
@@ -511,13 +537,13 @@ end-policy
                             "config": {
                                 "policy-result": "ACCEPT_ROUTE"
                             },
-                            "bgp-actions": {
+                            "frinx-openconfig-bgp-policy:bgp-actions": {
                                 "config": {
                                     "set-med": 2
                                 }
                             }
                         }
-                    }
+                    },
                     {
                         "name": "statement_4",
                         "config": {
@@ -527,7 +553,7 @@ end-policy
                             "config": {
                                 "policy-result": "ACCEPT_ROUTE"
                             },
-                            "bgp-actions": {
+                            "frinx-openconfig-bgp-policy:bgp-actions": {
                                 "config": {
                                     "set-med": 3
                                 }
