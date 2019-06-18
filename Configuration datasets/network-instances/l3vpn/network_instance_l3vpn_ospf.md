@@ -371,7 +371,7 @@ router ospf &lt;ospf-process-id&gt;
 </pre>
 ##### Unit
 
-Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-7-network-instance-unit)
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-6.6/xr-6.6-network-instance-unit)
 
 ### Cisco IOS (VIOS 15.6(2)T)
 

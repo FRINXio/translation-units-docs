@@ -58,5 +58,5 @@ set services rpm probe {{probe_name}} test {{probe_test_name}} destination-inter
 
 ##### Unit
 
-Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-18/junos-18-rpm-unit)
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-18/junos-18-probe-unit)
 

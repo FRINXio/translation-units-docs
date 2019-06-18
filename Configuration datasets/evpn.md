@@ -91,5 +91,5 @@ example {{evpn_core_if_name}} is Bundle-Ether100 -> {{evpn_core_if_id}} is 100
 
 #### Unit
 
-Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-7-evpn)
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-6.6/xr-6.6-evpn-unit)
 

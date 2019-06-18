@@ -301,7 +301,7 @@ interface {{eth_ifc_name}}.{{sub_ifc_index}}
 
 ##### Unit
 
-Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-7/xr-7-interface-unit)
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-6.6/xr-6.6-interface-unit)
 
 ### Junos 14.1X53-D40.8
 
