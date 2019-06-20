@@ -198,7 +198,7 @@ router bgp {{bgp_as}} instance {{bgp_process_name}}
 
 ##### Unit
 
-Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-7-bgp-unit
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-6.6/xr-6.6-bgp-unit)
 
 ### Cisco IOS XE 03.13.01.S
 

@@ -54,7 +54,7 @@ interface {{intf_id}}
 
 ##### Unit
 
-Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-6-logging)
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-6/xr-6-logging-unit)
 
 ### Cisco IOS XR 6.6.1
 
@@ -67,4 +67,4 @@ interface {{intf_id}}
 
 ##### Unit
 
-Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-7-logging)
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-6.6/xr-6.6-logging-unit)

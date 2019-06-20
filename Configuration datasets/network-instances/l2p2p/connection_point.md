@@ -166,7 +166,7 @@ l2vpn
 
 ##### Unit
 
-Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr-6-network-instance-unit/src/main/kotlin/io/frinx/unitopo/unit/xr6/network/instance/l2p2p)
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-6/xr-6-network-instance-unit/src/main/kotlin/io/frinx/unitopo/unit/xr6/network/instance/handler/l2p2p)
 
 ### Brocade (V5.6.0fT163)
 

@@ -312,7 +312,7 @@ example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100
 
 ##### Unit
 
-Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-7/xr-7-interface-unit)
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-6.6/xr-6.6-interface-unit)
 
 ### Cisco IOS XR 6.6.2
 

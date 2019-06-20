@@ -61,7 +61,7 @@ interface {{cdp_lldp_test_interface}}
 
 ##### Unit
 
-Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr-6-cdp-unit)
+Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-6/xr-6-cdp-unit)
 
 ### Brocade (V5.6.0fT163)
 
