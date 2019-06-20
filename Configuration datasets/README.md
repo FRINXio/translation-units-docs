@@ -30,6 +30,7 @@
     * [<a href="snmp.md">SNMP</a>](#snmp)
     * [<a href="logging.md">SYSLOG</a>](#syslog)
     * [<a href="probes.md">Probes</a>](#probes)
+    * [<a href="oam.md">Ethernet OAM</a>](#oam)
 * [Hot Standby Router Protocol](#hsrp)
     * [<a href="hsrp.md">HSRP</a>](#hsrp)
 * [Access control](#access-control)
@@ -109,6 +110,8 @@
 #### [SYSLOG](logging.md)
 
 #### [Probes](probes.md)
+
+#### [Ethernet OAM](oam.md)
 
 # Hot Standby Router Protocol
 

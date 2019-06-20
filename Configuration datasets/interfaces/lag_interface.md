@@ -115,6 +115,24 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_ifc_name}}
                             "config": {
                                 "up": {{lag_sub_hold_time_up}}
                             }
+                        },
+                        "frinx-oam:cfm": {
+                            "domains": {
+                                "domain": [
+                                    {
+                                        "domain-name": "{{lag_sub_cfm_domain_name}}",
+                                        "config": {
+                                            "domain-name": "{{lag_sub_cfm_domain_name}}"
+                                        },
+                                        "mep": {
+                                            "config": {
+                                                "ma-name": "{{lag_sub_cfm_ma_name}}",
+                                                "mep-id": {{lag_sub_cfm_mep_id}}
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
                         }
                     }
                 ]
@@ -324,6 +342,8 @@ interface Bundle-Ether{{lag_ifc_id}}.{{sub_ifc_index}}
  ipv4 address {{lag_sub_ip}} {{lag_sub_subnet}}
  ipv6 address {{lag_ip6}} {{lag_prefix6_length}}
  encapsulation dot1q {{vlan_id}}
+ ethernet cfm
+  mep domain {{lag_sub_cfm_domain_name}} service {{lag_sub_cfm_ma_name}} mep-id {{lag_sub_cfm_mep_id}}
 </pre>
 
 {{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
