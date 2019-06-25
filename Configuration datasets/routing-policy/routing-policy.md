@@ -129,11 +129,11 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets/prefix-sets/prefix-s
             "prefixes": {
                 "prefix": [
                     {
-                        "ip-prefix": "{{prefix}}",
-                        "masklength-range": "{{prefix_mask}}",
+                        "ip-prefix": "{{prefix}}/{{prefix_length}}",
+                        "masklength-range": "{{prefix_range}}",
                         "config": {
-                            "ip-prefix": "{{prefix}}",
-                            "masklength-range": "{{prefix_masklength}}"
+                            "ip-prefix": "{{prefix}}/{{prefix_length}}",
+                            "masklength-range": "{{prefix_range}}"
                         }
                     }
                 ]
@@ -195,9 +195,7 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets/bgp-defined-sets/as-
 
 <pre>
 prefix-set {{pset_name}}
-  {{pset_member1}}/{{prefix_masklength1}},
-  {{pset_member2}}/{{prefix_masklength2}},
-  {{pset_member3}}/{{prefix_masklength3}}
+  {{prefix}}/{{prefix_length}} [{{prefix_range_options}}] 
 end-set
 
 community-set {{cset_name}}
@@ -231,6 +229,10 @@ route-policy {{rpol_name}}
 end-policy
 
 </pre>
+
+{{prefix_range_options}} is parsed from {{prefix_range}}.
+* If {{prefix_range}} is *"exact"*, then {{prefix_range_options}} is not set.
+* If {{prefix_range}} matches to pattern of *{{le_range}}..{{ge_range}}* , then {{prefix_range_options}} is set as *"le {{le_range}} ge {{ge_range}}"*.
 
 *destination in {{pset_name}}* is a conversion of {{rpol_s_c_prefixset_opts}} set to *ANY*  
 *not destination in {{pset_name}}* is a conversion of {{rpol_s_c_prefixset_opts}} set to *INVERT*  
@@ -716,12 +718,3 @@ set policy-options policy-statement OUT-FIL term 1 then accept
     ]
 }
 ```
-
-### Junos 18.2R1-S2.1
-
-#### CLI
-
-<pre>
-set policy-options prefix-list {{pset_name}} {{prefix}}/{{prefix_masklength}}
-</pre>
-
