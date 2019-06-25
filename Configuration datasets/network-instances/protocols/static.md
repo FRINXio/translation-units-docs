@@ -3,20 +3,22 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/default/protocols/protocol/frinx-openconfig-policy-types:STATIC
+frinx-openconfig-network-instance:network-instances/network-instance/default/protocols/protocol/frinx-openconfig-policy-types:STATIC/default
 ```
 
 ## OPENCONFIG YANG
 
-[YANG models](https://github.com/FRINXio/openconfig/tree/master/static/src/main/yang)
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/local-routing/src/main/yang)
 
 ```javascript
 {
     "protocol":[
         { 
             "identifier": "frinx-openconfig-policy-types:STATIC",
+            "name": "default",
             "config": {
-                "identifier": "frinx-openconfig-policy-types:STATIC"
+                "identifier": "frinx-openconfig-policy-types:STATIC",
+                "name": "default"
             },
             "static-routes": {
                 "static": [
@@ -24,8 +26,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                         "prefix": "{{static_route_prefix}}",
                         "config": {
                             "prefix": "{{static_route_prefix}}",
-                            "afi-safi-type": "{{afi_safi_type}}",
-                            "set-tag": "{{tag_id}}"
+                            "frinx-local-routing-extension:afi-safi-type": "{{afi_safi_type}}"
                         },
                         "next-hops": {
                             "next-hop": [
@@ -33,7 +34,8 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                                     "index": "{{next_hop_index}}",
                                     "config": {
                                         "index": "{{next_hop_index}}",
-                                        "next-hop": "{{next_hop_ip}}"
+                                        "next-hop": "{{next_hop_ip}}",
+                                        "frinx-local-routing-extension:set-tag": "{{nh_tag_id}}"
                                     },
                                     "interface-ref": {
                                         "config": {
@@ -63,7 +65,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
 <pre>
 router static
  address-family {{afi_safi_name}}
-   {{prefix_ip}}/{{prefix_length}} {{next_hop_ifc_name}}.{{next_hop_subifc_idx}} {{next_hop_ip}} tag {{tag_id}}
+   {{prefix_ip}}/{{prefix_length}} {{next_hop_ifc_name}}.{{next_hop_subifc_idx}} {{next_hop_ip}} tag {{nh_tag_id}}
 </pre>
 ---
 
@@ -74,4 +76,4 @@ router static
 
 ##### Unit
 
-Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/static)
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/lr)
