@@ -14,7 +14,9 @@ frinx-evpn:evpn
 {
     "frinx-evpn:evpn": {
         "config": {
-            "enabled": {{evpn_enabled}}
+            "enabled": {{evpn_enabled}},
+            "cost-out": {{cost_out}},
+            "startup-cost-in": {{startup_cost_in}}
         },
 
         "groups": {
@@ -64,7 +66,7 @@ frinx-evpn:evpn
 
 ## OS Configuration Commands
 
-### Cisco IOS XR 6.6.1
+### Cisco IOS XR 6.6.1 (via NetConf)
 
 #### CLI
 
@@ -92,4 +94,23 @@ example {{evpn_core_if_name}} is Bundle-Ether100 -> {{evpn_core_if_id}} is 100
 #### Unit
 
 Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-6.6/xr-6.6-evpn-unit)
+
+### Cisco IOS XR 6.6.1 (no NetConf)
+
+#### CLI
+
+<pre>
+evpn
+ cost-out|no cost-out
+ startup-cost-in {{startup_cost_in}}
+</pre>
+
+*evpn* is a conversion of {{evpn_enabled}} set true  
+*no evpn* is a conversion of {{evpn_enabled}} set false  
+*cost-out* is a conversion of {{cost_out}} set true  
+*no cost-out* is a conversion of {{cost_out}} set false or null  
+
+#### Unit
+
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/iosxr/evpn)
 
