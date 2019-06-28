@@ -50,14 +50,16 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                        "as": {{bgp_as}}
                    }
                 },
-                "neighbors|peer-groups": {
-                    "neighbor|peer-group": [
+                "neighbors|peer-groups|neighbor-groups": {
+                    "neighbor|peer-group|neighbor-group": [
                         {
                             "neighbor-address": "{{neighbor_ip}}", //only for neighbor
                             "peer-group-name": "{{peer-group-name}}", //only for peer-group
+                            "neighbor-group-name": "{{neighbor_group_name}}", //only for neighbor-group
                             "config": {
                                 "neighbor-address": "{{neighbor_ip}}", //only for neighbor
                                 "peer-group-name": "{{peer-group-name}}", //only for peer-group
+                                "neighbor-group-name": "{{neighbor_group_name}}", //only for neighbor-group
                                 "peer-group": "{{bgp_group}}", //only for neighbor
                                 "peer-as": {{bgp_peer_as}},
                                 "auth-password": "{{bgp_nbr_password}}",
@@ -169,7 +171,7 @@ router bgp {{bgp_as}} instance {{bgp_process_name}}
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/bgp)
 
-### Cisco IOS XR 6.6.1
+### Cisco IOS XR 6.6.1 (via NetConf)
 
 #### CLI
 
@@ -199,6 +201,26 @@ router bgp {{bgp_as}} instance {{bgp_process_name}}
 ##### Unit
 
 Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-6.6/xr-6.6-bgp-unit)
+
+### Cisco IOS XR 6.6.1 (no NetConf)
+
+#### CLI
+
+---
+<pre>
+router bgp {{bgp_as}}
+ 
+ neighbor-group {{neighbor_group_name}}
+  address-family {{bgp_nbr_afi_safi_name}}
+   route-policy {{bgp_rpol_import}}|{{bgp_rpol_export}} in|out
+</pre>
+---
+
+*vpnv4 unicast* is a conversion of {{bgp_nbr_afi_safi_name}} set *L3VPN_IPV4_UNICAST*  
+
+##### Unit
+
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/bgp)
 
 ### Cisco IOS XE 03.13.01.S
 
