@@ -106,6 +106,37 @@ ipv4 access-list test123
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/acl)
 
+### Cisco IOS XR 6.6.2
+
+#### CLI
+
+<pre>
+ipv4|ipv6 access-list {{acl_name}} 
+    {{acl_seq_id}} {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {range {{acl_src_port}} }  {{acl_dst_addr}} {range {{acl_dst_port}} }
+</pre>
+
+*ipv4|ipv6* is a conversion of {{acl_type}}
+
+##### Examples
+
+<pre>
+ipv4 access-list test123
+  10 deny ipv4 10.0.0.0/8 any
+  20 deny ipv4 any 172.16.0.0/12
+  30 permit ipv4 any any
+</pre>
+
+<pre>
+ipv6 access-list test123
+  10 permit icmpv6 any any
+  20 deny ipv6 ::/8 any
+  30 permit ipv6 any any
+</pre>
+
+##### Unit
+
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/acl)
+
 ### Junos 14.1X53-D40.8
 
 #### CLI
