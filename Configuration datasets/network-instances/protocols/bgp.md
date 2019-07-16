@@ -169,7 +169,7 @@ router bgp {{bgp_as}} instance {{bgp_process_name}}
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/bgp)
 
-### Cisco IOS XR 6.6.1
+### Cisco IOS XR 6.6.1 (via NetConf)
 
 #### CLI
 
@@ -199,6 +199,26 @@ router bgp {{bgp_as}} instance {{bgp_process_name}}
 ##### Unit
 
 Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/xr/xr-6.6/xr-6.6-bgp-unit)
+
+### Cisco IOS XR 6.6.1 (no NetConf)
+
+#### CLI
+
+---
+<pre>
+router bgp {{bgp_as}}
+ 
+ neighbor-group {{peer-group-name}}
+  address-family {{bgp_nbr_afi_safi_name}}
+   route-policy {{bgp_rpol_import}}|{{bgp_rpol_export}} in|out
+</pre>
+---
+
+*vpnv4 unicast* is a conversion of {{bgp_nbr_afi_safi_name}} set *L3VPN_IPV4_UNICAST*  
+
+##### Unit
+
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/bgp)
 
 ### Cisco IOS XE 03.13.01.S
 
