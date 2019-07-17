@@ -14,6 +14,9 @@ frinx-oam:oam
 {
     "frinx-oam:oam": {
         "cfm": {
+            "config": {
+                "enabled": {{cfm_enabled}}
+            },
             "domains" {
                 "domain": [
                     {
@@ -51,6 +54,9 @@ ethernet cfm
  domain {{domain_name}} level {{level}}
   service {{ma_name}} down-meps
 </pre>
+
+*ethernet cfm* is a conversion of {{cfm_enabled}} set to true  
+*no ethernet cfm* is a conversion of {{cfm_enabled}} set to false  
 
 #### Unit
 

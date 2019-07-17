@@ -117,6 +117,9 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_ifc_name}}
                             }
                         },
                         "frinx-oam:cfm": {
+                            "config": {
+                                "enabled": {{lag_sub_cfm_enabled}}
+                            },
                             "domains": {
                                 "domain": [
                                     {
@@ -350,6 +353,8 @@ interface Bundle-Ether{{lag_ifc_id}}.{{sub_ifc_index}}
 example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100  
 
 {{lag_sub_subnet}} is conversion of {{lag_sub_prefix_length}}  
+*ethernet cfm* is a conversion of {{lag_sub_cfm_enabled}} set to true  
+*no ethernet cfm* is a conversion of {{lag_sub_cfm_enabled}} set to false  
 
 ##### Unit
 
