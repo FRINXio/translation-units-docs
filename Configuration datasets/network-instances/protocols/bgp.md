@@ -99,7 +99,8 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                                     }
                                      "ipv4|ipv6|vpnv4-unicast|l2vpn-evpn": {
                                         "config": {
-                                            "send-default-route" "{{bgp_nbr_defaultoriginate}}"
+                                            "send-default-route": "{{bgp_nbr_defaultoriginate}}",
+                                            "frinx-bgp-extension:send-default-route-route-policy": "{{bgp_nbr_defaultoriginate_rpol}}"
                                         }
                                         "prefix-limit": {
                                             "config": {
@@ -215,6 +216,43 @@ router bgp {{bgp_as}}
 ---
 
 *vpnv4 unicast* is a conversion of {{bgp_nbr_afi_safi_name}} set *L3VPN_IPV4_UNICAST*  
+
+##### Unit
+
+Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/bgp)
+
+### Cisco IOS XR 6.6.2
+
+#### CLI
+
+---
+<pre>
+router bgp {{bgp_as}} instance {{bgp_process_name}}
+ 
+ address-family {{bgp_afi_safi_name}}
+  network {{network_prefix}}
+
+ neighbor {{neighbor_ip}}
+  remote-as {{bgp_peer_as}}
+  password clear {{bgp_nbr_password}}
+  description {{bgp_nbr_description}}
+
+  address-family {{bgp_nbr_afi_safi_name}}
+   route-policy {{bgp_rpol_import}}|{{bgp_rpol_export}} in|out
+   maximum-prefix {{bgp_nbr_maxprefixes}} {{bgp_nbr_maxprefixes_pct}}
+   send-community-ebgp {{bgp_nbr_sendcommunity}}
+   remove-private-AS
+   default-originte route-policy {{bgp_nbr_defaultoriginate_rpol}}
+   soft-reconfiguration inbound always
+</pre>
+---
+
+*ipv4 unicast* is a conversion of {{bgp_afi_safi_name}} set *IPV4_UNICAST*  
+*ipv6 unicast* is a conversion of {{bgp_afi_safi_name}} set *IPV6_UNICAST*  
+*remove-private-AS* is a conversion of {{bgp_nbr_removepas}}  
+*default-originte* is a conversion of {{bgp_nbr_defaultoriginate}}  
+*ipv4 unicast* is a conversion of {{bgp_nbr_afi_safi_name}} set *IPV4_UNICAST*  
+*ipv6 unicast* is a conversion of {{bgp_nbr_afi_safi_name}} set *IPV6_UNICAST*  
 
 ##### Unit
 
