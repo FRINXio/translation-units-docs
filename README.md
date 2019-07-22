@@ -44,8 +44,38 @@ You can always check if the particular device is registered by issuing GET on :
 ```
 http://localhost:8181/restconf/operational/network-topology:network-topology
 ```
+Simplified example:
 
-// TODO: sample output
+```json
+{
+    "network-topology": {
+        "topology": [
+            {
+                "topology-id": "cli",
+                "node": [
+                    {
+                        "node-id": "xe",
+                        "cli-topology:connection-status": "connected",
+                        "cli-topology:connected-message": "Success"
+                    }
+                ]
+            },
+            {
+                "topology-id": "uniconfig",
+            },
+            {
+                "topology-id": "unified",
+                "node": [
+                    {
+                        "node-id": "xe",
+                        "unified-topology:connection-status": "connected",
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
 
 URLs are modular. By changing the URL you can move along the YANG data tree.
 
@@ -117,11 +147,72 @@ Each show command supports only one http operation: GET .
 
 GET operation can be issued on both config/operational datastore. Config datastore reflects how the device is configured. Operational datastore reflects the state of the device. In most cases the information is the same.
 
-(// TODO: example where it's not, static routes? )
+Example of a case where the information is not the same (the only difference in requests is config vs operational):
+
+```
+GET http://{{odl_ip}}:8181/restconf/config/network-topology:network-topology/topology/cli/node/{{node_id}}/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance/default/protocols/protocol/frinx-openconfig-policy-types:STATIC/default/static-routes/static/10.255.1.0%2F24
+```
+```json
+{
+    "static": [
+        {
+            "prefix": "10.255.1.0/24",
+            "config": {
+                "prefix": "10.255.1.0/24"
+            },
+            "next-hops": {
+                "next-hop": [
+                    {
+                        "index": "192.168.1.5",
+                        "config": {
+                            "index": "192.168.1.5"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+```
+GET http://{{odl_ip}}:8181/restconf/operational/network-topology:network-topology/topology/cli/node/{{node_id}}/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance/default/protocols/protocol/frinx-openconfig-policy-types:STATIC/default/static-routes/static/10.255.1.0%2F24
+```
+
+```json
+{
+    "static": [
+        {
+            "prefix": "10.255.1.0/24",
+            "config": {
+                "prefix": "10.255.1.0/24"
+            },
+            "state": {
+                "prefix": "10.255.1.0/24"
+            },
+            "next-hops": {
+                "next-hop": [
+                    {
+                        "index": "192.168.1.5",
+                        "config": {
+                            "index": "192.168.1.5"
+                        },
+                        "state": {
+                            "metric": 1,
+                            "index": "192.168.1.5"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
 
 Configuration commands support PUT for create/replace data. This operation requires HTTP body, which contains openconfig YANG model of the configuration you want to send to the router. Another operation supported by configuration commands is DELETE, which removes data from the device. Both operations need to be issued on config datastore.
 
-// TODO: try-out merge https://frinxhelpdesk.atlassian.net/browse/SBHD2-21?jql=text%20~%20%22patch%22 if it works, describe it here.
+For modifications of the data, you can use also PATCH method, that does not replace the entire data structure, only the parts that are different.
 
 <strong>Example:</strong>
 
@@ -164,10 +255,8 @@ BODY:
 }
 ```
 
-// TODO: delete if merge operation is working
-
 WARNING: PUT operation does not merge data. In this example if you have already configured some BGP neighbors, this request will REMOVE
-all of them and create just the one described in the PUT body. The solution is to first issue GET, copy existing configuration and add/change items there.
+all of them and create just the one described in the PUT body. The solution is to first issue GET, copy existing configuration and add/change items there, or use PATCH method.
 
 If we want to DELETE a BGP neighbor, the body is not needed, the URL needs to be specific to the neighbor we want to delete:
 
