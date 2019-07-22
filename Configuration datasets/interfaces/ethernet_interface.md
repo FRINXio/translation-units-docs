@@ -226,6 +226,7 @@ interface {{eth_ifc_name}}
  dampening {{eth_half_life}} {{eth_reuse}} {{eth_suppress}} {{eth_max_suppress}} | no dampening
  load-interval {{eth_load_interval}}
  bundle id {{lag_ifc_id}} mode {{lacp_mode}}
+ carrier-delay up {{eth_hold_time_up}} down {{eth_hold_time_down}}
  lacp period short | no lacp period short
  shutdown | no shutdown
 </pre>
