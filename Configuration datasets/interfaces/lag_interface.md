@@ -67,7 +67,9 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_ifc_name}}
                                 ]
                             },
                             "router-advertisement": {
-                                "suppress": {{ip6_nd_suppress_ra}}
+                                "config": {
+                                    "suppress": {{ip6_nd_suppress_ra}}
+                                }
                             }
                         }
                     },
@@ -96,6 +98,19 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_ifc_name}}
                                                     "virtual-address": "{{lag_sub_ip_virtual_address}}"
                                                 }
                                             ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        "frinx-openconfig-if-ip:ipv6": {
+                            "addresses": {
+                                "address": [
+                                    {
+                                        "ip": "{{lag_sub_ip6}}",
+                                        "config": {
+                                            "ip": "{{lag_sub_ip6}}",
+                                            "prefix-length": "{{lag_sub_prefix6_length}}"
                                         }
                                     }
                                 ]
@@ -214,8 +229,8 @@ Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios
 interface Bundle-Ether{{lag_ifc_id}} 
  description {{lag_description}} 
  mtu {{lag_mtu}}
- ipv4 address {{lag_ip}} {{lag_prefix_length}}
- ipv6 address {{lag_ip6}} {{lag_prefix6_length}}
+ ipv4 address {{lag_ip}} {{lag_subnet}}
+ ipv6 address {{lag_ip6}}/{{lag_prefix6_length}}
  ipv6 nd suppress-ra
  dampening {{lag_damp_half_life}}  {{lag_damp_reuse}} {{lag_damp_suppress}} {{lag_damp_max_supress}} | no dampening
  load-interval {{lag_load_interval}}
@@ -233,6 +248,7 @@ example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100
 
 *no shutdown* is a conversion of {{lag_enabled}} set *true*  
 *shutdown* is a conversion of {{lag_enabled}} set *false*  
+{{lag_subnet}} is conversion of {{lag_prefix_length}}  
 *no dampening* is a conversion of {{lag_damp_enabled}} set *false*  
 *ipv6 nd suppress-ra* is a conversion of {{ip6_nd_suppress_ra}} set *true*  
 
@@ -248,8 +264,8 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 interface Bundle-Ether{{lag_ifc_id}} 
  description {{lag_description}} 
  mtu {{lag_mtu}}
- ipv4 address {{lag_ip}} {{lag_prefix_length}}
- ipv6 address {{lag_ip6}} {{lag_prefix6_length}}
+ ipv4 address {{lag_ip}} {{lag_subnet}}
+ ipv6 address {{lag_ip6}}/{{lag_prefix6_length}}
  ipv6 enable | no ipv6 enable
  dampening {{lag_damp_half_life}}  {{lag_damp_reuse}} {{lag_damp_suppress}} {{lag_damp_max_supress}} | no dampening
  load-interval {{lag_load_interval}}
@@ -271,6 +287,7 @@ example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100
 
 *no shutdown* is a conversion of {{lag_enabled}} set *true*  
 *shutdown* is a conversion of {{lag_enabled}} set *false*  
+{{lag_subnet}} is conversion of {{lag_prefix_length}}  
 *no dampening* is a conversion of {{lag_damp_enabled}} set *false*  
 *ipv6 enable* is a conversion of {{lag_ip6_enabled}} set *true*  
 *no ipv6 enable* is a conversion of {{lag_ip6_enabled}} set *false*  
@@ -343,7 +360,7 @@ Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/
 interface Bundle-Ether{{lag_ifc_id}}.{{sub_ifc_index}}
  description {{lag_sub_description}}
  ipv4 address {{lag_sub_ip}} {{lag_sub_subnet}}
- ipv6 address {{lag_ip6}} {{lag_prefix6_length}}
+ ipv6 address {{lag_sub_ip6}}/{{lag_sub_prefix6_length}}
  encapsulation dot1q {{vlan_id}}
  ethernet cfm
   mep domain {{lag_sub_cfm_domain_name}} service {{lag_sub_cfm_ma_name}} mep-id {{lag_sub_cfm_mep_id}}
