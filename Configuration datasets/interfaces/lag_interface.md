@@ -145,11 +145,17 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_ifc_name}}
                                         "mep": {
                                             "config": {
                                                 "ma-name": "{{lag_sub_cfm_ma_name}}",
-                                                "mep-id": {{lag_sub_cfm_mep_id}}
+                                                "mep-id": {{lag_sub_cfm_mep_id}},
+                                                "cos": {{lag_sub_cfm_cos}}
                                             }
                                         }
                                     }
                                 ]
+                            }
+                        },
+                        "frinx-if-ethernet-extension:arp": {
+                            "config": {
+                                "cache-timeout": {{lag_sub_arp_timeout}}
                             }
                         }
                     }
@@ -362,13 +368,19 @@ interface Bundle-Ether{{lag_ifc_id}}.{{sub_ifc_index}}
  ipv4 address {{lag_sub_ip}} {{lag_sub_subnet}}
  ipv6 address {{lag_sub_ip6}}/{{lag_sub_prefix6_length}}
  encapsulation dot1q {{vlan_id}}
+ load-interval {{lag_sub_load_interval}}
+ arp timeout {{lag_sub_arp_timeout}}
  ethernet cfm
   mep domain {{lag_sub_cfm_domain_name}} service {{lag_sub_cfm_ma_name}} mep-id {{lag_sub_cfm_mep_id}}
+   cos {{lag_sub_cfm_cos}}
+ shutdown | no shutdown
 </pre>
 
 {{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
 example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100  
 
+*no shutdown* is a conversion of {{lag_sub_enabled}} set *true*  
+*shutdown* is a conversion of {{lag_sub_enabled}} set *false*  
 {{lag_sub_subnet}} is conversion of {{lag_sub_prefix_length}}  
 *ethernet cfm* is a conversion of {{lag_sub_cfm_enabled}} set to true  
 *no ethernet cfm* is a conversion of {{lag_sub_cfm_enabled}} set to false  
