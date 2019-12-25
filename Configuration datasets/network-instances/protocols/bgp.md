@@ -65,47 +65,50 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                                 "send-community": "{{bgp_nbr_sendcommunity}}",
                                 "remove-private-as": ""{{bgp_nbr_removepas}},
                                 "enabled": {{neighbor_enabled}}
-                            }
+                            },
                             "transport": {
                                 "config": {
                                     "local-address": "{{bgp_nbr_updatesource}}",
                                     "passive-mode": "{{bgp_nbr_passivemode}}"
                                 }
-                            }
+                            },
                             "route-reflector": {
                                 "config": {
                                     "route-reflector-client": "{{bgp_nbr_rrclient}}"
                                 }
-                            }
+                            },
                             "ebgp-multihop": {
                                 "config": {
                                     "enabled": "{{bgp_nbr_multihop}}",
                                     "multihop-ttl": "{{bgp_nbr_multihop_ttl}}"
                                 }
-                            }
+                            },
                             "afi-safis": {
                                 "afi-safi": [
-                                    "config": {
-                                        "frinx-bgp-extension:soft-reconfiguration": {
-                                            "always": true|false
+                                    {
+                                        "afi-safi-name": "{{bgp_nbr_afi_safi_name}}",
+                                        "config": {
+                                            "frinx-bgp-extension:soft-reconfiguration": {
+                                                "always": true|false
+                                            },
+                                            "afi-safi-name": "{{bgp_nbr_afi_safi_name}}"
                                         },
-                                        "afi-safi-name": "{{bgp_nbr_afi_safi_name}}"
-                                    }
-                                    "apply-policy": {
-                                        "config": {
-                                            "import-policy": "{{bgp_rpol_import}}",
-                                            "export-policy": "{{bgp_rpol_export}}"
-                                        }
-                                    }
-                                     "ipv4|ipv6|vpnv4-unicast|l2vpn-evpn": {
-                                        "config": {
-                                            "send-default-route": "{{bgp_nbr_defaultoriginate}}",
-                                            "frinx-bgp-extension:send-default-route-route-policy": "{{bgp_nbr_defaultoriginate_rpol}}"
-                                        }
-                                        "prefix-limit": {
+                                        "apply-policy": {
                                             "config": {
-                                                "max-prefixes": "{{bgp_nbr_maxprefixes}}",
-                                                "shutdown-threshold-pct": "{{bgp_nbr_maxprefixes_pct}}"
+                                                "import-policy": "{{bgp_rpol_import}}",
+                                                "export-policy": "{{bgp_rpol_export}}"
+                                            }
+                                        },
+                                        "ipv4|ipv6|vpnv4-unicast|l2vpn-evpn": {
+                                            "config": {
+                                                "send-default-route": "{{bgp_nbr_defaultoriginate}}",
+                                                "frinx-bgp-extension:send-default-route-route-policy": "{{bgp_nbr_defaultoriginate_rpol}}"
+                                            }
+                                            "prefix-limit": {
+                                                "config": {
+                                                    "max-prefixes": "{{bgp_nbr_maxprefixes}}",
+                                                    "shutdown-threshold-pct": "{{bgp_nbr_maxprefixes_pct}}"
+                                                }
                                             }
                                         }
                                     }
