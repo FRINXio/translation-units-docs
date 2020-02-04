@@ -14,6 +14,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/vla
     "vlan-id" : {{vlan_id}},
     "config" : {
         "vlan-id" : {{vlan_id}},
+        "name" : {{vlan_name}},
         "frinx-dasan-vlan-extension:eline" : {{eline_enabled}}
     }
   }
@@ -36,3 +37,7 @@ bridge
  vlan create {{vlan_id}}
 !
 </pre>
+
+## Ciena 3916/3930
+####
+<pre>vlan create vlan {{vlan_id}} name {{vlan_name}}</pre>
