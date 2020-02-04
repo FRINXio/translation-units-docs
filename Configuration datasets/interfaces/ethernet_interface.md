@@ -21,7 +21,8 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_ifc_name}}
                 "mtu": {{eth_mtu}},
                 "description": "{{eth_description}}",
                 "enabled": {{eth_enabled}},
-                "tpid": "{{eth_tpid}}"
+                "tpid": "{{eth_tpid}}",
+                "physical-type": "{{eth_phy_type}}"
             },
             "hold-time": {
                 "config": {
@@ -457,3 +458,29 @@ example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100
 ##### Unit
 
 Link to github : [dasan-unit](https://github.com/FRINXio/cli-units/tree/master/dasan/interface)
+
+
+### Ciena SAOS 6.14
+
+#### CLI
+
+<pre>
+port
+      set port {{eth_ifc_name}} description {{eth_description}}
+      enable port {{eth_ifc_name}} | port disable port {{eth_ifc_name}}
+      set port {{eth_ifc_name}} mode {{eth_phy_type}}
+      set port {{eth_ifc_name}} max-frame-size {{eth_mtu}}
+      set port {{eth_ifc_name}} vs-ingress-filter off
+      set port {{eth_ifc_name}} acceptable-frame-type all
+      set port {{eth_ifc_name}} untagged-data-vs vs{{name}}_{{vlan_id}}
+      set port {{eth_ifc_name}} vs-ingress-filter off
+</pre>
+
+*port enable port {{eth_ifc_name}}* is a conversion of {{eth_enabled}} set *true*  
+*port disable port {{eth_ifc_name}}* is a conversion of {{eth_enabled}} set *false*   
+{{eth_phy_type}} can be "copper" or "SFP"
+{{vlan_id}} from usual range (max 4094) 
+
+##### Unit
+
+Link to github : [ciena-unit]()
