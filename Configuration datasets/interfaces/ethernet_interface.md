@@ -82,7 +82,8 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_ifc_name}}
                         },
                         "frinx-openconfig-vlan:vlan": {
                             "config": {
-                                "vlan-id": {{vlan_id}}
+                                "vlan-id": {{vlan_id}},
+                                "name": {{name}}
                             }
                         },
                         "frinx-openconfig-if-ip:ipv4": {
