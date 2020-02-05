@@ -25,6 +25,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_ifc_name}}
                 "frinx-if-ethernet-extension:physical-type": "{{eth_phy_type}}",
                 "acceptable-frame-type": "{{eth_aft}}" //needs new augment, input all | tagged-only | untagged-only
                 "vs-ingress-filter": "{{eth_vif}}"  //needs new augument, input true | false
+                "vlan-ethertype-policy": "{{eth_vep}}"  //needs new augument, input all | vlan-tpid
             },
             "hold-time": {
                 "config": {
@@ -476,6 +477,7 @@ port
       set port {{eth_ifc_name}} vs-ingress-filter {{eth_vif}}
       set port {{eth_ifc_name}} acceptable-frame-type {{eth_aft}}
       set port {{eth_ifc_name}} untagged-data-vs vs{{name}}_{{vlan_id}}
+virtual-circuit ethernet set port {{eth_ifc_name}} vlan-ethertype-policy {{eth_vep}}
 </pre>
 
 *port enable port {{eth_ifc_name}}* is a conversion of {{eth_enabled}} set *true*  
