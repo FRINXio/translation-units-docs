@@ -22,7 +22,9 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_ifc_name}}
                 "description": "{{eth_description}}",
                 "enabled": {{eth_enabled}},
                 "tpid": "{{eth_tpid}}",
-                "frinx-if-ethernet-extension:physical-type": "{{eth_phy_type}}"
+                "frinx-if-ethernet-extension:physical-type": "{{eth_phy_type}}",
+                "acceptable-frame-type": "{{eth_aft}}" //needs new augment, input all | tagged-only | untagged-only
+                "vs-ingress-filter": "{{eth_vif}}"  //needs new augument, input true | false
             },
             "hold-time": {
                 "config": {
@@ -471,15 +473,16 @@ port
       enable port {{eth_ifc_name}} | port disable port {{eth_ifc_name}}
       set port {{eth_ifc_name}} mode {{eth_phy_type}}
       set port {{eth_ifc_name}} max-frame-size {{eth_mtu}}
-      set port {{eth_ifc_name}} vs-ingress-filter off
-      set port {{eth_ifc_name}} acceptable-frame-type all
+      set port {{eth_ifc_name}} vs-ingress-filter {{eth_vif}}
+      set port {{eth_ifc_name}} acceptable-frame-type {{eth_aft}}
       set port {{eth_ifc_name}} untagged-data-vs vs{{name}}_{{vlan_id}}
-      set port {{eth_ifc_name}} vs-ingress-filter off
 </pre>
 
 *port enable port {{eth_ifc_name}}* is a conversion of {{eth_enabled}} set *true*  
 *port disable port {{eth_ifc_name}}* is a conversion of {{eth_enabled}} set *false*   
 {{eth_phy_type}} can be "default" or "rj45" or "sfp"
+{{eth_vif}} should be on if {{eth_vif}}=true in openconfig
+{{eth_vif}} should be off if {{eth_vif}}=false in openconfig
 {{vlan_id}} from usual range (max 4094) 
 
 ##### Unit
