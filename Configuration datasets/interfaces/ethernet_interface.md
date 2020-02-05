@@ -22,7 +22,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_ifc_name}}
                 "description": "{{eth_description}}",
                 "enabled": {{eth_enabled}},
                 "tpid": "{{eth_tpid}}",
-                "frinx-if-ethernet-extension:physical-type": "{{eth_phy_type}}"
+                "frinx-saos-if-extension:physical-type": "{{eth_phy_type}}"
             },
             "hold-time": {
                 "config": {
