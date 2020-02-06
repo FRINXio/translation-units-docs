@@ -15,7 +15,8 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/vla
     "config" : {
         "vlan-id" : {{vlan_id}},
         "name" : {{vlan_name}},
-        "frinx-dasan-vlan-extension:eline" : {{eline_enabled}}
+        "frinx-dasan-vlan-extension:eline" : {{eline_enabled}},
+        "egress-tpid": "{{vlan_tpid_e}}" //needs new augment, type is based on base: oc-vlan-types:TPID_TYPES
     }
   }
 }
@@ -40,4 +41,7 @@ bridge
 
 ## Ciena 3916/3930
 ####
-<pre>vlan create vlan {{vlan_id}} name {{vlan_name}}</pre>
+<pre>vlan create vlan {{vlan_id}} name {{vlan_name}}
+vlan set vlan {{vlan_id}} egress-tpid {{vlan_tpid_e}}</pre>
+
+{{vlan_tpid}} should be pure numberic, for example 8100, converted from TPID_0X8100 from openconfig
