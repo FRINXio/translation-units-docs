@@ -488,10 +488,10 @@ virtual-circuit ethernet set port {{eth_ifc_name}} vlan-ethertype-policy {{eth_v
 
 *port enable port {{eth_ifc_name}}* is a conversion of {{eth_enabled}} set *true*  
 *port disable port {{eth_ifc_name}}* is a conversion of {{eth_enabled}} set *false*   
-{{eth_phy_type}} can be "default" or "rj45" or "sfp" 
-{{eth_vif}} should be on if {{eth_vif}}=true in openconfig
-{{eth_vif}} should be off if {{eth_vif}}=false in openconfig
-{{vlan_id}} from usual range (max 4094) 
+{{eth_phy_type}} can be "default" or "rj45" or "sfp"  
+{{eth_vif}} should be on if {{eth_vif}}=true in openconfig  
+{{eth_vif}} should be off if {{eth_vif}}=false in openconfig  
+{{vlan_id}} from usual range (max 4094)   
 
 ##### Unit
 
