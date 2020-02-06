@@ -467,14 +467,14 @@ Link to github : [dasan-unit](https://github.com/FRINXio/cli-units/tree/master/d
 
 <pre>
 port
-      set port {{eth_ifc_name}} description {{eth_description}}
-      enable port {{eth_ifc_name}} | port disable port {{eth_ifc_name}}
-      set port {{eth_ifc_name}} mode {{eth_phy_type}}
-      set port {{eth_ifc_name}} max-frame-size {{eth_mtu}}
-      set port {{eth_ifc_name}} vs-ingress-filter off
-      set port {{eth_ifc_name}} acceptable-frame-type all
-      set port {{eth_ifc_name}} untagged-data-vs vs{{name}}_{{vlan_id}}
-      set port {{eth_ifc_name}} vs-ingress-filter off
+    set port {{eth_ifc_name}} description {{eth_description}}
+    enable port {{eth_ifc_name}} | port disable port {{eth_ifc_name}}
+    set port {{eth_ifc_name}} mode {{eth_phy_type}}
+    set port {{eth_ifc_name}} max-frame-size {{eth_mtu}}
+    set port {{eth_ifc_name}} vs-ingress-filter off
+    set port {{eth_ifc_name}} acceptable-frame-type all
+    set port {{eth_ifc_name}} untagged-data-vs vs{{name}}_{{vlan_id}}
+    set port {{eth_ifc_name}} vs-ingress-filter off
 </pre>
 
 *port enable port {{eth_ifc_name}}* is a conversion of {{eth_enabled}} set *true*  
