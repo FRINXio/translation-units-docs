@@ -477,6 +477,12 @@ port
       set port {{eth_ifc_name}} vs-ingress-filter {{eth_vif}}
       set port {{eth_ifc_name}} acceptable-frame-type {{eth_aft}}
       set port {{eth_ifc_name}} untagged-data-vs vs{{name}}_{{vlan_id}}
+
+vlan 
+    create vlan {{vlan_id}} name {{name}}_{{vlan_id}}
+    set vlan {{vlan_id}} egress-tpid 8100
+    add vlan {{vlan_id}} port {{eth_ifc_name}}
+
 virtual-circuit ethernet set port {{eth_ifc_name}} vlan-ethertype-policy {{eth_vep}}
 </pre>
 
