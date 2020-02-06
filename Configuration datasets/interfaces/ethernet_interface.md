@@ -23,9 +23,9 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_ifc_name}}
                 "enabled": {{eth_enabled}},
                 "tpid": "{{eth_tpid}}",
                 "frinx-if-ethernet-extension:physical-type": "{{eth_phy_type}}",
-                "acceptable-frame-type": "{{eth_aft}}" //needs new augment, input all | tagged-only | untagged-only
-                "vs-ingress-filter": "{{eth_vif}}"  //needs new augument, input true | false
-                "vlan-ethertype-policy": "{{eth_vep}}"  //needs new augument, input all | vlan-tpid
+                "frinx-saos-if-extension:acceptable-frame-type": "{{eth_aft}}" //needs new augment, input all | tagged-only | untagged-only
+                "frinx-saos-if-extension:vs-ingress-filter": "{{eth_vif}}"  //needs new augument, input true | false
+                "frinx-saos-if-extension:vlan-ethertype-policy": "{{eth_vep}}"  //needs new augument, input all | vlan-tpid
             },
             "hold-time": {
                 "config": {
