@@ -39,8 +39,8 @@ bridge
 !
 </pre>
 
-## Ciena 3916/3930
-####
+## Ciena SAOS 614
+#### CLI
 <pre>vlan create vlan {{vlan_id}} name {{vlan_name}}
 vlan set vlan {{vlan_id}} egress-tpid {{vlan_tpid_e}}</pre>
 
