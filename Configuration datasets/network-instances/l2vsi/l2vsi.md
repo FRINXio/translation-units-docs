@@ -61,5 +61,8 @@ port set port {{vsi_ni_if_name}} untagged-ctrl-vs {{vsi_ni_name}}
 port set port {{vsi_ni_if_name}} untagged-data-vs {{vsi_ni_name}}
 </pre>
 
+{{vsi_ni_encap_cos_policy}} can have values <dot1dpri-inherit | fixed | ip-prec-inherit | phbg-inherit | port-inherit | vs-inherit>  
+
+
 ##### Unit
 
