@@ -51,10 +51,10 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vsicp_ni_
 #### CLI
 
 <pre>
-virtual-circuit ethernet create vc {{vsicp_ni_name}} vlan {{vsicp_ni_vlan_id}} statistics on 
+virtual-circuit ethernet create vc {{vsicp_ni_name}} vlan {{vsicp_ni_vlan_id}} statistics {{vsicp_ni_vlan_statistics}}
 </pre>
 
-*statistics on* is a conversion of {{vsicp_ni_vlan_statistics}} set true
+*statistics on* is a conversion of {{vsicp_ni_vlan_statistics}} set true  
 *statistics off* is a conversion of {{vsicp_ni_vlan_statistics}} set false
 
 
