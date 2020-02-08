@@ -41,7 +41,8 @@ bridge
 
 ## Ciena SAOS 614
 #### CLI
-<pre>vlan create vlan {{vlan_id}} name {{vlan_name}}
+<pre>vlan create vlan {{vlan_id}}
+vlan set vlan {{vlan_id}} name {{vlan_name}}
 vlan set vlan {{vlan_id}} egress-tpid {{vlan_tpid_e}}</pre>
 
 {{vlan_tpid}} should be pure numberic, converted from oc-vlan-types:TPID_TYPES from openconfig
