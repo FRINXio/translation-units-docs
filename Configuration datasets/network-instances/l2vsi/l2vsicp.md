@@ -32,8 +32,8 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vsicp_ni_
                 "vlan": [
                     {
                         "config": {
-                            "vlan-id": "{{vsicp_ni_vlan_id}}"
-                            "statistics":  "{{vsicp_ni_vlan_statistics}}" //new augument (can be true of false)
+                            "vlan-id": "{{vsicp_ni_vlan_id}}",
+                            "statistics":  {{vsicp_ni_vlan_statistics}}
                         } 
                     }
                 ]
@@ -46,7 +46,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vsicp_ni_
 
 ## OS Configuration Commands
 
-### Ciena 3916/3930
+### Ciena SAOS 6.14
 
 #### CLI
 
@@ -54,8 +54,8 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vsicp_ni_
 virtual-circuit ethernet create vc {{vsicp_ni_name}} vlan {{vsicp_ni_vlan_id}} statistics on 
 </pre>
 
-*statistics on* is a conversion of vsicp_ni_vlan_statistics = true
+*statistics on* is a conversion of {{vsicp_ni_vlan_statistics}} set true
+*statistics off* is a conversion of {{vsicp_ni_vlan_statistics}} set false
+
 
 ##### Unit
-
-NOT IMPLEMENTED
