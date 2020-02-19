@@ -26,8 +26,10 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vsi_ni_na
                         "name": {{cft_name}},
                         "ctrl-protocols": {
                             "ctrl-protocol": [
-                                "name": {{cft_ctrl_protocol_name}},
-                                "disposition": {{cft_disposition}}
+                                {
+                                    "name": {{cft_ctrl_protocol_name}},
+                                    "disposition": {{cft_disposition}}
+                                }
                             ]
                         }
                     }
