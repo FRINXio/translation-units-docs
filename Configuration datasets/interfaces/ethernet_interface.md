@@ -25,7 +25,8 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_ifc_name}}
                 "frinx-saos-if-extension:physical-type": "{{eth_phy_type}}",
                 "frinx-saos-if-extension:acceptable-frame-type": "{{eth_aft}}",
                 "frinx-saos-if-extension:vs-ingress-filter": "{{eth_vif}}",
-                "frinx-saos-if-extension:vlan-ethertype-policy": "{{eth_vep}}"
+                "frinx-saos-if-extension:vlan-ethertype-policy": "{{eth_vep}}",
+                "frinx-saos-if-extension:ingress-to-egress-qmap": "{{eth_iteq}}"
             },
             "hold-time": {
                 "config": {
@@ -476,6 +477,7 @@ port
       set port {{eth_ifc_name}} max-frame-size {{eth_mtu}}
       set port {{eth_ifc_name}} vs-ingress-filter {{eth_vif}}
       set port {{eth_ifc_name}} acceptable-frame-type {{eth_aft}}
+      set port {{eth_ifc_name}} ingress-to-egress-qmap {{eth_iteq}}
 </pre>
 
 *port enable port {{eth_ifc_name}}* is a conversion of {{eth_enabled}} set *true*  
@@ -484,7 +486,7 @@ port
 *vs-ingress-filter on* is a conversion of {{eth_vif}} set *true*  
 *vs-ingress-filter off* is a conversion of {{eth_vif}} set *false*  
 {{eth_aft}} can be "all", "tagged-only", "untagged-only"  
-
+{{eth_iteq}} can be "Default-RCOS" or "NNI-NNI"
 <pre>
 vlan add vlan {{vlan_id}} port {{eth_ifc_name}}
 </pre>
