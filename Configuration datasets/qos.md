@@ -3,6 +3,36 @@
 ## URL
 
 ```
+frinx-openconfig-qos:/qos
+```
+
+## OPENCONFIG YANG
+
+```javascript
+{
+    "qos": {
+        "config": {
+            "frinx-saos-qos-extension:enabled": true
+        },
+        "interfaces": {
+            "interface": [
+                {
+                    "interface-id": {{eth_ifc_name}},
+                    "config": {
+                        "interface-id": {{eth_ifc_name}},
+                        "frinx-saos-qos-extension:enabled": true,
+                        "frinx-saos-qos-extension:mode": {{mode}}
+                    }
+                }
+            ]
+        }
+    }
+}
+```
+
+## URL
+
+```
 frinx-openconfig-qos:/qos/classifiers/classifier/{{class_name}}
 ```
 
@@ -73,14 +103,16 @@ frinx-openconfig-qos:qos/scheduler-policies/scheduler-policy/{{policy_name}}
         {
             "name": "{{policy_name}}",
             "config": {
-                "name": "{{policy_name}}"
+                "name": "{{policy_name}}",
             }
             "schedulers": {
                 "scheduler": [
                     {
                         "sequence": "{{scheduler_seq}}", //internal value indicating the class-map sequence,starting with 1
                         "config": {
-                            "sequence": "{{scheduler_seq}}"
+                            "sequence": "{{scheduler_seq}}",
+                            "frinx-saos-qos-extension:type": {{scheduler_type}},
+                            "frinx-saos-qos-extension:vs": {{vs_ni_name}}
                         },
                         "inputs": {
                             "input": [
@@ -96,10 +128,15 @@ frinx-openconfig-qos:qos/scheduler-policies/scheduler-policy/{{policy_name}}
                         },
                         "one-rate-two-color": {
                             "config": {
+                                "cir": {{scheduler_cir}},
                                 "cir-pct": {{scheduler_bw_pct}},
                                 "cir-pct-remaining": {{scheduler_bw_pct_rem}},
+                                "pir": {{scheduler_pir}},
+                                "be": {{scheduler_be}},
                                 "max-queue-depth-pct": {{scheduler_rate_pct}},
-                                "frinx-qos-extension:max-queue-depth-ms": {{scheduler_max_queue_depth_ms}}
+                                "frinx-qos-extension:max-queue-depth-ms": {{scheduler_max_queue_depth_ms}},
+                                "frinx-saos-qos-extension:congestion-avoidance": {{scheduler_congestion}},
+                                "frinx-saos-qos-extension:weight": {{scheduler_saos_weight}}
                             }
                         }
                     }
@@ -158,4 +195,25 @@ will create 5 terms numbered from 1 to 5, where term 1 contains condition for qo
 
 Writing will occur in ascending order. Reading is the same, first condition is put into first term, etc.
 
+### Ciena SAOS 6.14
+
+#### CLI
+
+<pre>
+traffic-profiling enable
+traffic-profiling enable port {{eth_ifc_name}}
+traffic-profiling set port {{eth_ifc_name}} mode {{mode}}
+traffic-profiling standard-profile create port {{eth_ifc_name}} name {{policy_name}} vs {{vsi_ni_name}} cir {{scheduler_cir}}
+</pre>
+
+*traffic-profiling enable* is a conversion of {{qos_enabled}} set to *true*  
+*traffic-profiling disable* is a conversion of {{qos_enabled}} set to *false*  
+
+{{scheduler_type}} can be *port_policy* - this issues *traffic-profiling* commands. The {{scheduler_seq}} will be always 0, there can be just one scheduler of this type.  
+{{scheduler_type}} can be *queue_group_policy* - this issues *traffic-services* command. The {{scheduler_seq}} is represented by queue number.  
+
+<pre>
+traffic-services queuing egress-port-queue-group set queue {{scheduler_seq}} port {{eth_ifc_name}} eir {{scheduler_pir}} ebs {{scheduler_be}} scheduler-weight {{scheduler_saos_weight}} congestion-avoidance-profile {{scheduler_congestion}}
+traffic-services queuing egress-port-queue-group set queue {{scheduler_seq}} port {{eth_ifc_name}} eir {{scheduler_pir}} scheduler-weight {{scheduler_saos_weight}} congestion-avoidance-profile {{scheduler_congestion}}
+</pre>
 
