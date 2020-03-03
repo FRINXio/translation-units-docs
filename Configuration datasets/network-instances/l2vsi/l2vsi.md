@@ -97,5 +97,10 @@ bridge-block | bridge-rsvd-0B0F | bridge-rsvd-0C0D | garp-block | gmrp | gvrp | 
 l2-cft enable port {{vsi_ni_if_name}} is a conversion of {{cft_enabled}} set to true  
 l2-cft disable port {{vsi_ni_if_name}} is a conversion of {{cft_enabled}} set to false
 
+<pre>
+virtual-switch create vs {{vsi_ni_name}}
+virtual-switch set vs {{vsi_ni_name}} description {{vsi_ni_description}}
+</pre>
+
 ##### Unit
 
