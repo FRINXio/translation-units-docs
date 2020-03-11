@@ -53,5 +53,7 @@ broadcast-containment add filter {{bc_name}} port {{eth_ifc_name}}
 broadcast-containment enable
 </pre>
 
+{{bc_enable}} Enable broadcast containment to use the broadcast containment feature. By default, is disabled.
+
 ##### Unit
 
