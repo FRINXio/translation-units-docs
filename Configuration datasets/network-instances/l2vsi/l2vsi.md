@@ -12,6 +12,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vsi_ni_na
 {
     "network-instance": [
         {
+            "name": "{{vsi_ni_name}}",
             "config": {
                 "name": "{{vsi_ni_name}}",
                 "description": "{{vsi_ni_description}}",
@@ -38,6 +39,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vsi_ni_na
             "connection-points": {
                 "connection-point": [
                     {
+                        "connection-point-id": "{{vsi_cp_name}}",
                         "config": {
                             "connection-point-id": "{{vsi_cp_name}}"
                         } 
@@ -47,6 +49,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vsi_ni_na
             "interfaces": {
                 "interface": [
                     {
+                        "id": "{{vsi_ni_if_name}}",
                         "config": {
                             "id": "{{vsi_ni_if_name}}",
                             "interface": "{{vsi_ni_if_name}}",
