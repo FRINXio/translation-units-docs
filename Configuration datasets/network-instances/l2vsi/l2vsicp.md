@@ -14,23 +14,16 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vsicp_ni_
 {
     "network-instance": [
         {
+            "name": "{{vsicp_ni_name}}",
             "config": {
                 "name": "{{vsicp_ni_name}}"
                 "type": "L2VSICP" //new NI type
                 "enabled": true
-            }
-            "connection-points": {
-                "connection-point": [
-                    {
-                        "config": {
-                            "connection-point-id": "{{vsicp_ni_name}}"
-                        } 
-                    }
-                ]
-            }
+            },
             "vlans": {
                 "vlan": [
                     {
+                        "vlan-id": "{{vsicp_ni_vlan_id}}",
                         "config": {
                             "vlan-id": "{{vsicp_ni_vlan_id}}",
                             "statistics":  {{vsicp_ni_vlan_statistics}}
@@ -38,7 +31,6 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vsicp_ni_
                     }
                 ]
             }
-
         }
     ]
 }
