@@ -50,10 +50,10 @@ broadcast-containment create filter {{bc_name}}
 broadcast-containment set filter {{bc_name}} kbps {{speed}}
 broadcast-containment set filter {{bc_name}} containment-classification bcast,unknown-ucast
 broadcast-containment add filter {{bc_name}} port {{eth_ifc_name}}
-broadcast-containment enable
+broadcast-containment {{bc_enable}}
 </pre>
 
-{{bc_enable}} Enable broadcast containment to use the broadcast containment feature. By default, is disabled.
+{{bc_enable}} Enable broadcast containment to use the broadcast containment feature. By default, is disabled. Values are enable/disable.
 
 ##### Unit
 
