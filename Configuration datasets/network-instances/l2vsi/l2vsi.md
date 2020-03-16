@@ -104,7 +104,7 @@ l2-cft enable port {{vsi_ni_if_name}}
 cisco-dtp | cisco-pagp | cisco-pvst | cisco-stp-uplink-fast |cisco-udld | 
 cisco-vtp | elmi | esmc | garp-block | gmrp | gvrp | lacp | lacp-marker | 
 lldp | oam | ptp-peer-delay | vlan-bridge | xstp>  
-if {{cfts_mode}} ==  mef-ce1 -> {{cft_ctrl_protocol_name}} can be also <bridge-block>  
+if {{cfts_mode}} ==  mef-ce1 -> {{cft_ctrl_protocol_name}} can be also bridge-block  
 if {{cfts_mode}} ==  mef-ce2 -> {{cft_ctrl_protocol_name}} can be also <bridge-rsvd-0B0F |
 bridge-rsvd-0C0D | mef-ce2-bridge-block>  
 {{cft_disposition}} can be <discard | forward | egress-l2pttranslate>  
