@@ -104,6 +104,7 @@ frinx-openconfig-qos:qos/scheduler-policies/scheduler-policy/{{policy_name}}
             "name": "{{policy_name}}",
             "config": {
                 "name": "{{policy_name}}",
+                "frinx-saos-qos-extension:interface-id": "{{eth_ifc_name}}"
             }
             "schedulers": {
                 "scheduler": [
@@ -112,7 +113,7 @@ frinx-openconfig-qos:qos/scheduler-policies/scheduler-policy/{{policy_name}}
                         "config": {
                             "sequence": "{{scheduler_seq}}",
                             "frinx-saos-qos-extension:type": {{scheduler_type}},
-                            "frinx-saos-qos-extension:vs": {{vs_ni_name}}
+                            "frinx-saos-qos-extension:vs-name": {{vs_ni_name}}
                         },
                         "inputs": {
                             "input": [
@@ -126,7 +127,7 @@ frinx-openconfig-qos:qos/scheduler-policies/scheduler-policy/{{policy_name}}
                                 }
                             ]
                         },
-                        "one-rate-two-color": {
+                        "two-rate-three-color": {
                             "config": {
                                 "cir": {{scheduler_cir}},
                                 "cir-pct": {{scheduler_bw_pct}},
