@@ -20,13 +20,13 @@ frinx-openconfig-broadcast-containment:filters/filter/{{bc_name}}
                         {
                             "name": "{{eth_ifc_name}}",
                             "config": {
-                                "name": "{{eth_ifc_name}}",
-                                "filter": "{{bc_name}}"
+                                "name": "{{eth_ifc_name}}"
                             }
                         }
                     ]
                 },
                 "config": {
+                    "name": "{{bc_name}}",
                     "containment-clasification": [
                         "unknown-ucast",
                         "bcast"
