@@ -28,7 +28,8 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_ifc_name}}
                 "frinx-saos-if-extension:vlan-ethertype-policy": "{{eth_vep}}",
                 "frinx-saos-if-extension:ingress-to-egress-qmap": "{{eth_iteq}}",
                 "frinx-saos-if-extension:forward-unlearned": "{{fwd_un}}",
-                "frinx-saos-if-extension:max-dynamic-macs": "{{max_macs}}"
+                "frinx-saos-if-extension:max-dynamic-macs": "{{max_macs}}",
+                "frinx-saos-if-extension:vlan-ids": [ "{{vlan_ids}}" ]
             },
             "hold-time": {
                 "config": {
@@ -496,10 +497,10 @@ flow access-control set port {{eth_ifc_name}} max-dynamic-macs {{max_macs}}
 *forward-unlearned off* is a conversion of {{fwd_un}} set *false*   
 
 <pre>
-vlan add vlan {{vlan_id}} port {{eth_ifc_name}}
+vlan add vlan {{vlan_ids}} port {{eth_ifc_name}}
 </pre>
     
-{{vlan_id}} from usual range (max 4094)  
+{{vlan_ids}} from usual range (max 4094)  
 
 <pre>
 virtual-circuit ethernet set port {{eth_ifc_name}} vlan-ethertype-policy {{eth_vep}}
