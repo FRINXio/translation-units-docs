@@ -17,6 +17,16 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/vla
                 "vlan-id": {{vlan_id}},
                 "frinx-dasan-vlan-extension:eline": {{eline_enabled}},
                 "frinx-saos-vlan-extension:egress-tpid": "{{vlan_tpid}}"
+            },
+            "frinx-saos-virtual-ring-extension:rings": {
+                "ring": [
+                    {
+                        "name": "{{ring-name}}",
+                        "config": {
+                            "name": "{{ring-name}}"
+                        }
+                    }
+                ]
             }
         }
     ]
@@ -44,6 +54,7 @@ bridge
 #### CLI
 <pre>vlan create vlan {{vlan_id}}
 vlan set vlan {{vlan_id}} name {{vlan_name}}
-vlan set vlan {{vlan_id}} egress-tpid {{vlan_tpid_e}}</pre>
+vlan set vlan {{vlan_id}} egress-tpid {{vlan_tpid_e}}
+ring-protection virtual-ring add ring {{ring-name}} vid {{vlan-id}}</pre>
 
-{{vlan_tpid}} should be pure numberic, converted from oc-vlan-types:TPID_TYPES from openconfig
+{{vlan_tpid}} should be pure numeric, converted from oc-vlan-types:TPID_TYPES from openconfig
