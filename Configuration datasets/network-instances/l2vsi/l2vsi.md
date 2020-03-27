@@ -41,7 +41,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vsi_ni_na
                         }
                     ]
                 }
-            }
+            },
             "connection-points": {
                 "connection-point": [
                     {
@@ -51,7 +51,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vsi_ni_na
                         } 
                     }
                 ]
-            }
+            },
             "interfaces": {
                 "interface": [
                     {
@@ -66,8 +66,17 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vsi_ni_na
                         } 
                     }
                 ]
+            },
+            "frinx-saos-virtual-ring-extension:rings": {
+                "ring": [
+                    {
+                        "name": "{{ring_name}}",
+                        "config": {
+                            "name": "{{ring_name}}"
+                        }
+                    }
+                ]
             }
-
         }
     ]
 }
@@ -111,10 +120,15 @@ bridge-rsvd-0C0D | mef-ce2-bridge-block>
 l2-cft enable port {{vsi_ni_if_name}} is a conversion of {{cft_enabled}} set to true  
 l2-cft disable port {{vsi_ni_if_name}} is a conversion of {{cft_enabled}} set to false
 
+### Ciena SAOS 8
+
+#### CLI
+
 <pre>
 virtual-switch create vs {{vsi_ni_name}}
-virtual-switch set vs {{vsi_ni_name}} description {{vsi_ni_description}}
+virtual-switch set vs {{vsi_ni_name}} description {{vsi_ni_description}} 
+ring-protection virtual-ring add ring {{ring_name}} vs {{vsi_ni_name}} 
+ring-protection virtual-ring remove ring {{ring_name}} vs {{vsi_ni_name}}
 </pre>
 
-##### Unit
 
