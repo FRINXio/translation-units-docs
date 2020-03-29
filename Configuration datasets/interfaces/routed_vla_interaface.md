@@ -31,7 +31,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{routed_ifc_name}}
 #### CLI
 
 <pre>
-cpu-interface sub-interface create cpu-subinterface {{iface_name}}
+cpu-interface sub-interface create cpu-subinterface {{routed_ifc_name}}
 </pre>
 
 ##### Unit
