@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-interfaces:interfaces/interface/{{routed_ifc_name}}
+frinx-openconfig-interfaces:interfaces/interface/{{l2vlan_if_name}}
 ```
 
 ## OPENCONFIG YANG
@@ -14,10 +14,10 @@ frinx-openconfig-interfaces:interfaces/interface/{{routed_ifc_name}}
 {
     "interface": [
         {
-            "name": "{{routed_ifc_name}}",
+            "name": "{{l2vlan_if_name}}",
             "config": {
-                "type": "IF_ROUTED_VLAN",
-                "name": "{{routed_ifc_name}}"
+                "type": "iana-if-type:l2vlan",
+                "name": "{{l2vlan_if_name}}"
             }
         }
     ]
@@ -31,7 +31,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{routed_ifc_name}}
 #### CLI
 
 <pre>
-cpu-interface sub-interface create cpu-subinterface {{routed_ifc_name}}
+cpu-interface sub-interface create cpu-subinterface {{l2vlan_if_name}}
 </pre>
 
 ##### Unit
