@@ -1,4 +1,4 @@
-# ROUTED VLAN interface
+# L2VLAN interface
 
 ## URL
 
