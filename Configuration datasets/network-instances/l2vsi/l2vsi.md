@@ -129,8 +129,18 @@ virtual-switch create vs {{vsi_ni_name}}
 virtual-switch set vs {{vsi_ni_name}} description {{vsi_ni_description}} 
 ring-protection virtual-ring add ring {{ring_name}} vs {{vsi_ni_name}} 
 ring-protection virtual-ring remove ring {{ring_name}} vs {{vsi_ni_name}}
+</pre>
+
+<pre>
 virtual-switch interface attach cpu-subinterface {{vsi_ni_if_name}} vs {{vsi_ni_name}}
+virtual-switch interface attach sub-port {{vsi_ni_if_name}} vs {{vs_ni_name}}
 </pre>
 
 cpu-subinterface command is sent, if the type of the interface added is *iana-if-type:l2vlan*  
+
+
+sub-port command is sent, if the type of the interface added is *iana-if-type:ieee8023adLag*   
+*{{vsi_ni_if_name}}* in this case needs to have form <parent_ifc_name.subifc_name> . This can be derived from : https://github.com/FRINXio/translation-units-docs/blob/master/Configuration%20datasets/interfaces/lag_interface.md
+
+
 
