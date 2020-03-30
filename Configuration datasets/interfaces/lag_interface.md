@@ -124,6 +124,15 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_ifc_name}}
                                 "frinx-saos-vlan-extension:ingress-l2-transform": "{{i_transform}}",
                                 "frinx-saos-vlan-extension:egress-l2-transform": "{{e_transform}}"
                             }
+                            "frinx-saos-vlan-extension:class-elements": [
+                                {
+                                    "id": "{{class-element}}",
+                                    "config": {
+                                        "id": "{{class-element}}",
+                                        "vtag-stack": "{{vtag-stack}}" 
+                                    }
+                                }
+                            ]
                         },
                         "frinx-cisco-if-extension:statistics": {
                             "config": {
@@ -510,6 +519,7 @@ Link to github : [dasan-unit](https://github.com/FRINXio/cli-units/tree/master/d
 sub-port create sub-port {{subifc_name}} parent-port {{lag_ifc_name}} classifier-precedence {{class_prec}}
 sub-port set sub-port {{subifc_name}} ingress-l2-transform {{i_transform}}
 sub-port set sub-port {{subifc_name}} egress-l2-transform {{e_transform}}
+
 </pre>
 
 ##### Unit
