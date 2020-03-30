@@ -132,5 +132,5 @@ ring-protection virtual-ring remove ring {{ring_name}} vs {{vsi_ni_name}}
 virtual-switch interface attach cpu-subinterface {{vsi_ni_if_name}} vs {{vsi_ni_name}}
 </pre>
 
-cpu-subinterface command is sent, if the type of the interface added is *IF_ROUTED_VLAN*  
+cpu-subinterface command is sent, if the type of the interface added is *iana-if-type:l2vlan*  
 
