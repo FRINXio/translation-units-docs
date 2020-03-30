@@ -78,7 +78,9 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_ifc_name}}
                         "config": {
                             "index": {{sub_ifc_index}},
                             "description": "{{lag_sub_description}}",
-                            "frinx-juniper-if-extension:rpm-type": "{{rpm_type}}"
+                            "frinx-juniper-if-extension:rpm-type": "{{rpm_type}}",
+                            "frinx-if-aggregate-extension:subinterface-name": "{{subifc_name}}",
+                            "frinx-saos-if-extension:classifier-precedence": {{class_prec}}
                             "enabled": {{lag_sub_enabled}}
                         },
                         "frinx-openconfig-if-ip:ipv4": {
@@ -117,8 +119,10 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_ifc_name}}
                             }
                         },
                         "frinx-openconfig-vlan:vlan": {
-                            "config": {
-                                "vlan-id": {{vlan_id}}
+                            "config": 
+                                "vlan-id": {{vlan_id}},
+                                "frinx-saos-vlan-extension:ingress-l2-transform": "{{i_transform}}",
+                                "frinx-saos-vlan-extension:egress-l2-transform": "{{e_transform}}"
                             }
                         },
                         "frinx-cisco-if-extension:statistics": {
@@ -497,3 +501,17 @@ Dasan supports two kinds of prefixes (Prefix is settled by lag type)
 ##### Unit
 
 Link to github : [dasan-unit](https://github.com/FRINXio/cli-units/tree/master/dasan/interface)
+
+### Ciena SAOS8
+
+#### CLI
+
+<pre>
+sub-port create sub-port {{subifc_name}} parent-port {{lag_ifc_name}} classifier-precedence {{class_prec}}
+sub-port set sub-port {{subifc_name}} ingress-l2-transform {{i_transform}}
+sub-port set sub-port {{subifc_name}} egress-l2-transform {{e_transform}}
+</pre>
+
+##### Unit
+
+Link to github : [saos-unit](https://github.com/FRINXio/cli-units/tree/master/saos/saos8/saos-8-interface)
