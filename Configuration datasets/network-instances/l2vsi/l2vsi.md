@@ -129,6 +129,8 @@ virtual-switch create vs {{vsi_ni_name}}
 virtual-switch set vs {{vsi_ni_name}} description {{vsi_ni_description}} 
 ring-protection virtual-ring add ring {{ring_name}} vs {{vsi_ni_name}} 
 ring-protection virtual-ring remove ring {{ring_name}} vs {{vsi_ni_name}}
+virtual-switch interface attach cpu-subinterface {{vsi_ni_if_name}} vs {{vsi_ni_name}}
 </pre>
 
+cpu-subinterface command is sent, if the type of the interface added is *IF_ROUTED_VLAN*  
 
