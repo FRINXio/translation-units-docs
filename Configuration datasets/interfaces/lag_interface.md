@@ -80,7 +80,6 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_ifc_name}}
                             "description": "{{lag_sub_description}}",
                             "frinx-juniper-if-extension:rpm-type": "{{rpm_type}}",
                             "frinx-if-aggregate-extension:subinterface-name": "{{subifc_name}}",
-                            "frinx-saos-if-extension:classifier-precedence": {{class_prec}}
                             "enabled": {{lag_sub_enabled}}
                         },
                         "frinx-openconfig-if-ip:ipv4": {
@@ -516,11 +515,13 @@ Link to github : [dasan-unit](https://github.com/FRINXio/cli-units/tree/master/d
 #### CLI
 
 <pre>
-sub-port create sub-port {{subifc_name}} parent-port {{lag_ifc_name}} classifier-precedence {{class_prec}}
+sub-port create sub-port {{subifc_name}} parent-port {{lag_ifc_name}} classifier-precedence {{sub_ifc_index}}
 sub-port set sub-port {{subifc_name}} ingress-l2-transform {{i_transform}}
 sub-port set sub-port {{subifc_name}} egress-l2-transform {{e_transform}}
 sub-port add sub-port {{subifc_name}} class-element {{class_element}} vtag-stack {{vtag}}
 </pre>
+
+classifier-precedence is used as *{{sub_ifc_index}}*. This field in mandatory in Ciena and unique withing parent-port.
 
 ##### Unit
 
