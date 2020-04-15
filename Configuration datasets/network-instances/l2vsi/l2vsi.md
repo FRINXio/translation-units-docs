@@ -59,6 +59,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vsi_ni_na
                         "config": {
                             "id": "{{vsi_ni_if_name}}",
                             "interface": "{{vsi_ni_if_name}}",
+                            "frinx-saos-ni-if-extension:type": "iana-if-type:ieee8023adLag/iana-if-type:l2vlan"
                             "frinx-l2-cft-extension:interface-cft" {
                                "enabled": {{cft_enabled}},
                                "profile": {{cft_name}}
