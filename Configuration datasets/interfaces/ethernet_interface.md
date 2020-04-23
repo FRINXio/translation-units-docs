@@ -147,13 +147,6 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_ifc_name}}
                     "load-interval": {{eth_load_interval}}
                 }
             },
-            "frinx-openconfig-if-ethernet:ethernet": {
-                "frinx-openconfig-vlan:switched-vlan": {
-                    "config": {
-                        "trunk-vlans": [ "{{vlan_ids}}" ]
-                    }
-                }
-            },
             "frinx-saos-if-extension:cft-profile": {
                 "config": {
                     "name": "{{cft_profile_name}}",
