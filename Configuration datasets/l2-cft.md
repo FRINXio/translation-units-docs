@@ -52,7 +52,7 @@ l2-cft protocol add profile {{cft_profile_name}} ctrl-protocol {{ctrl_protocol_n
 
 {{cft_mode}} can be <mef-ce1|mef-ce2>  
 {{ctrl_protocol_name}} can be <802.1x | all-bridges-block | cisco-cdp | 
-cisco-dtp | cisco-pagp | cisco-pvst | cisco-stp-uplink-fast |cisco-udld | 
+cisco-dtp | cisco-pagp | cisco-pvst | cisco-stp-uplink-fast | cisco-udld | 
 cisco-vtp | elmi | esmc | garp-block | gmrp | gvrp | lacp | lacp-marker | 
 lldp | oam | ptp-peer-delay | vlan-bridge | xstp>  
 if {{cft_mode}} ==  mef-ce1 -> {{ctrl_protocol_name}} can be also bridge-block  
