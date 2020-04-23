@@ -28,8 +28,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_ifc_name}}
                 "frinx-saos-if-extension:vlan-ethertype-policy": "{{eth_vep}}",
                 "frinx-saos-if-extension:ingress-to-egress-qmap": "{{eth_iteq}}",
                 "frinx-saos-if-extension:forward-unlearned": "{{fwd_un}}",
-                "frinx-saos-if-extension:max-dynamic-macs": "{{max_macs}}",
-                "frinx-saos-if-extension:vlan-ids": [ "{{vlan_ids}}" ]
+                "frinx-saos-if-extension:max-dynamic-macs": "{{max_macs}}"
             },
             "hold-time": {
                 "config": {
@@ -146,6 +145,19 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_ifc_name}}
             "frinx-cisco-if-extension:statistics": {
                 "config": {
                     "load-interval": {{eth_load_interval}}
+                }
+            },
+            "frinx-openconfig-if-ethernet:ethernet": {
+                "frinx-openconfig-vlan:switched-vlan": {
+                    "config": {
+                        "trunk-vlans": [ "{{vlan_ids}}" ]
+                    }
+                }
+            },
+            "frinx-saos-if-extension:cft-profile": {
+                "config": {
+                    "name": "{{cft_profile_name}}",
+                    "enabled": {{cft_enabled}}
                 }
             }
         }
@@ -508,6 +520,14 @@ virtual-circuit ethernet set port {{eth_ifc_name}} vlan-ethertype-policy {{eth_v
 
 {{eth_vep}} can be "all" or "vlan-tpid"  
  
+<pre>
+l2-cft set port {{eth_ifc_name}} profile {{cft_profile_name}}
+l2-cft enable port {{eth_ifc_name}}
+l2-cft disable port {{eth_ifc_name}}
+</pre>
+
+l2-cft enable port {{eth_ifc_name}} is a conversion of {{cft_enabled}} set to true  
+l2-cft disable port {{eth_ifc_name}} is a conversion of {{cft_enabled}} set to false
 
 ##### Unit
 
