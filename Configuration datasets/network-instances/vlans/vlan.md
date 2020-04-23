@@ -15,6 +15,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/vla
             "vlan-id": {{vlan_id}},
             "config": {
                 "vlan-id": {{vlan_id}},
+                "name": {{vlan_name}},
                 "frinx-dasan-vlan-extension:eline": {{eline_enabled}},
                 "frinx-saos-vlan-extension:egress-tpid": "{{vlan_tpid}}"
             },
