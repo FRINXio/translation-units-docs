@@ -80,6 +80,7 @@ frinx-openconfig-interfaces:interfaces/interface/{{lag_ifc_name}}
                             "description": "{{lag_sub_description}}",
                             "frinx-juniper-if-extension:rpm-type": "{{rpm_type}}",
                             "frinx-if-aggregate-extension:subinterface-name": "{{subifc_name}}",
+                            "frinx-saos-if-extension:bin-count": "{{bin_count}}",
                             "enabled": {{lag_sub_enabled}}
                         },
                         "frinx-openconfig-if-ip:ipv4": {
@@ -519,9 +520,10 @@ sub-port create sub-port {{subifc_name}} parent-port {{lag_ifc_name}} classifier
 sub-port set sub-port {{subifc_name}} ingress-l2-transform {{i_transform}}
 sub-port set sub-port {{subifc_name}} egress-l2-transform {{e_transform}}
 sub-port add sub-port {{subifc_name}} class-element {{class_element}} vtag-stack {{vtag}}
+pm create sub-port {{subifc_name}} pm-instance {{subifc_name}} profile-type BasicTxRx bin-count {{bin_count}}
 </pre>
 
-classifier-precedence is used as *{{sub_ifc_index}}*. This field in mandatory in Ciena and unique withing parent-port.
+classifier-precedence is used as *{{sub_ifc_index}}*. This field is mandatory in Ciena and unique withing parent-port.
 
 ##### Unit
 
