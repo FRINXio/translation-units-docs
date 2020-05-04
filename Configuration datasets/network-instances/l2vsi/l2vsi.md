@@ -19,7 +19,8 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vsi_ni_na
                 "type": "L2VSI",
                 "enabled": true,
                 "frinx-saos-vs-extension:encap-cos-policy": {{vsi_ni_encap_cos_policy}},
-                "frinx-saos-vs-extension:encap-fixed-dot1dpri": {{vsi_ni_encap_fixed_dot1dpri}}                
+                "frinx-saos-vs-extension:encap-fixed-dot1dpri": {{vsi_ni_encap_fixed_dot1dpri}},  
+                "frinx-saos-vs-extension:tagged-pvst-l2pt": true  
             },
             "connection-points": {
                 "connection-point": [
@@ -72,9 +73,12 @@ virtual-switch ethernet set vs {{vsi_ni_name}} encap-fixed-dot1dpri {{vsi_ni_enc
 virtual-switch ethernet add vs {{vsi_ni_name}} port {{vsi_ni_if_name}}
 port set port {{vsi_ni_if_name}} untagged-ctrl-vs {{vsi_ni_name}}
 port set port {{vsi_ni_if_name}} untagged-data-vs {{vsi_ni_name}}
+l2-cft tagged-pvst-l2pt enable vs {{vsi_ni_name}}
 </pre>
 
 {{vsi_ni_encap_cos_policy}} can have values <dot1dpri-inherit | fixed | ip-prec-inherit | phbg-inherit | port-inherit | vs-inherit>  
+*l2-cft tagged-pvst-l2pt enable vs {{vsi_ni_name}}* is a conversion of "tagged-pvst-l2pt" field set to true 
+*l2-cft tagged-pvst-l2pt disable vs {{vsi_ni_name}}* is a conversion of "tagged-pvst-l2pt" field set to false
 
 ### Ciena SAOS 8
 
