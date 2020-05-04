@@ -16,7 +16,9 @@ frinx-openconfig-acl:/acl/acl-sets/acl-set/{{acl_name}}
             "name": "{{acl_name}}",
             "config": {
             	"name": "{{acl_name}}",
-            	"type": "{{acl_type}}"
+            	"type": "{{acl_type}}",
+		"frinx-acl-extension:default-fwd-action": "{{acl_default_fwd_action}}",
+		"frinx-acl-extension:enabled": false
             },
             "acl-entries": {
                 "acl-entry": [
@@ -155,3 +157,21 @@ set firewall family inet filter {{acl_name}} term {{acl_term_name}} then routing
 ##### Unit
 
 Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17/junos-17-acl-unit)
+
+### Ciena SAOS 6.14
+
+#### CLI
+
+<pre>
+access-list create acl-profile {{acl_name}} default-filter-action {{acl_default_fwd_action}}
+access-list disable profile {{acl_name}}
+access-list add profile {{acl_name}} rule {{acl_term_name}} precedence {{acl_seq_id}} filter-action {{acl_fwd_action}} any
+</pre>
+
+{{acl_default_fwd_action}} conversion is ACCEPT = allow, DROP = deny  
+*access-list disable profile {{acl_name}}* is a conversion of *frinx-acl-extension:enabled* set to false. Default value is true.  
+
+
+##### Unit
+
+Link to github : [saos-unit]
