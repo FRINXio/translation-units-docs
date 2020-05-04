@@ -77,7 +77,7 @@ l2-cft tagged-pvst-l2pt enable vs {{vsi_ni_name}}
 </pre>
 
 {{vsi_ni_encap_cos_policy}} can have values <dot1dpri-inherit | fixed | ip-prec-inherit | phbg-inherit | port-inherit | vs-inherit>  
-*l2-cft tagged-pvst-l2pt enable vs {{vsi_ni_name}}* is a conversion of "tagged-pvst-l2pt" field set to true 
+*l2-cft tagged-pvst-l2pt enable vs {{vsi_ni_name}}* is a conversion of "tagged-pvst-l2pt" field set to true  
 *l2-cft tagged-pvst-l2pt disable vs {{vsi_ni_name}}* is a conversion of "tagged-pvst-l2pt" field set to false
 
 ### Ciena SAOS 8
