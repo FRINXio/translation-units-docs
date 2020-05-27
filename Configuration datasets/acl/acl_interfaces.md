@@ -60,6 +60,28 @@ interface {{iacl_intf_id}}
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/acl)
 
+### Cisco IOS XE 15.4(2)S
+
+#### CLI
+
+<pre>
+interface {{iacl_intf_id}}
+  ip access-group {{iacl_in_acl_name}} in|out
+  ipv6 traffic-filter {{iacl_out_acl_name}} in|out
+</pre>
+
+##### Examples
+
+<pre>
+interface GigabitEthernet1
+ ip access-group inacl1 in
+ ipv6 traffic-filter outacl1 out
+</pre>
+
+##### Unit
+
+Link to github : [xe-unit](https://github.com/FRINXio/cli-units/tree/master/ios/acl)
+
 ### Junos 14.1X53-D40.8
 
 #### CLI
