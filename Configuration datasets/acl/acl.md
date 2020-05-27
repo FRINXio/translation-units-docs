@@ -139,6 +139,40 @@ ipv6 access-list test123
 
 Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xr/acl)
 
+### Cisco IOS XE 15.4(2)S
+
+#### CLI
+
+<pre>
+ip access-list extend {{acl_name}}
+	{{acl_seq_id}} {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {range {{acl_src_port}} }  {{acl_dst_addr}} {range {{acl_dst_port}} }
+</pre> 
+
+<pre>
+ipv6 access-list {{acl_name}}
+	 {{acl_fwd_action}} {{acl_protocol}} {{acl_src_addr}} {range {{acl_src_port}} }  {{acl_dst_addr}} {range {{acl_dst_port}} } sequence {{acl_seq_id}}
+</pre>
+
+
+##### Examples
+
+<pre>
+ip access-list extended TEST1
+    3 permit tcp host 1.1.1.1 eq 1024 host 2.2.2.2 eq 0
+    10 deny ip any any
+</pre>
+
+<pre>
+ipv6 access-list TEST2
+    deny icmp any any sequence 10
+    deny ipv6 any 2400:2000:3::/48 sequence 20
+    deny udp host 10:11:12::2 any sequence 2
+</pre>
+
+##### Unit
+
+Link to github : [xe-unit](https://github.com/FRINXio/cli-units/tree/master/ios/acl)
+
 ### Junos 14.1X53-D40.8
 
 #### CLI
