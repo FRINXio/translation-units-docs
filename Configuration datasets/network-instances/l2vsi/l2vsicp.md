@@ -12,22 +12,22 @@ frinx-openconfig-network-instance:network-instances/network-instance/{{vsicp_ni_
 
 ```javascript
 {
-    "network-instance": [
+    "frinx-openconfig-network-instance:network-instance": [
         {
             "name": "{{vsicp_ni_name}}",
             "config": {
-                "name": "{{vsicp_ni_name}}"
-                "type": "L2VSICP" //new NI type
+                "name": "{{vsicp_ni_name}}",
+                "type": "frinx-saos-network-instance-type-extension:L2VSICP",
                 "enabled": true
             },
             "vlans": {
                 "vlan": [
                     {
-                        "vlan-id": "{{vsicp_ni_vlan_id}}",
+                        "vlan-id": {{vsicp_ni_vlan_id}},
                         "config": {
-                            "vlan-id": "{{vsicp_ni_vlan_id}}",
-                            "statistics":  {{vsicp_ni_vlan_statistics}}
-                        } 
+                            "vlan-id": {{vsicp_ni_vlan_id}},
+                            "frinx-saos-vlan-extension:statistics": {{vsicp_ni_vlan_statistics}}
+                        }
                     }
                 ]
             }
