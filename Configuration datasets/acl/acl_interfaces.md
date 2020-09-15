@@ -15,6 +15,9 @@ frinx-openconfig-acl:acl/interfaces/interface/{{iacl_intf_id}}
     "interface": [
         {
             "id": "{{iacl_intf_id}}",
+            "config": {
+               "id":"{{iacl_intf_id}}"
+            },
             "ingress-acl-sets": {
                 "ingress-acl-set": [
                     {
