@@ -167,12 +167,18 @@ interface {{eth_ifc_name}}
  description {{eth_description}}
  mtu {{eth_mtu}}
  ip address {{eth_ip}} {{eth_subnet}}
+ channel-group {{lag_ifc_id}} mode {{lacp_mode}}
+ media-type {{eth_phy_type}} 
  shutdown | no shutdown
 </pre>
 
 {{eth_subnet}} is a conversion of {{eth_prefix_length}}  
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
 *shutdown* is a conversion of {{eth_enabled}} set *false*  
+{{lag_ifc_id}} is parsed from {{lag_ifc_name}}
+example {{lag_ifc_name}} is Port-channel3 -> {{lag_ifc_id}} is 3
+mode on is a conversion of {{lacp_mode}} set to frinx-openconfig-lacp:ON
+{{eth_phy_type}} can be "default" or "rj45" or "sfp"
 
 ---
 <pre>
