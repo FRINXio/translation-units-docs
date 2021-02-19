@@ -29,6 +29,18 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_ifc_name}}
                 "frinx-saos-if-extension:ingress-to-egress-qmap": "{{eth_iteq}}",
                 "frinx-saos-if-extension:forward-unlearned": "{{fwd_un}}",
                 "frinx-saos-if-extension:max-dynamic-macs": "{{max_macs}}"
+                "frinx-cisco-if-extension:l2-protocols": [
+                    "{{l2-protocols}}"
+                ],
+                "frinx-cisco-if-extension:lldp-transmit": {{lldp-transmit}},
+                "frinx-cisco-if-extension:lldp-receive": {{lldp-receive}},
+                "frinx-cisco-if-extension:cdp-enable": {{cdp-enable}},
+                "frinx-cisco-if-extension:switchport-port_security-enable": {{port_security-enable}},
+                "frinx-cisco-if-extension:switchport-port_security-maximum": {{port_security-maximum}},
+                "frinx-cisco-if-extension:switchport-port_security-violation": "{{port_security-violation}}",
+                "frinx-cisco-if-extension:switchport-port_security-aging-type": "{{port_security-aging-type}}",
+                "frinx-cisco-if-extension:switchport-port_security-aging-time": {{port_security-aging-time}},
+                "frinx-cisco-if-extension:switchport-port_security-aging-static": {{port_security-aging-static}}
             },
             "hold-time": {
                 "config": {
@@ -142,6 +154,18 @@ frinx-openconfig-interfaces:interfaces/interface/{{eth_ifc_name}}
                     }
                 }
             },
+            "frinx-oam:cfm": {
+                "mip": {
+                    "level": [
+                        {
+                            "level": {{level}},
+                            "vlan": [
+                                "{{level-vlan}}"
+                            ]
+                        }
+                    ]
+                }
+            },
             "frinx-cisco-if-extension:statistics": {
                 "config": {
                     "load-interval": {{eth_load_interval}}
@@ -167,12 +191,41 @@ interface {{eth_ifc_name}}
  description {{eth_description}}
  mtu {{eth_mtu}}
  ip address {{eth_ip}} {{eth_subnet}}
+ channel-group {{lag_ifc_id}} mode {{lacp_mode}}
+ media-type {{eth_phy_type}} 
  shutdown | no shutdown
+ switchport port-security | no switchport port-security
+ switchport port-security maximum {{port_security-maximum}}
+ switchport port-security violation {{port_security-violation}}
+ switchport port-security aging time {{port_security-aging-time}}
+ switchport port-security aging type {{port_security-aging-type}}
+ switchport port-security aging static | no switchport port-security aging static
+ ethernet cfm mip level {{level}} vlan {{level-vlan}}
+ l2protocol-tunnel {{l2-protocols}}
+ lldp transmit | no lldp transmit
+ lldp receive | no lldp receive
+ cdp enable | no cdp enable
 </pre>
 
 {{eth_subnet}} is a conversion of {{eth_prefix_length}}  
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
-*shutdown* is a conversion of {{eth_enabled}} set *false*  
+*shutdown* is a conversion of {{eth_enabled}} set *false*
+*switchport port-security* is a conversion of {{port_security-enable}} set *true*
+*no switchport port-security* is a conversion of {{port_security-enable}} set *false*
+{{port_security-violation}} can be "protect", "restrict" or "shutdown"
+{{port_security-aging-type}} can be "absolute" or "inactivity"
+*switchport port-security aging static* is a conversion of {{port_security-aging-static}} set *true*
+*no switchport port-security aging static* is a conversion of {{port_security-aging-static}} set *false*
+*lldp transmit* is a conversion of {{lldp-transmit}} set *true*
+*no lldp transmit* is a conversion of {{lldp-transmit}} set *false*
+*lldp receive* is a conversion of {{lldp-receive}} set *true*
+*no lldp receive* is a conversion of {{lldp-receive}} set *false*
+*cdp enable* is a conversion of {{cdp-enable}} set *true*
+*no cdp enable* is a conversion of {{cdp-enable}} set *false*
+{{lag_ifc_id}} is parsed from {{lag_ifc_name}}
+example {{lag_ifc_name}} is Port-channel3 -> {{lag_ifc_id}} is 3
+mode on is a conversion of {{lacp_mode}} set to frinx-openconfig-lacp:ON
+{{eth_phy_type}} can be "default" or "rj45" or "sfp"
 
 ---
 <pre>
