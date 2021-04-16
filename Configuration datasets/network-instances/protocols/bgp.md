@@ -47,6 +47,8 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                        ]
                    },
                    "config": {
+                       "frinx-bgp-extension:log-neighbor-changes": {{log_neighbor_changes}},
+                       "frinx-bgp-extension:default-information-originate": {{default_information_originate}},
                        "as": {{bgp_as}}
                    }
                 },
@@ -64,7 +66,8 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
                                 "description": "{{bgp_nbr_description}}",
                                 "send-community": "{{bgp_nbr_sendcommunity}}",
                                 "remove-private-as": ""{{bgp_nbr_removepas}},
-                                "enabled": {{neighbor_enabled}}
+                                "enabled": {{neighbor_enabled}},
+                                "frinx-bgp-extension:as-override": {{as_override}},
                             },
                             "transport": {
                                 "config": {
@@ -266,6 +269,8 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 ---
 <pre>
 router bgp {{bgp_as}}
+ bgp log-neighbor-changes|no bgp log-neighbor-changes
+ default-information originate|default-information originate
  neighbor {{peer-group-name}} peer-group
  neighbor {{neighbor_ip}} peer-group {{bgp_group}}
  neighbor {{neighbor_ip}}|{{peer-group-name}} remote-as {{bgp_peer_as}}
@@ -277,10 +282,16 @@ router bgp {{bgp_as}}
   neighbor {{neighbor_ip}}|{{peer-group-name}} send-community {{bgp_nbr_sendcommunity}}
   neighbor {{neighbor_ip}}|{{peer-group-name}} route-reflector-client
   neighbor {{neighbor_ip}}|{{peer-group-name}} route-map {{bgp_rpol_import}}|{{bgp_rpol_export}} in|out
+  neighbor {{neighbor_ip}} as-override
   neighbor {{neighbor_ip}} activate
 </pre>
 ---
 
+*bgp log-neighbor-changes* is a conversion of {{log_neighbor_changes}} set *true*  
+*no bgp log-neighbor-changes* is a conversion of {{log_neighbor_changes}} set *false*
+*default-information originate* is a conversion of {{default_information_originate}} set *true*  
+*no default-information originate* is a conversion of {{default_information_originate}} set *false*
+*neighbor {{neighbor_ip}} as-override* is a conversion of {{as_override}} set *true*
 *transport connection-mode passive* is a conversion of {{bgp_nbr_passivemode}} set *true*  
 *route-reflector-client* is a conversion of {{bgp_nbr_rrclient}} set *true*  
 
