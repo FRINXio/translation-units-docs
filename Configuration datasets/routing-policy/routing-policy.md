@@ -133,7 +133,9 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets/prefix-sets/prefix-s
                         "masklength-range": "{{prefix_range}}",
                         "config": {
                             "ip-prefix": "{{prefix}}/{{prefix_length}}",
-                            "masklength-range": "{{prefix_range}}"
+                            "masklength-range": "{{prefix_range}}",
+                            "frinx-cisco-routing-policy-extension:sequence-id": {{sequence_id}},
+                            "frinx-cisco-routing-policy-extension:operation": "{{operation}}",
                         }
                     }
                 ]
@@ -187,6 +189,15 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets/bgp-defined-sets/as-
 }
 ```
 ## OS Configuration Commands
+
+### Cisco IOS 12, IOS 15
+
+<pre>
+ip prefix-list {{pset_name}} seq {{sequence_id}} {{operation}} {{prefix}}/{{prefix_length}}
+</pre>
+
+*permit* is a conversion of {{operation}} set to *frinx-cisco-routing-policy-extension:PERMIT*  
+*deny* is a conversion of {{operation}} set to *frinx-cisco-routing-policy-extension:DENY*  
 
 ### Cisco IOS XR 5.3.4, IOS XR 6.6.2
 
