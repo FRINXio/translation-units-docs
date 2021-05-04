@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-interfaces:interfaces/interface/{{l2vlan_if_name}}
+frinx-openconfig-interfaces:interfaces/interface={{l2vlan_if_name}}
 ```
 
 ## OPENCONFIG YANG

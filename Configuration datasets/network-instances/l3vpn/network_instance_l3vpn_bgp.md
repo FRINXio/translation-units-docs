@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/{{l3_vpn_bgp_vrf}}
+frinx-openconfig-network-instance:network-instances/network-instance={{l3_vpn_bgp_vrf}}
 ```
 
 ## OPENCONFIG YANG

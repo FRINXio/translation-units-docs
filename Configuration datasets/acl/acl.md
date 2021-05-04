@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-acl:/acl/acl-sets/acl-set/{{acl_name}}
+frinx-openconfig-acl:acl/acl-sets/acl-set={{acl_name}},{{acl_type}}
 ```
 
 ## OPENCONFIG YANG
@@ -14,6 +14,7 @@ frinx-openconfig-acl:/acl/acl-sets/acl-set/{{acl_name}}
     "acl-set": [
         {
             "name": "{{acl_name}}",
+            "type": "{{acl_type}}"
             "config": {
             	"name": "{{acl_name}}",
             	"type": "{{acl_type}}",

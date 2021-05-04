@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-interfaces:interfaces/interface/{{eth_ifc_name}}
+frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
 ```
 
 ## OPENCONFIG YANG

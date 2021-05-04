@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-routing-policy:routing-policy/policy-definitions/policy-definition/{{rpol_name}}
+frinx-openconfig-routing-policy:routing-policy/policy-definitions/policy-definition={{rpol_name}}?content=nonconfig
 ```
 
 ## OPENCONFIG YANG
@@ -115,7 +115,7 @@ frinx-openconfig-routing-policy:routing-policy/policy-definitions/policy-definit
 ```
 
 ```
-frinx-openconfig-routing-policy:routing-policy/defined-sets/prefix-sets/prefix-set/{{pset_name}}
+frinx-openconfig-routing-policy:routing-policy/defined-sets/prefix-sets/prefix-set={{pset_name}}?content=nonconfig
 ```
 
 ```javascript
@@ -146,7 +146,7 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets/prefix-sets/prefix-s
 ```
 
 ```
-frinx-openconfig-routing-policy:routing-policy/defined-sets/bgp-defined-sets/community-sets/community-set/{{cset_name}}
+frinx-openconfig-routing-policy:routing-policy/defined-sets/bgp-defined-sets/community-sets/community-set={{cset_name}}?content=nonconfig
 ```
 
 ```javascript
@@ -168,7 +168,7 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets/bgp-defined-sets/com
 ```
 
 ```
-frinx-openconfig-routing-policy:routing-policy/defined-sets/bgp-defined-sets/as-path-sets/as-path-set/{{aset_name}}
+frinx-openconfig-routing-policy:routing-policy/defined-sets/bgp-defined-sets/as-path-sets/as-path-set={{aset_name}}
 ```
 
 ```javascript

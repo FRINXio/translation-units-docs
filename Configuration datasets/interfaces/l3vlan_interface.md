@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-interfaces:interfaces/interface/{{vlan_ifc_name}}
+frinx-openconfig-interfaces:interfaces/interface={{vlan_ifc_name}}
 ```
 
 ## OPENCONFIG YANG

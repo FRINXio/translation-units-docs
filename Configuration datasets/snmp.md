@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-snmp:snmp/interfaces/interface/{{snmp_intf_if}}
+frinx-snmp:snmp/interfaces/interface={{snmp_intf_if}}
 ```
 
 ## OPENCONFIG YANG

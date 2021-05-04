@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/{{l2p2p_ni_name1}}
+frinx-openconfig-network-instance:network-instances/network-instance={{l2p2p_ni_name1}}
 ```
 
 ## OPENCONFIG YANG

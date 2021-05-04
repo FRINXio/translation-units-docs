@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-broadcast-containment:filters/filter/{{bc_name}}
+frinx-openconfig-broadcast-containment:filters/filter={{bc_name}}
 ```
 
 ## OPENCONFIG YANG

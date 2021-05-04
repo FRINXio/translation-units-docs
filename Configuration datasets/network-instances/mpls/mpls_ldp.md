@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/default/mpls/signaling-protocols/ldp
+frinx-openconfig-network-instance:network-instances/network-instance=default/mpls/signaling-protocols/ldp
 ```
 
 ## OPENCONFIG YANG

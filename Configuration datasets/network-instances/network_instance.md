@@ -3,7 +3,7 @@
 ## URL
 
 ```
-ios-essential:vrfs/vrf/{{l3_vpn_bgp_vrf}}
+ios-essential:vrfs/vrf={{l3_vpn_bgp_vrf}}
 ```
 
 ## OPENCONFIG YANG

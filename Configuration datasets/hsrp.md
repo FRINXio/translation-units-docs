@@ -3,8 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-hsrp:hsrp/interfaces/interface/{{hsrp_intf_id}}
-```
+frinx-openconfig-hsrp:hsrp/interfaces/interface={{hsrp_intf_id}}
 
 ## OPENCONFIG YANG
 

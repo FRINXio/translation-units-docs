@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/default/protocols/protocol/frinx-openconfig-policy-types:BGP/{{bgp_process_name}}
+frinx-openconfig-network-instance:network-instances/network-instance=default/protocols/protocol=frinx%2Dopenconfig%2Dpolicy%2Dtypes%3ABGP,{{bgp_process_name}}
 ```
 
 ## OPENCONFIG YANG
@@ -14,11 +14,11 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
 {
     "protocol": [
         {
-            "name": "{{bgp_process_name}}",
             "identifier": "frinx-openconfig-policy-types:BGP",
+            "name": "{{bgp_process_name}}"
             "config": {
-                "name": "{{bgp_process_name}}",
-                "identifier": "frinx-openconfig-policy-types:BGP"
+                "identifier": "frinx-openconfig-policy-types:BGP",
+                "name": "{{bgp_process_name}}"
             },
                         
             "local-aggregates": {

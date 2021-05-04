@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/default/mpls/lsps/constrained-path/tunnels/tunnel/{{mpls_tunnel_id}}
+frinx-openconfig-network-instance:network-instances/network-instance=default/mpls/lsps/constrained-path/tunnels/tunnel={{mpls_tunnel_id}}
 ```
 
 ## OPENCONFIG YANG

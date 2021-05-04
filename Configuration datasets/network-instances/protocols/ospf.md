@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/default/protocols/protocol/frinx-openconfig-policy-types:OSPF/{{ospf}}
+frinx-openconfig-network-instance:network-instances/network-instance=default/protocols/protocol=frinx%2Dopenconfig%2Dpolicy%2Dtypes%3AOSPF,{{ospf}}
 ```
 
 ## OPENCONFIG YANG
@@ -14,11 +14,11 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
 {
     "protocol": [
         {
-            "name": {{ospf}},
             "identifier": "frinx-openconfig-policy-types:OSPF",
+            "name": {{ospf}}
             "config": {
-                "name": {{ospf}},
-                "identifier": "frinx-openconfig-policy-types:OSPF"
+                "identifier": "frinx-openconfig-policy-types:OSPF",
+                "name": {{ospf}}
             },
             "ospfv2": {
                 "global": {

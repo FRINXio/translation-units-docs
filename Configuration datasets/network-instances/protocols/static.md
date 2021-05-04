@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/default/protocols/protocol/frinx-openconfig-policy-types:STATIC/default
+frinx-openconfig-network-instance:network-instances/network-instance=default/protocols/protocol=frinx%2Dopenconfig%2Dpolicy%2Dtypes%3ASTATIC,default
 ```
 
 ## OPENCONFIG YANG

@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
+frinx-openconfig-network-instance:network-instances/network-instance={{vrf}}
 ```
 
 ## OPENCONFIG YANG
@@ -12,11 +12,12 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
 {
     "network-instance": [
         {
+            "name": "{{vrf}}"
             "config": {
-                "name": "<vrf>"
+                "name": "{{vrf}}"
                 "type": "L3VRF" //matches vpws-instance-type in ietf
-                "route-distinguisher": "<rd>"
-                "enabled-address-families": "<enabled-address-families>"
+                "route-distinguisher": "{{rd}}"
+                "enabled-address-families": "{{enabled-address-families}}"
                 "enabled": true
             }
             
@@ -24,7 +25,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                 "interface": [
                     {
                         "config": {
-                            "id": <interface-id>
+                            "id": {{interface-id}}
                         }
                     }
                 ]
@@ -34,7 +35,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                 "apply-policy": {
                     "config": {
                         "import-policy": [
-                            "<vrf>-route-target-import"
+                            "{{vrf}}-route-target-import"
                         ]
                     }
                 }
@@ -44,52 +45,52 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                 "protocol": [
                     {
                         "config": {
-                            "identifier": "ospf <ospf-process-id>"
+                            "identifier": "ospf {{ospf-process-id}}"
                             "enabled": true
                             "frinx-ospf-extension:export-policy": [
-                                "<ospf-export-policy>"
+                                "{{ospf-export-policy}}"
                             ]
                         }
                         
                         "ospfv2": {
                             "global": {
-                                "as": "<as-number>"
-                                "router-id": "<router-id>"
+                                "as": "{{as-number}}"
+                                "router-id": "{{router-id}}"
                             }
                             "areas": {
                                 "area": [
                                     {
                                         "config": {
-                                            "identifier": "<area-id>"
+                                            "identifier": "{{area-id}}"
                                         }
                                         "interfaces" {
                                             "interface" [
-                                                "id": "<ospf_interface>"
+                                                "id": "{{ospf_interface}}"
                                                 "config": {
-                                                    "id": "<ospf_interface>"
-                                                    "network-type": "<ospf_network_type>"
-                                                    "frinx-ospf-extension:enabled": "<ospf_interface_enabled>"
-                                                    "metric": <ospf_cost>
-                                                    "priority": <ospf_priority>
+                                                    "id": "{{ospf_interface}}"
+                                                    "network-type": "{{ospf_network_type}}"
+                                                    "frinx-ospf-extension:enabled": "{{ospf_interface_enabled}}"
+                                                    "metric": {{ospf_cost}}
+                                                    "priority": {{ospf_priority}}
                                                 }
                                                 "frinx-bfd-extension:bfd": {
                                                     "config": {
-                                                        "multiplier": <bfd_interface_multiplier>
-                                                        "min-interval": <bfd_interface_min_interval>
-                                                        "min-receive-interval": <bfd_interface_min_recieve_interval>
+                                                        "multiplier": {{bfd_interface_multiplier}}
+                                                        "min-interval": {{bfd_interface_min_interval}}
+                                                        "min-receive-interval": {{bfd_interface_min_recieve_interval}}
                                                     }
                                                 }
                                                 "frinx-ospf-extension:authentication": {
                                                     "config": {
-                                                        "enabled": "<ospf_auth_enabled>"
+                                                        "enabled": "{{ospf_auth_enabled}}"
                                                         "type": "auth-type:md5"
                                                         "passwords": {
                                                             "password": [
                                                                 {
-                                                                    "auth-id": "<ospf_auth_id>"
+                                                                    "auth-id": "{{ospf_auth_id}}"
                                                                     "config": {
-                                                                        "auth-id": "<ospf_auth_id>"
-                                                                        "auth-password": "<ospf_auth_password>"
+                                                                        "auth-id": "{{ospf_auth_id}}"
+                                                                        "auth-password": "{{ospf_auth_password}}"
                                                                     }
                                                                 }
                                                             ]
@@ -104,10 +105,10 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                         }
                     }
                     {
-                        "name": "<ospfv3-process-id>"
+                        "name": "{{ospfv3-process-id}}"
                         "identifier": "frinx-openconfig-policy-types:OSPF3"
                         "config": {
-                            "name": "<ospfv3-process-id>"
+                            "name": "{{ospfv3-process-id}}"
                             "identifier": "frinx-openconfig-policy-types:OSPF3"
                         }
                         "ospfv3": {
@@ -130,7 +131,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                         
                         "bgp": {
                             "global": {
-                                "as": "<as-number>"
+                                "as": "{{as-number}}"
                                 "afi-safis": {
                                     "afi-safi": [
                                         "config": {
@@ -148,13 +149,13 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                 "table": [
                     {
                         "config": {
-                            "protocol": "ospf <ospf-process-id>"
+                            "protocol": "ospf {{ospf-process-id}}"
                         }
                         "address-family": "ipv4"
                     }
                     {
                         "config": {
-                            "protocol": "bgp <as-number>"
+                            "protocol": "bgp {{as-number}}"
                         }
                         "address-family": "ipv4"
                     }
@@ -164,15 +165,15 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
                 "table-connection": [
                     {
                         "config": {
-                            "src-protocol": "<redistribute2_from>" = "ospf <ospf-process-id>"
-                            "dst-protocol": "<redistribute2_to>" = "bgp <as-number>"
+                            "src-protocol": "{{redistribute2_from}}" = "ospf {{ospf-process-id}}"
+                            "dst-protocol": "{{redistribute2_to}}" = "bgp {{as-number}}"
                         }
                         "address-family": "ipv4"
                     }
                     {
                         "config": {
-                            "src-protocol": "<redistribute1_from>" = "bgp <as-number>"
-                            "dst-protocol": "<redistribute1_to>" = "ospf <ospf-process-id>"
+                            "src-protocol": "{{redistribute1_from}}" = "bgp {{as-number}}"
+                            "dst-protocol": "{{redistribute1_to}}" = "ospf {{ospf-process-id}}"
                         }
                         "address-family": "ipv4"
                     }
@@ -184,7 +185,7 @@ frinx-openconfig-network-instance:network-instances/network-instance/<vrf>
 ```
 
 ```
-frinx-openconfig-routing-policy:routing-policy/defined-sets<vrf>
+frinx-openconfig-routing-policy:routing-policy/defined-sets{{vrf}}
 ```
 
 ```
@@ -194,21 +195,21 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets<vrf>
             ext-community-set [
                 {            
                     "config": {
-                        "ext-community-set-name": "<vrf>-route-target-export-set"
+                        "ext-community-set-name": "{{vrf}}-route-target-export-set"
                         "ext-community-set-member": [
-                            {<rt_exp_1>}
-                            {<rt_exp_2>}
-                            {<rt_exp_3>}
+                            {{rt_exp_1}}
+                            {{rt_exp_2}}
+                            {{rt_exp_3}}
                         ]
                     }
                 }
                 {            
                     "config": {
-                        "ext-community-set-name": "<vrf>-route-target-import-set"
+                        "ext-community-set-name": "{{vrf}}-route-target-import-set"
                         "ext-community-set-member": [
-                            {<rt_imp_1>}
-                            {<rt_imp_2>}
-                            {<rt_imp_3>}
+                            {{rt_imp_1}}
+                            {{rt_imp_2}}
+                            {{rt_imp_3}}
                         ]
                     }
                 }
@@ -219,7 +220,7 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets<vrf>
 ```
 
 ```
-frinx-openconfig-routing-policy:routing-policy/policy-definitions<vrf>
+frinx-openconfig-routing-policy:routing-policy/policy-definitions{{vrf}}
 ```
 
 ```
@@ -227,7 +228,7 @@ frinx-openconfig-routing-policy:routing-policy/policy-definitions<vrf>
     "policy-definition" [
         {            
             "config": {
-                "name": "<vrf>-route-target-import"
+                "name": "{{vrf}}-route-target-import"
                 "statements": {
                     "statement" [
                         {
@@ -235,7 +236,7 @@ frinx-openconfig-routing-policy:routing-policy/policy-definitions<vrf>
                                 "bgp-conditions" {
                                     "match-ext-community-set" {
                                         "config": {
-                                            "ext-community-set": "<vrf>-route-target-import-set"
+                                            "ext-community-set": "{{vrf}}-route-target-import-set"
                                         }
                                     }
                                 }
@@ -252,11 +253,11 @@ frinx-openconfig-routing-policy:routing-policy/policy-definitions<vrf>
         }
         {            
             "config": {
-                "name": "<vrf>-route-target-export"
+                "name": "{{vrf}}-route-target-export"
                 "statements": {
                     "statement" [
                         {
-                            "name": "<vrf>-route-target-export-statement"
+                            "name": "{{vrf}}-route-target-export-statement"
                             "actions" {
                                 "bgp-actions" {
                                     "set-ext-community" {
@@ -264,7 +265,7 @@ frinx-openconfig-routing-policy:routing-policy/policy-definitions<vrf>
                                             "method": "REFERENCE"
                                             "reference" {
                                                 "config": {
-                                                    "ext-community-set-ref": "<vrf>-route-target-export-set"
+                                                    "ext-community-set-ref": "{{vrf}}-route-target-export-set"
                                                 }
                                             }
                                         }
@@ -287,45 +288,45 @@ frinx-openconfig-routing-policy:routing-policy/policy-definitions<vrf>
 #### CLI
 
 <pre>
-vrf &lt;vrf&gt;
+vrf {{vrf}}
  address-family ipv4 unicast
   import route-target 
-   {&lt;rt_imp_1&gt;}
-   {&lt;rt_imp_2&gt;}
-   {&lt;rt_imp_3&gt;}
+   {{rt_imp_1}}
+   {{rt_imp_2}}
+   {{rt_imp_3}}
   export route-target 
-   {&lt;rt_exp_1&gt;}
-   {&lt;rt_exp_2&gt;}
-   {&lt;rt_exp_3&gt;}
+   {{rt_exp_1}}
+   {{rt_exp_2}}
+   {{rt_exp_3}}
 
-interface &lt;interface-id&gt;
- vrf &lt;vrf&gt;
+interface {{interface-id}}
+ vrf {{vrf}}
 
-router ospf &lt;ospf-process-id&gt;
- vrf &lt;vrf&gt;
-  router-id &lt;router-id&gt;
+router ospf {{ospf-process-id}}
+ vrf {{vrf}}
+  router-id {{router-id}}
   
-  area &lt;area-id&gt;
-   interface &lt;interface-id&gt;
+  area {{area-id}}
+   interface {{interface-id}}
    
-router ospfv3 &lt;ospfv3-process-id&gt;
- vrf &lt;vrf&gt;
+router ospfv3 {{ospfv3-process-id}}
+ vrf {{vrf}}
   stub-router router-lsa max-metric
    always
      
-router bgp &lt;as-number&gt;
- vrf &lt;vrf&gt;
+router bgp {{as-number}}
+ vrf {{vrf}}
   address-family ipv4 unicast
   
-router &lt;redistribute1-to&gt;
- vrf &lt;vrf&gt;
+router {{redistribute1-to}}
+ vrf {{vrf}}
   address-family ipv4 unicast
-   redistribute &lt;redistribute1-from&gt;
+   redistribute {{redistribute1-from}}
    
-router &lt;redistribute2-to&gt;
- vrf &lt;vrf&gt;
+router {{redistribute2-to}}
+ vrf {{vrf}}
   address-family ipv4 unicast
-   redistribute &lt;redistribute2-from&gt;
+   redistribute {{redistribute2-from}}
 </pre>
 
 ### CISCO IOS XR (6.2.3)
@@ -333,14 +334,14 @@ router &lt;redistribute2-to&gt;
 #### CLI
 
 <pre>
-interface &lt;interface-id&gt;
- vrf &lt;vrf&gt;
+interface {{interface-id}}
+ vrf {{vrf}}
 
-router ospf &lt;ospf-process-id&gt;
- vrf &lt;vrf&gt;
-  area &lt;area-id&gt;
-   interface &lt;interface-id&gt;
-    cost &lt;ospf_cost&gt;
+router ospf {{ospf-process-id}}
+ vrf {{vrf}}
+  area {{area-id}}
+   interface {{interface-id}}
+    cost {{ospf_cost}}
 </pre>
 
 ### CISCO IOS XR (6.6.1)
@@ -348,25 +349,25 @@ router ospf &lt;ospf-process-id&gt;
 #### CLI
 
 <pre>
-vrf &lt;vrf&gt;
+vrf {{vrf}}
  address-family ipv4 unicast
   import route-target 
-   {&lt;rt_imp_1&gt;}
-   {&lt;rt_imp_2&gt;}
-   {&lt;rt_imp_3&gt;}
+   {{rt_imp_1}}
+   {{rt_imp_2}}
+   {{rt_imp_3}}
   export route-target 
-   {&lt;rt_exp_1&gt;}
-   {&lt;rt_exp_2&gt;}
-   {&lt;rt_exp_3&gt;}
+   {{rt_exp_1}}
+   {{rt_exp_2}}
+   {{rt_exp_3}}
 
-interface &lt;interface-id&gt;
- vrf &lt;vrf&gt;
+interface {{interface-id}}
+ vrf {{vrf}}
 
-router ospf &lt;ospf-process-id&gt;
- vrf &lt;vrf&gt;
-  area &lt;area-id&gt;
-   interface &lt;interface-id&gt;
-    cost &lt;ospf_cost&gt;
+router ospf {{ospf-process-id}}
+ vrf {{vrf}}
+  area {{area-id}}
+   interface {{interface-id}}
+    cost {{ospf_cost}}
 
 </pre>
 ##### Unit
@@ -378,27 +379,27 @@ Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/
 #### CLI
 
 <pre>
-ip vrf &lt;vrf&gt;
- rd &lt;rd&gt;
- route-target export {&lt;rt_exp_1&gt;}
- route-target export {&lt;rt_exp_2&gt;}
- route-target export {&lt;rt_exp_3&gt;}
- route-target import {&lt;rt_imp_1&gt;}
- route-target import {&lt;rt_imp_2&gt;}
- route-target import {&lt;rt_imp_3&gt;}
+ip vrf {{vrf}}
+ rd {{rd}}
+ route-target export {{rt_exp_1}}
+ route-target export {{rt_exp_2}}
+ route-target export {{rt_exp_3}}
+ route-target import {{rt_imp_1}}
+ route-target import {{rt_imp_2}}
+ route-target import {{rt_imp_3}}
 
-interface &lt;interface-id&gt;
- ip vrf forwarding &lt;vrf&gt;
- ip ospf &lt;ospf-process-id&gt; area &lt;area-id&gt;
+interface {{interface-id}}
+ ip vrf forwarding {{vrf}}
+ ip ospf {{ospf-process-id}} area {{area-id}}
 
-router &lt;ospf-process-id&gt; vrf &lt;vrf&gt;
+router {{ospf-process-id}} vrf {{vrf}}
 
-router &lt;redistribute1-to&gt; vrf &lt;vrf&gt;
- redistribute b&lt;redistribute1-from&gt; subnets
+router {{redistribute1-to}} vrf {{vrf}}
+ redistribute b{{redistribute1-from}} subnets
 
-router &lt;redistribute2-to&gt;
- address-family ipv4 vrf &lt;vrf&gt;
-  redistribute &lt;redistribute2-from&gt; 
+router {{redistribute2-to}}
+ address-family ipv4 vrf {{vrf}}
+  redistribute {{redistribute2-from}} 
 </pre>
 
 
@@ -407,29 +408,29 @@ router &lt;redistribute2-to&gt;
 #### CLI
 
 <pre>
-set routing-instances &lt;vrf&gt; instance-type virtual-router
-set routing-instances &lt;vrf&gt; interface &lt;interface-id&gt;
-set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; interface-type &lt;ospf_network_type&gt;
-set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; metric &lt;ospf_cost&gt;
-set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; priority &lt;ospf_priority&gt;
-delete routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; disable 
-| set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; disable
-set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; authentication md5 &lt;ospf_auth_id&gt; key &lt;ospf_auth_password&gt;
-| delete routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; authentication
-set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; bfd-liveness-detection minimum-interval &lt;bfd_interface_min_interval&gt;
-set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; bfd-liveness-detection minimum-receive-interval &lt;bfd_interface_min_recieve_interval&gt;
-set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; bfd-liveness-detection multiplier &lt;bfd_interface_multiplier&gt;
+set routing-instances {{vrf}} instance-type virtual-router
+set routing-instances {{vrf}} interface {{interface-id}}
+set routing-instances {{vrf}} protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} interface-type {{ospf_network_type}}
+set routing-instances {{vrf}} protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} metric {{ospf_cost}}
+set routing-instances {{vrf}} protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} priority {{ospf_priority}}
+delete routing-instances {{vrf}} protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} disable 
+| set routing-instances {{vrf}} protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} disable
+set routing-instances {{vrf}} protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} authentication md5 {{ospf_auth_id}} key {{ospf_auth_password}}
+| delete routing-instances {{vrf}} protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} authentication
+set routing-instances {{vrf}} protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} bfd-liveness-detection minimum-interval {{bfd_interface_min_interval}}
+set routing-instances {{vrf}} protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} bfd-liveness-detection minimum-receive-interval {{bfd_interface_min_recieve_interval}}
+set routing-instances {{vrf}} protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} bfd-liveness-detection multiplier {{bfd_interface_multiplier}}
 </pre>
 
-*virtual-router* is a conversion of &lt;type&gt; set *L3VRF*  
-*delete routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; disable* is a conversion of &lt;ospf_interface_enabled&gt; set *true*  
-*set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; disable* is a conversion of &lt;ospf_interface_enabled&gt; set *false*  
-*set routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; authentication* is a conversion of &lt;ospf_auth_enabled&gt; set *true*  
-*delete routing-instances &lt;vrf&gt; protocols ospf area &lt;ospf_area_id&gt; interface &lt;ospf_interface&gt; authentication* is a conversion of &lt;ospf_auth_enabled&gt; set *false*  
+*virtual-router* is a conversion of {{type}} set *L3VRF*  
+*delete routing-instances {{vrf}} protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} disable* is a conversion of {{ospf_interface_enabled}} set *true*  
+*set routing-instances {{vrf}} protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} disable* is a conversion of {{ospf_interface_enabled}} set *false*  
+*set routing-instances {{vrf}} protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} authentication* is a conversion of {{ospf_auth_enabled}} set *true*  
+*delete routing-instances {{vrf}} protocols ospf area {{ospf_area_id}} interface {{ospf_interface}} authentication* is a conversion of {{ospf_auth_enabled}} set *false*  
 
 <pre>
-set routing-instances &lt;vrf&gt; routing-options instance-import &lt;vrf&gt;-route-target-import
-set routing-instances &lt;vrf&gt; protocols ospf export &lt;ospf-export-policy&gt;
+set routing-instances {{vrf}} routing-options instance-import {{vrf}}-route-target-import
+set routing-instances {{vrf}} protocols ospf export {{ospf-export-policy}}
 </pre>
 
 ### Junos 18.2R1-S2.1
@@ -437,5 +438,5 @@ set routing-instances &lt;vrf&gt; protocols ospf export &lt;ospf-export-policy&g
 #### CLI
 
 <pre>
-set routing-instances &lt;vrf&gt; interface &lt;interface-id&gt;
+set routing-instances {{vrf}} interface {{interface-id}}
 </pre>

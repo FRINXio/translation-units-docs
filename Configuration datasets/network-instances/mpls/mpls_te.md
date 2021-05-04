@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/default/mpls
+frinx-openconfig-network-instance:network-instances/network-instance=default/mpls
 ```
 
 ## OPENCONFIG YANG

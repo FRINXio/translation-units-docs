@@ -3,8 +3,7 @@
 ## URL
 
 ```
-frinx-logging:logging/interfaces/interface/{{intf_id}}
-```
+frinx-logging:logging/interfaces/interface={{intf_id}}
 
 ## OPENCONFIG YANG
 

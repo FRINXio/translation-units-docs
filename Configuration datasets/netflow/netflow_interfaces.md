@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-netflow:netflow/interfaces/interface/{{netflow_intf_id}}
+frinx-netflow:netflow/interfaces/interface={{netflow_intf_id}}
 ```
 
 ## OPENCONFIG YANG

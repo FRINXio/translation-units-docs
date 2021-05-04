@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/default/mpls/signaling-protocols/rsvp-te/interface-attributes/interface/{{rsvp_intf_id}}
+frinx-openconfig-network-instance:network-instances/network-instance=default/mpls/signaling-protocols/rsvp-te/interface-attributes/interface={{rsvp_intf_id}}
 ```
 
 ## OPENCONFIG YANG

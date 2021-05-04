@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-ipsec:ipsec/client-groups/client-group/{{group_name}}
+frinx-ipsec:ipsec/client-groups/client-group={{group_name}}
 ```
 
 ## OPENCONFIG YANG

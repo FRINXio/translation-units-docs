@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/default/protocols/protocol/frinx-openconfig-policy-types:ISIS/{{isis}}
+frinx-openconfig-network-instance:network-instances/network-instance=default/protocols/protocol=frinx%2Dopenconfig%2Dpolicy%2Dtypes%3AISIS,{{isis}}
 ```
 
 ## OPENCONFIG YANG
@@ -14,11 +14,11 @@ frinx-openconfig-network-instance:network-instances/network-instance/default/pro
 {
     "protocol": [
         {
-            "name": {{isis}},
             "identifier": "frinx-openconfig-policy-types:ISIS",
+            "name": {{isis}}
             "config": {
-                "name": {{isis}},
-                "identifier": "frinx-openconfig-policy-types:ISIS"
+                "identifier": "frinx-openconfig-policy-types:ISIS",
+                "name": {{isis}}
             },
             "isis": {
                 "interfaces": {

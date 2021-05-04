@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/default/policy-forwarding/interfaces/interface/{{policy_interface}}
+frinx-openconfig-network-instance:network-instances/network-instance=default/policy-forwarding/interfaces/interface={{policy_interface}}
 ```
 
 ## OPENCONFIG YANG

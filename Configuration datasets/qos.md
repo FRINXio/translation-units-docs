@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-qos:/qos
+frinx-openconfig-qos:qos?content=nonconfig
 ```
 
 ## OPENCONFIG YANG
@@ -33,7 +33,7 @@ frinx-openconfig-qos:/qos
 ## URL
 
 ```
-frinx-openconfig-qos:/qos/classifiers/classifier/{{class_name}}
+frinx-openconfig-qos:qos/classifiers/classifier={{class_name}}?content=nonconfig
 ```
 
 ## OPENCONFIG YANG
@@ -91,7 +91,7 @@ frinx-openconfig-qos:/qos/classifiers/classifier/{{class_name}}
 ## URL
 
 ```
-frinx-openconfig-qos:qos/scheduler-policies/scheduler-policy/{{policy_name}}
+frinx-openconfig-qos:qos/scheduler-policies/scheduler-policy={{policy_name}}
 ```
 
 ## OPENCONFIG YANG
@@ -154,7 +154,7 @@ frinx-openconfig-qos:qos/scheduler-policies/scheduler-policy/{{policy_name}}
 #### CLI
 
 <pre>
-class-map <match-any/match-all> {{class_name}}
+class-map match-any|match-all {{class_name}}
     match qos-group {{term_c_qos_grp}}
     match mpls experimental topmost {{term_c_tc}}
     match precedence {{term_c_common_prec}}

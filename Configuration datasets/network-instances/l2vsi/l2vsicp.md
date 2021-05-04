@@ -5,7 +5,7 @@ Interconnects L2VSI with a vlan-based upstream path
 ## URL
 
 ```
-frinx-openconfig-network-instance:network-instances/network-instance/{{vsicp_ni_name}}
+frinx-openconfig-network-instance:network-instances/network-instance={{vsicp_ni_name}}
 ```
 
 ## OPENCONFIG YANG
