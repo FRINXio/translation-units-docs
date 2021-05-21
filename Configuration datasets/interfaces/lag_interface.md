@@ -43,7 +43,17 @@ frinx-openconfig-interfaces:interfaces/interface={{lag_ifc_name}}
                                                 "virtual-router-id": "{{lag_ip_virtual_id}}",
                                                 "config": {
                                                     "virtual-router-id": "{{lag_ip_virtual_id}}",
-                                                    "virtual-address": "{{lag_ip_virtual_address}}"
+                                                    "virtual-address": ["{{lag_ip_virtual_address}}"],
+                                                    "priority": {{priority}},
+                                                    "tracked-objects": [
+                                                        {
+                                                            "tracked-object-id": {{tracked_object_id}},
+                                                            "priority-decrement": {{priority_decrement}}
+                                                        }],
+                                                    "virtual-secondary-addresses": [
+                                                        "{{virtual_secondary_addresses}}"
+                                                    ],
+                                                    "preempt-delay": {{preempt_delay}}     
                                                 }
                                             ]
                                         }
@@ -236,7 +246,24 @@ frinx-openconfig-interfaces:interfaces/interface={{lag_ifc_name}}
 ```
 
 ## OS Configuration Commands
+  
+### Cisco IOS XE
 
+<pre>
+interface GigabitEthernet2
+ ip address {{lag_ip}}
+ vrrp {{lag_ip_virtual_id}} address-family ipv4
+  priority {{priority}}
+  preempt delay minimum {{preempt_delay}}
+  track {{tracked_object_id}} decrement {{priority_decrement}}
+  address {{lag_ip_virtual_address}} primary
+  address {{virtual_secondary_addresses}} secondary
+</pre>
+
+##### Unit
+
+Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/interface)
+                                                   
 ### Cisco IOS Classic (15.2(4)S5) / XE (15.3(3)S2)
 
 <pre>
@@ -248,7 +275,7 @@ interface {{lag_ifc_name}}
 
 ##### Unit
 
-Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/interface)
+Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xe/interface)
 
 ### Cisco IOS XR 5.3.4
 
