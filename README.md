@@ -34,8 +34,8 @@ Each URL has a base format:
 http://localhost:8181/rests/data/network-topology:network-topology/topology={{topo-name}}/node={{node-id}}/yang-ext:mount
 ```
 
-- &lt;topo-name&gt; can be either cli or unified
-- &lt;node-id&gt; mountpoint name
+- {{topo-name}} can be either cli or unified
+- {{node-id}} mountpoint name
 
 
 The URL will always point to either <b>operational</b> or <b>config</b> datastore and to the node we want to get the information from.
