@@ -87,9 +87,9 @@ http://localhost:8181/rests/data/network-topology:network-topology/topology={{to
 
 - very specific URL listing interfaces under one specific area in OSPF under specific VRF
 
-Let's say you want to list all areas in a specific OSPF. To obtain this data, you can trim the part: '/area=&lt;area-id&gt;/interfaces' from the URL.
+Let's say you want to list all areas in a specific OSPF. To obtain this data, you can trim the part: '/area={{area-id}}/interfaces' from the URL.
 
-Let's say you want to be even more specific and list details just about one particular interface. You can view the data by adding 'interface=&lt;interface-id&gt;' to the URL.
+Let's say you want to be even more specific and list details just about one particular interface. You can view the data by adding 'interface={{interface-id}}' to the URL.
 
 The general steps in creating the URL are following:
 
