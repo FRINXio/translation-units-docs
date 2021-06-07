@@ -221,8 +221,8 @@ We want to create a new BGP neighbor:
 The IOS command is:
 
 <pre>
-router bgp &lt;as&gt;
- neighbor &lt;neighbor-address&gt;
+router bgp {{as}}
+ neighbor {{neighbor-address}}
    no shutdown
 </pre>
 
