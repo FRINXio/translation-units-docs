@@ -31,7 +31,7 @@ Table of Contents
 Each URL has a base format:
 
 ```
-http://localhost:8181/restconf/operational/network-topology:network-topology/topology/<topo-name>/node/<node-id>/yang-ext:mount/
+http://localhost:8181/rests/data/network-topology:network-topology/topology={{topo-name}}/node={{node-id}}/yang-ext:mount
 ```
 
 - &lt;topo-name&gt; can be either cli or unified
@@ -42,7 +42,7 @@ The URL will always point to either <b>operational</b> or <b>config</b> datastor
 You can always check if the particular device is registered by issuing GET on :
 
 ```
-http://localhost:8181/restconf/operational/network-topology:network-topology
+http://localhost:8181/rests/data/network-topology:network-topology
 ```
 Simplified example:
 
@@ -82,14 +82,15 @@ URLs are modular. By changing the URL you can move along the YANG data tree.
 <strong>Example:</strong>
 
 ```
-http://localhost:8181/restconf/operational/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance/<VRF-id>/protocols/protocol/frinx-openconfig-policy-types:OSPF/<OSPF-process-id>/ospfv2/areas/area/<area-id>/interfaces
+http://localhost:8181/rests/data/network-topology:network-topology/topology={{topo-name}}/node={{node-id}}/yang-ext:mount
+```/frinx-openconfig-network-instance:network-instances/network-instance={{VRF-id}}/protocols/protocol=frinx-openconfig-policy-types:OSPF={{OSPF-process-id}}/ospfv2/areas/area={{area-id}}/interfaces
 ```
 
 - very specific URL listing interfaces under one specific area in OSPF under specific VRF
 
-Let's say you want to list all areas in a specific OSPF. To obtain this data, you can trim the part: '/area/&lt;area-id&gt;/interfaces' from the URL.
+Let's say you want to list all areas in a specific OSPF. To obtain this data, you can trim the part: '/area=&lt;area-id&gt;/interfaces' from the URL.
 
-Let's say you want to be even more specific and list details just about one particular interface. You can view the data by adding 'interface/&lt;interface-id&gt;' to the URL.
+Let's say you want to be even more specific and list details just about one particular interface. You can view the data by adding 'interface=&lt;interface-id&gt;' to the URL.
 
 The general steps in creating the URL are following:
 
@@ -100,30 +101,30 @@ The general steps in creating the URL are following:
 
 <strong>Example:</strong>
 ```
-http://localhost:8181/restconf/operational/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance/<VRF-id>/protocols/protocol/frinx-openconfig-policy-types:OSPF/<OSPF-process-id>/ospfv2/areas/area/<area-id>/interfaces
+http://localhost:8181/rests/data/network-topology:network-topology/topology=cli/node={{node-id}}/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance={{VRF-id}}/protocols/protocol=frinx-openconfig-policy-types:OSPF,{{OSPF-process-id}}/ospfv2/areas/area={{area-id}}/interfaces
 ```
 
 - top-level argument contains also YANG model name: ‘frinx-openconfig-network-instance’
-- network-instances argument is a list. We want to specify one item from that list (specific network instance), therefore the URL continues with ‘network-instance'. The key in network-instance is the identifier '<VRF-id>' (e.g. vrf1) which follows the list item argument. Complex key is needed for protocol argument. The key is protocol-type followed by process-id. (frinx-openconfig-policy-types:OSPF/<OSPF-process-id> )
-- same for 'area/<area-id>'
+- network-instances argument is a list. We want to specify one item from that list (specific network instance), therefore the URL continues with ‘network-instance'. The key in network-instance is the identifier '{{VRF-id}}' (e.g. vrf1) which follows the list item argument. Complex key is needed for protocol argument. The key is protocol-type followed by process-id. (frinx-openconfig-policy-types:OSPF,{{OSPF-process-id}} )
+- same for 'area={{area-id}}'
 - the URL contains an identity which is a part of a key for protocol list. This identity is prefixed by model name: ‘frinx-openconfig-policy-types:OSPF’
 
 You can create a minimalistic YANG tree out of the URL:
 
 ```javascript
 frinx-openconfig-network-instances: {                 // top-level container
-    network-instance: [                         // list
-        {                                       // list-item start
-            key: <VRF-id>                     // list key
+    network-instance: [                               // list
+        {                                             // list-item start
+            key: {{VRF-id}}                           // list key
             protocols: {
                 protocol: [
                     {
-                        key: "frinx-openconfig-policy-types:OSPF <OSPF-process-id>"
+                        key: "frinx-openconfig-policy-types:OSPF {{OSPF-process-id}}"
                         ospfv2: {
                             areas: {
                                 area: [
                                     {
-                                        key: <area-id>
+                                        key: {{area-id}}
                                         interfaces {
                                            ...
                                         }
@@ -131,7 +132,7 @@ frinx-openconfig-network-instances: {                 // top-level container
                                 ]
                             }
                         }
-                    }                           // list-item end
+                    }                                 // list-item end
                 ]
             }
         }
@@ -150,7 +151,7 @@ GET operation can be issued on both config/operational datastore. Config datasto
 Example of a case where the information is not the same (the only difference in requests is config vs operational):
 
 ```
-GET http://{{odl_ip}}:8181/restconf/config/network-topology:network-topology/topology/cli/node/{{node_id}}/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance/default/protocols/protocol/frinx-openconfig-policy-types:STATIC/default/static-routes/static/10.255.1.0%2F24
+GET http://{{odl_ip}}:8181/rests/data/network-topology:network-topology/topology=cli/node={{node_id}}/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance=default/protocols/protocol=frinx-openconfig-policy-types:STATIC,default/static-routes/static=10.255.1.0%2F24?content=config
 ```
 ```json
 {
@@ -176,7 +177,7 @@ GET http://{{odl_ip}}:8181/restconf/config/network-topology:network-topology/top
 ```
 
 ```
-GET http://{{odl_ip}}:8181/restconf/operational/network-topology:network-topology/topology/cli/node/{{node_id}}/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance/default/protocols/protocol/frinx-openconfig-policy-types:STATIC/default/static-routes/static/10.255.1.0%2F24
+GET http://{{odl_ip}}:8181/rests/data/network-topology:network-topology/topology=cli/node={{node_id}}/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance=default/protocols/protocol=frinx-openconfig-policy-types:STATIC,default/static-routes/static=10.255.1.0%2F24?content=nonconfig
 ```
 
 ```json
@@ -229,7 +230,7 @@ router bgp &lt;as&gt;
 #### PUT
 
 ```
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/protocols/protocol/frinx-openconfig-bgp:bgp
+http://localhost:8181/rests/data/network-topology:network-topology/topology=cli/node={{node-id}}/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance={{ni-name}}/protocols/protocol=frinx-openconfig-bgp:bgp
 ```
 
 BODY:
@@ -238,14 +239,14 @@ BODY:
     "bgp": {
         "global": {
             "config": {
-                "as": <as>
+                "as": {{as}}
             }
         }
         "neighbors": {
             "neighbor": [
                 {
                     "config": {
-                        "neighbor-address": <neighbor-address>
+                        "neighbor-address": {{neighbor-address}}
                         "enabled": true
                     }
                 }
@@ -263,7 +264,7 @@ If we want to DELETE a BGP neighbor, the body is not needed, the URL needs to be
 #### DELETE
 
 ```
-http://localhost:8181/restconf/config/network-topology:network-topology/topology/cli/node/<node-id>/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance/<ni-name>/protocols/protocol/frinx-openconfig-bgp:bgp/neighbors/neighbor/<neighbor-address>
+http://localhost:8181/rests/data/network-topology:network-topology/topology=cli/node={{node-id}}/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance={{ni-name}}/protocols/protocol=frinx-openconfig-bgp:bgp/neighbors/neighbor={{neighbor-address}}
 ```
 
 This operation will issue following command:
@@ -290,7 +291,7 @@ In case of show commands this section is a sample output of a particular show co
 ### OS COMMANDS
 In this section we list the actual router commands with sample outputs, where the data obtained and transformed into Openconfig YANG is marked as bold. We list show commands and outputs for each supported device OS.
 
-IOS XR | IOS Classic/XE | Junos
+IOS XR | IOS Classic/XE | Junos | SAOS 
 
 ### DEVICE YANG
 
