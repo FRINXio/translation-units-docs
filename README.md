@@ -316,7 +316,7 @@ In case of configuration commands, this section represents the HTTP body in PUT 
 ### OS COMMANDS
 In this section we list the actual router commands that are mapped to the Openconfig YANG model. Data transformed into Openconfig YANG is marked as bold. We list commands for each supported device OS.
 
-IOS XR | IOS Classic/XE | Junos
+IOS XR | IOS Classic/XE | Junos | SAOS
 
 ### DEVICE YANG
 In case od Netconf units, the device yang represents command sent to the device in device YANG model.
