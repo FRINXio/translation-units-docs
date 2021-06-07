@@ -82,8 +82,7 @@ URLs are modular. By changing the URL you can move along the YANG data tree.
 <strong>Example:</strong>
 
 ```
-http://localhost:8181/rests/data/network-topology:network-topology/topology={{topo-name}}/node={{node-id}}/yang-ext:mount
-```/frinx-openconfig-network-instance:network-instances/network-instance={{VRF-id}}/protocols/protocol=frinx-openconfig-policy-types:OSPF={{OSPF-process-id}}/ospfv2/areas/area={{area-id}}/interfaces
+http://localhost:8181/rests/data/network-topology:network-topology/topology={{topo-name}}/node={{node-id}}/yang-ext:mount/frinx-openconfig-network-instance:network-instances/network-instance={{VRF-id}}/protocols/protocol=frinx-openconfig-policy-types:OSPF={{OSPF-process-id}}/ospfv2/areas/area={{area-id}}/interfaces
 ```
 
 - very specific URL listing interfaces under one specific area in OSPF under specific VRF
