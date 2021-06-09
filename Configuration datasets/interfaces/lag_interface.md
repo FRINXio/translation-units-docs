@@ -38,7 +38,7 @@ frinx-openconfig-interfaces:interfaces/interface={{lag_ifc_name}}
                                             "ip": "{{lag_ip}}",
                                             "prefix-length": "{{lag_prefix_length}}"
                                         },
-                                        "vrrp": {
+                                        "frinx-cisco-vrrp-extension:vrrp": {
                                             "vrrp-group": [
                                                 "virtual-router-id": "{{lag_ip_virtual_id}}",
                                                 "config": {
@@ -48,7 +48,8 @@ frinx-openconfig-interfaces:interfaces/interface={{lag_ifc_name}}
                                                     "tracked-objects": [
                                                         {
                                                             "tracked-object-id": {{tracked_object_id}},
-                                                            "priority-decrement": {{priority_decrement}}
+                                                            "priority-decrement": {{priority_decrement}},
+                                                            "shutdown": {{tracked_object_shutdown}}
                                                         }],
                                                     "virtual-secondary-addresses": [
                                                         "{{virtual_secondary_addresses}}"
@@ -72,6 +73,23 @@ frinx-openconfig-interfaces:interfaces/interface={{lag_ifc_name}}
                                         "config": {
                                             "ip": "{{lag_ip6}}",
                                             "prefix-length": "{{lag_prefix6_length}}"
+                                        },
+                                        "frinx-cisco-vrrp-extension:vrrp": {
+                                            "vrrp-group": [
+                                                "virtual-router-id": "{{lag_ip_virtual_id}}",
+                                                "config": {
+                                                    "virtual-router-id": "{{lag_ip_virtual_id}}",
+                                                    "virtual-address": ["{{lag_ip_virtual_address}}"],
+                                                    "tracked-objects": [
+                                                        {
+                                                            "tracked-object-id": {{tracked_object_id}},
+                                                            "shutdown": {{tracked_object_shutdown}}
+                                                        }],
+                                                    "addresses": [
+                                                        "{{virtual_addresses}}"
+                                                    ]    
+                                                }
+                                            ]
                                         }
                                     }
                                 ]
@@ -256,9 +274,17 @@ interface GigabitEthernet2
   priority {{priority}}
   preempt delay minimum {{preempt_delay}}
   track {{tracked_object_id}} decrement {{priority_decrement}}
+  track {{tracked_object_id}} shutdown | no track {{tracked_object_id}} shutdown 
   address {{lag_ip_virtual_address}} primary
   address {{virtual_secondary_addresses}} secondary
+ vrrp {{lag_ip_virtual_id}} address-family ipv6
+  track {{tracked_object_id}} shutdown | no track {{tracked_object_id}} shutdown
+  address {{lag_ip_virtual_address}} primary
+  address {{virtual_addresses}}
 </pre>
+
+*track {{tracked_object_id}} shutdown* is a conversion of {{tracked_object_shutdown}} set *true*  
+*no track {{tracked_object_id}} shutdown* is a conversion of {{tracked_object_shutdown}} set *false*  
 
 ##### Unit
 
