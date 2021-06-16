@@ -65,9 +65,14 @@ frinx-openconfig-network-instance:network-instances/network-instance=default/pro
                                 "auth-password": "{{bgp_nbr_password}}",
                                 "description": "{{bgp_nbr_description}}",
                                 "send-community": "{{bgp_nbr_sendcommunity}}",
-                                "remove-private-as": ""{{bgp_nbr_removepas}},
+                                "remove-private-as": "{{bgp_nbr_removepas}}",
                                 "enabled": {{neighbor_enabled}},
                                 "frinx-bgp-extension:as-override": {{as_override}},
+                                "local-as": {{local_as}},
+                                "frinx-bgp-extension:local-as-group": {
+                                    "no-prepend": {{local_as_no_prepend}},
+                                    "replace-as": {{local_as_replace_as}}
+                                }
                             },
                             "transport": {
                                 "config": {
@@ -284,6 +289,8 @@ router bgp {{bgp_as}}
   neighbor {{neighbor_ip}}|{{peer-group-name}} route-map {{bgp_rpol_import}}|{{bgp_rpol_export}} in|out
   neighbor {{neighbor_ip}} as-override
   neighbor {{neighbor_ip}} activate
+  neighbor {{neighbor_ip}} remove-private-as
+  neighbor {{neighbor_ip}} local-as {{local_as}} {{local_as_no_prepend}} {{local_as_replace_as}}
 </pre>
 ---
 
@@ -294,6 +301,9 @@ router bgp {{bgp_as}}
 *neighbor {{neighbor_ip}} as-override* is a conversion of {{as_override}} set *true*
 *transport connection-mode passive* is a conversion of {{bgp_nbr_passivemode}} set *true*  
 *route-reflector-client* is a conversion of {{bgp_nbr_rrclient}} set *true*  
+*remove-private-as* is a conversion of {{bgp_nbr_removepas}} set "frinx-openconfig-bgp-types:PRIVATE_AS_REMOVE_ALL"
+*no-prepend* is a conversion of {{local_as_no_prepend}} set *true*  
+*replace-as* is a conversion of {{local_as_replace_as}} set *true*  
 
 ### Junos 17.3R1.10
 
