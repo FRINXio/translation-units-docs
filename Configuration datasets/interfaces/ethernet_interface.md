@@ -32,6 +32,12 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                 "frinx-cisco-if-extension:l2-protocols": [
                     "{{l2-protocols}}"
                 ],
+                "frinx-cisco-if-extension:storm-control": [
+                    {
+                        "address": "{{storm-control-address}}",
+                        "level": {{storm-control-level}}
+                    }
+                ],
                 "frinx-cisco-if-extension:lldp-transmit": {{lldp-transmit}},
                 "frinx-cisco-if-extension:lldp-receive": {{lldp-receive}},
                 "frinx-cisco-if-extension:cdp-enable": {{cdp-enable}},
@@ -204,6 +210,7 @@ interface {{eth_ifc_name}}
  switchport port-security aging static | no switchport port-security aging static
  ethernet cfm mip level {{level}} vlan {{level-vlan}}
  l2protocol-tunnel {{l2-protocols}}
+ storm-control {{storm-control-address}} level {{storm-control-level}}
  lldp transmit | no lldp transmit
  lldp receive | no lldp receive
  cdp enable | no cdp enable
@@ -228,6 +235,7 @@ interface {{eth_ifc_name}}
 example {{lag_ifc_name}} is Port-channel3 -> {{lag_ifc_id}} is 3
 mode on is a conversion of {{lacp_mode}} set to frinx-openconfig-lacp:ON
 {{eth_phy_type}} can be "default" or "rj45" or "sfp"
+{{storm-control-address}} can be "broadcast" or "multicast" or "unicast"
 
 ---
 <pre>
