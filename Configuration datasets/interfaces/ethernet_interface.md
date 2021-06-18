@@ -139,6 +139,7 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
             },
             "frinx-openconfig-if-ethernet:ethernet": {
                 "config": {
+                    "port-speed": "{{eth_speed}}",
                     "frinx-openconfig-if-aggregate:aggregate-id": "{{lag_ifc_name}}",
                     "frinx-lacp-lag-member:lacp-mode": "{{lacp_mode}}",
                     "frinx-lacp-lag-member:interval": "{{lacp_interval}}",
@@ -193,6 +194,7 @@ interface {{eth_ifc_name}}
  ip address {{eth_ip}} {{eth_subnet}}
  channel-group {{lag_ifc_id}} mode {{lacp_mode}}
  media-type {{eth_phy_type}} 
+ speed {{eth_speed}}
  shutdown | no shutdown
  switchport port-security | no switchport port-security
  switchport port-security maximum {{port_security-maximum}}
