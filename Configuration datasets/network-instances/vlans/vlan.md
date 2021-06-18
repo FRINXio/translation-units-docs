@@ -16,6 +16,7 @@ network-instances/network-instance=default/vlans/vlan={{vlan_id}}
             "config": {
                 "vlan-id": {{vlan_id}},
                 "name": {{vlan_name}},
+                "status": "{{vlan_status}}",
                 "frinx-dasan-vlan-extension:eline": {{eline_enabled}},
                 "frinx-saos-vlan-extension:egress-tpid": "{{vlan_tpid}}"
             },
@@ -35,6 +36,17 @@ network-instances/network-instance=default/vlans/vlan={{vlan_id}}
 ```
 
 ## OS Configuration Commands
+### Cisco IOS Classic (15.2(4)S5) / XE (15.3(3)S2)
+#### CLI
+<pre>
+vlan {{vlan_id}}
+ name {{vlan_name}}
+ shutdown | no shutdown
+</pre>
+
+*no shutdown* is a conversion of {{vlan_status}} set *ACTIVE*  
+*shutdown* is a conversion of {{vlan_status}} set *SUSPENDED*
+
 ### Dasan NOS SFU.RR.5.6p5
 #### CLI
 if {{eline_enabled}} is true
