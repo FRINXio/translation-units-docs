@@ -40,6 +40,8 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                 ],
                 "frinx-cisco-if-extension:lldp-transmit": {{lldp-transmit}},
                 "frinx-cisco-if-extension:lldp-receive": {{lldp-receive}},
+                "frinx-cisco-if-extension:fhrp-minimum-delay": {{fhrp-minimum-delay}},
+                "frinx-cisco-if-extension:fhrp-reload-delay": {{fhrp-reload-delay}},
                 "frinx-cisco-if-extension:cdp-enable": {{cdp-enable}},
                 "frinx-cisco-if-extension:switchport-port_security-enable": {{port_security-enable}},
                 "frinx-cisco-if-extension:switchport-port_security-maximum": {{port_security-maximum}},
@@ -213,6 +215,8 @@ interface {{eth_ifc_name}}
  storm-control {{storm-control-address}} level {{storm-control-level}}
  lldp transmit | no lldp transmit
  lldp receive | no lldp receive
+ fhrp delay minimum {{fhrp-minimum-delay}}
+ fhrp delay reload {{fhrp-reload-delay}}
  cdp enable | no cdp enable
 </pre>
 
