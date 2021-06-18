@@ -67,6 +67,7 @@ frinx-openconfig-network-instance:network-instances/network-instance=default/pro
                                 "send-community": "{{bgp_nbr_sendcommunity}}",
                                 "remove-private-as": "{{bgp_nbr_removepas}}",
                                 "enabled": {{neighbor_enabled}},
+                                "frinx-bgp-extension:neighbor-version": "{{bgp_version}}",
                                 "frinx-bgp-extension:as-override": {{as_override}},
                                 "local-as": {{local_as}},
                                 "frinx-bgp-extension:local-as-group": {
@@ -287,6 +288,7 @@ router bgp {{bgp_as}}
   neighbor {{neighbor_ip}}|{{peer-group-name}} send-community {{bgp_nbr_sendcommunity}}
   neighbor {{neighbor_ip}}|{{peer-group-name}} route-reflector-client
   neighbor {{neighbor_ip}}|{{peer-group-name}} route-map {{bgp_rpol_import}}|{{bgp_rpol_export}} in|out
+  neighbor {{neighbor_ip}} version {{bgp_version}}
   neighbor {{neighbor_ip}} as-override
   neighbor {{neighbor_ip}} activate
   neighbor {{neighbor_ip}} remove-private-as
@@ -304,6 +306,7 @@ router bgp {{bgp_as}}
 *remove-private-as* is a conversion of {{bgp_nbr_removepas}} set "frinx-openconfig-bgp-types:PRIVATE_AS_REMOVE_ALL"
 *no-prepend* is a conversion of {{local_as_no_prepend}} set *true*  
 *replace-as* is a conversion of {{local_as_replace_as}} set *true*  
+*neighbor {{neighbor_ip}} version 4* is a conversion of {{bgp_version}} set "frinx-bgp-extension:VERSION_4"
 
 ### Junos 17.3R1.10
 
