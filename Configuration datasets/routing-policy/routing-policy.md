@@ -136,6 +136,8 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets/prefix-sets/prefix-s
                             "masklength-range": "{{prefix_range}}",
                             "frinx-cisco-routing-policy-extension:sequence-id": {{sequence_id}},
                             "frinx-cisco-routing-policy-extension:operation": "{{operation}}",
+                            "frinx-cisco-routing-policy-extension:minimum-prefix-length": {{minimum_prefix_length}},
+                            "frinx-cisco-routing-policy-extension:maximum-prefix-length": {{maximum_prefix_length}}
                         }
                     }
                 ]
@@ -193,7 +195,7 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets/bgp-defined-sets/as-
 ### Cisco IOS 12, IOS 15
 
 <pre>
-ip prefix-list {{pset_name}} seq {{sequence_id}} {{operation}} {{prefix}}/{{prefix_length}}
+ip prefix-list {{pset_name}} seq {{sequence_id}} {{operation}} {{prefix}}/{{prefix_length}} ge {{minimum_prefix_length}} le {{maximum_prefix_length}}
 </pre>
 
 *permit* is a conversion of {{operation}} set to *frinx-cisco-routing-policy-extension:PERMIT*  
