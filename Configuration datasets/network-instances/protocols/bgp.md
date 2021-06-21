@@ -41,14 +41,25 @@ frinx-openconfig-network-instance:network-instances/network-instance=default/pro
                            {
                                "afi-safi-name": "{{bgp_afi_safi_name}}",
                                "config": {
-                                   "afi-safi-name": "{{bgp_afi_safi_name}}"
+                                   "afi-safi-name": "{{bgp_afi_safi_name}}",
+                                   "frinx-bgp-extension:auto-summary": {{auto_summary}},
+                                   "frinx-bgp-extension:redistribute-connected": {
+                                       "enabled": {{redistribute_connected_enabled}},
+                                       "route-map": "{{redistribute_connected_route_map}}"
+                                   },
+                                   "frinx-bgp-extension:redistribute-static": {
+                                       "enabled": {{redistribute_static_enabled}},
+                                       "route-map": "{{redistribute_static_route_map}}"
+                                   },
+                                   "frinx-bgp-extension:synchronization": {{synchronization}},
+                                   "frinx-bgp-extension:default-information-originate": {{default_information_originate}},
+                                   "frinx-bgp-extension:table-map": "{{table-map}}"
                                }
                            }
                        ]
                    },
                    "config": {
                        "frinx-bgp-extension:log-neighbor-changes": {{log_neighbor_changes}},
-                       "frinx-bgp-extension:default-information-originate": {{default_information_originate}},
                        "as": {{bgp_as}}
                    }
                 },
@@ -276,7 +287,6 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 <pre>
 router bgp {{bgp_as}}
  bgp log-neighbor-changes|no bgp log-neighbor-changes
- default-information originate|default-information originate
  neighbor {{peer-group-name}} peer-group
  neighbor {{neighbor_ip}} peer-group {{bgp_group}}
  neighbor {{neighbor_ip}}|{{peer-group-name}} remote-as {{bgp_peer_as}}
@@ -293,6 +303,12 @@ router bgp {{bgp_as}}
   neighbor {{neighbor_ip}} activate
   neighbor {{neighbor_ip}} remove-private-as
   neighbor {{neighbor_ip}} local-as {{local_as}} {{local_as_no_prepend}} {{local_as_replace_as}}
+  auto-summary|no auto-summary
+  redistribute connected route-map {{redistribute_connected_route_map}}|no redistribute connected
+  redistribute static route-map {{redistribute_static_route_map}}|no redistribute static
+  default-information originate|no default-information originate
+  synchronization|no synchronization
+  table-map {{table-map}} filter
 </pre>
 ---
 
@@ -307,6 +323,14 @@ router bgp {{bgp_as}}
 *no-prepend* is a conversion of {{local_as_no_prepend}} set *true*  
 *replace-as* is a conversion of {{local_as_replace_as}} set *true*  
 *neighbor {{neighbor_ip}} version 4* is a conversion of {{bgp_version}} set "frinx-bgp-extension:VERSION_4"
+*auto-summary* is a conversion of {{auto_summary}} set *true*  
+*no auto-summary* is a conversion of {{auto_summary}} set *false*
+*redistribute connected route-map {{redistribute_connected_route_map}}* is a conversion of {{redistribute_connected_enabled}} set *true*  
+*no redistribute connected* is a conversion of {{redistribute_connected_enabled}} set *false*
+*redistribute static route-map {{redistribute_static_route_map}}* is a conversion of {{redistribute_static_enabled}} set *true*  
+*no redistribute static* is a conversion of {{redistribute_static_enabled}} set *false*
+*synchronization* is a conversion of {{synchronization}} set *true*  
+*no synchronization* is a conversion of {{synchronization}} set *false*
 
 ### Junos 17.3R1.10
 
