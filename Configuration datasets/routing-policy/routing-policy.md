@@ -162,6 +162,11 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets/bgp-defined-sets/com
                     "cset_member1",
                     "cset_member2",
                     "cset_member3"
+                ],
+                "frinx-openconfig-bgp-policy-extension:community-member-deny": [
+                    "cset_deny_member1",
+                    "cset_deny_member2",
+                    "cset_deny_member3"
                 ]
             }
         }
@@ -200,6 +205,14 @@ ip prefix-list {{pset_name}} seq {{sequence_id}} {{operation}} {{prefix}}/{{pref
 
 *permit* is a conversion of {{operation}} set to *frinx-cisco-routing-policy-extension:PERMIT*  
 *deny* is a conversion of {{operation}} set to *frinx-cisco-routing-policy-extension:DENY*  
+
+<pre>
+ip community-list standard {{cset_name}} {{operation}} {{cset_member}}
+ip community-list expanded {{cset_name}} {{operation}} {{cset_member}}
+</pre>
+
+*permit* is a conversion of {{operation}} set to *community-member*  
+*deny* is a conversion of {{operation}} set to *frinx-openconfig-bgp-policy-extension:community-member-deny*  
 
 ### Cisco IOS XR 5.3.4, IOS XR 6.6.2
 
