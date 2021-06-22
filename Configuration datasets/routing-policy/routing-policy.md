@@ -22,7 +22,14 @@ frinx-openconfig-routing-policy:routing-policy/policy-definitions/policy-definit
                     {
                         "name": "{{rpol_s_name}}",
                         "config": {
-                            "name": "{{rpol_s_name}}"
+                            "name": "{{rpol_s_name}}",
+                            "frinx-cisco-routing-policy-extension:set-operation": "{{set_operation}}",
+                            "frinx-cisco-routing-policy-extension:ip-prefix-list": [
+                                "ip_prefix_list_member_1",
+                                "ip_prefix_list_member_2",
+                                "ip_prefix_list_member_3"
+                            ],
+                            "frinx-cisco-routing-policy-extension:ipv6-prefix-list": "{{ipv6_prefix_list}}"
                         },
                         "conditions": {
                             "config": {
@@ -70,7 +77,8 @@ frinx-openconfig-routing-policy:routing-policy/policy-definitions/policy-definit
                                 "config": {
                                     "set-local-pref": {{rpol_s_a_bgp_set_localpref}},
                                     "set-next-hop": {{rpol_s_a_bgp_set_nexthop}},
-                                    "set-med": {{rpol_s_a_bgp_set_med}}
+                                    "set-med": {{rpol_s_a_bgp_set_med}},
+                                    "set-route-origin": "EGP|IGP|INCOMPLETE"
                                 },
                                 "set-community": {
                                     "config": {
@@ -197,7 +205,7 @@ frinx-openconfig-routing-policy:routing-policy/defined-sets/bgp-defined-sets/as-
 ```
 ## OS Configuration Commands
 
-### Cisco IOS 12, IOS 15
+### Cisco IOS 12, IOS 15, IOS XE 15, IOS XE 16, IOS XE 17
 
 <pre>
 ip prefix-list {{pset_name}} seq {{sequence_id}} {{operation}} {{prefix}}/{{prefix_length}} ge {{minimum_prefix_length}} le {{maximum_prefix_length}}
@@ -213,6 +221,22 @@ ip community-list expanded {{cset_name}} {{operation}} {{cset_member}}
 
 *permit* is a conversion of {{operation}} set to *community-member*  
 *deny* is a conversion of {{operation}} set to *frinx-openconfig-bgp-policy-extension:community-member-deny*  
+
+<pre>
+route-map {{rpol_name}} {{set_operation}} {{rpol_s_name}}
+set local-preference {{rpol_s_a_bgp_set_localpref}}
+set as-path prepend {{rpol_s_a_bgp_aspathprep_asn}}
+match ip address prefix-list {{ip_prefix_list}}
+match ipv6 address prefix-list {{ipv6_prefix_list}}
+set origin {{rpol_s_a_bgp_set_routeorigin}}
+match community {{cset_name}}
+set community (no-export, no-advertise, {{rpol_s_a_bgp_comm}}) {{rpol_s_a_bgp_comset_opts}}
+</pre>
+
+*permit* is a conversion of {{set_operation}} set to *frinx-cisco-routing-policy-extension:PERMIT*  
+*deny* is a conversion of {{set_operation}} set to *frinx-cisco-routing-policy-extension:DENY*
+*set community (no-export)* is a conversion of {{rpol_s_a_bgp_well_known_comm}} set to *frinx-openconfig-bgp-types:NO_EXPORT*  
+*set community (no-advertise)* is a conversion of {{rpol_s_a_bgp_well_known_comm}} set to *frinx-openconfig-bgp-types:NO_ADVERTISE*
 
 ### Cisco IOS XR 5.3.4, IOS XR 6.6.2
 
