@@ -29,7 +29,71 @@ frinx-snmp:snmp/interfaces/interface={{snmp_intf_if}}
 }
 ```
 
+## URL
+
+```
+frinx-snmp:snmp/views/view={{view_name}}
+```
+
+## OPENCONFIG YANG
+
+```javascript
+{
+    "frinx-snmp:view": [
+        {
+            "name": "{{view_name}}",
+            "config": {
+                "name": "{{view_name}}",
+                "mib": [
+                    {
+                        "name": "{{mib_name}}",
+                        "inclusion": "included|excluded"
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+## URL
+
+```
+frinx-snmp:snmp/communities/community={{community_name}}
+```
+
+## OPENCONFIG YANG
+
+```javascript
+{
+    "frinx-snmp:community": [
+        {
+            "name": "{{community_name}}",
+            "config": {
+                "name": "{{community_name}}",
+                "access-list": "{{access_list_number}}",
+                "access": "ro|rw",
+                "view": "{{view_name}}"
+            }
+        }
+    ]
+}
+```
+
 ## OS Configuration Commands
+
+### Cisco IOS Classic (15.2(4)S5) / XE (15.3(3)S2)
+
+#### CLI
+
+<pre>
+snmp-server view {{view_name}} {{mib_name}} {{inclusion}}
+snmp-server community {{community_name}} view {{view_name}} {{access}} {{access_list_number}}
+</pre>
+
+##### Unit
+
+Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/snmp)
 
 ### Cisco IOS XR 5.3.4
 
