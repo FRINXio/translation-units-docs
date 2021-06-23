@@ -34,14 +34,14 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                 ],
                 "frinx-cisco-if-extension:storm-control": [
                     {
-                        "address": "{{storm-control-address}}",
-                        "level": {{storm-control-level}}
+                        "address": "{{storm_control_address}}",
+                        "level": {{storm_control_level}}
                     }
                 ],
-                "frinx-cisco-if-extension:lldp-transmit": {{lldp-transmit}},
-                "frinx-cisco-if-extension:lldp-receive": {{lldp-receive}},
-                "frinx-cisco-if-extension:fhrp-minimum-delay": {{fhrp-minimum-delay}},
-                "frinx-cisco-if-extension:fhrp-reload-delay": {{fhrp-reload-delay}},
+                "frinx-cisco-if-extension:lldp-transmit": {{lldp_transmit}},
+                "frinx-cisco-if-extension:lldp-receive": {{lldp_receive}},
+                "frinx-cisco-if-extension:fhrp-minimum-delay": {{fhrp_minimum_delay}},
+                "frinx-cisco-if-extension:fhrp-reload-delay": {{fhrp_reload_delay}},
                 "frinx-cisco-if-extension:cdp-enable": {{cdp-enable}},
                 "frinx-cisco-if-extension:switchport-port_security-enable": {{port_security-enable}},
                 "frinx-cisco-if-extension:switchport-port_security-maximum": {{port_security-maximum}},
@@ -185,6 +185,34 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                     "name": "{{cft_profile_name}}",
                     "enabled": {{cft_enabled}}
                 }
+            },
+            "frinx-cisco-if-extension:service-instances": {
+                "service-instance": [
+                    {
+                        "id": {{service_instance_id}},
+                        "config": {
+                            "id": {{service_instance_id}},
+                            "trunk": {{service_instance_trunk}},
+                            "evc": "{{service_instance_evc}}"
+                        },
+                        "bridge-domain": {
+                            "value": "{{service_instance_bridge_domain}}",
+                            "group-number": {{service_instance_bridge_domain_group_number}}
+                        },
+                        "l2protocol": {
+                            "protocol-type": "{{service_instance_l2protocol_protocol_type}}",
+                            "protocol": [
+                                "{{service_instance_l2protocol_protocol}}"
+                            ]
+                        },
+                        "encapsulation": {
+                            "dot1q": [
+                                {{service_instance_encapsulation_dot1q}}
+                            ],
+                            "untagged": {{service_instance_encapsulation_untagged}}
+                        }
+                    }
+                ]
             }
         }
     ]
@@ -212,34 +240,32 @@ interface {{eth_ifc_name}}
  switchport port-security aging static | no switchport port-security aging static
  ethernet cfm mip level {{level}} vlan {{level-vlan}}
  l2protocol-tunnel {{l2-protocols}}
- storm-control {{storm-control-address}} level {{storm-control-level}}
+ storm-control {{storm_control_address}} level {{storm_control_level}}
  lldp transmit | no lldp transmit
  lldp receive | no lldp receive
- fhrp delay minimum {{fhrp-minimum-delay}}
- fhrp delay reload {{fhrp-reload-delay}}
  cdp enable | no cdp enable
 </pre>
 
 {{eth_subnet}} is a conversion of {{eth_prefix_length}}  
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
-*shutdown* is a conversion of {{eth_enabled}} set *false*
-*switchport port-security* is a conversion of {{port_security-enable}} set *true*
-*no switchport port-security* is a conversion of {{port_security-enable}} set *false*
-{{port_security-violation}} can be "protect", "restrict" or "shutdown"
-{{port_security-aging-type}} can be "absolute" or "inactivity"
-*switchport port-security aging static* is a conversion of {{port_security-aging-static}} set *true*
-*no switchport port-security aging static* is a conversion of {{port_security-aging-static}} set *false*
-*lldp transmit* is a conversion of {{lldp-transmit}} set *true*
-*no lldp transmit* is a conversion of {{lldp-transmit}} set *false*
-*lldp receive* is a conversion of {{lldp-receive}} set *true*
-*no lldp receive* is a conversion of {{lldp-receive}} set *false*
-*cdp enable* is a conversion of {{cdp-enable}} set *true*
-*no cdp enable* is a conversion of {{cdp-enable}} set *false*
-{{lag_ifc_id}} is parsed from {{lag_ifc_name}}
-example {{lag_ifc_name}} is Port-channel3 -> {{lag_ifc_id}} is 3
-mode on is a conversion of {{lacp_mode}} set to frinx-openconfig-lacp:ON
-{{eth_phy_type}} can be "default" or "rj45" or "sfp"
-{{storm-control-address}} can be "broadcast" or "multicast" or "unicast"
+*shutdown* is a conversion of {{eth_enabled}} set *false*  
+*switchport port-security* is a conversion of {{port_security-enable}} set *true*  
+*no switchport port-security* is a conversion of {{port_security-enable}} set *false*  
+{{port_security-violation}} can be "protect", "restrict" or "shutdown"  
+{{port_security-aging-type}} can be "absolute" or "inactivity"  
+*switchport port-security aging static* is a conversion of {{port_security-aging-static}} set *true*  
+*no switchport port-security aging static* is a conversion of {{port_security-aging-static}} set *false*  
+*lldp transmit* is a conversion of {{lldp-transmit}} set *true*  
+*no lldp transmit* is a conversion of {{lldp-transmit}} set *false*  
+*lldp receive* is a conversion of {{lldp-receive}} set *true*  
+*no lldp receive* is a conversion of {{lldp-receive}} set *false*  
+*cdp enable* is a conversion of {{cdp-enable}} set *true*  
+*no cdp enable* is a conversion of {{cdp-enable}} set *false*  
+{{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
+example {{lag_ifc_name}} is Port-channel3 -> {{lag_ifc_id}} is 3  
+mode on is a conversion of {{lacp_mode}} set to frinx-openconfig-lacp:ON  
+{{eth_phy_type}} can be "default" or "rj45" or "sfp"  
+{{storm_control_address}} can be "broadcast" or "multicast" or "unicast"  
 
 ---
 <pre>
@@ -252,6 +278,51 @@ interface {{eth_ifc_name}}.{{sub_ifc_index}}
 ##### Unit
 
 Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios/interface)
+
+### Cisco IOS XE 15, 16, 17
+
+<pre>
+interface {{eth_ifc_name}}
+ description {{eth_description}}
+ mtu {{eth_mtu}}
+ ip address {{eth_ip}} {{eth_subnet}}
+ channel-group {{lag_ifc_id}} mode {{lacp_mode}}
+ media-type {{eth_phy_type}} 
+ speed {{eth_speed}}
+ shutdown | no shutdown
+ storm-control {{storm_control_address}} level {{storm_control_level}}
+ lldp transmit | no lldp transmit
+ lldp receive | no lldp receive
+ fhrp delay minimum {{fhrp-minimum-delay}}
+ fhrp delay reload {{fhrp-reload-delay}}
+ service instance {{service_instance_trunk}} {{service_instance_id}} ethernet {{service_instance_evc}}
+  bridge-domain {{service_instance_bridge_domain}} split-horizon group {{service_instance_bridge_domain_group_number}}
+  encapsulation {{service_instance_encapsulation_untagged}} , dot1q {{service_instance_encapsulation_dot1q}}
+  l2protocol {{service_instance_l2protocol_protocol_type}} {{service_instance_l2protocol_protocol}}
+</pre>
+
+{{eth_subnet}} is a conversion of {{eth_prefix_length}}  
+*no shutdown* is a conversion of {{eth_enabled}} set *true*  
+*shutdown* is a conversion of {{eth_enabled}} set *false*  
+*lldp transmit* is a conversion of {{lldp-transmit}} set *true*  
+*no lldp transmit* is a conversion of {{lldp-transmit}} set *false*  
+*lldp receive* is a conversion of {{lldp-receive}} set *true*  
+*no lldp receive* is a conversion of {{lldp-receive}} set *false*
+{{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
+example {{lag_ifc_name}} is Port-channel3 -> {{lag_ifc_id}} is 3  
+mode on is a conversion of {{lacp_mode}} set to frinx-openconfig-lacp:ON
+{{eth_phy_type}} can be "default" or "rj45" or "sfp"  
+{{storm_control_address}} can be "broadcast" or "multicast" or "unicast"  
+*service instance trunk {{service_instance_id}} ethernet* is conversion of {{service_instance_trunk}} set *true*
+*service instance {{service_instance_id}} ethernet {{service_instance_evc}}* is conversion of {{service_instance_trunk}} set *false*  
+*encapsulation untagged , dot1q {{service_instance_encapsulation_dot1q}}* is conversion of {{service_instance_encapsulation_untagged}} set *true*  
+*encapsulation dot1q {{service_instance_encapsulation_dot1q}}* is conversion of {{service_instance_encapsulation_untagged}} set *false*  
+{{service_instance_l2protocol_protocol_type}} can be "tunnel" or "peer" or "forward"  
+{{service_instance_l2protocol_protocol}} can be "cdp" or "vtp" or "lacp" or "lldp" or "mmrp" or "mvrp" or "stp"  
+
+##### Unit
+
+Link to github : [ios-xe-unit](https://github.com/FRINXio/cli-units/tree/master/ios-xe/interface)
 
 ### Cisco IOS XR 5.3.4
 
