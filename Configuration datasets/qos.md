@@ -22,6 +22,16 @@ frinx-openconfig-qos:qos?content=nonconfig
                         "interface-id": {{eth_ifc_name}},
                         "frinx-saos-qos-extension:enabled": true,
                         "frinx-saos-qos-extension:mode": {{mode}}
+                    },
+                    "input": {
+                        "config": {
+                            "frinx-qos-extension:service-policy": "{{qos_input_policy_name}}"
+                        }
+                    },
+                    "output": {
+                        "config": {
+                            "frinx-qos-extension:service-policy": "{{qos_output_policy_name}}"
+                        }
                     }
                 }
             ]
@@ -60,12 +70,17 @@ frinx-openconfig-qos:qos/classifiers/classifier={{class_name}}?content=nonconfig
                                 "config": {
                                     "frinx-qos-extension:precedence": "[{{term_c_ipv4_prec}}]"
                                     "frinx-qos-extension:acl-ref": "{{term_c_acl_ref}}",
+                                    "frinx-qos-extension:dscp-enum": "{{term_c_dscp_enum}}"
                                 }
                             },
                             "mpls": {
                                 "config": {
                                     "traffic-class": ["{{term_c_tc}}"]
                                 }
+                            },
+                            "frinx-qos-extension:cos": {
+                                "inner": {{term_c_cos_inner}}, // true or false
+                                "cos": {{term_c_cos}}
                             }
                         },
                         "actions": {
@@ -113,7 +128,9 @@ frinx-openconfig-qos:qos/scheduler-policies/scheduler-policy={{policy_name}}
                         "config": {
                             "sequence": "{{scheduler_seq}}",
                             "frinx-saos-qos-extension:type": {{scheduler_type}},
-                            "frinx-saos-qos-extension:vs-name": {{vs_ni_name}}
+                            "frinx-saos-qos-extension:vs-name": {{vs_ni_name}},
+                            "priority": "{{scheduler_strict_priority}}", // STRICT or null
+                            "frinx-qos-extension:service-policy": "{{scheduler_policy_name}}"
                         },
                         "inputs": {
                             "input": [
@@ -122,10 +139,39 @@ frinx-openconfig-qos:qos/scheduler-policies/scheduler-policy={{policy_name}}
                                     "config": {
                                         "id": "{{class_name}}",
                                         "queue": "{{class_name}}",
-                                        "weight": "{{scheduler_priority}}"
+                                        "weight": "{{scheduler_priority}}",
+                                        "frinx-qos-extension:cos": {{scheduler_cos}},
                                     }
                                 }
                             ]
+                        },
+                        "one-rate-two-color": {
+                            "config": {
+                                "cir": {{1r2c_scheduler_cir}},
+                                "bc": {{1r2c_scheduler_bc}},
+                                "cir-pct": {{1r2c_scheduler_bw_pct}},
+                                "cir-pct-remaining": {{1r2c_scheduler_bw_rem}},
+                                "frinx-qos-extension:max-queue-depth-bps": {{1r2c_scheduler_max_queue_depth_bps}}
+                            },
+                            "conform-action": {
+                                "config": {
+                                    "frinx-qos-extension:cos-transmit": {{1r2c_conform_cos}},
+                                    "frinx-qos-extension:dei-transmit": {{1r2c_conform_dei}},
+                                    "frinx-qos-extension:dscp-transmit": {{1r2c_conform_dscp}},
+                                    "frinx-qos-extension:qos-transmit": {{1r2c_conform_qos}},
+                                    "frinx-qos-extension:transmit": {{1r2c_conform_transmit}} // true or false
+                                }
+                            },
+                            "exceed-action": {
+                                "config": {
+                                    "frinx-qos-extension:cos-transmit": {{1r2c_exceed_cos}},
+                                    "frinx-qos-extension:dei-transmit": {{1r2c_exceed_dei}},
+                                    "frinx-qos-extension:dscp-transmit": {{1r2c_exceed_dscp}},
+                                    "frinx-qos-extension:qos-transmit": {{1r2c_exceed_qos}},
+                                    "frinx-qos-extension:transmit": {{1r2c_exceed_transmit}}, // true or false
+                                    "drop": {{1r2c_exceed_drop}} // true or false
+                                }
+                            }
                         },
                         "two-rate-three-color": {
                             "config": {
@@ -148,6 +194,42 @@ frinx-openconfig-qos:qos/scheduler-policies/scheduler-policy={{policy_name}}
 }
 ```
 ## OS Configuration Commands
+
+### Cisco IOS 12, 15, 16 / IOS XE 15, 16, 17
+
+#### CLI
+
+<pre>
+interface {{eth_ifc_name}}
+    service-policy input {{qos_input_policy_name}}
+    service-policy output {{qos_output_policy_name}}
+
+class-map match-any|match-all {{class_name}}
+    match cos {{term_c_cos_inner}} {{term_c_cos}}
+    match qos-group {{term_c_qos_grp}}
+    match ip dscp {{term_c_dscp_enum}}
+
+policy-map {{policy_name}}
+    class {{class_name}}
+        set cos {{scheduler_cos}}
+        police cir {{1r2c_scheduler_cir}} bc {{1r2c_scheduler_bc}} conform-action {{1r2c_conform_transmit}} exceed-action {{1r2c_exceed_transmit}}
+        police cir {{1r2c_scheduler_cir}} bc {{1r2c_scheduler_bc}} conform-action {{1r2c_conform_transmit}} exceed-action {{1r2c_exceed_drop}}
+        police cir {{1r2c_scheduler_cir}} bc {{1r2c_scheduler_bc}} conform-action set-cos-transmit {{1r2c_conform_cos}} exceed-action set-cos-transmit {{1r2c_exceed_cos}}
+        police cir {{1r2c_scheduler_cir}} bc {{1r2c_scheduler_bc}} conform-action set-dot1ad-dei-transmit {{1r2c_conform_dei}} exceed-action set-dot1ad-dei-transmit {{1r2c_exceed_dei}}
+        police cir {{1r2c_scheduler_cir}} bc {{1r2c_scheduler_bc}} conform-action set-dscp-transmit {{1r2c_conform_dscp}} exceed-action set-dscp-transmit {{1r2c_exceed_dscp}}
+        police cir {{1r2c_scheduler_cir}} bc {{1r2c_scheduler_bc}} conform-action set-qos-transmit {{1r2c_conform_qos}} exceed-action set-qos-transmit {{1r2c_exceed_qos}}
+        priority|no priority // based on {{scheduler_strict_priority}}
+        bandwidth percent {{1r2c_scheduler_bw_pct}}
+        bandwidth remaining percent {{1r2c_scheduler_bw_rem}}
+        shape average {{1r2c_scheduler_max_queue_depth_bps}}
+        service-policy {{scheduler_policy_name}}
+</pre>
+
+#### Usage
+
+A term marks one or more conditions depending on the class-map type.
+- When class-map type: match-all, there is just one term, that MUST be called 'all'.
+- When class-map type: match-any, the terms are numbered from 1 ... number_of_conditions. In this case, the {{term_id}} marks the line, where the conditions specified in conditions is written.
 
 ### Cisco IOS XR 5.3.4
 
