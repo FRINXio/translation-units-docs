@@ -3,7 +3,7 @@
 ## URL
 
 ```
-frinx-openconfig-qos:qos?content=nonconfig
+frinx-openconfig-qos:qos
 ```
 
 ## OPENCONFIG YANG
