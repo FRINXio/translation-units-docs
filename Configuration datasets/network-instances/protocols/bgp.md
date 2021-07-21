@@ -79,6 +79,7 @@ frinx-openconfig-network-instance:network-instances/network-instance=default/pro
                                 "remove-private-as": "{{bgp_nbr_removepas}}",
                                 "enabled": {{neighbor_enabled}},
                                 "frinx-bgp-extension:neighbor-version": "{{bgp_version}}",
+                                "frinx-bgp-extension:fall-over-mode": "{{fall_over_mode}}",
                                 "frinx-bgp-extension:as-override": {{as_override}},
                                 "local-as": {{local_as}},
                                 "frinx-bgp-extension:local-as-group": {
@@ -187,7 +188,7 @@ router bgp {{bgp_as}} instance {{bgp_process_name}}
 *shutdown* is a conversion of {{neighbor_enabled}} set *false*  
 *ipv4 unicast* is a conversion of {{bgp_nbr_afi_safi_name}} set *IPV4_UNICAST*  
 *ipv6 unicast* is a conversion of {{bgp_nbr_afi_safi_name}} set *IPV6_UNICAST*  
-*vpnv4 unicast* is a conversion of {{bgp_nbr_afi_safi_name}} set *L3VPN_IPV4_UNICAST*  
+*vpnv4 unicast* is a conversion of {{bgp_nbr_afi_safi_name}} set *L3VPN_IPV4_UNICAST*
 
 ##### Unit
 
@@ -218,7 +219,7 @@ router bgp {{bgp_as}} instance {{bgp_process_name}}
 *next-hop-self* is a conversion of {{bgp_rpol_export}} if value is "nexthopself"  
 *no shutdown* is a conversion of {{neighbor_enabled}} set *true*  
 *shutdown* is a conversion of {{neighbor_enabled}} set *false*  
-*l2vpn evpn* is a conversion of {{bgp_nbr_afi_safi_name}} set *L2VPN_EVPN*  
+*l2vpn evpn* is a conversion of {{bgp_nbr_afi_safi_name}} set *L2VPN_EVPN*
 
 ##### Unit
 
@@ -238,7 +239,7 @@ router bgp {{bgp_as}}
 </pre>
 ---
 
-*vpnv4 unicast* is a conversion of {{bgp_nbr_afi_safi_name}} set *L3VPN_IPV4_UNICAST*  
+*vpnv4 unicast* is a conversion of {{bgp_nbr_afi_safi_name}} set *L3VPN_IPV4_UNICAST*
 
 ##### Unit
 
@@ -275,7 +276,7 @@ router bgp {{bgp_as}} instance {{bgp_process_name}}
 *remove-private-AS* is a conversion of {{bgp_nbr_removepas}}  
 *default-originte* is a conversion of {{bgp_nbr_defaultoriginate}}  
 *ipv4 unicast* is a conversion of {{bgp_nbr_afi_safi_name}} set *IPV4_UNICAST*  
-*ipv6 unicast* is a conversion of {{bgp_nbr_afi_safi_name}} set *IPV6_UNICAST*  
+*ipv6 unicast* is a conversion of {{bgp_nbr_afi_safi_name}} set *IPV6_UNICAST*
 
 ##### Unit
 
@@ -300,6 +301,7 @@ router bgp {{bgp_as}}
   neighbor {{neighbor_ip}}|{{peer-group-name}} route-map {{bgp_rpol_import}}|{{bgp_rpol_export}} in|out
   neighbor {{neighbor_ip}} version {{bgp_version}}
   neighbor {{neighbor_ip}} as-override
+  neighbor {{neighbor_ip}} fall-over bfd
   neighbor {{neighbor_ip}} activate
   neighbor {{neighbor_ip}} remove-private-as
   neighbor {{neighbor_ip}} local-as {{local_as}} {{local_as_no_prepend}} {{local_as_replace_as}}
@@ -317,6 +319,7 @@ router bgp {{bgp_as}}
 *default-information originate* is a conversion of {{default_information_originate}} set *true*  
 *no default-information originate* is a conversion of {{default_information_originate}} set *false*
 *neighbor {{neighbor_ip}} as-override* is a conversion of {{as_override}} set *true*
+*neighbor {{neighbor_ip}} fall-over bfd* is a conversion of {{fall_over_mode}} set *true*
 *transport connection-mode passive* is a conversion of {{bgp_nbr_passivemode}} set *true*  
 *route-reflector-client* is a conversion of {{bgp_nbr_rrclient}} set *true*  
 *remove-private-as* is a conversion of {{bgp_nbr_removepas}} set "frinx-openconfig-bgp-types:PRIVATE_AS_REMOVE_ALL"
@@ -344,7 +347,7 @@ activate protocols bgp group {{bgp_group}} neighbor {{neighbor_ip}} peer-as {{bg
 ---
 
 *activate* is a conversion of {{neighbor_enabled}} set *true*  
-*deactivate* is a conversion of {{neighbor_enabled}} set *false*  
+*deactivate* is a conversion of {{neighbor_enabled}} set *false*
 
 ##### Unit
 
