@@ -40,6 +40,7 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                 ],
                 "frinx-cisco-if-extension:lldp-transmit": {{lldp_transmit}},
                 "frinx-cisco-if-extension:lldp-receive": {{lldp_receive}},
+                "frinx-cisco-if-extension:negotiation-auto": {{negotiation_auto}},
                 "frinx-cisco-if-extension:fhrp-minimum-delay": {{fhrp_minimum_delay}},
                 "frinx-cisco-if-extension:fhrp-reload-delay": {{fhrp_reload_delay}},
                 "frinx-cisco-if-extension:cdp-enable": {{cdp-enable}},
@@ -199,10 +200,18 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                             "value": "{{service_instance_bridge_domain}}",
                             "group-number": {{service_instance_bridge_domain_group_number}}
                         },
-                        "l2protocol": {
-                            "protocol-type": "{{service_instance_l2protocol_protocol_type}}",
-                            "protocol": [
-                                "{{service_instance_l2protocol_protocol}}"
+                        "frinx-cisco-if-extension:service-instance-l2protocol": {
+                            "l2protocol": [
+                                {
+                                    "name": "{{service_instance_l2protocol_protocol_type}}",
+                                    "config": {
+                                        "protocol-type": "{{service_instance_l2protocol_protocol_type}}",
+                                        "protocol": [
+                                            "{{service_instance_l2protocol_protocol}}"
+                                        ]
+                                    }
+                                    
+                                }
                             ]
                         },
                         "encapsulation": {
@@ -210,10 +219,15 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                                 {{service_instance_encapsulation_dot1q}}
                             ],
                             "untagged": {{service_instance_encapsulation_untagged}}
-                        }
+                        },
+                        "rewrite": {
+                                "operation": "{{service_instance_rewrite_operation}}",
+                                "type": "{{service_instance_rewrite_type}}"
+                            },
                     }
                 ]
             }
+
         }
     ]
 }
@@ -243,6 +257,7 @@ interface {{eth_ifc_name}}
  storm-control {{storm_control_address}} level {{storm_control_level}}
  lldp transmit | no lldp transmit
  lldp receive | no lldp receive
+ negotiation auto | no negotiation auto
  cdp enable | no cdp enable
 </pre>
 
@@ -259,6 +274,8 @@ interface {{eth_ifc_name}}
 *no lldp transmit* is a conversion of {{lldp-transmit}} set *false*  
 *lldp receive* is a conversion of {{lldp-receive}} set *true*  
 *no lldp receive* is a conversion of {{lldp-receive}} set *false*  
+*negotiation auto* is a conversion of {{negotiation_auto}} set *true*  
+*no negotiation auto* is a conversion of {{negotiation_auto}} set *false*
 *cdp enable* is a conversion of {{cdp-enable}} set *true*  
 *no cdp enable* is a conversion of {{cdp-enable}} set *false*  
 {{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
@@ -293,11 +310,14 @@ interface {{eth_ifc_name}}
  storm-control {{storm_control_address}} level {{storm_control_level}}
  lldp transmit | no lldp transmit
  lldp receive | no lldp receive
+ negotiation auto | no negotiation auto
  fhrp delay minimum {{fhrp-minimum-delay}}
  fhrp delay reload {{fhrp-reload-delay}}
+ ethernet cfm mip level {{level}} vlan {{level-vlan}}
  service instance {{service_instance_trunk}} {{service_instance_id}} ethernet {{service_instance_evc}}
   bridge-domain {{service_instance_bridge_domain}} split-horizon group {{service_instance_bridge_domain_group_number}}
   encapsulation {{service_instance_encapsulation_untagged}} , dot1q {{service_instance_encapsulation_dot1q}}
+  rewrite {{service_instance_rewrite_operation}} {{service_instance_rewrite_type}}
   l2protocol {{service_instance_l2protocol_protocol_type}} {{service_instance_l2protocol_protocol}}
 </pre>
 
@@ -308,6 +328,8 @@ interface {{eth_ifc_name}}
 *no lldp transmit* is a conversion of {{lldp-transmit}} set *false*  
 *lldp receive* is a conversion of {{lldp-receive}} set *true*  
 *no lldp receive* is a conversion of {{lldp-receive}} set *false*
+*negotiation auto* is a conversion of {{negotiation_auto}} set *true*  
+*no negotiation auto* is a conversion of {{negotiation_auto}} set *false*
 {{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
 example {{lag_ifc_name}} is Port-channel3 -> {{lag_ifc_id}} is 3  
 mode on is a conversion of {{lacp_mode}} set to frinx-openconfig-lacp:ON
@@ -317,8 +339,10 @@ mode on is a conversion of {{lacp_mode}} set to frinx-openconfig-lacp:ON
 *service instance {{service_instance_id}} ethernet {{service_instance_evc}}* is conversion of {{service_instance_trunk}} set *false*  
 *encapsulation untagged , dot1q {{service_instance_encapsulation_dot1q}}* is conversion of {{service_instance_encapsulation_untagged}} set *true*  
 *encapsulation dot1q {{service_instance_encapsulation_dot1q}}* is conversion of {{service_instance_encapsulation_untagged}} set *false*  
+{{service_instance_rewrite_type}} can be "ingress" or "egress"
+{{service_instance_rewrite_operation}} can be "pop" or "push" or "translate"
 {{service_instance_l2protocol_protocol_type}} can be "tunnel" or "peer" or "forward"  
-{{service_instance_l2protocol_protocol}} can be "cdp" or "vtp" or "lacp" or "lldp" or "mmrp" or "mvrp" or "stp"  
+{{service_instance_l2protocol_protocol}} can be "cdp" or "vtp" or "lacp" or "lldp" or "mmrp" or "mvrp" or "stp" or "RB" or "RC" or "RD" or "RF"
 
 ##### Unit
 
