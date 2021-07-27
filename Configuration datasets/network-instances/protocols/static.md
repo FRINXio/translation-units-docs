@@ -57,6 +57,21 @@ frinx-openconfig-network-instance:network-instances/network-instance=default/pro
 
 ## OS Configuration Commands
 
+### IOS 12
+
+#### CLI
+
+<pre>
+router static
+ address-family {{afi_safi_name}}
+   {{prefix_ip}}/{{prefix_length}} {{next_hop_ifc_name}}.{{next_hop_subifc_idx}} {{next_hop_ip}} tag {{nh_tag_id}}
+</pre>
+
+*ipv4 unicast*  is a conversion of {{afi_safi_type}} set *IPV4_UNICAST*  
+*ipv6 unicast*  is a conversion of {{afi_safi_type}} set *IPV6_UNICAST*  
+{{prefix_ip}} is parsed from {{static_route_prefix}}  
+{{prefix_length}} is parsed from {{static_route_prefix}} 
+
 ### Cisco IOS XR 6.6.2
 
 #### CLI
