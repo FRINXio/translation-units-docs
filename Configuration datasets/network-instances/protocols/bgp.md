@@ -15,7 +15,7 @@ frinx-openconfig-network-instance:network-instances/network-instance=default/pro
     "protocol": [
         {
             "identifier": "frinx-openconfig-policy-types:BGP",
-            "name": "{{bgp_process_name}}"
+            "name": "{{bgp_process_name}}",
             "config": {
                 "identifier": "frinx-openconfig-policy-types:BGP",
                 "name": "{{bgp_process_name}}"
@@ -42,25 +42,29 @@ frinx-openconfig-network-instance:network-instances/network-instance=default/pro
                                "afi-safi-name": "{{bgp_afi_safi_name}}",
                                "config": {
                                    "afi-safi-name": "{{bgp_afi_safi_name}}",
-                                   "frinx-bgp-extension:auto-summary": {{auto_summary}},
+                                   "frinx-bgp-extension:auto-summary": "{{auto_summary}}",
                                    "frinx-bgp-extension:redistribute-connected": {
-                                       "enabled": {{redistribute_connected_enabled}},
+                                       "enabled": "{{redistribute_connected_enabled}}",
                                        "route-map": "{{redistribute_connected_route_map}}"
                                    },
                                    "frinx-bgp-extension:redistribute-static": {
-                                       "enabled": {{redistribute_static_enabled}},
+                                       "enabled": "{{redistribute_static_enabled}}",
                                        "route-map": "{{redistribute_static_route_map}}"
                                    },
-                                   "frinx-bgp-extension:synchronization": {{synchronization}},
-                                   "frinx-bgp-extension:default-information-originate": {{default_information_originate}},
+                                   "frinx-bgp-extension:synchronization": "{{synchronization}}",
+                                   "frinx-bgp-extension:default-information-originate": "{{default_information_originate}}",
                                    "frinx-bgp-extension:table-map": "{{table-map}}"
                                }
                            }
                        ]
                    },
                    "config": {
-                       "frinx-bgp-extension:log-neighbor-changes": {{log_neighbor_changes}},
-                       "as": {{bgp_as}}
+                       "frinx-bgp-extension:log-neighbor-changes": "{{log_neighbor_changes}}",
+                       "as": "{{bgp_as}}",
+                       "router-id": "{{router_id}}",
+                       "frinx-bgp-extension:import-route": [
+                           "{{import_route}}"
+                       ]
                    }
                 },
                 "neighbors|peer-groups": {
@@ -72,19 +76,25 @@ frinx-openconfig-network-instance:network-instances/network-instance=default/pro
                                 "neighbor-address": "{{neighbor_ip}}", //only for neighbor
                                 "peer-group-name": "{{peer-group-name}}", //only for peer-group
                                 "peer-group": "{{bgp_group}}", //only for neighbor
-                                "peer-as": {{bgp_peer_as}},
+                                "peer-as": "{{bgp_peer_as}}",
                                 "auth-password": "{{bgp_nbr_password}}",
                                 "description": "{{bgp_nbr_description}}",
                                 "send-community": "{{bgp_nbr_sendcommunity}}",
                                 "remove-private-as": "{{bgp_nbr_removepas}}",
-                                "enabled": {{neighbor_enabled}},
+                                "enabled": "{{neighbor_enabled}}",
                                 "frinx-bgp-extension:neighbor-version": "{{bgp_version}}",
                                 "frinx-bgp-extension:fall-over-mode": "{{fall_over_mode}}",
-                                "frinx-bgp-extension:as-override": {{as_override}},
-                                "local-as": {{local_as}},
+                                "frinx-bgp-extension:as-override": "{{as_override}}",
+                                "frinx-bgp-extension:timer-configuration": {
+                                    "timer-mode": "{{timer_mode}}",
+                                    "time-before": "{{time_before}}",
+                                    "time-after": "{{time_after}}"
+                                },
+                                "frinx-bgp-extension:transport": "{{bgp_transport}}",
+                                "local-as": "{{local_as}}",
                                 "frinx-bgp-extension:local-as-group": {
-                                    "no-prepend": {{local_as_no_prepend}},
-                                    "replace-as": {{local_as_replace_as}}
+                                    "no-prepend": "{{local_as_no_prepend}}",
+                                    "replace-as": "{{local_as_replace_as}}"
                                 }
                             },
                             "transport": {
@@ -124,7 +134,7 @@ frinx-openconfig-network-instance:network-instances/network-instance=default/pro
                                             "config": {
                                                 "send-default-route": "{{bgp_nbr_defaultoriginate}}",
                                                 "frinx-bgp-extension:send-default-route-route-policy": "{{bgp_nbr_defaultoriginate_rpol}}"
-                                            }
+                                            },
                                             "prefix-limit": {
                                                 "config": {
                                                     "max-prefixes": "{{bgp_nbr_maxprefixes}}",
@@ -351,4 +361,37 @@ activate protocols bgp group {{bgp_group}} neighbor {{neighbor_ip}} peer-as {{bg
 
 ##### Unit
 
-Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17/junos-17-bgp-unit)
+Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/master/junos/junos-17/junos-17-bgp-unit)  
+  
+
+### Huawei NE5000E (V800R009C10SPC310)
+
+#### CLI  
+
+---
+<pre> 
+bgp {{bgp_as}}                                 
+ router-id {{router_id}}                   
+ peer {{neighbor_ip}} as-number {{bgp_peer_as}}            
+ peer {{neighbor_ip}} description {{bgp_nbr_description}}      
+ peer {{neighbor_ip}} password cipher {{bgp_nbr_password}}
+ peer {{neighbor_ip}} path-mtu {{bgp_transport}}
+ peer {{neighbor_ip}} timer {{timer_mode}} {{time_before}} hold {{time_after}}
+                                       
+ ipv4-family unicast                       
+  import-route {{import_route}}
+  peer {{neighbor_ip}} enable                   
+  peer {{neighbor_ip}} route-policy {{bgp_rpol_import}} import
+  peer {{neighbor_ip}} route-policy {{bgp_rpol_export}} export
+</pre>
+---
+
+*auto-discovery* is conversion of {{bgp_transport}} set "frinx-bgp-extension:transport"  
+*keepalive* is conversion of {{timer_mode}} set "timer_mode"  
+*0-21845* is conversion of {{time_before}} set "time_before"  
+*3-65535* is conversion of {{timer_after}} set "timer_after"  
+*direct, static* is conversions of {{import_route}} set "import_route"
+
+##### Unit
+
+Link to github : [huawei-unit](https://github.com/FRINXio/cli-units/tree/master/huawei/bgp)
