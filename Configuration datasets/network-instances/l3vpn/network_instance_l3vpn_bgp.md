@@ -13,12 +13,14 @@ frinx-openconfig-network-instance:network-instances/network-instance={{l3_vpn_bg
     "network-instance": [
         {
             "config": {
-                "name": "{{l3_vpn_bgp_vrf}}"
-                "type": "L3VRF" //matches vpws-instance-type in ietf
-                "route-distinguisher": "{{l3_vpn_bgp_rd}}"
-                "enabled-address-families": "{{l3_vpn_bgp_enabled_address_families}}"
+                "name": "{{l3_vpn_bgp_vrf}}",
+                "type": "L3VRF", //matches vpws-instance-type in ietf
+                "route-distinguisher": "{{l3_vpn_bgp_rd}}",
+                "frinx-huawei-network-instance-extension:prefix-limit-from": "{{prefix-limit-from}}",
+                "frinx-huawei-network-instance-extension:prefix-limit-to": "{{prefix-limit-to}}",
+                "enabled-address-families": "{{l3_vpn_bgp_enabled_address_families}}",
                 "enabled": true
-            }
+            },
             
             "interfaces": {
                 "interface": [
@@ -28,15 +30,15 @@ frinx-openconfig-network-instance:network-instances/network-instance={{l3_vpn_bg
                         }
                     }
                 ]
-            }
-
+            },
+            
             "protocols": {
                 "protocol": [
                     {
                         "config": {
-                            "identifier": "BGP"
+                            "identifier": "BGP",
                             "enabled": true
-                        }
+                        },
                         
                         "local-aggregates": {
                             "aggregate": [
@@ -50,38 +52,38 @@ frinx-openconfig-network-instance:network-instances/network-instance={{l3_vpn_bg
                                     }
                                 }
                             ]
-                        }
+                        },
                         
                         "bgp": {
                             "global": {
-                                "as": "{{l3_vpn_bgp_as_number}}"
-                                "router-id": "{{l3_vpn_bgp_router_id}}"
+                                "as": "{{l3_vpn_bgp_as_number}}",
+                                "router-id": "{{l3_vpn_bgp_router_id}}",
                                 "afi-safis": {
                                     "afi-safi": [
                                         "config": {
-                                            "afi-safi-name": "ipv4"
+                                            "afi-safi-name": "ipv4",
                                             "enabled": true
                                         }
                                     ]
                                 }
-                            }
+                            },
                             "neighbors": {
                                 "neighbor": [
                                     {
                                         "config": {
-                                            "neighbor-address": "{{l3_vpn_bgp_neighbor_address}}"
-                                            "enabled": true
+                                            "neighbor-address": "{{l3_vpn_bgp_neighbor_address}}",
+                                            "enabled": true,
                                             "peer-as": "{{l3_vpn_bgp_remote_as}}"
-                                        }
+                                        },
                                         "afi-safis": {
                                             "afi-safi": [
                                                 "config": {
-                                                    "afi-safi-name": "ipv4"
+                                                    "afi-safi-name": "ipv4",
                                                     "enabled": true
-                                                }
+                                                },
                                                 "apply-policy": {
                                                     "config": {
-                                                        "import-policy": "{{l3_vpn_bgp_vrf}}-route-target-import"
+                                                        "import-policy": "{{l3_vpn_bgp_vrf}}-route-target-import",
                                                         "export-policy": "{{l3_vpn_bgp_vrf}}-route-target-export"
                                                     }
                                                 }
@@ -184,7 +186,7 @@ router bgp {{l3_vpn_bgp_as_number}}
    aggregate-address {{l3_vpn_bgp_network_prefix}} summary-only route-policy {{network_prefix_rpl}}
 </pre>
 
-*summary-only* is a conversion of "frinx-bgp-extension:summary-only" set *true* 
+*summary-only* is a conversion of "frinx-bgp-extension:summary-only" set *true*
 
 ### Cisco IOS (VIOS 15.6(2)T)
 
@@ -222,10 +224,12 @@ set routing-instances {{l3_vpn_bgp_vrf}} routing-options aggregate route {{l3_vp
 
 #### CLI
 
+---
 <pre>
 ip vpn-instance {{l3_vpn_bgp_vrf}}
  ipv4-family
   route-distinguisher {{l3_vpn_bgp_rd}}
+  prefix limit {{prefix-limit-from}} {{prefix-limit-to}} 
   vpn-target {{l3_vpn_bgp_rt_exp_1}} export-extcommunity
   vpn-target {{l3_vpn_bgp_rt_imp_1}} import-extcommunity
   
@@ -240,3 +244,11 @@ bgp {{l3_vpn_bgp_as_number}}
   peer {{l3_vpn_bgp_neighbor_address}} route-policy {{l3_vpn_bgp_vrf}}-route-target-import import
   peer {{l3_vpn_bgp_neighbor_address}} route-policy {{l3_vpn_bgp_vrf}}-route-target-export export
 </pre>
+---
+
+*1 to 100000* is conversion of {{prefix-limit-from}} set "frinx-huawei-network-instance-extension:prefix-limit-from"  
+*1 to 100* is conversion of {{prefix-limit-to}} set "frinx-huawei-network-instance-extension:prefix-limit-to"
+
+##### Unit
+
+Link to github : [huawei-unit](https://github.com/FRINXio/cli-units/tree/master/huawei/network-instance/src/main/java/io/frinx/cli/unit/huawei/network/instance/handler/vrf)
