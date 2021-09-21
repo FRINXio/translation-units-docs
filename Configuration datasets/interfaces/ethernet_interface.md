@@ -18,9 +18,9 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
             "config": {
                 "type": "iana-if-type:ethernetCsmacd/iana-if-type:other",
                 "name": "{{eth_ifc_name}}",
-                "mtu": {{eth_mtu}},
+                "mtu": "{{eth_mtu}}",
                 "description": "{{eth_description}}",
-                "enabled": {{eth_enabled}},
+                "enabled": "{{eth_enabled}}",
                 "tpid": "{{eth_tpid}}",
                 "frinx-saos-if-extension:physical-type": "{{eth_phy_type}}",
                 "frinx-saos-if-extension:acceptable-frame-type": "{{eth_aft}}",
@@ -28,33 +28,36 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                 "frinx-saos-if-extension:vlan-ethertype-policy": "{{eth_vep}}",
                 "frinx-saos-if-extension:ingress-to-egress-qmap": "{{eth_iteq}}",
                 "frinx-saos-if-extension:forward-unlearned": "{{fwd_un}}",
-                "frinx-saos-if-extension:max-dynamic-macs": "{{max_macs}}"
+                "frinx-saos-if-extension:max-dynamic-macs": "{{max_macs}}",
                 "frinx-cisco-if-extension:l2-protocols": [
                     "{{l2-protocols}}"
                 ],
                 "frinx-cisco-if-extension:storm-control": [
                     {
                         "address": "{{storm_control_address}}",
-                        "level": {{storm_control_level}}
+                        "level": "{{storm_control_level}}"
                     }
                 ],
-                "frinx-cisco-if-extension:lldp-transmit": {{lldp_transmit}},
-                "frinx-cisco-if-extension:lldp-receive": {{lldp_receive}},
-                "frinx-cisco-if-extension:negotiation-auto": {{negotiation_auto}},
-                "frinx-cisco-if-extension:fhrp-minimum-delay": {{fhrp_minimum_delay}},
-                "frinx-cisco-if-extension:fhrp-reload-delay": {{fhrp_reload_delay}},
-                "frinx-cisco-if-extension:cdp-enable": {{cdp-enable}},
-                "frinx-cisco-if-extension:switchport-port_security-enable": {{port_security-enable}},
-                "frinx-cisco-if-extension:switchport-port_security-maximum": {{port_security-maximum}},
+                "frinx-cisco-if-extension:lldp-transmit": "{{lldp_transmit}}",
+                "frinx-cisco-if-extension:lldp-receive": "{{lldp_receive}}",
+                "frinx-cisco-if-extension:negotiation-auto": "{{negotiation_auto}}",
+                "frinx-cisco-if-extension:fhrp-minimum-delay": "{{fhrp_minimum_delay}}",
+                "frinx-cisco-if-extension:fhrp-reload-delay": "{{fhrp_reload_delay}}",
+                "frinx-cisco-if-extension:cdp-enable": "{{cdp-enable}}",
+                "frinx-cisco-if-extension:switchport-port_security-enable": "{{port_security-enable}}",
+                "frinx-cisco-if-extension:switchport-port_security-maximum": "{{port_security-maximum}}",
                 "frinx-cisco-if-extension:switchport-port_security-violation": "{{port_security-violation}}",
                 "frinx-cisco-if-extension:switchport-port_security-aging-type": "{{port_security-aging-type}}",
-                "frinx-cisco-if-extension:switchport-port_security-aging-time": {{port_security-aging-time}},
-                "frinx-cisco-if-extension:switchport-port_security-aging-static": {{port_security-aging-static}}
+                "frinx-cisco-if-extension:switchport-port_security-aging-time": "{{port_security-aging-time}}",
+                "frinx-cisco-if-extension:switchport-port_security-aging-static": "{{port_security-aging-static}}",
+                "frinx-huawei-if-extension:flow-stat-interval": "{{flow_stat_interval}}",
+                "frinx-huawei-if-extension:ip-binding-vpn-instance": "{{vrf_name}}",
+                "frinx-huawei-if-extension:trust-dscp": "{{trust_dscp}}",
             },
             "hold-time": {
                 "config": {
-                    "up": {{eth_hold_time_up}},
-                    "down": {{eth_hold_time_down}}
+                    "up": "{{eth_hold_time_up}}",
+                    "down": "{{eth_hold_time_down}}"
                 }
             },
             "subinterfaces": {
@@ -66,7 +69,7 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                         },
                         "frinx-openconfig-if-ip:ipv4": {
                             "config": {
-                                "mtu": {{eth_ipv4_mtu}}
+                                "mtu": "{{eth_ipv4_mtu}}"
                             },
                             "addresses": {
                                 "address": [
@@ -74,7 +77,7 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                                         "ip": "{{eth_ip}}",
                                         "config": {
                                             "ip": "{{eth_ip}}",
-                                            "prefix-length": {{eth_prefix_length}}
+                                            "prefix-length": "{{eth_prefix_length}}"
                                         }
                                     }
                                 ]
@@ -87,35 +90,45 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                                         "ip": "{{eth_ip6}}",
                                         "config": {
                                             "ip": "{{eth_ip6}}",
-                                            "prefix-length": {{eth_prefix6_length}}
+                                            "prefix-length": "{{eth_prefix6_length}}"
                                         }
                                     }
                                 ]
                             },
                             "router-advertisement": {
                                 "config": {
-                                    "suppress": {{ip6_nd_suppress_ra}}
+                                    "suppress": "{{ip6_nd_suppress_ra}}"
                                 }
                             }
                         }
                     },
                     {
-                        "index": {{sub_ifc_index}},
+                        "index": "{{sub_ifc_index}}",
                         "config": {
-                            "index": {{sub_ifc_index}},
+                            "index": "{{sub_ifc_index}}",
                             "description": "{{eth_sub_description}}",
                             "frinx-juniper-if-extension:rpm-type": "{{rpm_type}}",
-                            "enabled": {{subif_enabled}}
+                            "enabled": "{{subif_enabled}}",
+                            "frinx-huawei-if-extension:traffic-policy": {
+                                "traffic-name": "{{traffic_name}}",
+                                "direction": "{{direction}}"
+                            },
+                            "frinx-huawei-if-extension:dot1q-vlan-id": "{{dot1q_vlan_id}}",
+                            "frinx-huawei-if-extension:traffic-filter": {
+                                "acl-name": "{{acl_name}}",
+                                "direction": "{{direction}}"
+                            },
+                            "frinx-huawei-if-extension:ip-binding-vpn-instance": "{{vrf_name}}",
                         },
                         "frinx-openconfig-vlan:vlan": {
                             "config": {
-                                "vlan-id": {{vlan_id}},
-                                "name": {{name}}
+                                "vlan-id": "{{vlan_id}}",
+                                "name": "{{name}}"
                             }
                         },
                         "frinx-openconfig-if-ip:ipv4": {
                             "config": {
-                                "mtu": {{eth_sub_ipv4_mtu}}
+                                "mtu": "{{eth_sub_ipv4_mtu}}"
                             },
                             "addresses": {
                                 "address": [
@@ -123,7 +136,7 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                                         "ip": "{{eth_sub_ip}}",
                                         "config": {
                                             "ip": "{{eth_sub_ip}}",
-                                            "prefix-length": {{eth_sub_prefix_length}}
+                                            "prefix-length": "{{eth_sub_prefix_length}}"
                                         }
                                     }
                                 ]
@@ -131,7 +144,7 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                         },
                         "frinx-cisco-if-extension:statistics": {
                             "config": {
-                                "load-interval": {{eth_sub_load_interval}}
+                                "load-interval": "{{eth_sub_load_interval}}"
                             }
                         }
                     }
@@ -139,11 +152,11 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
             },
             "frinx-damping:damping": {
                 "config": {
-                    "enabled": {{eth_damping_enabled}},
-                    "half-life": {{eth_half_life}},
-                    "reuse": {{eth_reuse}},
-                    "suppress": {{eth_suppress}},
-                    "max-suppress": {{eth_max_suppress}}
+                    "enabled": "{{eth_damping_enabled}}",
+                    "half-life": "{{eth_half_life}}",
+                    "reuse": "{{eth_reuse}}",
+                    "suppress": "{{eth_suppress}}",
+                    "max-suppress": "{{eth_max_suppress}}"
                 }
             },
             "frinx-openconfig-if-ethernet:ethernet": {
@@ -152,15 +165,15 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                     "frinx-openconfig-if-aggregate:aggregate-id": "{{lag_ifc_name}}",
                     "frinx-lacp-lag-member:lacp-mode": "{{lacp_mode}}",
                     "frinx-lacp-lag-member:interval": "{{lacp_interval}}",
-                    "frinx-if-aggregate-extension:admin-key": {{lacp_admin_key}}
+                    "frinx-if-aggregate-extension:admin-key": "{{lacp_admin_key}}"
                 },
                 "frinx-openconfig-vlan:switched-vlan" : {
                     "config" : {
                         "interface-mode": "TRUNK",
                         "trunk-vlans": [
-                             {{tagged_vlan_ifc_id}}
+                            "{{tagged_vlan_ifc_id}}"
                          ],
-                         "native-vlan": {{untagged_vlan_ifc_id}}
+                         "native-vlan": "{{untagged_vlan_ifc_id}}"
                     }
                 }
             },
@@ -168,7 +181,7 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                 "mip": {
                     "level": [
                         {
-                            "level": {{level}},
+                            "level": "{{level}}",
                             "vlan": [
                                 "{{level-vlan}}"
                             ]
@@ -178,27 +191,27 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
             },
             "frinx-cisco-if-extension:statistics": {
                 "config": {
-                    "load-interval": {{eth_load_interval}}
+                    "load-interval": "{{eth_load_interval}}"
                 }
             },
             "frinx-saos-if-extension:cft-profile": {
                 "config": {
                     "name": "{{cft_profile_name}}",
-                    "enabled": {{cft_enabled}}
+                    "enabled": "{{cft_enabled}}"
                 }
             },
             "frinx-cisco-if-extension:service-instances": {
                 "service-instance": [
                     {
-                        "id": {{service_instance_id}},
+                        "id": "{{service_instance_id}}",
                         "config": {
-                            "id": {{service_instance_id}},
-                            "trunk": {{service_instance_trunk}},
+                            "id": "{{service_instance_id}}",
+                            "trunk": "{{service_instance_trunk}}",
                             "evc": "{{service_instance_evc}}"
                         },
                         "bridge-domain": {
                             "value": "{{service_instance_bridge_domain}}",
-                            "group-number": {{service_instance_bridge_domain_group_number}}
+                            "group-number": "{{service_instance_bridge_domain_group_number}}"
                         },
                         "frinx-cisco-if-extension:service-instance-l2protocol": {
                             "l2protocol": [
@@ -216,9 +229,9 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                         },
                         "encapsulation": {
                             "dot1q": [
-                                {{service_instance_encapsulation_dot1q}}
+                                "{{service_instance_encapsulation_dot1q}}"
                             ],
-                            "untagged": {{service_instance_encapsulation_untagged}}
+                            "untagged": "{{service_instance_encapsulation_untagged}}"
                         },
                         "rewrite": {
                                 "operation": "{{service_instance_rewrite_operation}}",
@@ -237,6 +250,9 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
 
 ### Cisco IOS Classic (15.2(4)S5) / XE (15.3(3)S2)
 
+#### CLI
+
+---
 <pre>
 interface {{eth_ifc_name}}
  description {{eth_description}}
@@ -260,6 +276,7 @@ interface {{eth_ifc_name}}
  negotiation auto | no negotiation auto
  cdp enable | no cdp enable
 </pre>
+---
 
 {{eth_subnet}} is a conversion of {{eth_prefix_length}}  
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
@@ -282,15 +299,16 @@ interface {{eth_ifc_name}}
 example {{lag_ifc_name}} is Port-channel3 -> {{lag_ifc_id}} is 3  
 mode on is a conversion of {{lacp_mode}} set to frinx-openconfig-lacp:ON  
 {{eth_phy_type}} can be "default" or "rj45" or "sfp"  
-{{storm_control_address}} can be "broadcast" or "multicast" or "unicast"  
+{{storm_control_address}} can be "broadcast" or "multicast" or "unicast"
 
 ---
 <pre>
 interface {{eth_ifc_name}}.{{sub_ifc_index}}
  ip address {{eth_sub_ip}} {{eth_sub_subnet}}
 </pre>
+---
 
-{{eth_sub_subnet}} is conversion of {{eth_sub_prefix_length}}  
+{{eth_sub_subnet}} is conversion of {{eth_sub_prefix_length}}
 
 ##### Unit
 
@@ -298,6 +316,9 @@ Link to github : [ios-unit](https://github.com/FRINXio/cli-units/tree/master/ios
 
 ### Cisco IOS XE 15, 16, 17
 
+#### CLI
+
+---
 <pre>
 interface {{eth_ifc_name}}
  description {{eth_description}}
@@ -320,6 +341,7 @@ interface {{eth_ifc_name}}
   rewrite {{service_instance_rewrite_operation}} {{service_instance_rewrite_type}}
   l2protocol {{service_instance_l2protocol_protocol_type}} {{service_instance_l2protocol_protocol}}
 </pre>
+---
 
 {{eth_subnet}} is a conversion of {{eth_prefix_length}}  
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
@@ -352,6 +374,7 @@ Link to github : [ios-xe-unit](https://github.com/FRINXio/cli-units/tree/master/
 
 #### CLI
 
+---
 <pre>
 interface {{eth_ifc_name}}
  description {{eth_description}}
@@ -366,9 +389,10 @@ interface {{eth_ifc_name}}
  lacp period short | no lacp period short
  shutdown | no shutdown
 </pre>
+---
 
 {{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
-example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100  
+example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100
 
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
 *shutdown* is a conversion of {{eth_enabled}} set *false*  
@@ -379,15 +403,16 @@ example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100
 if {{lacp_mode}} is not specified then command *bundle id {{lag_ifc_id}} mode on* is used  
 *mode active* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:ACTIVE*  
 *mode passive* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:PASSIVE*  
-*ipv6 nd suppress-ra* is a conversion of {{ip6_nd_suppress_ra}} set *true*  
+*ipv6 nd suppress-ra* is a conversion of {{ip6_nd_suppress_ra}} set *true*
 
 ---
 <pre>
 interface {{eth_ifc_name}}.{{sub_ifc_index}}
  ipv4 address {{eth_sub_ip}} {{eth_sub_subnet}}
 </pre>
+---
 
-{{eth_sub_subnet}} is conversion of {{eth_sub_prefix_length}}  
+{{eth_sub_subnet}} is conversion of {{eth_sub_prefix_length}}
 
 ##### Unit
 
@@ -397,6 +422,7 @@ Link to github : [xr-unit](https://github.com/FRINXio/cli-units/tree/master/ios-
 
 #### CLI
 
+---
 <pre>
 interface {{eth_ifc_name}}
  description {{eth_description}}
@@ -407,9 +433,10 @@ interface {{eth_ifc_name}}
  lacp period short | no lacp period short
  shutdown | no shutdown
 </pre>
+---
 
 {{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
-example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100  
+example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100
 
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
 *shutdown* is a conversion of {{eth_enabled}} set *false*  
@@ -418,7 +445,7 @@ example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100
 *no lacp period short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:SLOW*  
 if {{lacp_mode}} is not specified then command *bundle id {{lag_ifc_id}} mode on* is used  
 *mode active* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:ACTIVE*  
-*mode passive* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:PASSIVE*  
+*mode passive* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:PASSIVE*
 
 ---
 <pre>
@@ -434,13 +461,15 @@ interface {{eth_ifc_name}}.{{sub_ifc_index}}
  ipv4 address {{eth_sub_ip}} {{eth_sub_subnet}}
  encapsulation dot1q {{vlan_id}}
 </pre>
+---
 
-{{eth_sub_subnet}} is conversion of {{eth_sub_prefix_length}}  
+{{eth_sub_subnet}} is conversion of {{eth_sub_prefix_length}}
 
 ### Cisco IOS XR 6.6.1
 
 #### CLI
 
+---
 <pre>
 interface {{eth_ifc_name}}
  description {{eth_description}}
@@ -452,9 +481,10 @@ interface {{eth_ifc_name}}
  lacp period short | no lacp period short
  shutdown | no shutdown
 </pre>
+---
 
 {{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
-example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100  
+example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100
 
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
 *shutdown* is a conversion of {{eth_enabled}} set *false*  
@@ -464,7 +494,7 @@ example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100
 *no lacp period short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:SLOW*  
 if {{lacp_mode}} is not specified then command *bundle id {{lag_ifc_id}} mode on* is used  
 *mode active* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:ACTIVE*  
-*mode passive* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:PASSIVE*  
+*mode passive* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:PASSIVE*
 
 ---
 <pre>
@@ -475,8 +505,9 @@ interface {{eth_ifc_name}}.{{sub_ifc_index}}
  load-interval {{eth_sub_load_interval}}
  encapsulation dot1q {{vlan_id}}
 </pre>
+---
 
-{{eth_sub_subnet}} is conversion of {{eth_sub_prefix_length}}  
+{{eth_sub_subnet}} is conversion of {{eth_sub_prefix_length}}
 
 ##### Unit
 
@@ -486,16 +517,19 @@ Link to github : [xr-unit](https://github.com/FRINXio/unitopo-units/tree/master/
 
 #### CLI
 
+---
 <pre>
 set interfaces {{eth_ifc_name}} vlan-tagging
 delete interfaces {{eth_ifc_name}} disable | set interfaces {{eth_ifc_name}} disable
 set interfaces {{eth_ifc_name}} unit 0 family inet address {{eth_ip}}/{{eth_prefix_length}}
 </pre>
+---
 
 *vlan-tagging* is a conversion of {{eth_tpid}} set *TPID_0X8100*  
 *delete interfaces {{eth_ifc_name}} disable* is a conversion of {{eth_enabled}} set *true*  
-*set interfaces {{eth_ifc_name}} disable* is conversion of {{eth_enabled}} set *false*  
+*set interfaces {{eth_ifc_name}} disable* is conversion of {{eth_enabled}} set *false*
 
+---
 <pre>
 set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} vlan-id {{vlan_id}}
 set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} description {{eth_sub_description}}
@@ -503,9 +537,10 @@ set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} family inet address {{eth
 set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} disable
 delete interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} disable
 </pre>
+---
 
 *set interfaces {{eth_intf_id}} unit {{sub_interface_index}} disable* is conversion of {{subif_enabled}} set *false*  
-*delete interfaces {{eth_intf_id}} unit {{sub_interface_index}} disable* is a conversion of {{subif_enabled}} set *true*  
+*delete interfaces {{eth_intf_id}} unit {{sub_interface_index}} disable* is a conversion of {{subif_enabled}} set *true*
 
 ##### Unit
 
@@ -515,6 +550,7 @@ Link to github : [junos-unit](https://github.com/FRINXio/cli-units/tree/master/j
 
 #### CLI
 
+---
 <pre>
 set interfaces {{eth_ifc_name}} description {{eth_description}}
 set interfaces {{eth_ifc_name}} mtu {{eth_mtu}}
@@ -530,12 +566,13 @@ set interfaces {{eth_ifc_name}} aggregated-ether-options lacp {{lacp_mode}}
 set interfaces {{eth_ifc_name}} aggregated-ether-options lacp periodic {{lacp_interval}}
 delete interfaces {{eth_ifc_name}} disable | set interfaces {{eth_ifc_name}} disable
 </pre>
+---
 
 {{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
-example {{lag_ifc_name}} is ae100 -&gt; {{lag_ifc_id}} is 100  
+example {{lag_ifc_name}} is ae100 -&gt; {{lag_ifc_id}} is 100
 
 *delete interfaces {{eth_ifc_name}} disable* is a conversion of {{eth_enabled}} set *true*  
-*set interfaces {{eth_ifc_name}} disable* is conversion of {{eth_enabled}} set *false* 
+*set interfaces {{eth_ifc_name}} disable* is conversion of {{eth_enabled}} set *false*
 
 ##### Unit
 
@@ -545,10 +582,12 @@ Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/mast
 
 #### CLI
 
+---
 <pre>
 set interfaces {{eth_intf_id}} unit 0 family inet address {{eth_ip}}/{{eth_prefix}}
 delete interfaces {{eth_ifc_name}} disable | set interfaces {{eth_ifc_name}} disable
 </pre>
+---
 
 *delete interfaces {{eth_ifc_name}} disable* is a conversion of {{eth_enabled}} set *true*  
 *set interfaces {{eth_ifc_name}} disable* is conversion of {{eth_enabled}} set *false*  
@@ -561,9 +600,10 @@ set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} family inet address {{eth
 delete interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} disable | set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} disable
 set interfaces {{rpm_ifc_index}} unit {{rpm_subintf_index}} rpm {{rpm_type}}
 </pre>
+---
 
 *delete interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} disable* is a conversion of {{subif_enabled}} set *true*  
-*set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} disable* is conversion of {{subif_enabled}} set *false*  
+*set interfaces {{eth_ifc_name}} unit {{sub_ifc_index}} disable* is conversion of {{subif_enabled}} set *false*
 
 ##### Unit
 
@@ -574,6 +614,7 @@ Link to github : [junos-unit](https://github.com/FRINXio/unitopo-units/tree/mast
 
 #### CLI
 
+---
 <pre>
 tag-type {{eth_tpid}} {{eth_ifc_name}}
 
@@ -581,9 +622,10 @@ interface {{eth_ifc_name}}
   port-name {{eth_description}}
   enable | disable
 </pre>
+---
 
 *enable* is a conversion of {{eth_enabled}} set *true*  
-*disable* is a conversion of {{eth_enabled}} set *false*  
+*disable* is a conversion of {{eth_enabled}} set *false*
 
 ##### Unit
 
@@ -593,12 +635,28 @@ Link to github : [brocade-unit](https://github.com/FRINXio/cli-units/tree/master
 
 #### CLI
 
+---
 <pre>
 interface {{eth_ifc_name}}
- ipv4 address {{eth_ip}} {{eth_subnet}}
-</pre>
+ description {{eth_description}}                         
+ set flow-stat interval {{flow_stat_interval}}                
+ ip binding vpn-instance {{vrf_name}}              
+ ip address {{eth_ip}} {{eth_subnet}}
+ trust dscp
 
-{{eth_subnet}} is conversion of {{eth_prefix_length}}
+interface {{eth_ifc_name}}.{{sub_ifc_index}}         
+ description {{eth_sub_description}}     
+ dot1q termination vid {{dot1q_vlan_id}}                 
+ ip address {{eth_sub_ip}} {{eth_sub_subnet}}   
+ traffic-filter {{direction}} acl name {{acl_name}} 
+ traffic-policy {{traffic_name}} {{direction}}
+ trust dscp
+</pre>
+---
+
+{{eth_subnet}} is conversion of "{{eth_prefix_length}}"   
+*inbound, outbound* is a conversions of "{{direction}}"
+*trust dscp* is a conversion of "{{trust_dscp}}" set *true*
 
 ##### Unit
 
@@ -620,15 +678,15 @@ bridge
 </pre>
 
 {{phy_port_id}} is parsed from {{eth_ifc_name}}  
-example {{eth_ifc_name}} is Ethernet1/1 -&gt; {{phy_port_id}} is 1/1  
+example {{eth_ifc_name}} is Ethernet1/1 -&gt; {{phy_port_id}} is 1/1
 
 {{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
-example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100  
+example {{lag_ifc_name}} is Bundle-Ether100 -&gt; {{lag_ifc_id}} is 100
 
 *port enable {{phy_port_id}}* is a conversion of {{eth_enabled}} set *true*  
 *port disable {{phy_port_id}}* is a conversion of {{eth_enabled}} set *false*  
 *lacp port timeout {{phy_port_id}} short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:FAST*  
-*no lacp port timeout {{phy_port_id}} short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:SLOW*  
+*no lacp port timeout {{phy_port_id}} short* is a conversion of {{lacp_interval}} set to *frinx-openconfig-lacp:SLOW*
 
 ##### Unit
 
@@ -661,20 +719,20 @@ flow access-control set port {{eth_ifc_name}} max-dynamic-macs {{max_macs}}
 {{eth_aft}} can be "all", "tagged-only", "untagged-only"  
 {{eth_iteq}} can be "Default-RCOS" or "NNI-NNI"  
 *forward-unlearned on* is a conversion of {{fwd_un}} set *true*  
-*forward-unlearned off* is a conversion of {{fwd_un}} set *false*   
+*forward-unlearned off* is a conversion of {{fwd_un}} set *false*
 
 <pre>
 vlan add vlan {{vlan_ids}} port {{eth_ifc_name}}
 </pre>
-    
-{{vlan_ids}} from usual range (max 4094)  
+
+{{vlan_ids}} from usual range (max 4094)
 
 <pre>
 virtual-circuit ethernet set port {{eth_ifc_name}} vlan-ethertype-policy {{eth_vep}}
 </pre>
 
-{{eth_vep}} can be "all" or "vlan-tpid"  
- 
+{{eth_vep}} can be "all" or "vlan-tpid"
+
 <pre>
 l2-cft set port {{eth_ifc_name}} profile {{cft_profile_name}}
 l2-cft enable port {{eth_ifc_name}}
