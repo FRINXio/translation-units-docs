@@ -9,6 +9,10 @@ frinx-openconfig-aaa:aaa
 
 ## OPENCONFIG YANG
 
+
+[YANG models](https://github.com/FRINXio/openconfig/tree/master/aaa/src/main/yang)
+
+
 ```javascript
 {
     "frinx-openconfig-aaa:aaa": {
