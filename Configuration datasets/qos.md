@@ -55,6 +55,7 @@ frinx-openconfig-qos:qos/classifiers/classifier={{class_name}}?content=nonconfig
             "name": "{{class_name}}",
             "config": {
                 "name": "{{class_name}}"
+                "frinx-qos-extension:operation": {{matching_rule}}
             },
             "terms": {
                 "term": [
@@ -130,7 +131,9 @@ frinx-openconfig-qos:qos/scheduler-policies/scheduler-policy={{policy_name}}
                             "frinx-saos-qos-extension:type": {{scheduler_type}},
                             "frinx-saos-qos-extension:vs-name": {{vs_ni_name}},
                             "priority": "{{scheduler_strict_priority}}", // STRICT or null
-                            "frinx-qos-extension:service-policy": "{{scheduler_policy_name}}"
+                            "frinx-qos-extension:service-policy": "{{scheduler_policy_name}}",
+                            "frinx-qos-extension:vrp-precedence": "{{precedence_name}}",        
+                            "frinx-qos-extension:behavior": "{{behavior_name}}" 
                         },
                         "inputs": {
                             "input": [
@@ -141,6 +144,7 @@ frinx-openconfig-qos:qos/scheduler-policies/scheduler-policy={{policy_name}}
                                         "queue": "{{class_name}}",
                                         "weight": "{{scheduler_priority}}",
                                         "frinx-qos-extension:cos": {{scheduler_cos}},
+                                        "frinx-qos-extension:statistic": "{{traffic_statistics}}"
                                     }
                                 }
                             ]
@@ -151,7 +155,9 @@ frinx-openconfig-qos:qos/scheduler-policies/scheduler-policy={{policy_name}}
                                 "bc": {{1r2c_scheduler_bc}},
                                 "cir-pct": {{1r2c_scheduler_bw_pct}},
                                 "cir-pct-remaining": {{1r2c_scheduler_bw_rem}},
-                                "frinx-qos-extension:max-queue-depth-bps": {{1r2c_scheduler_max_queue_depth_bps}}
+                                "frinx-qos-extension:max-queue-depth-bps": {{1r2c_scheduler_max_queue_depth_bps}},
+                                "frinx-qos-extension:drop-method": "{{drop_method_name}}",
+                                "frinx-qos-extension:color-mode": "{{color_mode_name}}"
                             },
                             "conform-action": {
                                 "config": {
@@ -171,6 +177,16 @@ frinx-openconfig-qos:qos/scheduler-policies/scheduler-policy={{policy_name}}
                                     "frinx-qos-extension:transmit": {{1r2c_exceed_transmit}}, // true or false
                                     "drop": {{1r2c_exceed_drop}} // true or false
                                 }
+                            },
+                            "yellow-action": {
+                                "config": {
+                                    "frinx-qos-extension:cos-transmit": {{1r2c_yellow_cos}},
+                                    "frinx-qos-extension:dei-transmit": {{1r2c_yellow_dei}},
+                                    "frinx-qos-extension:dscp-transmit": {{1r2c_yellow_dscp}},
+                                    "frinx-qos-extension:qos-transmit": {{1r2c_yellow_qos}},
+                                    "frinx-qos-extension:transmit": {{1r2c_yellow_transmit}}, // true or false
+                                    "drop": {{1r2c_yellow_drop}} // true or false
+                                }
                             }
                         },
                         "two-rate-three-color": {
@@ -183,7 +199,8 @@ frinx-openconfig-qos:qos/scheduler-policies/scheduler-policy={{policy_name}}
                                 "max-queue-depth-pct": {{scheduler_rate_pct}},
                                 "frinx-qos-extension:max-queue-depth-ms": {{scheduler_max_queue_depth_ms}},
                                 "frinx-saos-qos-extension:congestion-avoidance": {{scheduler_congestion}},
-                                "frinx-saos-qos-extension:weight": {{scheduler_saos_weight}}
+                                "frinx-saos-qos-extension:weight": {{scheduler_saos_weight}},
+                                "frinx-qos-extension:traffic-action": "{{traffic_action_name}}" 
                             }
                         }
                     }
@@ -277,6 +294,29 @@ end-class-map
 will create 5 terms numbered from 1 to 5, where term 1 contains condition for qos-group, term 2 contains condition for mpls, etc.
 
 Writing will occur in ascending order. Reading is the same, first condition is put into first term, etc.
+
+### Huawei NE5000E (V800R009C10SPC310)
+
+#### CLI
+
+---
+<pre>
+traffic classifier {{class_name}} operator {{matching_rule}}
+ if-match dscp {{term_c_dscp_enum}}
+
+traffic behavior {{behavior_name}}
+ statistic {{traffic_statistics}}
+ queue {{traffic_action_name}} bandwidth pct {{scheduler_bw_pct}}
+ car cir pct {{1r2c_scheduler_bw_pct}} mode {{color_mode_name}} green pass {{1r2c_conform_transmit}} {{1r2c_conform_cos}} yellow pass {{1r2c_yellow_transmit}} {{1r2c_yellow_cos}} red pass {{1r2c_exceed_transmit}} {{1r2c_exceed_cos}}
+
+traffic policy {{policy_name}}          
+ classifier {{class_name}} behavior {{behavior_name} precedence {{precedence_name}}
+</pre>
+---
+
+##### Unit
+
+Link to github : [huawei-unit](https://github.com/FRINXio/cli-units/tree/master/huawei/qos)
 
 ### Ciena SAOS 6.14
 
