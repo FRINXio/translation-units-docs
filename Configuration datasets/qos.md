@@ -178,7 +178,11 @@ frinx-openconfig-qos:qos/scheduler-policies/scheduler-policy={{policy_name}}
                                     "drop": {{1r2c_exceed_drop}} // true or false
                                 }
                             },
+<<<<<<< HEAD
                             "frinx-qos-extension:yellow-action": {
+=======
+                            "yellow-action": {
+>>>>>>> ad7e335567cabed74229189335979ed32ea01b65
                                 "config": {
                                     "frinx-qos-extension:cos-transmit": {{1r2c_yellow_cos}},
                                     "frinx-qos-extension:dei-transmit": {{1r2c_yellow_dei}},
