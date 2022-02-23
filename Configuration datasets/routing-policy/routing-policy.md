@@ -24,21 +24,9 @@ frinx-openconfig-routing-policy:routing-policy/policy-definitions/policy-definit
                         "frinx-cisco-routing-policy-extension:tags": {
                            "tag": [
                               {
-                                 "name": "id_of_tag_1",
+                                 "name": "{{tag_id}}",
                                  "config": {
-                                    "name": "id_of_tag_1"
-                                 }
-                              },
-                              {
-                                 "name": "id_of_tag_2",
-                                 "config": {
-                                    "name": "id_of_tag_2"
-                                 }
-                              },
-                              {
-                                 "name": "id_of_tag_3",
-                                 "config": {
-                                    "name": "id_of_tag_3"
+                                    "name": {{"tag_id}}"
                                  }
                               }
                            ]
@@ -249,67 +237,18 @@ route-map {{rpol_name}} {{set_operation}} {{rpol_s_name}}
 set local-preference {{rpol_s_a_bgp_set_localpref}}
 set as-path prepend {{rpol_s_a_bgp_aspathprep_asn}}
 match ip address prefix-list {{ip_prefix_list}}
+match tag {{tag_id}}
 match ipv6 address prefix-list {{ipv6_prefix_list}}
 set origin {{rpol_s_a_bgp_set_routeorigin}}
 match community {{cset_name}}
 set community (no-export, no-advertise, {{rpol_s_a_bgp_comm}}) {{rpol_s_a_bgp_comset_opts}}
-match tag {{id_of_tag}}
 </pre>
 
 *permit* is a conversion of {{set_operation}} set to *frinx-cisco-routing-policy-extension:PERMIT*  
 *deny* is a conversion of {{set_operation}} set to *frinx-cisco-routing-policy-extension:DENY*
 *set community (no-export)* is a conversion of {{rpol_s_a_bgp_well_known_comm}} set to *frinx-openconfig-bgp-types:NO_EXPORT*  
-*set community (no-advertise)* is a conversion of {{rpol_s_a_bgp_well_known_comm}} set to *frinx-openconfig-bgp-types:NO_ADVERTISE*
+*set community (no-advertise)* is a conversion of {{rpol_s_a_bgp_well_known_comm}} set to *frinx-openconfig-bgp-types:NO_ADVERTISE*  
 *match tag {{id_of_tag}}* is a tag element in match clause set to *frinx-cisco-routing-policy-extension:tags*
-
-##### Examples
-
-Setting tags for route map TEST_MAP. Output contains only *frinx-cisco-routing-policy-extension:tags*:
-
-<pre>
-route-map TEST_MAP permit 100
-   match tag 25
-exit
-</pre>
-
-```javascript
-"frinx-cisco-routing-policy-extension:tags": {
-   "tag": [
-      {
-         "name": "25",
-         "config": {
-            "name": "25"
-         }
-      }
-   ]
-}
-```
-
-<pre>
-route-map TEST_MAP permit 100
-   match tag 25
-   match tag 50
-exit
-</pre>
-
-```javascript
-"frinx-cisco-routing-policy-extension:tags": {
-   "tag": [
-      {
-         "name": "25",
-         "config": {
-            "name": "25"
-         }
-      },
-      {
-         "name": "50",
-         "config": {
-            "name": "50"
-         }
-      }
-   ]
-}
-```
 
 ### Cisco IOS XR 5.3.4, IOS XR 6.6.2
 
