@@ -24,9 +24,9 @@ frinx-openconfig-routing-policy:routing-policy/policy-definitions/policy-definit
                         "frinx-cisco-routing-policy-extension:tags": {
                            "tag": [
                               {
-                                 "name": "{{tag_id}}",
+                                 "name": {{tag_id}},
                                  "config": {
-                                    "name": {{"tag_id}}"
+                                    "name": {{tag_id}}
                                  }
                               }
                            ]
