@@ -21,6 +21,16 @@ frinx-openconfig-routing-policy:routing-policy/policy-definitions/policy-definit
                 "statement": [
                     {
                         "name": "{{rpol_s_name}}",
+                        "frinx-cisco-routing-policy-extension:tags": {
+                           "tag": [
+                              {
+                                 "name": {{tag_id}},
+                                 "config": {
+                                    "name": {{tag_id}}
+                                 }
+                              }
+                           ]
+                        },
                         "config": {
                             "name": "{{rpol_s_name}}",
                             "frinx-cisco-routing-policy-extension:set-operation": "{{set_operation}}",
@@ -227,6 +237,7 @@ route-map {{rpol_name}} {{set_operation}} {{rpol_s_name}}
 set local-preference {{rpol_s_a_bgp_set_localpref}}
 set as-path prepend {{rpol_s_a_bgp_aspathprep_asn}}
 match ip address prefix-list {{ip_prefix_list}}
+match tag {{tag_id}}
 match ipv6 address prefix-list {{ipv6_prefix_list}}
 set origin {{rpol_s_a_bgp_set_routeorigin}}
 match community {{cset_name}}
@@ -236,7 +247,8 @@ set community (no-export, no-advertise, {{rpol_s_a_bgp_comm}}) {{rpol_s_a_bgp_co
 *permit* is a conversion of {{set_operation}} set to *frinx-cisco-routing-policy-extension:PERMIT*  
 *deny* is a conversion of {{set_operation}} set to *frinx-cisco-routing-policy-extension:DENY*
 *set community (no-export)* is a conversion of {{rpol_s_a_bgp_well_known_comm}} set to *frinx-openconfig-bgp-types:NO_EXPORT*  
-*set community (no-advertise)* is a conversion of {{rpol_s_a_bgp_well_known_comm}} set to *frinx-openconfig-bgp-types:NO_ADVERTISE*
+*set community (no-advertise)* is a conversion of {{rpol_s_a_bgp_well_known_comm}} set to *frinx-openconfig-bgp-types:NO_ADVERTISE*  
+*match tag {{tag_id}}* is a tag element in match clause set to *frinx-cisco-routing-policy-extension:tags*
 
 ### Cisco IOS XR 5.3.4, IOS XR 6.6.2
 
