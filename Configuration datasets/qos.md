@@ -79,9 +79,20 @@ frinx-openconfig-qos:qos/classifiers/classifier={{class_name}}?content=nonconfig
                                     "traffic-class": ["{{term_c_tc}}"]
                                 }
                             },
-                            "frinx-qos-extension:cos": {
-                                "inner": {{term_c_cos_inner}}, // true or false
-                                "cos": {{term_c_cos}}
+                            "frinx-qos-extension:multiple-cos": {
+                                "cos-sets": [
+                                    {
+                                        "id": {{id_number_of_set}},
+                                        "elements": {
+                                            "inner": {{term_c_cos_inner}}, //true or false
+                                            "element": [
+                                                {
+                                                    "id": {{term_c_cos}}
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
                             }
                         },
                         "actions": {
