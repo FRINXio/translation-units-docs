@@ -50,6 +50,11 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                 "frinx-cisco-if-extension:switchport-port_security-aging-type": "{{port_security-aging-type}}",
                 "frinx-cisco-if-extension:switchport-port_security-aging-time": "{{port_security-aging-time}}",
                 "frinx-cisco-if-extension:switchport-port_security-aging-static": "{{port_security-aging-static}}",
+                "frinx-cisco-if-extension:ip-redirects": {{ip_redirects}}, // true or false
+                "frinx-cisco-if-extension:hold-queue": {
+                    "in": {{queue_in}},
+                    "out": {{queue_out}}
+                },
                 "frinx-huawei-if-extension:flow-stat-interval": "{{flow_stat_interval}}",
                 "frinx-huawei-if-extension:ip-binding-vpn-instance": "{{vrf_name}}",
                 "frinx-huawei-if-extension:trust-dscp": "{{trust_dscp}}",
@@ -165,7 +170,8 @@ frinx-openconfig-interfaces:interfaces/interface={{eth_ifc_name}}
                     "frinx-openconfig-if-aggregate:aggregate-id": "{{lag_ifc_name}}",
                     "frinx-lacp-lag-member:lacp-mode": "{{lacp_mode}}",
                     "frinx-lacp-lag-member:interval": "{{lacp_interval}}",
-                    "frinx-if-aggregate-extension:admin-key": "{{lacp_admin_key}}"
+                    "frinx-if-aggregate-extension:admin-key": "{{lacp_admin_key}}",
+                    "frinx-cisco-if-extension:lacp-rate": "{{lacp_rate}}"
                 },
                 "frinx-openconfig-vlan:switched-vlan" : {
                     "config" : {
@@ -324,7 +330,11 @@ interface {{eth_ifc_name}}
  description {{eth_description}}
  mtu {{eth_mtu}}
  ip address {{eth_ip}} {{eth_subnet}}
+ ip redirects | no ip redirects
  channel-group {{lag_ifc_id}} mode {{lacp_mode}}
+ lacp rate {{lacp_rate}}
+ hold-queue {{queue_in}} in
+ hold-queue {{queue_out}} out
  media-type {{eth_phy_type}} 
  speed {{eth_speed}}
  shutdown | no shutdown
@@ -346,6 +356,8 @@ interface {{eth_ifc_name}}
 {{eth_subnet}} is a conversion of {{eth_prefix_length}}  
 *no shutdown* is a conversion of {{eth_enabled}} set *true*  
 *shutdown* is a conversion of {{eth_enabled}} set *false*  
+*ip redirects* is a conversion of {{ip_redirects}} set *true*  
+*no ip redirects* is a conversion of {{ip_redirects}} set *false*  
 *lldp transmit* is a conversion of {{lldp-transmit}} set *true*  
 *no lldp transmit* is a conversion of {{lldp-transmit}} set *false*  
 *lldp receive* is a conversion of {{lldp-receive}} set *true*  
@@ -354,7 +366,11 @@ interface {{eth_ifc_name}}
 *no negotiation auto* is a conversion of {{negotiation_auto}} set *false*
 {{lag_ifc_id}} is parsed from {{lag_ifc_name}}  
 example {{lag_ifc_name}} is Port-channel3 -> {{lag_ifc_id}} is 3  
-mode on is a conversion of {{lacp_mode}} set to frinx-openconfig-lacp:ON
+mode on is a conversion of {{lacp_mode}} set to frinx-openconfig-lacp:ON  
+*mode active* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:ACTIVE*  
+*mode passive* is a conversion of {{lacp_mode}} set to *frinx-openconfig-lacp:PASSIVE*  
+*rate fast* is a conversion of {{lacp_rate}} set to *FAST*  
+*rate normal* is a conversion of {{lscp_rate}} set to *NORMAL*
 {{eth_phy_type}} can be "default" or "rj45" or "sfp"  
 {{storm_control_address}} can be "broadcast" or "multicast" or "unicast"  
 *service instance trunk {{service_instance_id}} ethernet* is conversion of {{service_instance_trunk}} set *true*
